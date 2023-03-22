@@ -1,4 +1,6 @@
-export const Bar = ({ animationDuration, progress }) => (
+import { FC } from "react";
+
+export const Bar: FC<{ animationDuration: number, progress: number }> = ({ animationDuration, progress }) => (
   <div
     className='bg-gradient h-[.3rem] w-full left-0 top-0 absolute z-[500000000]'
     style={{

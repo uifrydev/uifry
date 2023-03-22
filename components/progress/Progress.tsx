@@ -3,7 +3,7 @@ import { useNProgress } from '@tanem/react-nprogress';
 import { Bar } from './Bar';
 import { Container } from './Container';
 
-export const Progress = ({ isAnimating }) => {
+export const Progress = ({ isAnimating }: { isAnimating: boolean }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating,
   });

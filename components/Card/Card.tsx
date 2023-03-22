@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
               ? data?.images?.asset?.url
               : data?.images[0]?.asset?.url
           }
-          className="w-full h-full aspect-[5/3.6] "
+          className="w-full h-full aspect-[5/3.6]"
           width={6000}
           height={1000}
           alt=""
