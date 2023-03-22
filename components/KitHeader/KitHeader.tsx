@@ -11,7 +11,7 @@ import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
-const DetailHeader = ({link}) => {
+const DetailHeader = ({ link }: { link: string }) => {
   const features = useSelector((state) => state.features);
   const dispatch = useDispatch();
   return (
@@ -24,7 +24,10 @@ const DetailHeader = ({link}) => {
           <Image src={logo} alt={""} />
         </Link>
 
-        <Link href={link||'/'} className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
+        <Link
+          href={link || "/"}
+          className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]"
+        >
           <div className="">
             <Image src={arrow} alt={""} className="rotate-180" />
           </div>
@@ -34,9 +37,7 @@ const DetailHeader = ({link}) => {
         </Link>
         <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
           <Button
-            classes={
-              "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
-            }
+            classes={"bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"}
           >
             <div className="flex gap-[.8rem]">
               <Image src={star} className="" alt="" />
@@ -86,7 +87,10 @@ const DetailHeader = ({link}) => {
           </div>
         ) : (
           <>
-            <Link href={'/ui-ux-kits'} className="flex-1 flex items-center gap-[1.447rem]  ">
+            <Link
+              href={"/ui-ux-kits"}
+              className="flex-1 flex items-center gap-[1.447rem]  "
+            >
               <div className="">
                 <Image src={arrow} alt={""} className="rotate-180" />
               </div>

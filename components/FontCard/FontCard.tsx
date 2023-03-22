@@ -1,11 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
 import Image from "next/image";
 import _1 from "../../public/assets/images/1.jpg";
+import { FontCardProps } from "@/Interface/interface";
 
-const FontCard = ({ data, url, onClick }) => {
+const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
   return (
     <div
       onClick={onClick}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -14,19 +14,17 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
 import { perProduct } from "../../utils/consts";
-const ProductDetail = ({ showCross, data }) => {
+import { Data, ProductDetailProps } from "@/Interface/interface";
+
+const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
   const images = [figma, xd, Sketch];
   const dispatch = useDispatch();
   const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
-    return builder.image(source);
-  };
-
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fecthData() {
-      console.log(data?.category)
+      console.log(data?.category);
 
       setLoading(true);
       try {
@@ -99,7 +97,11 @@ const ProductDetail = ({ showCross, data }) => {
           </Link>
         </div>
       </div>
-      <Carousel images={data.images.map((item) => item?.asset?.url)} />
+      <Carousel
+        images={data.images.map(
+          (item: { asset: { url: string } }) => item?.asset?.url
+        )}
+      />
 
       <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-[#E5E9FF] max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">
@@ -142,7 +144,6 @@ const ProductDetail = ({ showCross, data }) => {
             <Card
               key={index}
               onClick={() => dispatch(updateModal(true))}
-              index={index}
               data={item}
             />
           ))}

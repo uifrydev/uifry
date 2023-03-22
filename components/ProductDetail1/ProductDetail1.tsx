@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -13,15 +13,16 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
-const ProductDetail1 = ({ showCross, data }) => {
+import { Data, ProductDetailProps } from "@/Interface/interface";
+const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
   const images = [figma, xd, Sketch];
   const dispatch = useDispatch();
   const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
+  const urlFor = (source: any): any => {
     return builder.image(source);
   };
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fecthData() {
@@ -67,7 +68,7 @@ const ProductDetail1 = ({ showCross, data }) => {
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          <Link href={data?.fileURL} download>
+          <Link href={data?.fileURL||""} download>
             <Button
               classes={
                 "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
@@ -96,7 +97,7 @@ const ProductDetail1 = ({ showCross, data }) => {
             What’s included?
           </span>
           <div className="flex flex-wrap gap-[.8rem] ">
-            {data.tags.map((item) => (
+            {data.tags.map((item: any) => (
               <Tag
                 classess={
                   "bg-[#fff] text-secondaryGray !text-[1.4rem] !font-[400] "
@@ -142,8 +143,6 @@ const ProductDetail1 = ({ showCross, data }) => {
             >
               <Card
                 onClick={() => dispatch(updateModal(true))}
-                url={urlFor(item.image).url()}
-                index={index}
                 data={item}
               />
             </Link>

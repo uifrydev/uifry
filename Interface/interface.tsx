@@ -5,33 +5,31 @@ export interface ButtonProps {
 }
 
 export interface Data {
-  data: {
-    images: any;
-    sanityFilter?: {
-      Figma?: boolean;
-      XD?: boolean;
-      Sketch?: boolean;
-    };
-    title: string;
-    description?: string;
-    category: string;
+  images?: any;
+  sanityFilter?: {
+    Figma?: boolean;
+    XD?: boolean;
+    Sketch?: boolean;
   };
-}
-export interface CardProps {
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  data: {
-    images: any;
-    sanityFilter?: {
-      Figma?: boolean;
-      XD?: boolean;
-      Sketch?: boolean;
-    };
-    title: string;
-    description?: string;
-    category: string;
+  title: string;
+  description?: string;
+  category: string;
+  fileURL: string;
+  image?: string;
+  slug: {
+    current: any;
   };
+  subCategory: string;
+  tags: string[];
 }
 
+export interface CardProps {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  data: Data;
+}
+export interface FontCardProps extends CardProps {
+  url?: string;
+}
 export interface NavigationState {
   mainPage: string;
   subPage: string;
@@ -42,4 +40,41 @@ export interface FeatureState {
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;
+}
+export interface FilterParams {
+  subCategory: string;
+  figma?: boolean;
+  xd?: boolean;
+  sketch?: boolean;
+}
+type Filter = {
+  subCategory: string;
+  [key: string]: boolean | string;
+};
+
+export type FilterBarProps = {
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+  setCards: React.Dispatch<React.SetStateAction<any[]>>;
+  initialData: any[];
+  buttons: { title: string; link?: string }[];
+  isFilter?: boolean;
+};
+
+export interface FilterBar1Props extends FilterBarProps {
+  parentLink: string;
+  childLink: string;
+}
+
+export interface HeaderProps {
+  breadcrums: string[];
+  title: string[];
+}
+
+export interface DetailData {
+  data: Data;
+}
+
+export interface ProductDetailProps extends DetailData {
+  showCross: boolean;
 }

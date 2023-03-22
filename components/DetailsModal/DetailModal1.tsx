@@ -7,7 +7,7 @@ import { updateModal } from "../../store/slices/featues";
 import ProductDetail2 from "../ProductDetail/ProductDetail2";
 import { NextPage } from "next";
 import { Data } from "@/Interface/interface";
-const DetailsModal1:FC<Data> = ({data}) => {
+const DetailsModal1: FC<{ data: Data }> = ({ data }) => {
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col  absolute z-[1000] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-xl:px-[9rem] min-lg:px-[2rem] min-lg:pt-[15rem]">
@@ -20,7 +20,7 @@ const DetailsModal1:FC<Data> = ({data}) => {
       >
         <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
       </div>
-      <ProductDetail2 data={data} showCross={true} />
+      {/* <ProductDetail2 data={data} showCross={true} /> */}
     </div>
   );
 };

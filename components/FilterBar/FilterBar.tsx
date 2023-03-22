@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import Button from "../Button/Button";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
@@ -6,7 +6,16 @@ import Sketch from "../../public/assets/icons/adobe.svg";
 import Image from "next/image";
 import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
-const FilterBar = ({ filter, setFilter ,setCards,initialData,buttons=[],isFilter}) => {
+import { FilterBarProps } from "@/Interface/interface";
+
+  const FilterBar: FC<FilterBarProps> = ({
+  filter,
+  setFilter,
+  setCards,
+  initialData,
+  buttons = [],
+  isFilter,
+  }) => {
   const images = [
     { img: figma, title: "figma" },
     { img: xd, title: "xd" },
@@ -45,7 +54,7 @@ const FilterBar = ({ filter, setFilter ,setCards,initialData,buttons=[],isFilter
           {list[0].buttons.map((item, index) => (
             <option
               key={index}
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
+              // classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
               value={item?.title}
             >
               {item.title}

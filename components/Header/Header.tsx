@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { FC, Fragment } from "react";
 import logo from "../../public/assets/images/logo.png";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
@@ -11,7 +11,8 @@ import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
-const Header = ({ breadcrums = [], title = [] }) => {
+import { HeaderProps } from "@/Interface/interface";
+const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const features = useSelector((state) => state.features);
   const dispatch = useDispatch();
   return (

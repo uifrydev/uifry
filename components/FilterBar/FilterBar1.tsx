@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import Button from "../Button/Button";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
@@ -7,7 +7,8 @@ import Image from "next/image";
 import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
 import Link from "next/link";
-const FilterBar1 = ({
+import { FilterBar1Props } from "@/Interface/interface";
+const FilterBar1: FC<FilterBar1Props> = ({
   filter,
   setFilter,
   setCards,
@@ -23,7 +24,8 @@ const FilterBar1 = ({
     { img: Sketch, title: "sketch" },
   ];
 
-  return ( //top-[14.71rem] //!top-[26.29rem]  without and with sticky
+  return (
+    //top-[14.71rem] //!top-[26.29rem]  without and with sticky
     <div className="flex z-[1] lg:flex-col gap-[2rem] w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky md:relative md:top-0 min-4xl:top-[14.51rem] top-[14.64rem] pt-[2rem] lg:top-[26.29rem] pr-[4rem]">
       <div className="flex-1 flex gap-[1.6rem] flex-wrap ">
         {buttons.map((item, index) => (
