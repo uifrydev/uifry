@@ -6,7 +6,7 @@ import Sketch from "../../public/assets/icons/adobe.svg";
 import Image from "next/image";
 import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
-import { FilterBarProps } from "@/Interface/interface";
+import { FilterBarProps, FilterParams } from "@/Interface/interface";
 
 const FilterBar: FC<FilterBarProps> = ({
   filter,
@@ -30,7 +30,7 @@ const FilterBar: FC<FilterBarProps> = ({
         {buttons.map((item, index) => (
           <Button
             onClick={() => {
-              setFilter((prev) => ({ ...prev, subCategory: item.title }));
+              setFilter((prev:FilterParams) => ({ ...prev, subCategory: item.title }));
               applyFilter(
                 { ...filter, subCategory: item.title },
                 setCards,
@@ -51,7 +51,7 @@ const FilterBar: FC<FilterBarProps> = ({
         <select
           value={filter?.subCategory}
           onChange={(e) => {
-            setFilter((prev) => ({ ...prev, subCategory: e.target.value }));
+            setFilter((prev:FilterParams) => ({ ...prev, subCategory: e.target.value }));
             applyFilter(
               { ...filter, subCategory: e.target.value },
               setCards,

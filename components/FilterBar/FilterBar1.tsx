@@ -7,7 +7,7 @@ import Image from "next/image";
 import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
 import Link from "next/link";
-import { FilterBar1Props } from "@/Interface/interface";
+import { FilterBar1Props, FilterParams } from "@/Interface/interface";
 const FilterBar1: FC<FilterBar1Props> = ({
   filter,
   setFilter,
@@ -82,7 +82,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
           {images.map((item, index) => (
             <Button
               onClick={() => {
-                setFilter((prev) => ({
+                setFilter((prev:any) => ({
                   ...prev,
                   [item?.title]: !prev[item.title],
                 }));

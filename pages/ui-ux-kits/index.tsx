@@ -14,7 +14,7 @@ import { RootState } from "@/store/store";
 const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
   const openModal = useSelector((state:RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
-  const [filter, setFilter] = useState<FilterParams>({
+  const [filter, setFilter] = useState({
     subCategory: "All",
     figma: false,
     xd: false,

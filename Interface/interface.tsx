@@ -54,8 +54,8 @@ type Filter = {
 };
 
 export type FilterBarProps = {
-  filter: FilterParams;
-  setFilter: React.Dispatch<React.SetStateAction<FilterParams>>;
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<any>>;
   setCards: React.Dispatch<React.SetStateAction<any[]>>;
   initialData: any[];
   buttons: { title: string; link?: string }[];
@@ -84,7 +84,7 @@ export interface ExtrasProps {
   body: any;
   title: string;
   slug: {
-    current: string
+    current:string
   };
   description: string
 }
