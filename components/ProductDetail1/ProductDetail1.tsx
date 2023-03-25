@@ -8,13 +8,11 @@ import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
 import sanity from "../../sanity";
 import Link from "next/link";
-import { Data, } from "@/Interface/interface";
+import { Data, ProductDetailProps, } from "@/Interface/interface";
 import { useRouter } from "next/router";
 import { loadMore } from "@/utils/consts";
-const ProductDetail1 = ({ showCross, data }: {
-  showCross: boolean,
-  data: Data
-}) => {
+
+const ProductDetail1: any = ({ showCross, data }:any) => {
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -100,7 +98,7 @@ const ProductDetail1 = ({ showCross, data }: {
           </span>
           <div className="flex flex-wrap gap-[.8rem] ">
             {data?.tags &&
-              data?.tags.map((item) => (
+              data?.tags.map((item:string) => (
                 <Tag
                   classess={
                     "bg-[#fff] text-secondaryGray !text-[1.4rem] !font-[400] "

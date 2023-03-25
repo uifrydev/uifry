@@ -44,10 +44,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps,router }: AppProps) {
   return (
     <Provider store={store}>
-      <MyApp Component={Component} pageProps={pageProps} />
+      <MyApp Component={Component} pageProps={pageProps} router={router} />
     </Provider>
   );
 }
