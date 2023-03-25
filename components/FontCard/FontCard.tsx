@@ -9,7 +9,7 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
       onClick={onClick}
       className="flex cursor-pointer flex-col gap-[2rem]  group p-[2rem] pb-[3rem] rounded-[1.2rem] group bg-[#ffffff] "
     >
-      <div className="flex relative shadow-cardShadow ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
+      <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
           src={url || _1}
           className="w-full h-full aspect-[1.785/1] "
@@ -25,17 +25,17 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
         </p>
       </div>
       <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] py-[1.2rem]">
-        <p className="text-secondaryGray flex-1 pr-[1rem] xl:pb-[2rem] font-400 xl:border-r-[0px] xl:border-b-[1px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
+        <p className="text-secondaryGray flex-1 pr-[2.5rem] xl:pb-[2rem] font-400 xl:border-r-[0px] xl:border-b-[1px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
           {data?.description && data?.description.slice(0, 88)}
           ...
         </p>
-        <div className="flex-1 gap-[1rem] flex flex-col pl-[1rem] xl:pt-[2rem]">
+        <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]">
           <div className="flex items-center justify-between">
             <span className="text-secondaryGray leading-[2.1rem] font-400 text-[1.4rem]">
               Type{" "}
             </span>
             <span className="text-secondaryGray leading-[2.1rem] font-400 text-[1.4rem]">
-              Sans Serif
+              {data.subCategory}
             </span>
           </div>
           <div className="flex justify-between">

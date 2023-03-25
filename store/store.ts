@@ -23,15 +23,12 @@ import featuresReducer from './slices/featues';
 // export default wrapper;
 
 
-export function makeStore() {
-  return configureStore({
-    reducer: {
-      features: featuresReducer,
-    },
-  });
-}
+export const store = configureStore({
+  reducer: {
+    features: featuresReducer,
+  },
+});
 
-export const store = makeStore();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -72,8 +72,18 @@ select {
 .body ul {
   @apply list-disc pl-[3rem];
 }
+.body h2{
+  @apply text-primaryBlack satoshi text-[2.4rem] font-700
+}
 .middle {
   @apply flex justify-center items-center;
+}
+.body ol em {
+  font-style: normal;
+  @apply text-primaryBlack
+}
+.body strong{
+  @apply text-[#0A2540]
 }
 .middle-col {
   @apply flex flex-col justify-center items-center;
@@ -87,5 +97,8 @@ select {
   text-overflow: clip;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+}
+.text16-gray{
+  @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%]
 }
 @tailwind utilities;

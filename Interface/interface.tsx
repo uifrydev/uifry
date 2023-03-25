@@ -21,6 +21,7 @@ export interface Data {
   };
   subCategory: string;
   tags: string[];
+  noOfScreens?:any
 }
 
 export interface CardProps {
@@ -75,6 +76,7 @@ export interface DetailData {
   data: Data;
 }
 
-export interface ProductDetailProps extends DetailData {
+export interface ProductDetailProps {
   showCross: boolean;
+  data: Data
 }

@@ -18,9 +18,7 @@ const ApplyCard = ({ companyName }: { companyName: string }) => {
           className={
             "satoshi text-[1.6rem] font-[700] text-[#fff] leading-[2.4rem]"
           }
-        >
-          Apply Now
-        </span>
+        >Apply Now</span>
       </Button>
     </div>
   );

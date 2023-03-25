@@ -1,15 +1,14 @@
 import Image from "next/image";
 import React from "react";
-import image from "../../public/assets/images/sticker.png";
 import drop from "../../public/assets/images/drop.png";
 import gradient from "../../public/assets/images/gradient.png";
 import drop1 from "../../public/assets/images/drop1.png";
 import gradient1 from "../../public/assets/images/gradient1.png";
 import gradient2 from "../../public/assets/images/gradient2.png";
-const Sticker1 = ({ classes = "" }) => {
+const Sticker1 = ({ classes = "" }: { classes: string }) => {
   return (
     <div
-      className={`w-full flex z-[1000000] bg-[#002D6A]  justify-center gap-[2rem] h-[6.3rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
+      className={`w-full flex z-[11] bg-[#002D6A]  justify-center gap-[2rem] h-[6.3rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex items-center  gap-[2rem] z-[12]">
@@ -26,22 +25,27 @@ const Sticker1 = ({ classes = "" }) => {
           <Image
             src={drop}
             className="absolute top-0 flex lg:hidden right-[0%] h-full  z-[1]"
+            alt=""
           />
           <Image
             src={gradient}
             className="absolute top-0 right-[5%] lg:hidden h-full object-cover"
+            alt=""
           />
           <Image
             src={gradient2}
             className="absolute top-0 lg:hidden left-[0%] h-full object-cover"
+            alt=""
           />
           <Image
             src={drop1}
             className="absolute -top-[1rem] left-[0%] lg:-left-[9rem] h-full object-contain z-[1]"
+            alt=""
           />
           <Image
             src={gradient1}
             className="absolute top-0  left-[0%] h-full object-cover"
+            alt=""
           />
         </div>
       </div>

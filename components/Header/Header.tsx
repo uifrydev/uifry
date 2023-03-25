@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import logo from "../../public/assets/images/logo.png";
+import logo from "../../public/assets/images/logo-beta.png";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
@@ -12,8 +12,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
 import { HeaderProps } from "@/Interface/interface";
+import { RootState } from "@/store/store";
 const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
-  const features = useSelector((state) => state.features);
+  const features = useSelector((state:RootState) => state.features);
   const dispatch = useDispatch();
   return (
     <header className="flex flex-col z-[154] bg-primary  sticky top-[6.3rem] border-b-[1px] w-full border-[#efe9ff]">

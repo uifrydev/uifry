@@ -1,2 +1,2 @@
-export const perProduct:Number=24
-export const loadMore:Number=12
+export const perProduct=24
+export const loadMore=12

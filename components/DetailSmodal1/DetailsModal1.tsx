@@ -10,7 +10,7 @@ import { Data } from "@/Interface/interface";
 const DetailsModal1: FC<{ data: Data }> = ({ data }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-col absolute z-[1000] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-lg:px-[2rem] min-lg:py-[3rem]">
+    <div className="flex flex-col sticky z-[10000001] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-lg:px-[2rem] min-lg:py-[3rem]">
       <div
         onClick={() => {
           document.body.classList.remove("overflow-hidden");

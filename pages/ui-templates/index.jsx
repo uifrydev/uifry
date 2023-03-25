@@ -1,0 +1,175 @@
+import React, { useEffect, useState } from "react";
+import DetailsModal from "../../components/DetailsModal/DetailsModal";
+import Header from "../../components/Header/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import { useSelector, useDispatch } from "react-redux";
+import FilterBar from "../../components/FilterBar/FilterBar";
+import sanity from "../../sanity";
+import imageUrlBuilder from "@sanity/image-url";
+import Card from "../../components/Card/Card";
+import { updateModal } from "../../store/slices/featues";
+import Link from "next/link";
+import { list } from "../../utils/links";
+import FilterBar1 from "../../components/FilterBar/FilterBar1";
+import Button from "../../components/Button/Button";
+import { fetchData, fetchDataServer } from "../../utils/functions";
+import DetailsModal1 from "../../components/DetailsModal/DetailModal1";
+import { loadMore, perProduct } from "../../utils/consts";
+const UiTemplates = ({ posts }) => {
+  const builder = imageUrlBuilder(sanity);
+  const [cards, setCards] = useState(posts);
+  const openModal = useSelector((state) => state.features.openModal);
+  const [modalData, setModalData] = useState(null);
+  const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
+  const [endProdcuts, setEndProducts] = useState(false);
+  const [productIndex, setProductIndex] = useState(posts.length);
+
+  const [filter, setFilter] = useState({
+    subCategory: "All",
+    figma: false,
+    xd: false,
+    sketch: false,
+  });
+  // useEffect(() => {
+  //   if(endProdcuts){
+  //     return
+  //   }
+  //   window.addEventListener(
+  //     "scroll",
+  //     async () =>
+  //       await fetchData({
+  //         setEndProducts,
+  //         isLoading,
+  //         setLoading,
+  //         setProductIndex,
+  //         productIndex,
+  //         setCards,
+  //         sanity,
+  //         query: `*[_type=='uitemplate'] | [${productIndex}...${
+  //           productIndex + 2
+  //         }]{
+  //     title,slug,subCategory,category,description,sanityFilter,images,tags,"fileURL":zipFile.asset->url
+  //   }`,
+  //       })
+  //   );
+  //   return () => {
+  //     window.removeEventListener(
+  //       "scroll",
+  //       async () =>
+  //         await fetchData({
+  //           setEndProducts,
+
+  //           isLoading,
+  //           setLoading,
+  //           setProductIndex,
+  //           productIndex,
+  //           setCards,
+  //           sanity,
+  //           query: `*[_type=='uitemplate'] | [${productIndex}...${
+  //             productIndex + 2
+  //           }]{
+  //               title,slug,subCategory,category,description,sanityFilter,images,tags,"fileURL":zipFile.asset->url
+  //             }`,
+  //         })
+  //     );
+  //   };
+  // }, []);
+  return (
+    <>
+      {openModal && <DetailsModal data={modalData} />}
+      <Header
+        title={["UI", "Templates"]}
+        breadcrums={["UI Templates", "All Templates"]}
+      />
+      <Sidebar />
+      <FilterBar1
+        initialData={posts}
+        setCards={setCards}
+        filter={filter}
+        setFilter={setFilter}
+        buttons={list[0].list}
+        parentLink={"/ui-templates"}
+        childLink={"/"}
+      />
+      <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
+        <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
+          <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem] p-[3rem]">
+            {cards.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/ui-templates/details",
+                  // href: "/ui-templates/details",
+                  query: { template: item?.slug?.current },
+                }}
+                onClick={(e) => e.preventDefault()}
+              >
+                <Card
+                  key={index}
+                  onClick={() => {
+                      window.scrollBy(0, 1);
+                      document.body.classList.add("overflow-hidden");
+                    dispatch(updateModal(true));
+                    setModalData(item);
+                  }}
+                  index={index}
+                  data={item}
+                />
+              </Link>
+            ))}
+          </div>
+
+          <Button
+            onClick={async () =>
+              await fetchData({
+                isLoading,
+                setLoading,
+                setProductIndex,
+                productIndex,
+                setCards,
+                sanity,
+                query: `*[_type=='uitemplate'] | [${productIndex}...${
+                  productIndex + loadMore
+                }]{
+                title,slug,subCategory,category,description,sanityFilter,images[]{
+                  asset->{url}
+                },tags,"fileURL":zipFile.asset->url
+              }`,
+              })
+            }
+          >
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+              {isLoading ? "Loading..." : "Load More"}
+            </span>
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+};
+export async function getServerSideProps() {
+  try {
+    const res = await fetchDataServer({
+      sanity,
+      query: `*[_type=='uitemplate' ] | [0...${perProduct}]{
+      title,slug,subCategory,category,description,sanityFilter,images[]{
+        asset->{url}
+      },tags,image,"fileURL":zipFile.asset->url
+    }`,
+    });
+
+    return {
+      props: {
+        posts: res,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
+}
+export default UiTemplates;

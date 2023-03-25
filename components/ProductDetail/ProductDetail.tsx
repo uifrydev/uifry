@@ -13,23 +13,23 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
-import { perProduct } from "../../utils/consts";
+import { loadMore, perProduct } from "../../utils/consts";
 import { Data, ProductDetailProps } from "@/Interface/interface";
+import { useRouter } from "next/router";
 
 const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
-  const images = [figma, xd, Sketch];
   const dispatch = useDispatch();
-  const builder = imageUrlBuilder(sanity);
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const pid = router.query;
   useEffect(() => {
     async function fecthData() {
-      console.log(data?.category);
-
       setLoading(true);
       try {
         const res = await sanity.fetch(
-          `*[_type=='uitemplate' && category=='${data?.category}'][0...${perProduct}]{
+          `*[_type=='uitemplate' && category=='${data?.category
+          }' && slug.current!='${data.slug.current || ""}'][0...${loadMore}]{
         title,slug,description,category,sanityFilter,images[]{
           asset->{url}
         },tags,image
@@ -38,11 +38,12 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
         setLoading(false);
         setProducts(res);
       } catch (e) {
+        alert(e);
         setLoading(false);
       }
     }
     fecthData();
-  }, []);
+  }, [router.asPath]);
   return (
     <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
       {showCross && (
@@ -88,7 +89,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
               </div>
             )}
           </div>
-          <Link href={data?.fileURL} download>
+          <Link href={data?.fileURL || ""} download>
             <Button classes={"bg-gradient rounded-[10rem] w-full"}>
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                 Download
@@ -97,11 +98,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
           </Link>
         </div>
       </div>
-      <Carousel
-        images={data.images.map(
-          (item: { asset: { url: string } }) => item?.asset?.url
-        )}
-      />
+      <Carousel images={data?.images?.map((item: { asset: { url: string } }) => item?.asset?.url) || []} />
 
       <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-[#E5E9FF] max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">
@@ -118,7 +115,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
               Tags
             </span>
             <div className="flex flex-wrap gap-[.8rem] ">
-              {data.tags &&
+              {data?.tags &&
                 data.tags.map((item) => (
                   <Tag text={item} key={item} classess="!bg-[#fff]" />
                 ))}
@@ -141,11 +138,20 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
         </h2>
         <div className="  grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl:grid-cols-2 md:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
           {products.map((item, index) => (
-            <Card
-              key={index}
-              onClick={() => dispatch(updateModal(true))}
-              data={item}
-            />
+            <Link
+              href={{
+                pathname: "/ui-templates/details",
+                query: { template: item.slug.current || "" },
+              }}
+            >
+              <Card
+                key={index}
+                onClick={() => {
+                  updateModal(false);
+                }}
+                data={item}
+              />
+            </Link>
           ))}
         </div>
       </div>

@@ -11,8 +11,9 @@ import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
+import { RootState } from "@/store/store";
 const DetailHeader = ({ link }: { link: string }) => {
-  const features = useSelector((state) => state.features);
+  const features = useSelector((state:RootState) => state.features);
   const dispatch = useDispatch();
   return (
     <header className="flex flex-col z-[154] bg-primary  sticky top-[6.3rem] border-b-[1px] w-full border-[#efe9ff]">
@@ -24,10 +25,7 @@ const DetailHeader = ({ link }: { link: string }) => {
           <Image src={logo} alt={""} />
         </Link>
 
-        <Link
-          href={link || "/"}
-          className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]"
-        >
+        <Link href={link||'/'} className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
           <div className="">
             <Image src={arrow} alt={""} className="rotate-180" />
           </div>
@@ -37,7 +35,9 @@ const DetailHeader = ({ link }: { link: string }) => {
         </Link>
         <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
           <Button
-            classes={"bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"}
+            classes={
+              "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
+            }
           >
             <div className="flex gap-[.8rem]">
               <Image src={star} className="" alt="" />
@@ -87,10 +87,7 @@ const DetailHeader = ({ link }: { link: string }) => {
           </div>
         ) : (
           <>
-            <Link
-              href={"/ui-ux-kits"}
-              className="flex-1 flex items-center gap-[1.447rem]  "
-            >
+            <Link href={'/ui-ux-kits'} className="flex-1 flex items-center gap-[1.447rem]  ">
               <div className="">
                 <Image src={arrow} alt={""} className="rotate-180" />
               </div>

@@ -24,9 +24,8 @@ const FilterBar1: FC<FilterBar1Props> = ({
     { img: Sketch, title: "sketch" },
   ];
 
-  return (
-    //top-[14.71rem] //!top-[26.29rem]  without and with sticky
-    <div className="flex z-[1] lg:flex-col gap-[2rem] w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky md:relative md:top-0 min-4xl:top-[14.51rem] top-[14.64rem] pt-[2rem] lg:top-[26.29rem] pr-[4rem]">
+  return ( //top-[14.71rem] //!top-[26.29rem]  without and with sticky min-4xl:top-[14.51rem]
+    <div className="flex z-[1] lg:flex-col gap-[2rem] w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky md:relative md:top-0  top-[15.24rem] pt-[2rem] lg:top-[26.29rem] pr-[4rem]">
       <div className="flex-1 flex gap-[1.6rem] flex-wrap ">
         {buttons.map((item, index) => (
           <Link href={parentLink + item.link}>

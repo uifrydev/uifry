@@ -1,5 +1,6 @@
 "use client"; // this is a client component 👈🏽
 import React, { useState } from "react";
+import arrow from "../../public/assets/icons/arrow-da.svg";
 import linkedin from "../../public/assets/icons/linkedin.svg";
 import instagram from "../../public/assets/icons/instagram.svg";
 import twitter from "../../public/assets/icons/twitter.svg";
@@ -10,16 +11,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { updateMenu } from "../../store/slices/featues";
-const Sidebar = ({ isDetail }: { isDetail?: boolean }) => {
+import { RootState } from "@/store/store";
+const Sidebar = ({ isDetail }: { isDetail: false }) => {
   const [toggle, setToggle] = useState(-1);
-  const features = useSelector((state) => state.features);
+  const features = useSelector((state: RootState) => state.features);
   const router = useRouter();
   const pid = router.query;
   const dispatch = useDispatch()
   return (
     <div className="">
       <div
-        className={`w-[194px] transition-all ease-linear duration-500 lg:w-full overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[8.2rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[20rem]"
+        className={`w-[194px] transition-all ease-linear duration-500 lg:w-full overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[17rem]"
           }  h-[100vh] ${features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
           }  `}
       >
@@ -29,7 +31,7 @@ const Sidebar = ({ isDetail }: { isDetail?: boolean }) => {
               // onClick={(e) => e.preventDefault()}
               // onClick={() => setToggle(index)}
               className={`border-r-[1px] border-b-[1px] ${toggle == index || router.pathname.includes(item.link)
-                  ? "border-r-[#00B3FF]"
+                  ? "border-r-[#00B3FF] bg-[#fff]"
                   : "border-[#efe9ff]"
                 } py-[1.2rem] px-[2rem] cursor-pointer`}
               onClick={() => dispatch(updateMenu(false))}
@@ -96,9 +98,12 @@ const Sidebar = ({ isDetail }: { isDetail?: boolean }) => {
 
         <div className="p-[2rem]  flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]">
           <div className="flex flex-col gap-[.5rem]">
-            <span className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
-              License, Terms & Policy
-            </span>
+            <div className="flex">
+
+              <Link href={'license-agreement'} className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
+                License, Terms & Policy
+              </Link>
+            </div>
             <span className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
               Support
             </span>

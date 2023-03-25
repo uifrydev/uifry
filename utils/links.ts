@@ -2,9 +2,8 @@ export const list = [
   {
     title: "UI Templates",
     link: "/ui-templates",
-    subTitle: "Single Asstes",
+    subTitle: "Single Assets",
     buttons: [
-
       //  // // // Temporarily Comment
       // { title: "All" },
       // { title: "Finance" },
@@ -15,8 +14,6 @@ export const list = [
       // { title: "Marketing" },
       // { title: "Social Media" },
       // { title: "Agency" },
-
-
       ////// excluded
       // { title: "Management" },
       // { title: "Resturant" },
@@ -41,12 +38,17 @@ export const list = [
     list: [],
     buttons: [
       { title: "All Kits" },
-      { title: "Websites" },
-      { title: "Landing Pages" },
-      { title: "Application" },
-      { title: "Wireframes / UX" },
-      { title: "Ecommerce" },
-      { title: "App" },
+      { title: "Website Kits" },
+      { title: "UI Kits" },
+      { title: "Wireframe/UX Kits" },
+      { title: "App Kits" },
+
+      // { title: "Websites" },
+      // { title: "Landing Pages" },
+      // { title: "Application" },
+      // { title: "Wireframes / UX" },
+      // { title: "Ecommerce" },
+      // { title: "App" },
     ],
   },
   {
@@ -100,15 +102,14 @@ export const list = [
       { title: "All" },
       { title: "Finance" },
       { title: "SaaS" },
-      { title: "Education" },
-      { title: "Management" },
+      { title: "Healthcare" },
       { title: "Real State" },
-      { title: "Resturant" },
-      { title: "Bloackchain" },
-      { title: "Agriculture" },
-      { title: "Portfolio" },
-      { title: "Tech" },
-      { title: "Fashion" },
+      { title: "E-Commerce" },
+      { title: "Travel" },
+      { title: "Food" },
+      { title: "Education" },
+      { title: "Entertainment" },
+      { title: "Charity" },
     ],
   },
   {
@@ -124,13 +125,30 @@ export const list = [
       { title: "Website Designer" },
     ],
   },
+  // {
+  //   title: "Learn",
+  //   link: "https://www.google.com",
+  //   subTitle: "Grow Like A Pro",
+  //   list: [],
+  //   buttons: [
+
+  //   ],
+  // },
   {
-    title: "Learn",
-    link: "https://www.google.com",
-    subTitle: "Grow Like A Pro",
+    title: "Roadmap",
+    link: "/our-roadmap",
+    subTitle: "Discover our plans",
     list: [],
-    buttons: [
-     
-    ],
+    buttons: [],
   },
+];
+
+export const slugList = [
+  { title: "License Agreement", link: "license-agreement" },
+  { title: "Privacy Policy", link: "privacy-policy" },
+  { title: "Terms & Conditions", link: "terms-and-conditions" },
+  { title: "Disclaimer", link: "disclaimer" },
+  { title: "Cookie Policy", link: "cookie-policy" },
+  { title: "EULA", link: "end-user-license-agreement" },
+  { title: "Returns & Refund", link: "return-refund-policy" },
 ];

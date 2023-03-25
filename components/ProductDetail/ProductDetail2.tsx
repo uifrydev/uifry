@@ -16,46 +16,6 @@ import sanity from "../../sanity";
 import Link from "next/link";
 import { Data, ProductDetailProps } from "@/Interface/interface";
 const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
-  // interface Product {
-  //   title: string;
-  //   slug: {
-  //     current?:any
-  //   };
-  //   description: string;
-  //   images?: {
-  //     asset: {
-  //       url: string;
-  //     };
-  //   }[];
-  //   sanityFilter?: {
-  //     Figma?: boolean;
-  //     XD?: boolean;
-  //     Sketch?: boolean;
-  //   };
-  //   image?: string;
-  //   category: string;
-  //   fileURL?: string;
-  //   subCategory?: string;
-  //   tags?: string[];
-  // }
-  // interface Product {
-  //   images: any;
-  //   sanityFilter?: {
-  //     Figma?: boolean;
-  //     XD?: boolean;
-  //     Sketch?: boolean;
-  //   };
-  //   title: string;
-  //   description?: string;
-  //   category: string;
-  //   subCategoryts: string[];
-  //   price: number;
-  //   discount?: number;
-  //   tags: string[];
-  //   slug?: {
-  //     current?: any;
-  //   };
-  // }
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
@@ -101,11 +61,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
           <span className="satoshi font-500 text-[1.6rem] leading-[2.3rem] text-primaryBlack ">
             {data?.category}
           </span>
-          <Carousel
-            images={data.images.map(
-              (item: { asset: { url: string } }) => item?.asset?.url
-            )}
-          />
+          <Carousel images={data.images.map((item: { asset: { url: string } }) => item?.asset?.url)} />
         </div>
         <div className="flex relative items-start max-w-[32rem] lg:mx-[4rem] sm:mx-[0rem] lg:max-w-full rounded-[2rem] sm:max-w-full right-0 p-[3.1rem] pl-[4.3rem] bg-primary border-l-[1px] border-[#E5E9FF]">
           <div className="flex w-full flex-col gap-[4rem]">
@@ -154,7 +110,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                   </div>
                 )}
               </div>
-              <Link href={data?.fileURL || ""} download>
+              <Link href={data?.fileURL} download>
                 <Button classes={"w-full py-[1.7rem] bg-gradient rounded-full"}>
                   <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                     Download

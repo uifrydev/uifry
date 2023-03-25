@@ -2,45 +2,47 @@ import React, { FC, useEffect, useState } from "react";
 import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
-import Carousel from "../Carousel/Carousel";
 import Tag from "../Tag/Tag";
 import { useDispatch } from "react-redux";
 import cross from "../../public/assets/icons/cross.svg";
-import figma from "../../public/assets/icons/figma.svg";
-import xd from "../../public/assets/icons/xd.svg";
-import Sketch from "../../public/assets/icons/adobe.svg";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
-import { Data, ProductDetailProps } from "@/Interface/interface";
-const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
-  const images = [figma, xd, Sketch];
+import { Data, } from "@/Interface/interface";
+import { useRouter } from "next/router";
+import { loadMore } from "@/utils/consts";
+const ProductDetail1 = ({ showCross, data }: {
+  showCross: boolean,
+  data: Data
+}) => {
   const dispatch = useDispatch();
-  const builder = imageUrlBuilder(sanity);
-  const urlFor = (source: any): any => {
-    return builder.image(source);
-  };
 
+  const router = useRouter();
+  const pid = router.query;
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    console.log(data?.slug?.current);
     async function fecthData() {
       setLoading(true);
       try {
         const res = await sanity.fetch(
-          `*[defined(slug.current) && _type=='styleGuide']{
-        title,slug,description,sanityFilter,images,tags,image
-      }`
+          `*[_type=='styleGuide' && slug.current!='${data?.slug?.current}'][0...${loadMore}]{
+            title,slug,description,category,sanityFilter,"images":image{
+              asset->{url}
+            },tags,image
+          }`
         );
         setLoading(false);
         setProducts(res);
       } catch (e) {
+        alert(e);
         setLoading(false);
       }
     }
     fecthData();
-  }, []);
+  }, [router.asPath]);
+  if (loading) return;
   return (
     <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
       {showCross && (
@@ -68,7 +70,7 @@ const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          <Link href={data?.fileURL||""} download>
+          <Link href={data?.fileURL || ""} download>
             <Button
               classes={
                 "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
@@ -97,15 +99,16 @@ const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
             What’s included?
           </span>
           <div className="flex flex-wrap gap-[.8rem] ">
-            {data.tags.map((item: any) => (
-              <Tag
-                classess={
-                  "bg-[#fff] text-secondaryGray !text-[1.4rem] !font-[400] "
-                }
-                text={item}
-                key={item}
-              />
-            ))}
+            {data?.tags &&
+              data?.tags.map((item) => (
+                <Tag
+                  classess={
+                    "bg-[#fff] text-secondaryGray !text-[1.4rem] !font-[400] "
+                  }
+                  text={item}
+                  key={item}
+                />
+              ))}
           </div>
         </div>
 
@@ -121,7 +124,7 @@ const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
       </div>
       <div className="flex w-full py-[2.7rem] pl-[3.1rem] max-w-[92rem] pr-[3.8rem] rounded-[3rem] bg-primary">
         <Image
-          src={urlFor(data.image).url()}
+          src={data?.images?.asset?.url}
           alt=""
           width={780}
           className="w-full rounded-[2rem]"
@@ -133,20 +136,18 @@ const ProductDetail1: FC<ProductDetailProps> = ({ showCross, data }) => {
           You Might <span className="gradient-text">Like</span> These
         </h2>
         <div className=" grid grid-cols-3  2xl:grid-cols-2 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
-          {products.map((item, index) => (
-            <Link
-              key={index}
-              href={{
-                pathname: "/styles-guides/details",
-                query: { style: item.slug.current },
-              }}
-            >
-              <Card
-                onClick={() => dispatch(updateModal(true))}
-                data={item}
-              />
-            </Link>
-          ))}
+          {!loading &&
+            products.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/styles-guides/details",
+                  query: { style: item.slug.current },
+                }}
+              >
+                <Card onClick={() => dispatch(updateModal(true))} data={item} />
+              </Link>
+            ))}
         </div>
       </div>
     </div>

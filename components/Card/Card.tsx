@@ -17,25 +17,25 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
               ? data?.images?.asset?.url
               : data?.images[0]?.asset?.url
           }
-          className="w-full h-full aspect-[5/3.6]"
+          className="w-full h-full aspect-[5/3.6] "
           width={6000}
           height={1000}
           alt=""
         />
         <div className="flex absolute bottom-[2rem] gap-[.5rem] right-[2rem]">
           {data?.sanityFilter?.Figma && (
-            <div className="flex w-[2.2rem] shadow-2xl h-[2.2rem] middle rounded-full bg-[#ffffff]">
-              <Image alt="" className="w-[1.4rem] " src={figma} />
+            <div className="flex w-[2.9rem] shadow-xl h-[2.9rem] middle rounded-full bg-[#ffffff]">
+              <Image alt="" className="" src={figma} />
             </div>
           )}
           {data?.sanityFilter?.XD && (
-            <div className="flex w-[2.2rem] h-[2.2rem] rounded-full middle bg-[#ffffff]">
-              <Image alt="" className="w-[1.4rem]" src={xd} />
+            <div className="flex w-[2.9rem] h-[2.9rem] shadow-xl rounded-full middle bg-[#ffffff]">
+              <Image alt="" className="" src={xd} />
             </div>
           )}
           {data?.sanityFilter?.Sketch && (
-            <div className="flex w-[2.2rem] h-[2.2rem] rounded-full middle bg-[#ffffff]">
-              <Image alt="" className="w-[1.4rem]" src={Sketch} />
+            <div className="flex w-[2.9rem] h-[2.9rem] shadow-xl rounded-full middle bg-[#ffffff]">
+              <Image alt="" className="" src={Sketch} />
             </div>
           )}
         </div>
@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
           Added in{" "}
           <span className="border-b-[1px] border-[#B6B9CE]">
             {" "}
-            {data.category}
+            {data?.category}
           </span>
         </p>
       </div>

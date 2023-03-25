@@ -25,7 +25,6 @@ const JobsFilterBar = () => {
             <option
               onClick={() => setNum(index)}
               key={index}
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
             >
               {item.title}
             </option>
@@ -39,12 +38,10 @@ const JobsFilterBar = () => {
           </span>
           <select className="w-[18rem] h-[4.4rem] text-[#160042] bg-primary text-[1.6rem] px-[2rem] py-[1rem] font-500 rounded-full outline-none ">
             <option
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
             >
               Full Time
             </option>
             <option
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
             >
               Part Time
             </option>
@@ -56,12 +53,10 @@ const JobsFilterBar = () => {
           </span>
           <select className="w-[18rem] h-[4.4rem] text-[#160042] bg-primary text-[1.6rem] px-[2rem] py-[1rem] font-500 rounded-full outline-none ">
             <option
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
             >
               Most Relevant
             </option>
             <option
-              classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]`}
             >
               Most Recent
             </option>

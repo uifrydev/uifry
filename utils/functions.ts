@@ -80,3 +80,63 @@ export const fetchDataServer = async ({
   const res = await sanity.fetch(query);
   return res;
 };
+
+export function removeEmptyPTagsFromClass() {
+  const mainDiv = document.querySelector(".body");
+  if(!mainDiv)return
+  // Remove all <br> tags
+  mainDiv.querySelectorAll("br").forEach((br) => br.remove());
+
+  // Remove all empty <p> tags
+  mainDiv.querySelectorAll("p").forEach((p) => {
+    if (p.innerHTML.trim() == "") {
+      p.remove();
+    }
+  });
+}
+// export const wrapper = (): void => {
+//   const mainDiv: HTMLElement | null = document.querySelector(".main");
+//   let currentWrapper: HTMLDivElement | null;
+
+//   function wrapElements(element: HTMLElement): void {
+//     for (let child of element.children) {
+//       if (child.tagName === "H2") {
+//         currentWrapper = document.createElement("div");
+//         currentWrapper.classList.add("wrapper");
+//         element.insertBefore(currentWrapper, child);
+//       }
+
+//       if (currentWrapper) {
+//         currentWrapper.appendChild(child);
+//       }
+
+//       wrapElements(child as HTMLElement);
+//     }
+//   }
+//   if (mainDiv) {
+//     wrapElements(mainDiv);
+//   }
+// };
+export const wrapper = (): void => {
+  const mainDiv: HTMLElement | null = document.querySelector(".main");
+  let currentWrapper: HTMLDivElement | null;
+
+  function wrapElements(element: HTMLElement): void {
+    for (let child of Array.from(element.children)) {
+      if (child.tagName === "H2") {
+        currentWrapper = document.createElement("div");
+        currentWrapper.classList.add("wrapper");
+        element.insertBefore(currentWrapper, child);
+      }
+
+      if (currentWrapper) {
+        currentWrapper.appendChild(child);
+      }
+
+      wrapElements(child as HTMLElement);
+    }
+  }
+  if (mainDiv) {
+    wrapElements(mainDiv);
+  }
+};
