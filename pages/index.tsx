@@ -11,23 +11,21 @@ import { updateModal } from "../store/slices/featues";
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import KitHeader from "../components/KitHeader/KitHeader";
-const Home = ({ posts }) => {
-  const openModal = useSelector((state) => state.features.openModal);
-  const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
-    return builder.image(source);
-  };
+import { RootState } from "@/store/store";
+import { NextPage } from "next";
+import { Data } from "@/Interface/interface";
+const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
+  const openModal = useSelector((state: RootState) => state.features.openModal);
   const dispatch = useDispatch();
-  const [card, setCard] = useState(posts);
-  const [modalData, setModalData] = useState(null);
+  const [card, setCard] = useState<Data[]>(posts);
   // useEf
-
+  const [uiData, setUiData] = useState(posts[0])
   return (
     <>
-      {openModal && <DetailsModal />}
-      <Header title={['Home']} breadcrums={['Home']}  />
+      {openModal && <DetailsModal data={uiData} />}
+      <Header title={['Home']} breadcrums={['Home']} />
       {/* <KitHeader /> */}
-      <Sidebar />
+      <Sidebar isDetail={false} />
       {/* <FilterBar /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid grid-cols-4 2xl1:grid-cols-3 xl:grid-cols-2 sm:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]">
@@ -40,11 +38,11 @@ const Home = ({ posts }) => {
             >
               <Card
                 key={key}
-                index={key}
                 data={item}
                 onClick={() => {
                   document.body.classList.add("overflow-hidden");
                   dispatch(updateModal(true));
+                  setUiData(item)
                 }}
               />
             </Link>

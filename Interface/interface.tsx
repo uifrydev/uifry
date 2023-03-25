@@ -21,7 +21,7 @@ export interface Data {
   };
   subCategory: string;
   tags: string[];
-  noOfScreens?:any
+  noOfScreens?: any
 }
 
 export interface CardProps {
@@ -54,8 +54,8 @@ type Filter = {
 };
 
 export type FilterBarProps = {
-  filter: Filter;
-  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+  filter: FilterParams;
+  setFilter: React.Dispatch<React.SetStateAction<FilterParams>>;
   setCards: React.Dispatch<React.SetStateAction<any[]>>;
   initialData: any[];
   buttons: { title: string; link?: string }[];
@@ -79,4 +79,12 @@ export interface DetailData {
 export interface ProductDetailProps {
   showCross: boolean;
   data: Data
+}
+export interface ExtrasProps {
+  body: any;
+  title: string;
+  slug: {
+    current: string
+  };
+  description: string
 }

@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { updateMenu } from "../../store/slices/featues";
 import { RootState } from "@/store/store";
-const Sidebar = ({ isDetail }: { isDetail: false }) => {
+const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
   const [toggle, setToggle] = useState(-1);
   const features = useSelector((state: RootState) => state.features);
   const router = useRouter();

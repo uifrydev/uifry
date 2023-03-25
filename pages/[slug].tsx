@@ -14,8 +14,11 @@ import {
   wrapper,
 } from "../utils/functions";
 import BlockContent from "@sanity/block-content-to-react";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { Props } from "next/script";
+import { ExtrasProps } from "@/Interface/interface";
 
-const Slug = ({ res }) => {
+const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
   const router = useRouter();
   const pid = router.query?.slug;
   useEffect(() => {
@@ -37,6 +40,7 @@ const Slug = ({ res }) => {
                 className="w-[8rem] h-[8rem] rounded-full relative top-[2.8rem] left-[4.4rem]"
                 width={80}
                 height={80}
+                alt=""
               />
             </div>
             <div className="flex flex-col px-[20px]">
@@ -79,9 +83,8 @@ const Slug = ({ res }) => {
                   </li>
                 </ol> */}
                 <BlockContent
-                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${
-                    res.slug.current === "license-agreement" && "main"
-                  }`}
+                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${res.slug.current === "license-agreement" && "main"
+                    }`}
                   blocks={res?.body?.body}
                 />
               </div>
@@ -96,11 +99,10 @@ const Slug = ({ res }) => {
                 {slugList.map((item) => (
                   <li
                     key={item?.link}
-                    className={`text16-gray ${
-                      pid == item.link && "gradient-text"
-                    }`}
+                    className={`text16-gray ${pid == item.link && "gradient-text"
+                      }`}
                   >
-                    <Link href={"/"+item.link}>{item?.title}</Link>
+                    <Link href={"/" + item.link}>{item?.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -111,12 +113,12 @@ const Slug = ({ res }) => {
     </>
   );
 };
-export async function getServerSideProps(context) {
-  console.log(context.params.slug);
+export const getServerSideProps: GetServerSideProps<{}> = async (context: GetServerSidePropsContext) => {
   try {
+    const params = context.params
     const res = await fetchDataServer({
       sanity,
-      query: `*[_type=='extra' && slug.current=='${context.params.slug}']{
+      query: `*[_type=='extra' && slug.current=='${params?.slug}']{
           body->{title,body},
           title,
           slug,

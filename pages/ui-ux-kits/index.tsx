@@ -8,11 +8,13 @@ import UiKitCard from "../../components/UiKitCard/UiKitCard";
 import Link from "next/link";
 import { list } from "../../utils/links";
 import sanity from "../../sanity";
-const UxUiKits = ({ posts }) => {
-  const openModal = useSelector((state) => state.features.openModal);
-  const [cards, setCards] = useState(posts || []);
-  const dispatch = useDispatch();
-  const [filter, setFilter] = useState({
+import { NextPage } from "next";
+import { Data, FilterParams } from "@/Interface/interface";
+import { RootState } from "@/store/store";
+const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
+  const openModal = useSelector((state:RootState) => state.features.openModal);
+  const [cards, setCards] = useState<Data[]>(posts || []);
+  const [filter, setFilter] = useState<FilterParams>({
     subCategory: "All",
     figma: false,
     xd: false,
@@ -21,25 +23,23 @@ const UxUiKits = ({ posts }) => {
 
   return (
     <>
-      {openModal && <DetailsModal />}
       <Header title={["UI Ux", "Kits"]} breadcrums={["UI UX Kits"]} />
-      <Sidebar />
+      <Sidebar isDetail={false} />
       <FilterBar
         initialData={posts || []}
         setCards={setCards}
         filter={filter}
         setFilter={setFilter}
         buttons={list[1].buttons}
-        classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
+        // classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid 4xl:grid-cols-2 grid-cols-3  2xl2:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
           {cards &&
             cards.map((item, index) => (
-              <Link  href={{pathname:"ui-ux-kits/details",query:{kit:item.slug.current}}}>
+              <Link key={index} href={{pathname:"ui-ux-kits/details",query:{kit:item.slug.current}}}>
                 <UiKitCard
                   onClick={() => {}}
-                  url={""}
                   data={item}
                 />
               </Link>
