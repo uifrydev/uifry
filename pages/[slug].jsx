@@ -100,7 +100,7 @@ const Slug = ({ res }) => {
                       pid == item.link && "gradient-text"
                     }`}
                   >
-                    <Link href={item.link}>{item?.title}</Link>
+                    <Link href={"/"+item.link}>{item?.title}</Link>
                   </li>
                 ))}
               </ul>
