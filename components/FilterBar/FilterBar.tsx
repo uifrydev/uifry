@@ -8,15 +8,15 @@ import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
 import { FilterBarProps } from "@/Interface/interface";
 
-  const FilterBar: FC<FilterBarProps> = ({
+const FilterBar: FC<FilterBarProps> = ({
   filter,
   setFilter,
   setCards,
   initialData,
   buttons = [],
   isFilter,
-  }) => {
-  const images = [
+}) => {
+  const images: { img: string, title: string }[] = [
     { img: figma, title: "figma" },
     { img: xd, title: "xd" },
     { img: Sketch, title: "sketch" },
@@ -38,11 +38,10 @@ import { FilterBarProps } from "@/Interface/interface";
               );
             }}
             key={index}
-            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${
-              item.title.includes(filter?.subCategory)
+            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${item.title.includes(filter?.subCategory)
                 ? "bg-gradient text-[#ffffff]"
                 : "border-[#E5E9FF]"
-            }`}
+              }`}
           >
             <span>{item?.title}</span>
           </Button>
@@ -76,7 +75,7 @@ import { FilterBarProps } from "@/Interface/interface";
           <span className="text-secondaryGray text-[1.6rem] font-400 leading-[2.2rem]">
             Filter By
           </span>
-          {images.map((item, index) => (
+          {/* {images.map((item, index) => (
             <Button
               onClick={() => {
                 setFilter((prev) => ({
@@ -90,13 +89,12 @@ import { FilterBarProps } from "@/Interface/interface";
                 );
               }}
               key={index}
-              classes={`flex w-[3.2rem] h-[3.2rem] items-center ${
-                filter[item?.title] == true && "!border-[#E5E9FF]  bg-[#160042]"
-              } justify-center !p-0 border-[1px] rounded-full`}
+              classes={`flex w-[3.2rem] h-[3.2rem] items-center ${filter[item?.title] == true && "!border-[#E5E9FF]  bg-[#160042]"
+                } justify-center !p-0 border-[1px] rounded-full`}
             >
               <Image alt="" src={item.img} />
             </Button>
-          ))}
+          ))} */}
         </div>
       )}
     </div>
