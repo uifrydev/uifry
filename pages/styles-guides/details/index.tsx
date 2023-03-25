@@ -7,12 +7,15 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import sanity from "../../../sanity";
 import { updateModal } from "../../../store/slices/featues";
 import { slugToCapitalize } from "../../../utils/functions";
+import { Data } from "@/Interface/interface";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 
-const Detail = ({ details }) => {
+const Detail: NextPage<{ details: Data }> = ({ details }) => {
   const dispatch = useDispatch();
   useLayoutEffect(() => {
     document.body.style.overflowY = "scroll";
-    return () => dispatch(updateModal(false));
+
+    return () => { dispatch(updateModal(false)); }
   }, []);
   return (
     <>
@@ -20,7 +23,7 @@ const Detail = ({ details }) => {
         title={["UI", "Templates"]}
         breadcrums={["UI Templates", "Details"]}
       />
-      <Sidebar />
+      <Sidebar isDetail />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         {/* <div className=" grid grid-cols-5 3xlpx]:grid-cols-4 2xl:grid-cols-3 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]"> */}
         <ProductDetail1 data={details} />
@@ -29,9 +32,7 @@ const Detail = ({ details }) => {
     </>
   );
 };
-export async function getServerSideProps(context) {
-  const parentFilename = context.req.url.split("/")[1];
-  const params = context.params;
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const res = await sanity.fetch(
       `*[ _type=='styleGuide' && slug.current=="${context.query.style}" ]{

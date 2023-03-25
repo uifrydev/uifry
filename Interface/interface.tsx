@@ -21,7 +21,8 @@ export interface Data {
   };
   subCategory: string;
   tags: string[];
-  noOfScreens?: any
+  noOfScreens?: any;
+  features?:string[]
 }
 
 export interface CardProps {

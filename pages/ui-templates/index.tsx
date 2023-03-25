@@ -15,11 +15,14 @@ import Button from "../../components/Button/Button";
 import { fetchData, fetchDataServer } from "../../utils/functions";
 import DetailsModal1 from "../../components/DetailsModal/DetailModal1";
 import { loadMore, perProduct } from "../../utils/consts";
-const UiTemplates = ({ posts }) => {
+import { RootState } from "@/store/store";
+import { GetServerSideProps, NextPage } from "next";
+import { Data } from "@/Interface/interface";
+const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const builder = imageUrlBuilder(sanity);
   const [cards, setCards] = useState(posts);
-  const openModal = useSelector((state) => state.features.openModal);
-  const [modalData, setModalData] = useState(null);
+  const openModal = useSelector((state: RootState) => state.features.openModal);
+  const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const [endProdcuts, setEndProducts] = useState(false);
@@ -82,7 +85,7 @@ const UiTemplates = ({ posts }) => {
         title={["UI", "Templates"]}
         breadcrums={["UI Templates", "All Templates"]}
       />
-      <Sidebar />
+      <Sidebar isDetail={false} />
       <FilterBar1
         initialData={posts}
         setCards={setCards}
@@ -108,12 +111,11 @@ const UiTemplates = ({ posts }) => {
                 <Card
                   key={index}
                   onClick={() => {
-                      window.scrollBy(0, 1);
-                      document.body.classList.add("overflow-hidden");
+                    window.scrollBy(0, 1);
+                    document.body.classList.add("overflow-hidden");
                     dispatch(updateModal(true));
                     setModalData(item);
                   }}
-                  index={index}
                   data={item}
                 />
               </Link>
@@ -126,12 +128,10 @@ const UiTemplates = ({ posts }) => {
                 isLoading,
                 setLoading,
                 setProductIndex,
-                productIndex,
                 setCards,
                 sanity,
-                query: `*[_type=='uitemplate'] | [${productIndex}...${
-                  productIndex + loadMore
-                }]{
+                query: `*[_type=='uitemplate'] | [${productIndex}...${productIndex + loadMore
+                  }]{
                 title,slug,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
@@ -148,7 +148,7 @@ const UiTemplates = ({ posts }) => {
     </>
   );
 };
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await fetchDataServer({
       sanity,

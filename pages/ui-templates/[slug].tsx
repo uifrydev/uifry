@@ -21,21 +21,21 @@ import FilterBar1 from "../../components/FilterBar/FilterBar1";
 import Button from "../../components/Button/Button";
 import DetailsModal1 from "../../components/DetailsModal/DetailModal1";
 import { loadMore, perProduct } from "../../utils/consts";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { Data } from "@/Interface/interface";
+import { RootState } from "@/store/store";
 
-const UiTemplatesType = ({ posts }) => {
+const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const router = useRouter();
   const pid = router.query;
   const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
-    return builder.image(source);
-  };
   const [cards, setCards] = useState(posts || []);
   const [isLoading, setLoading] = useState(false);
   const [productIndex, setProductIndex] = useState(0);
   const dispatch = useDispatch();
-  const [modalData, setModalData] = useState(null);
-  const openModal = useSelector((state) => state.features.openModal);
-  const title = titleWithSlug(pid.slug);
+  const [modalData, setModalData] = useState<Data>(posts[0]);
+  const openModal = useSelector((state: RootState) => state.features.openModal);
+  const title = titleWithSlug(String(pid?.slug) || '');
   const [filter, setFilter] = useState({
     subCategory: "All",
     figma: false,
@@ -46,15 +46,15 @@ const UiTemplatesType = ({ posts }) => {
     setProductIndex(posts.length);
     setCards(posts);
   }, [router.asPath]);
-  
+
   return (
     <>
       {openModal && <DetailsModal data={modalData} />}
       <Header
-        title={[title?.split(" ")[0], title?.split(" ")[1]]}
-        breadcrums={["UI Templates", title]}
+        title={[String(title)?.split(" ")[0], String(title)?.split(" ")[1]]}
+        breadcrums={["UI Templates", String(title)]}
       />
-      <Sidebar />
+      <Sidebar isDetail={false} />
       <FilterBar1
         initialData={posts}
         setCards={setCards}
@@ -97,14 +97,12 @@ const UiTemplatesType = ({ posts }) => {
                 isLoading,
                 setLoading,
                 setProductIndex,
-                productIndex,
                 setCards,
                 sanity,
                 query: `*[category=="${slugToCapitalize(
-                  pid.slug
-                )}"  && _type=='uitemplate'] | [${productIndex}...${
-                  productIndex + loadMore
-                }]{
+                  String(pid.slug)
+                )}"  && _type=='uitemplate'] | [${productIndex}...${productIndex + loadMore
+                  }]{
                 title,slug,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
@@ -122,13 +120,12 @@ const UiTemplatesType = ({ posts }) => {
   );
 };
 // http://localhost:1337/api/posts?populate=*
-export async function getServerSideProps(context) {
-  const parentFilename = context.req.url.split("/")[1];
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const params = context.params;
   try {
     const res = await fetchDataServer({
       query: `*[category=="${slugToCapitalize(
-        params.slug
+        String(params?.slug)
       )}"  && _type=='uitemplate'] | [0...${perProduct}]{
         title,slug,subCategory,category,description,sanityFilter,images[]{
           asset->{url}

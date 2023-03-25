@@ -52,7 +52,7 @@ export const fetchData = async ({
   query,
 }: {
   isLoading: Boolean;
-  setLoading: React.Dispatch<React.SetStateAction<Boolean>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
   setCards: React.Dispatch<React.SetStateAction<any[]>>;
   sanity: any;

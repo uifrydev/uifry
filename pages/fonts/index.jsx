@@ -9,7 +9,6 @@ import sanity from "../../sanity";
 import { list } from "../../utils/links";
 
 const Font = ({ posts }) => {
-  const [num, setNum] = useState(0);
   return (
     <>
       <Header title={["Fonts"]} breadcrums={["Fonts", "All Fonts"]} />

@@ -13,11 +13,14 @@ import { list } from "../../utils/links";
 import DetailsModal1 from "../../components/DetailSmodal1/DetailsModal1";
 import Sticker from "../../components/Sticker/Sticker";
 import Button from "../../components/Button/Button";
-const StyleGuides = ({ posts }) => {
+import { GetServerSideProps, NextPage } from "next";
+import { RootState } from "@/store/store";
+import { Data } from "@/Interface/interface";
+const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [num, setNum] = useState(0);
   const [cards, setCards] = useState(posts);
-  const openModal = useSelector((state) => state.features.openModal);
-  const [modalData, setModalData] = useState(null);
+  const openModal = useSelector((state:RootState) => state.features.openModal);
+  const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
     subCategory: "All",
@@ -30,7 +33,7 @@ const StyleGuides = ({ posts }) => {
     <>
       {openModal && <DetailsModal1 data={modalData} />}
       <Header title={["Styles", "Guides"]} breadcrums={["Style Guides"]} />
-      <Sidebar />
+      <Sidebar isDetail />
       {/* <FilterBar
         isFilter={false}
         initialData={posts}
@@ -66,7 +69,7 @@ const StyleGuides = ({ posts }) => {
               </Button>
             ))}
           </div>
-          <Sticker />
+          <Sticker classes=""  />
           <div className=" grid 4xl:grid-cols-3 grid-cols-4 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
             {cards.map((item, index) => (
               <Link
@@ -86,7 +89,6 @@ const StyleGuides = ({ posts }) => {
                     dispatch(updateModal(true));
                     setModalData(item);
                   }}
-                  index={index}
                   data={item}
                 />
               </Link>
@@ -97,7 +99,7 @@ const StyleGuides = ({ posts }) => {
     </>
   );
 };
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await sanity.fetch(
       `*[_type=='styleGuide']{

@@ -27,32 +27,34 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-const Details = ({ details, others }) => {
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext, NextPage } from "next";
+import { Data } from "@/Interface/interface";
+const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others }) => {
   const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
+  const urlFor = (source: string) => {
     return builder.image(source);
   };
   const [photoIndex, setPhotoIndex] = React.useState(0);
   const [isOpen, setOpen] = useState(false);
-  const images = details.images.map((item) => urlFor(item).url());
+  const images = details.images.map((item: any) => urlFor(item).url());
 
   return (
     <>
       {isOpen && (
 
-          <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={() => setOpen(false)}
-            onMovePrevRequest={() =>
-              setPhotoIndex((photoIndex + images.length - 1) % images.length)
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % images.length)
-            }
-            wrapperClassName='z-[100000000000]'
-          />
+        <Lightbox
+          mainSrc={images[photoIndex]}
+          nextSrc={images[(photoIndex + 1) % images.length]}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+          onCloseRequest={() => setOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % images.length)
+          }
+          wrapperClassName='z-[100000000000]'
+        />
       )}
 
       <KitHeader link={"/ui-ux-kits"} />
@@ -61,7 +63,7 @@ const Details = ({ details, others }) => {
         <div className="flex gap-[4rem] sm:flex-col ">
           <div className="flex flex-col gap-[6rem]">
             <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
-              {details.images.map((item, index) => (
+              {details.images.map((item: string, index: number) => (
                 <div
                   key={index}
                   className=""
@@ -75,6 +77,7 @@ const Details = ({ details, others }) => {
                     width={1000}
                     height={1000}
                     className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                    alt=""
                   />
                 </div>
               ))}
@@ -159,11 +162,11 @@ const Details = ({ details, others }) => {
                 <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
                   Features
                 </p>
-                <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
-                  {details.features.map((item) => (
+                {details?.features && <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
+                  {details?.features.map((item: string) => (
                     <li key={item}>{item}</li>
                   ))}
-                </ul>
+                </ul>}
               </div>
               <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem]  pt-0">
                 <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
@@ -206,7 +209,7 @@ const Details = ({ details, others }) => {
                     query: { kit: item.slug.current },
                   }}
                 >
-                  <UiKitCard onClick={() => { }} url={""} data={item} />
+                  <UiKitCard onClick={() => { }} data={item} />
                 </Link>
               ))}
           </div>
@@ -215,7 +218,7 @@ const Details = ({ details, others }) => {
     </>
   );
 };
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   try {
     const res = await sanity.fetch(
       `*[_type=='uxKit' && slug.current=="${context.query.kit}"]{
