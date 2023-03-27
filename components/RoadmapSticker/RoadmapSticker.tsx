@@ -10,7 +10,7 @@ interface RoadmapStickerProps {
 }
 const RoadmapSticker: FC<RoadmapStickerProps> = ({ src, children ,classes=''}) => {
   return (
-    <div className={`bg-primary flex rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[2.6rem] items-center ${classes}`}>
+    <div className={`bg-primary flex flex-wrap justify-center rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[2.6rem] items-center ${classes}`}>
       <Image src={src} alt="" />
       {children}
       <Button classes={"bg-gradient rounded-[5rem] px-[2.5rem] py-[1.4rem] !ml-auto"}>
