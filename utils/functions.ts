@@ -77,20 +77,19 @@ export const fetchDataServer = async ({
 };
 
 export const removeEmptyPTagsFromClass = () => {
-  const mainDiv = document.querySelector(".body");
+  let temp = document.querySelector(".body");
+  temp?.setAttribute("id", "body");
+  let mainDiv = document.getElementById("body");
   if (!mainDiv) return;
   // Remove all <br> tags
   mainDiv.querySelectorAll("br").forEach((br) => br.remove());
+    const emptyPTags = Array.from(mainDiv.querySelectorAll("p")).filter(
+      (p) => !p.textContent?.trim()
+    );
 
-  // Remove all empty <p> tags
-  mainDiv.querySelectorAll("p").forEach((p) => {
-    if (p.innerHTML.trim() == "") {
-      // if (p.parentNode === mainDiv) {
-      console.log(p.parentNode, "shjsg");
-      p.remove();
-      // }
-    }
-  });
+    emptyPTags.forEach((p) => {
+      p.style.display='none';
+    });
 };
 // export const wrapper = (): void => {
 //   const mainDiv: HTMLElement | null = document.querySelector(".main");

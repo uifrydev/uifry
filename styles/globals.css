@@ -65,6 +65,9 @@ select {
 .body li {
   @apply text-secondaryGray text-[1.6rem] font-[400] leading-[150%];
 }
+.body{
+  @apply pb-[5rem]
+}
 .body a {
   color: #00b3ff;
   border-bottom: 1px solid #00b3ff;

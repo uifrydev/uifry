@@ -84,10 +84,9 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                     sparking inspiration and starting a design.
                   </li>
                 </ol> */}
-                <div className="body">
 
                 <BlockContent
-                  className={`flex flex-col gap-[2rem] pt-[3rem] ${
+                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${
                     res.slug.current === "license-agreement" && "main"
                   }`}
                   id="body"
@@ -100,7 +99,6 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                     },
                   }}
                   />
-                  </div>
               </div>
             </div>
           </div>
