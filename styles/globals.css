@@ -68,6 +68,9 @@ select {
 .body{
   @apply pb-[5rem]
 }
+.text ol {
+  @apply flex flex-col gap-[2rem]
+}
 .body a {
   color: #00b3ff;
   border-bottom: 1px solid #00b3ff;
@@ -83,7 +86,7 @@ select {
 }
 .body ol em {
   font-style: normal;
-  @apply text-primaryBlack
+  @apply text-primaryBlack font-[600]
 }
 .body strong{
   @apply text-[#0A2540]

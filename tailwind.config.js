@@ -54,6 +54,7 @@ module.exports = {
         cardShadow: "51px 51px 132px -16px rgb(49 51 114 / 8%)",
         cardShadowHover: "0px 21px 132px -16px rgba(49, 51, 114, 0.23)",
         info: "0px 50px 100px -20px rgb(50 50 93 / 0%),0px 30px 60px -30px rgb(0 0 0 / 9%)",
+        stcker:'0px 15px 20px rgba(0, 0, 0, 0.05)'
       },
       backgroundImage: {
         side: "linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))",

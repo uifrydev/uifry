@@ -89,3 +89,12 @@ export interface ExtrasProps {
   };
   description: string
 }
+export interface RoadmapProps {
+  text1: any;
+  text2: any;
+  title: string;
+  slug: {
+    current:string
+  };
+  description: string
+}
