@@ -19,6 +19,7 @@ import userss from "../../public/assets/images/users.png";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
+import Team from "@/components/Team/Team";
 const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
   useEffect(() => {
     removeEmptyPTagsFromClass();
@@ -106,6 +107,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                     <Image alt="" className="w-[3rem]" src={Sketch} />
                   </div>
                 </RoadmapSticker>
+                <Team />
               </div>
             </div>
           </div>
