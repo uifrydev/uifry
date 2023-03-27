@@ -13,12 +13,7 @@ export const titleWithSlug = (slug: string) => {
 };
 
 export const applyFilter = (
-  {
-    subCategory,
-    figma,
-    xd,
-    sketch,
-  }: FilterParams,
+  { subCategory, figma, xd, sketch }: FilterParams,
   setter: React.Dispatch<React.SetStateAction<any[]>>,
   initialData: any[]
 ) => {
@@ -81,16 +76,19 @@ export const fetchDataServer = async ({
   return res;
 };
 
-export function removeEmptyPTagsFromClass() {
+export const removeEmptyPTagsFromClass=()=>{
   const mainDiv = document.querySelector(".body");
-  if(!mainDiv)return
+  if (!mainDiv) return;
   // Remove all <br> tags
   mainDiv.querySelectorAll("br").forEach((br) => br.remove());
 
   // Remove all empty <p> tags
   mainDiv.querySelectorAll("p").forEach((p) => {
     if (p.innerHTML.trim() == "") {
-      p.remove();
+      if (p.parentNode === mainDiv) {
+        console.log(p.parentNode,'shjsg')
+        mainDiv.removeChild(p);
+      }
     }
   });
 }

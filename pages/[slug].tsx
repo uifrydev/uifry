@@ -22,11 +22,13 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
   const router = useRouter();
   const pid = router.query?.slug;
   useEffect(() => {
-    // removeEmptyPTagsFromClass();
+    removeEmptyPTagsFromClass();
     if (res.slug.current === "license-agreement") {
       // wrapper();
     }
+    
   }, []);
+
   return (
     <>
       <DetailHeader link={"/"} />
@@ -83,14 +85,23 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                   </li>
                 </ol> */}
                 <BlockContent
-                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${res.slug.current === "license-agreement" && "main"
-                    }`}
+                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${
+                    res.slug.current === "license-agreement" && "main"
+                  }`}
+                  id="body"
                   blocks={res?.body?.body}
+                  erializers={{
+                    types: {
+                      block: (props: any) => {
+                        console.log(props);
+                      },
+                    },
+                  }}
                 />
               </div>
             </div>
           </div>
-          <div className="flex relative mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[29rem] max-w-[29rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
+          <div className="flex sticky top-[18rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[29rem] max-w-[29rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
             <div className="flex flex-col gap-[1.6rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] w-full">
               <h4 className="satoshi text-primaryBlack text-[2.4rem] font-700 leading-[3rem]">
                 All Links
@@ -99,8 +110,9 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                 {slugList.map((item) => (
                   <li
                     key={item?.link}
-                    className={`text16-gray ${pid == item.link && "gradient-text"
-                      }`}
+                    className={`text16-gray ${
+                      pid == item.link && "gradient-text"
+                    }`}
                   >
                     <Link href={"/" + item.link}>{item?.title}</Link>
                   </li>
@@ -113,9 +125,11 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps<{}> = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
   try {
-    const params = context.params
+    const params = context.params;
     const res = await fetchDataServer({
       sanity,
       query: `*[_type=='extra' && slug.current=='${params?.slug}']{
@@ -142,5 +156,5 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context: GetSer
       notFound: true,
     };
   }
-}
+};
 export default Slug;
