@@ -34,7 +34,7 @@ const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
         // classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
-        <div className=" grid 4xl:grid-cols-2 grid-cols-3  2xl2:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
+        <div className=" grid 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
           {cards &&
             cards.map((item, index) => (
               <Link key={index} href={{pathname:"ui-ux-kits/details",query:{kit:item.slug.current}}}>

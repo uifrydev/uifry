@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../public/assets/images/logo.png";
+// import logo from "../../public/assets/images/logobeta.svg";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
@@ -22,7 +22,7 @@ const DetailHeader = ({ link }: { link: string }) => {
           href={"/"}
           className="py-[2.237rem] px-[4rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-[#efe9ff]"
         >
-          <Image src={logo} alt={""} />
+          {/* <Image src={logo} alt={""} /> */}
         </Link>
 
         <Link href={link||'/'} className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">

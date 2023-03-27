@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import logo from "../../public/assets/images/logo-beta.png";
+// import logo from "../../public/assets/images/logobeta.svg";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
           href={"/"}
           className="py-[2.237rem] px-[4rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-[#efe9ff]"
         >
-          <Image src={logo} alt={""} />
+          {/* <Image src={logo} alt={""} /> */}
         </Link>
         <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-[#efe9ff]">
           <p className="text-[3rem] font-700 leading-[4.1rem] font-safi">
