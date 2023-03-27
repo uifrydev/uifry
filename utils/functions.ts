@@ -76,7 +76,7 @@ export const fetchDataServer = async ({
   return res;
 };
 
-export const removeEmptyPTagsFromClass=()=>{
+export const removeEmptyPTagsFromClass = () => {
   const mainDiv = document.querySelector(".body");
   if (!mainDiv) return;
   // Remove all <br> tags
@@ -85,13 +85,13 @@ export const removeEmptyPTagsFromClass=()=>{
   // Remove all empty <p> tags
   mainDiv.querySelectorAll("p").forEach((p) => {
     if (p.innerHTML.trim() == "") {
-      if (p.parentNode === mainDiv) {
-        console.log(p.parentNode,'shjsg')
-        mainDiv.removeChild(p);
-      }
+      // if (p.parentNode === mainDiv) {
+      console.log(p.parentNode, "shjsg");
+      p.remove();
+      // }
     }
   });
-}
+};
 // export const wrapper = (): void => {
 //   const mainDiv: HTMLElement | null = document.querySelector(".main");
 //   let currentWrapper: HTMLDivElement | null;

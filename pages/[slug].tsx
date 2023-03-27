@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import DetailHeader from "../components/KitHeader/KitHeader";
 import Sidebar from "../components/Sidebar/Sidebar";
 import profile from "../public/assets/images/profile.png";
@@ -27,7 +27,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
       // wrapper();
     }
     
-  }, []);
+  }, [router.asPath]);
 
   return (
     <>
@@ -84,8 +84,10 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                     sparking inspiration and starting a design.
                   </li>
                 </ol> */}
+                <div className="body">
+
                 <BlockContent
-                  className={`body flex flex-col gap-[2rem] pt-[3rem] ${
+                  className={`flex flex-col gap-[2rem] pt-[3rem] ${
                     res.slug.current === "license-agreement" && "main"
                   }`}
                   id="body"
@@ -97,7 +99,8 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                       },
                     },
                   }}
-                />
+                  />
+                  </div>
               </div>
             </div>
           </div>
