@@ -18,9 +18,9 @@ const Team = () => {
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-[1rem] max-w-[92rem] mb-[20rem]">
+      <div className="grid grid-cols-7 gap-[1rem] mb-[20rem]">
         {teamList.map((item) => (
-          <Image src={item.src} className='aspect-[1/1] h-full' key={item.alt} alt={item.alt} />
+          <Image src={item.src} className='aspect-[1/1] h-full w-full' key={item.alt} alt={item.alt} />
         ))}
       </div>
     </div>
