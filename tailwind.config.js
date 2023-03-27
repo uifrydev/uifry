@@ -17,6 +17,7 @@ module.exports = {
       "4xl": { max: "1920px" },
       "3xl": { max: "1850px" },
       "2xl1": { max: "1650px" },
+      "2xl": { max: "1366px" },
       "2xl2": { max: "1365px" },
       xl: { max: "1279px" },
       lg1: { max: "1024px" },
