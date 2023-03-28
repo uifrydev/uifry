@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { list } from "../../utils/links";
 import Button from "../Button/Button";
 
-const JobsFilterBar = ({ initialData }: { initialData: JobProps[] }) => {
+const JobsFilterBar = ({
+  initialData,
+  setProducts,
+}: {
+  initialData: JobProps[];
+  setProducts: React.Dispatch<React.SetStateAction<JobProps[]>>;
+}) => {
   const [num, setNum] = useState(0);
   return (
     <div className="flex z-[1] lg:flex-col justify-between lg:px-[2rem] flex-wrap gap-[2rem] w-full items-center  lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky top-[8.41rem] pt-[2rem] lg:top-[20rem] pr-[4rem]">

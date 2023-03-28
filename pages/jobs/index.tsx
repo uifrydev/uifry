@@ -17,7 +17,7 @@ const Jobs: NextPage<{
     <>
       <Header breadcrums={["Jobs"]} title={["Jobs"]} />
       <Sidebar isDetail />
-      <JobsFilterBar initialData={Jobs}  />
+      <JobsFilterBar initialData={Jobs} setProducts={setProducts} />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid grid-cols-3 3xl:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] xs:px-[1rem] p-[3rem]">
           {products.map((item, index) => (
