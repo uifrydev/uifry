@@ -217,7 +217,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                 </div>
                 <div
                   id="tags"
-                  className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-[4rem] z-[2rem]"
+                  className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] py-[4rem] z-[2rem]"
                 >
                   <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
                     Tags
