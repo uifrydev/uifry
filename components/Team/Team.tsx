@@ -2,7 +2,7 @@ import { teamList } from "@/utils/teamImages";
 import Image from "next/image";
 import React from "react";
 import users from "../../public/assets/icons/users.svg";
-
+import team from '../../public/assets/images/team/team.png'
 const Team = () => {
   return (
     <div className="w-full flex flex-col ">
@@ -18,11 +18,13 @@ const Team = () => {
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-[1rem] mb-[20rem]">
+      <Image src={team} className='w-full' alt={'team'} />
+      
+      {/* <div className="grid grid-cols-7 gap-[1rem] mb-[20rem]">
         {teamList.map((item) => (
           <Image src={item.src} className='aspect-[1/1] h-full w-full' key={item.alt} alt={item.alt} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

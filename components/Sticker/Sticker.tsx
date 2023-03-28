@@ -7,7 +7,7 @@ import gradient1 from "../../public/assets/images/gradient1.png";
 const Sticker = ({ classes = "" }: { classes: string }) => {
   return (
     <div
-      className={`w-full relative  flex z-[11] justify-center gap-[2rem] py-[1.5rem] overflow-hidden px-[2rem] items-center rounded-full bg-[#002D6A] ${classes}`}
+      className={`w-full relative  flex z-[1] justify-center gap-[2rem] py-[1.5rem] overflow-hidden px-[2rem] items-center rounded-full bg-[#002D6A] ${classes}`}
     >
       <p className="text-[#fff] font-[700] text-[1.6rem] satoshi">
         We Added <span className="gradient-text"> 150 new UI templates </span>

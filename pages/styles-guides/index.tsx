@@ -16,10 +16,11 @@ import Button from "../../components/Button/Button";
 import { GetServerSideProps, NextPage } from "next";
 import { RootState } from "@/store/store";
 import { Data } from "@/Interface/interface";
+import { applyFilter } from "@/utils/functions";
 const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [num, setNum] = useState(0);
   const [cards, setCards] = useState(posts);
-  const openModal = useSelector((state:RootState) => state.features.openModal);
+  const openModal = useSelector((state: RootState) => state.features.openModal);
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
@@ -54,10 +55,17 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
               smash client work daily with so much more.
             </p>
           </div>
-          <div className="flex gap-[1.6rem] flex-wrap my-[2rem] 2xl:hidden">
+          <div className="flex gap-[1.6rem] flex-wrap justify-center my-[2rem] ">
             {list[4].buttons.map((item, index) => (
               <Button
-                onClick={() => setNum(index)}
+                onClick={() => {
+                  setNum(index);
+                  applyFilter(
+                    { ...filter, subCategory: item.title },
+                    setCards,
+                    posts
+                  );
+                }}
                 key={index}
                 classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px] ${
                   num == index
@@ -69,7 +77,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
               </Button>
             ))}
           </div>
-          <Sticker classes=""  />
+          <Sticker classes="" />
           <div className=" grid 4xl:grid-cols-3 grid-cols-4 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
             {cards.map((item, index) => (
               <Link
@@ -121,5 +129,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     };
   }
-}
+};
 export default StyleGuides;

@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
           Added in{" "}
           <span className="border-b-[1px] border-[#B6B9CE]">
             {" "}
-            {data?.category}
+            {data?.category || data?.subCategory}
           </span>
         </p>
       </div>

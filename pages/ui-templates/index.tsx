@@ -25,7 +25,6 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
-  const [endProdcuts, setEndProducts] = useState(false);
   const [productIndex, setProductIndex] = useState(posts.length);
 
   const [filter, setFilter] = useState({
@@ -34,50 +33,7 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
     xd: false,
     sketch: false,
   });
-  // useEffect(() => {
-  //   if(endProdcuts){
-  //     return
-  //   }
-  //   window.addEventListener(
-  //     "scroll",
-  //     async () =>
-  //       await fetchData({
-  //         setEndProducts,
-  //         isLoading,
-  //         setLoading,
-  //         setProductIndex,
-  //         productIndex,
-  //         setCards,
-  //         sanity,
-  //         query: `*[_type=='uitemplate'] | [${productIndex}...${
-  //           productIndex + 2
-  //         }]{
-  //     title,slug,subCategory,category,description,sanityFilter,images,tags,"fileURL":zipFile.asset->url
-  //   }`,
-  //       })
-  //   );
-  //   return () => {
-  //     window.removeEventListener(
-  //       "scroll",
-  //       async () =>
-  //         await fetchData({
-  //           setEndProducts,
-
-  //           isLoading,
-  //           setLoading,
-  //           setProductIndex,
-  //           productIndex,
-  //           setCards,
-  //           sanity,
-  //           query: `*[_type=='uitemplate'] | [${productIndex}...${
-  //             productIndex + 2
-  //           }]{
-  //               title,slug,subCategory,category,description,sanityFilter,images,tags,"fileURL":zipFile.asset->url
-  //             }`,
-  //         })
-  //     );
-  //   };
-  // }, []);
+ 
   return (
     <>
       {openModal && <DetailsModal data={modalData} />}

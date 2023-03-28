@@ -6,14 +6,22 @@ import Button from "../Button/Button";
 interface RoadmapStickerProps {
   src: StaticImageData;
   children: ReactNode;
-  classes?:string;
+  classes?: string;
 }
-const RoadmapSticker: FC<RoadmapStickerProps> = ({ src, children ,classes=''}) => {
+const RoadmapSticker: FC<RoadmapStickerProps> = ({
+  src,
+  children,
+  classes = "",
+}) => {
   return (
-    <div className={`bg-primary flex flex-wrap justify-center rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[2.6rem] items-center ${classes}`}>
-      <Image src={src} alt="" />
-      {children}
-      <Button classes={"bg-gradient rounded-[5rem] px-[2.5rem] py-[1.4rem] !ml-auto"}>
+    <div
+      className={`bg-primary flex justify-between 2xl1:flex-col lg:flex-row  md:flex-col rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[2.6rem] items-center ${classes}`}
+    >
+      <div className="flex gap-[2.6rem] sm:flex-col items-center">
+        <Image src={src} alt="" />
+        {children}
+      </div>
+      <Button classes={"bg-gradient rounded-[5rem] px-[2.5rem] py-[1.4rem]"}>
         <div className="flex gap-[.8rem]">
           <Image src={star} className="" alt="" />
           <span className="text-[#ffffff] font-[500] text-[1.6rem] flex  satoshi">

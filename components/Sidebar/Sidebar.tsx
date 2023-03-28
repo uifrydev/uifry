@@ -1,5 +1,5 @@
 "use client"; // this is a client component 👈🏽
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrow from "../../public/assets/icons/arrow-da.svg";
 import linkedin from "../../public/assets/icons/linkedin.svg";
 import instagram from "../../public/assets/icons/instagram.svg";
@@ -18,11 +18,25 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
   const router = useRouter();
   const pid = router.query;
   const dispatch = useDispatch()
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    function handleResize() {
+      setHeight(window.innerHeight);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="">
       <div
-        className={`w-[194px] transition-all ease-linear duration-500 lg:w-full overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[17rem]"
-          }  h-[100vh] ${features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
+        className={`w-[194px] transition-all ease-linear duration-500 lg:w-full ${height<800 && "!overflow-y-scroll"} overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[17rem]"
+          }  h-[100vh] ${features.isMenu  ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
           }  `}
       >
         {list.map((item, index) => (
@@ -96,7 +110,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
           </Link>
         ))}
 
-        <div className="p-[2rem]  flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]">
+        <div className="p-[2rem] pb-[2rem] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]">
           <div className="flex flex-col gap-[.5rem]">
             <div className="flex">
 

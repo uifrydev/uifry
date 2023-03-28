@@ -60,7 +60,7 @@ const FilterBar: FC<FilterBarProps> = ({
           }}
           className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-[#E5E9FF] rounded-[1rem] outline-none "
         >
-          {list[0].buttons.map((item, index) => (
+          {buttons.map((item, index) => (
             <option
               key={index}
               value={item?.title}
@@ -75,10 +75,10 @@ const FilterBar: FC<FilterBarProps> = ({
           <span className="text-secondaryGray text-[1.6rem] font-400 leading-[2.2rem]">
             Filter By
           </span>
-          {/* {images.map((item, index) => (
+          {images.map((item, index) => (
             <Button
               onClick={() => {
-                setFilter((prev) => ({
+                setFilter((prev:any) => ({
                   ...prev,
                   [item?.title]: !prev[item.title],
                 }));
@@ -94,7 +94,7 @@ const FilterBar: FC<FilterBarProps> = ({
             >
               <Image alt="" src={item.img} />
             </Button>
-          ))} */}
+          ))}
         </div>
       )}
     </div>

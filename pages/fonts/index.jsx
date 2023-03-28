@@ -41,7 +41,7 @@ const Font = ({ posts }) => {
             ))}
           </div> */}
           <Sticker />
-          <div className=" grid mt-[2rem] 4xl:grid-cols-2 grid-cols-3  gap-[3rem] 2xl2:grid-cols-1">
+          <div className=" grid mt-[2rem] 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  gap-[3rem]">
             
             {posts.map((item, index) => (
               <Link
