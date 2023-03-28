@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KitHeader from "../../../components/KitHeader/KitHeader";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import figma from "../../../public/assets/icons/figma.svg";
@@ -27,9 +27,17 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext, NextPage } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetStaticPropsContext,
+  NextPage,
+} from "next";
 import { Data } from "@/Interface/interface";
-const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others }) => {
+const Details: NextPage<{ details: Data; others: Data[] }> = ({
+  details,
+  others,
+}) => {
   const builder = imageUrlBuilder(sanity);
   const urlFor = (source: string) => {
     return builder.image(source);
@@ -37,11 +45,32 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
   const [photoIndex, setPhotoIndex] = React.useState(0);
   const [isOpen, setOpen] = useState(false);
   const images = details.images.map((item: any) => urlFor(item).url());
+  const [isElementAtTop, setIsElementAtTop] = useState(false);
+
+  function isElementAtTopOfView() {
+    const element = document.getElementById("tags");
+    if (!element) return false; // element not found
+
+    const rect = element.getBoundingClientRect();
+    return rect.top <= 10; // true if top of element is at or above top of viewport
+  }
+
+  useEffect(() => {
+    if (isElementAtTopOfView()) {
+      console.log("reached");
+    }
+    function handleScroll() {
+      setIsElementAtTop(isElementAtTopOfView());
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       {isOpen && (
-
         <Lightbox
           mainSrc={images[photoIndex]}
           nextSrc={images[(photoIndex + 1) % images.length]}
@@ -53,7 +82,7 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
           onMoveNextRequest={() =>
             setPhotoIndex((photoIndex + 1) % images.length)
           }
-          wrapperClassName='z-[100000000000]'
+          wrapperClassName="z-[100000000000]"
         />
       )}
 
@@ -84,185 +113,126 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
             </div>
           </div>
           <div className="flex  relative max-w-[32rem]  sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
-            <div className="flex relative w-full flex-col gap-[4rem]">
-              <div className=" sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
-                <div className="flex flex-col gap-[1rem] items-start">
-                  {/* <Tag classess={"bg-[#fff]"} text={details?.subCategory} /> */}
-                  <Link href={"/ui-ux-kits"} className="">
-                    <span className="font-500 text-[1.6rem] leading-[2.2rem] gradient-text">
-                      {details?.subCategory}
-                    </span>
-                  </Link>
-                  <h3 className="satoshi text-[2.4rem] font-[700] leading-[120%] text-primaryBlack">
-                    {details?.title}
-                  </h3>
-                </div>
-                <div className="flex gap-[2rem] flex-col mt-[3.5rem] ">
-                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
-                    Files & Info
-                  </p>
-                  <div className="flex flex-col gap-[1.5rem] w-full">
-                    {details.sanityFilter?.Figma && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={figma} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-primaryBlack">
-                            Figma
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
-                    {details.sanityFilter?.Sketch && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={sketch} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
-                            Sketch
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
-                    {details.sanityFilter?.XD && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={xd} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
-                            Adobe XD
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
+            <div className="flex relative w-full flex-col gap-[0rem]">
+              {true && (
+                <div
+                  className={`sticky z-[1] sm:relative
+              ${
+                isElementAtTop && "rounded-bl-[1rem]"
+              } border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]`}
+                >
+                  <div className="flex flex-col gap-[1rem] items-start">
+                    {/* <Tag classess={"bg-[#fff]"} text={details?.subCategory} /> */}
+                    <Link href={"/ui-ux-kits"} className="">
+                      <span className="font-500 text-[1.6rem] leading-[2.2rem] gradient-text">
+                        {details?.subCategory}
+                      </span>
+                    </Link>
+                    <h3 className="satoshi text-[2.4rem] font-[700] leading-[120%] text-primaryBlack">
+                      {details?.title}
+                    </h3>
                   </div>
-                  <Link href={details?.fileURL} download>
-                    {/* <Button
+                  <div className={`flex gap-[2rem] flex-col mt-[3.5rem] `}>
+                    <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
+                      Files & Info
+                    </p>
+                    <div className="flex flex-col gap-[1.5rem] w-full">
+                      {details.sanityFilter?.Figma && (
+                        <div className="flex justify-between w-full items-center">
+                          <div className="flex gap-[2rem] items-center">
+                            <Image src={figma} alt="" className="w-[2.4rem]" />
+                            <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-primaryBlack">
+                              Figma
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <Image src={tick} alt="" />
+                          </div>
+                        </div>
+                      )}
+                      {details.sanityFilter?.Sketch && (
+                        <div className="flex justify-between w-full items-center">
+                          <div className="flex gap-[2rem] items-center">
+                            <Image src={sketch} alt="" className="w-[2.4rem]" />
+                            <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
+                              Sketch
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <Image src={tick} alt="" />
+                          </div>
+                        </div>
+                      )}
+                      {details.sanityFilter?.XD && (
+                        <div className="flex justify-between w-full items-center">
+                          <div className="flex gap-[2rem] items-center">
+                            <Image src={xd} alt="" className="w-[2.4rem]" />
+                            <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
+                              Adobe XD
+                            </p>
+                          </div>
+                          <div className="flex">
+                            <Image src={tick} alt="" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <Link href={details?.fileURL} download>
+                      {/* <Button
                       classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
                     >
                       <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                         Download
                       </span>
                     </Button> */}
-                    <Button classes={"bg-gradient rounded-[10rem] w-full"}>
-                      <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
-                        Download
-                      </span>
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-0">
-                <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
-                  Features
-                </p>
-                {details?.features && <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
-                  {details?.features.map((item: string) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>}
-              </div>
-              <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem]  pt-0">
-                <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
-                  Info
-                </p>
-                <p className="text-secondaryGray font-[400] text-[1.4rem] leading-[150%]">
-                  {details?.description}
-                </p>
-              </div>
-              <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-0">
-                <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
-                  Tags
-                </p>
-                <div className="flex flex-wrap gap-[.8rem]">
-                  {details.tags &&
-                    details.tags.map((item) => (
-                      <Tag
-                        classess={
-                          "bg-[#fff] leading-[2rem] text-secondaryGray !px-[1.4rem]"
-                        }
-                        text={item}
-                      />
-                    ))}
-                </div>
-              </div>
-              <div className="sticky rounded-bl-[1rem] sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
-                <div className="flex flex-col gap-[1rem] items-start">
-                  {/* <Tag classess={"bg-[#fff]"} text={details?.subCategory} /> */}
-                  <Link href={"/ui-ux-kits"} className="">
-                    <span className="font-500 text-[1.6rem] leading-[2.2rem] gradient-text">
-                      {details?.subCategory}
-                    </span>
-                  </Link>
-                  <h3 className="satoshi text-[2.4rem] font-[700] leading-[120%] text-primaryBlack">
-                    {details?.title}
-                  </h3>
-                </div>
-                <div className="flex gap-[2rem] flex-col mt-[3.5rem] ">
-                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
-                    Files & Info
-                  </p>
-                  <div className="flex flex-col gap-[1.5rem] w-full">
-                    {details.sanityFilter?.Figma && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={figma} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-primaryBlack">
-                            Figma
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
-                    {details.sanityFilter?.Sketch && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={sketch} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
-                            Sketch
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
-                    {details.sanityFilter?.XD && (
-                      <div className="flex justify-between w-full items-center">
-                        <div className="flex gap-[2rem] items-center">
-                          <Image src={xd} alt="" className="w-[2.4rem]" />
-                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
-                            Adobe XD
-                          </p>
-                        </div>
-                        <div className="flex">
-                          <Image src={tick} alt="" />
-                        </div>
-                      </div>
-                    )}
+                      <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                        <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                          Download
+                        </span>
+                      </Button>
+                    </Link>
                   </div>
-                  <Link href={details?.fileURL} download>
-                    {/* <Button
-                      classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
-                    >
-                      <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
-                        Download
-                      </span>
-                    </Button> */}
-                    <Button classes={"bg-gradient rounded-[10rem] w-full"}>
-                      <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
-                        Download
-                      </span>
-                    </Button>
-                  </Link>
+                </div>
+              )}
+              <div className=" z-[2] bg-primary pt-[4rem]">
+                <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-[4rem]">
+                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
+                    Features
+                  </p>
+                  {details?.features && (
+                    <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
+                      {details?.features.map((item: string) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem]  pt-[4rem]">
+                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
+                    Info
+                  </p>
+                  <p className="text-secondaryGray font-[400] text-[1.4rem] leading-[150%]">
+                    {details?.description}
+                  </p>
+                </div>
+                <div
+                  id="tags"
+                  className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-[4rem] z-[2rem]"
+                >
+                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
+                    Tags
+                  </p>
+                  <div className="flex flex-wrap gap-[.8rem]">
+                    {details.tags &&
+                      details.tags.map((item) => (
+                        <Tag
+                          classess={
+                            "bg-[#fff] leading-[2rem] text-secondaryGray !px-[1.4rem]"
+                          }
+                          text={item}
+                        />
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -282,7 +252,7 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
                     query: { kit: item.slug.current },
                   }}
                 >
-                  <UiKitCard onClick={() => { }} data={item} />
+                  <UiKitCard onClick={() => {}} data={item} />
                 </Link>
               ))}
           </div>
@@ -291,7 +261,9 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   try {
     const res = await sanity.fetch(
       `*[_type=='uxKit' && slug.current=="${context.query.kit}"]{
@@ -319,5 +291,5 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
       notFound: true,
     };
   }
-}
+};
 export default Details;
