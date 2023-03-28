@@ -85,7 +85,7 @@ const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
 export async function getServerSideProps() {
   try {
     const res = await sanity.fetch(
-      `*[_type=='uxKit']{
+      `*[_type=='uxKit'][0...165]{
     title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
 }`
     );

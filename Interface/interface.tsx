@@ -98,3 +98,15 @@ export interface RoadmapProps {
   };
   description: string
 }
+export interface JobProps {
+  companyName: string;
+  primaryIndustry: string;
+  images: any[];
+  title: string;
+  description: string;
+  companySize: string;
+  salaryRange: string;
+  slug: {
+    current: string;
+  };
+}
