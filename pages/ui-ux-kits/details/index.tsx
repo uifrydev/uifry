@@ -192,6 +192,79 @@ const Details: NextPage<{ details: Data, others: Data[] }> = ({ details, others 
                     ))}
                 </div>
               </div>
+              <div className="sticky rounded-bl-[1rem] sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
+                <div className="flex flex-col gap-[1rem] items-start">
+                  {/* <Tag classess={"bg-[#fff]"} text={details?.subCategory} /> */}
+                  <Link href={"/ui-ux-kits"} className="">
+                    <span className="font-500 text-[1.6rem] leading-[2.2rem] gradient-text">
+                      {details?.subCategory}
+                    </span>
+                  </Link>
+                  <h3 className="satoshi text-[2.4rem] font-[700] leading-[120%] text-primaryBlack">
+                    {details?.title}
+                  </h3>
+                </div>
+                <div className="flex gap-[2rem] flex-col mt-[3.5rem] ">
+                  <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
+                    Files & Info
+                  </p>
+                  <div className="flex flex-col gap-[1.5rem] w-full">
+                    {details.sanityFilter?.Figma && (
+                      <div className="flex justify-between w-full items-center">
+                        <div className="flex gap-[2rem] items-center">
+                          <Image src={figma} alt="" className="w-[2.4rem]" />
+                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-primaryBlack">
+                            Figma
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <Image src={tick} alt="" />
+                        </div>
+                      </div>
+                    )}
+                    {details.sanityFilter?.Sketch && (
+                      <div className="flex justify-between w-full items-center">
+                        <div className="flex gap-[2rem] items-center">
+                          <Image src={sketch} alt="" className="w-[2.4rem]" />
+                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
+                            Sketch
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <Image src={tick} alt="" />
+                        </div>
+                      </div>
+                    )}
+                    {details.sanityFilter?.XD && (
+                      <div className="flex justify-between w-full items-center">
+                        <div className="flex gap-[2rem] items-center">
+                          <Image src={xd} alt="" className="w-[2.4rem]" />
+                          <p className="satoshi font-[500] text-[1.4rem] leading-[2rem] text-secondaryGray">
+                            Adobe XD
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <Image src={tick} alt="" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <Link href={details?.fileURL} download>
+                    {/* <Button
+                      classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
+                    >
+                      <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
+                        Download
+                      </span>
+                    </Button> */}
+                    <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                      <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                        Download
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
