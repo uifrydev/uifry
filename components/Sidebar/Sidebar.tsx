@@ -35,7 +35,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
   return (
     <div className="">
       <div
-        className={`w-[194px] transition-all ease-linear duration-500 lg:w-full ${height<800 && "!overflow-y-scroll"} overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[17rem]"
+        className={`w-[194px] scroll h-[100%]  transition-all ease-linear duration-500 lg:w-full ${height<800 && "!overflow-y-scroll"} overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[14rem]" : "lg:pt-[17rem]"
           }  h-[100vh] ${features.isMenu  ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
           }  `}
       >
@@ -110,7 +110,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
           </Link>
         ))}
 
-        <div className="p-[2rem] pb-[2rem] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]">
+        <div className={`p-[2rem] ${height<800 && "pb-[10rem]"} relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]`}>
           <div className="flex flex-col gap-[.5rem]">
             <div className="flex">
 
