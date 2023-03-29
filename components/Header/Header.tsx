@@ -58,9 +58,11 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
           </span> */}
         </div>
         <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
+          <Link href={'https://uifry.outseta.com/auth?widgetMode=login#o-anonymous'}>
           <Button
             classes={"bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"}
-          >
+            // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+            >
             <div className="flex gap-[.8rem]">
               <Image src={star} className="" alt="" />
               <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
@@ -68,6 +70,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
               </span>
             </div>
           </Button>
+          </Link>
           <Button
             classes={
               "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
