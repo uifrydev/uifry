@@ -16,6 +16,7 @@ import { NextPage } from "next";
 import { Data } from "@/Interface/interface";
 import { useLoadProducts } from "@/customHooks/loadProduct";
 import { perProduct } from "@/utils/consts";
+import Swipper from "@/components/Swipper/Swipper";
 const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const dispatch = useDispatch();
@@ -157,6 +158,8 @@ const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
               />
             </Link>
           ))} */}
+          {/* <Swipper />
+           */}
         </div>
       </div>
     </>
