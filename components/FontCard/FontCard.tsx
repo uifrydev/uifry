@@ -4,10 +4,11 @@ import _1 from "../../public/assets/images/1.jpg";
 import { FontCardProps } from "@/Interface/interface";
 
 const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
+  console.log(data)
   return (
     <div
       onClick={onClick}
-      className="flex cursor-pointer flex-col gap-[2rem]  group p-[2rem] pb-[3rem] rounded-[1.2rem] group bg-[#ffffff] "
+      className="flex cursor-pointer flex-col gap-[2rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] "
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
@@ -24,10 +25,10 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
           {data?.title}
         </p>
       </div>
-      <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] py-[1.2rem]">
-        <p className="text-secondaryGray flex-1 pr-[2.5rem] xl:pb-[2rem] font-400 xl:border-r-[0px] xl:border-b-[1px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
-          {data?.description && data?.description.slice(0, 88)}
-          ...
+      <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] pt-[1.2rem]">
+        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem] xl:pb-[2rem] font-400 xl:border-r-[0px] xl:border-b-[1px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
+          {data?.description}
+        
         </p>
         <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]">
           <div className="flex items-center justify-between">

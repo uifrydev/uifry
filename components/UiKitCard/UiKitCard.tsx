@@ -16,7 +16,7 @@ const UiKitCard: FC<CardProps> = ({ data, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="flex cursor-pointer flex-col gap-[2rem]  group p-[2.5rem] pb-[2rem] rounded-[1.2rem] group bg-[#ffffff] "
+      className="flex cursor-pointer flex-col gap-[2rem]  group p-[2rem] pb-[2.5rem] rounded-[1.2rem] group bg-[#ffffff] "
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
