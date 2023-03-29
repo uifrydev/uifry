@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { FC, useEffect } from "react";
 import Button from "../../../components/Button/Button";
 import DetailHeader from "../../../components/KitHeader/KitHeader";
 import Sidebar from "../../../components/Sidebar/Sidebar";
@@ -14,12 +14,21 @@ import imageUrlBuilder from "@sanity/image-url";
 import ApplyCard from "../../../components/ApplyCard/ApplyCard";
 import Link from "next/link";
 import JobCard from "../../../components/JobCard/JobCard";
+import { removeEmptyPTagsFromClass } from "@/utils/functions";
+import { JobDetailProps, JobProps } from "@/Interface/interface";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
-const Details = ({ detail, others = [] }) => {
+const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
+  detail,
+  others = [],
+}) => {
   const builder = imageUrlBuilder(sanity);
-  const urlFor = (source) => {
+  const urlFor = (source: any) => {
     return builder.image(source);
   };
+  useEffect(() => {
+    removeEmptyPTagsFromClass();
+  }, []);
   return (
     <>
       <DetailHeader link={"/jobs"} />
@@ -33,6 +42,7 @@ const Details = ({ detail, others = [] }) => {
                 className="w-[8rem] h-[8rem] rounded-full relative top-[2.8rem] left-[4.4rem]"
                 width={80}
                 height={80}
+                alt=""
               />
             </div>
             <div className="flex  flex-col px-[20px]">
@@ -50,13 +60,13 @@ const Details = ({ detail, others = [] }) => {
                     Remote
                   </span>
                   <div className="flex gap-[.85rem]">
-                    <Image src={users} />
+                    <Image src={users} alt="" />
                     <span className="text-primaryBlack text-[1.6rem] font-[400] ">
                       {detail.companySize || `501-,1000`}
                     </span>
                   </div>
                   <div className="flex gap-[.85rem]">
-                    <Image src={dollar} />
+                    <Image src={dollar} alt="" />
                     <span className="text-primaryBlack text-[1.6rem] font-[400] ">
                       {detail.salaryRange || "93k-126k"} USD
                     </span>
@@ -69,6 +79,19 @@ const Details = ({ detail, others = [] }) => {
                   className={"body flex flex-col gap-[2rem] pt-[3rem]"}
                   blocks={detail.body}
                 />
+                <Button
+                  classes={
+                    "w-full max-w-[40rem] lg1:max-w-full py-[1.7rem] bg-gradient rounded-full"
+                  }
+                >
+                  <span
+                    className={
+                      "satoshi text-[1.6rem] font-[700] text-[#fff] leading-[2.4rem]"
+                    }
+                  >
+                    Apply Now
+                  </span>
+                </Button>
               </div>
             </div>
           </div>
@@ -108,7 +131,7 @@ const Details = ({ detail, others = [] }) => {
                     Salary Range (USD)
                   </p>
                   <div className="flex items-center gap-[1.3rem]">
-                    <Image src={dollar} />
+                    <Image src={dollar} alt="" />
                     <p className="text-primaryBlack font-[400] text-[1.6rem] leading-[2.4rem]">
                       {detail.salaryRange}
                     </p>
@@ -124,6 +147,7 @@ const Details = ({ detail, others = [] }) => {
                       height={35}
                       className="w-[3.5rem] h-[3.5rem] rounded-full"
                       src={urlFor(detail.images[0]).url()}
+                      alt=""
                     />
                     <p className="text-primaryBlack font-[700] text-[1.8rem] leading-[3rem]">
                       {detail.companyName}
@@ -143,7 +167,7 @@ const Details = ({ detail, others = [] }) => {
                     Company size
                   </p>
                   <div className="flex items-center gap-[1.3rem]">
-                    <Image src={users} />
+                    <Image src={users} alt="" />
                     <p className="text-primaryBlack font-[400] text-[1.6rem] leading-[2.4rem]">
                       {detail.companySize}
                     </p>
@@ -194,7 +218,9 @@ const Details = ({ detail, others = [] }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
   try {
     const res = await sanity.fetch(
       `*[_type=='job' && slug.current=='${context.query.job}']{
@@ -240,6 +266,6 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
-}
+};
 
 export default Details;

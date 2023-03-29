@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import DetailHeader from "../../components/KitHeader/KitHeader";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import profile from "../../public/assets/images/profile.png";
+import profile from "../../public/assets/icons/logo1.svg";
 import users from "../../public/assets/icons/users.svg";
 import {
   fetchDataServer,
@@ -15,7 +15,7 @@ import RoadmapSticker from "@/components/RoadmapSticker/RoadmapSticker";
 import { NextPage } from "next";
 import { RoadmapProps } from "@/Interface/interface";
 import user from "../../public/assets/images/user.png";
-import userss from "../../public/assets/images/users.png";
+import userss from "../../public/assets/images/users.svg";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
@@ -30,15 +30,18 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
         <div className="flex gap-[6rem] lg:flex-col">
-          <div className="xs1:px-[1rem] flex flex-col flex-1 f rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
+          <div className="xs1:px-[1rem] flex flex-col flex-1 pb-[15rem] rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
+              <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
+
               <Image
                 src={profile}
-                className="w-[8rem] h-[8rem] rounded-full relative top-[2.8rem] left-[4.4rem]"
+                className="w-[3.8rem]  rounded-full "
                 width={80}
                 height={80}
                 alt=""
-              />
+                />
+                </div>
             </div>
             <div className="flex flex-col px-[20px]">
               <div className="flex flex-col  gap-[1rem] pb-[3.6rem] border-b-[1px] border-[#E5E9FF]">

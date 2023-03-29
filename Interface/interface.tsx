@@ -22,7 +22,7 @@ export interface Data {
   subCategory: string;
   tags: string[];
   noOfScreens?: any;
-  features?:string[]
+  features?: string[];
 }
 
 export interface CardProps {
@@ -79,24 +79,24 @@ export interface DetailData {
 
 export interface ProductDetailProps {
   showCross: boolean;
-  data: Data
+  data: Data;
 }
 export interface ExtrasProps {
   body: any;
   title: string;
   slug: {
-    current:string
+    current: string;
   };
-  description: string
+  description: string;
 }
 export interface RoadmapProps {
   text1: any;
   text2: any;
   title: string;
   slug: {
-    current:string
+    current: string;
   };
-  description: string
+  description: string;
 }
 export interface JobProps {
   companyName: string;
@@ -109,4 +109,11 @@ export interface JobProps {
   slug: {
     current: string;
   };
+}
+export interface JobDetailProps extends JobProps {
+  body: any;
+  applyBefore: string;
+  jobPosted: string;
+  jobType: string;
+  foundedIn: string;
 }
