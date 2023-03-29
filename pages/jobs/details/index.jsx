@@ -24,9 +24,9 @@ const Details = ({ detail, others = [] }) => {
     <>
       <DetailHeader link={"/jobs"} />
       <Sidebar isDetail={true} />
-      <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
-        <div className="flex gap-[6rem] lg:flex-col">
-          <div className="xs1:px-[1rem] flex flex-col rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
+      <div className="min-lg:pl-[234px]  flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
+        <div className="flex gap-[6rem] flex-1  lg:flex-col">
+          <div className="xs1:px-[1rem] flex flex-col flex-1 rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <Image
                 src={urlFor(detail.images[0]).url() || profile}
@@ -35,8 +35,8 @@ const Details = ({ detail, others = [] }) => {
                 height={80}
               />
             </div>
-            <div className="flex flex-col px-[20px]">
-              <div className="flex flex-col  gap-[1rem] pb-[3.6rem] border-b-[1px] border-[#E5E9FF]">
+            <div className="flex  flex-col px-[20px]">
+              <div className="flex flex-col gap-[1rem] pb-[3.6rem] border-b-[1px] border-[#E5E9FF]">
                 <p className="satoshi text-primaryBlack text-[3rem] font-[700]">
                   {detail.title || "Associate Product Managesr"}
                 </p>
@@ -72,7 +72,7 @@ const Details = ({ detail, others = [] }) => {
               </div>
             </div>
           </div>
-          <div className="flex relative mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl:max-w-[34.3rem] xl:min-w-[34.3rem] 2xl:max-w-[39.6rem] 2xl:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
+          <div className="flex relative mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
             <div className="flex w-full flex-col gap-[4rem] ">
               <ApplyCard companyName={detail.companyName} />
               <div className="flex flex-col gap-[2rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
