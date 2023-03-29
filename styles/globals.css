@@ -104,16 +104,24 @@ select {
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+.three-line-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: clip;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
 .text16-gray{
   @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%]
 }
 
 .scroll::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 .scroll::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: transparent;
 }
 
 .scroll::-webkit-scrollbar-thumb {

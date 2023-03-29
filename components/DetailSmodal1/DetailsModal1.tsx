@@ -20,7 +20,7 @@ const DetailsModal1: FC<{ data: Data }> = ({ data }) => {
       >
         <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
       </div>
-      {/* <ProductDetail1 data={data} showCross={true} /> */}
+      <ProductDetail1 data={data} showCross={true} />
     </div>
   );
 };

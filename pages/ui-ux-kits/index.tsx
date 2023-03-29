@@ -23,7 +23,7 @@ const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
 
   return (
     <>
-      <Header title={["UI Ux", "Kits"]} breadcrums={["UI UX Kits"]} />
+      <Header title={["UI UX", "Kits"]} breadcrums={["UI UX Kits"]} />
       <Sidebar isDetail={false} />
       <FilterBar
         initialData={posts || []}
