@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper, MakeStore } from 'next-redux-wrapper';
 import featuresReducer from './slices/featues';
+import { authReducer } from './slices/auth';
 
 // export type RootState = ReturnType<typeof store.getState>;
 
@@ -26,6 +27,7 @@ import featuresReducer from './slices/featues';
 export const store = configureStore({
   reducer: {
     features: featuresReducer,
+    auth:authReducer
   },
 });
 
