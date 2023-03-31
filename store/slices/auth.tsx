@@ -15,12 +15,12 @@ interface User {
 }
 
 interface AuthState {
-  status: string;
-  user?: User;
+  token: string;
+  user?: any;
 }
 
 const initialState: AuthState = {
-  status: "init",
+  token: "",
   user: undefined,
 };
 
@@ -31,18 +31,19 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
-    setStatus: (state, action: PayloadAction<string>) => {
-      state.status = action.payload;
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
     },
     clearUser: (state) => {
       state.user = undefined;
+      state.token=''
     },
   },
 });
 
-export const { setUser, setStatus, clearUser } = authSlice.actions;
+export const { setUser, setToken, clearUser } = authSlice.actions;
 
-export const selectAuthStatus = (state: RootState) => state.auth.status;
+export const selectAuthStatus = (state: RootState) => state.auth.token;
 export const selectUser = (state: RootState) => state.auth.user;
 
 export const authReducer = authSlice.reducer;

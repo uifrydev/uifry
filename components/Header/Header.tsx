@@ -1,9 +1,16 @@
-import React, { FC, Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import logo from "../../public/assets/images/logobeta.svg";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
-import user from "../../public/assets/icons/user.svg";
+import setting from "../../public/assets/icons/setting.svg";
 import menu from "../../public/assets/icons/menu.svg";
 import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
@@ -15,6 +22,9 @@ import { HeaderProps } from "@/Interface/interface";
 import { RootState } from "@/store/store";
 import { useRouter } from "next/router";
 import { loadOutseta } from "@/utils/outseta";
+import { GetServerSideProps } from "next";
+import { getUser } from "@/apis/user";
+import { clearUser } from "@/store/slices/auth";
 
 interface OutsetaLoginModalProps {
   onLoginSuccess?: () => void;
@@ -26,35 +36,27 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const [status, setStatus] = useState<string>("init");
   const [user, setUser] = useState<any>();
   const outsetaRef = useRef<any>();
-
-
-
-
-
+  const userDetails = useSelector((state: RootState) => state.auth.user);
   useEffect(() => {
     const init = async () => {
       // Await injection of the script
       outsetaRef.current = await loadOutseta();
-
-      
-
       // Get the access token from the callback url
       const accessToken = router.query.access_token as string;
-
       if (accessToken) {
         // If there is an acccess token present
         // pass it along to Outseta
         outsetaRef.current.setAccessToken(accessToken);
 
         // and clean up
-        router.push(router.pathname);
+        // router.push(router.pathname);
       }
 
       if (outsetaRef.current.getAccessToken()) {
+        localStorage.setItem("token", outsetaRef.current.getAccessToken());
         // Outseta initialized with an authenticated user.
       } else {
         // Outseta initialized without an authenticated user.
-        setStatus("ready");
       }
     };
 
@@ -66,22 +68,21 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   }, [router]);
 
   const openLogin = async (options: any = {}) => {
+    if (!outsetaRef.current?.auth) return;
     outsetaRef.current.auth.open({
       widgetMode: "login|register",
       authenticationCallbackUrl: window.location.href,
-      ...options
+      ...options,
     });
+    
   };
-
-
-
-
-
-
-
-
-
-
+  const logout = () => {
+    // Unset access token
+    localStorage.removeItem('token')
+    outsetaRef.current.setAccessToken("");
+    // and remove user state
+    dispatch(clearUser())
+  };
   return (
     <>
       {/* <div id="signup-embed"></div> */}
@@ -126,42 +127,50 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
           </span> */}
           </div>
           <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
-            <Link
+            {/* <Link
               href={
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login#o-anonymous"
               }
+            > */}
+            <Button
+              classes={
+                "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
+              }
+              // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
             >
-              <Button
-                classes={
-                  "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
-                }
-                // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
-              >
-                <div className="flex gap-[.8rem]">
-                  <Image src={star} className="" alt="" />
-                  <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
-                    Join Pro
-                  </span>
-                </div>
-              </Button>
-            </Link>
-            <Link
+              <div className="flex gap-[.8rem]">
+                <Image src={star} className="" alt="" />
+                <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
+                  Join Pro
+                </span>
+              </div>
+            </Button>
+            {/* </Link> */}
+            {/* <Link
               href={
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login&planFamilyUid=wmjrZxmV&planPaymentTerm=month&skipPlanOptions=true#o-anonymous"
               }
-            >
+            > */}
+            {userDetails ? (
+              <>
+                <Button onClick={logout}>
+                  <Image alt="" src={setting} />
+                </Button>
+              </>
+            ) : (
               <Button
                 classes={
                   "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
                 }
-                // onClick={openOutsetaModal}
+                onClick={openLogin}
               >
                 <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
                   Login
                 </span>
                 <Image src={user} alt="" className="min-xl:hidden" />
               </Button>
-            </Link>
+            )}
+            {/* </Link> */}
           </div>
           <div
             onClick={() => dispatch(updateMenu(!features.isMenu))}

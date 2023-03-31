@@ -38,7 +38,6 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
         setLoading(false);
         setProducts(res);
       } catch (e) {
-        alert(e);
         setLoading(false);
       }
     }

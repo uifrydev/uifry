@@ -76,7 +76,6 @@ const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
   //     observer.current = new IntersectionObserver((entries) => {
   //       if (entries[0].isIntersecting && hasMore) {
   //         setNoOfProducts((prevPageNumber) => prevPageNumber + 12);
-  //         alert("ssaas");
   //       }
   //     });
 
@@ -99,14 +98,14 @@ const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid grid-cols-4 2xl1:grid-cols-3 xl:grid-cols-2 sm:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]">
           { card.map((item, index) => {
-            if (card.length == index + 1) {
+            
               return (
                 <Link
                   href={"product-detail"}
                   onClick={(e) => {
                     e.preventDefault();
                   }}
-                  // ref={lastBookElementRef}
+                  key={index}
                 >
                   <Card
                     key={index}
@@ -119,26 +118,7 @@ const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   />
                 </Link>
               );
-            } else {
-              return (
-                <Link
-                  href={"product-detail"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <Card
-                    key={index}
-                    data={item}
-                    onClick={() => {
-                      document.body.classList.add("overflow-hidden");
-                      dispatch(updateModal(true));
-                      setUiData(item);
-                    }}
-                  />
-                </Link>
-              );
-            }
+            
           })}
           {/* {card.map((item, key) => (
             <Link

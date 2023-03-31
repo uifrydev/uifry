@@ -34,7 +34,6 @@ const ProductDetail1: any = ({ showCross, data }:any) => {
         setLoading(false);
         setProducts(res);
       } catch (e) {
-        alert(e);
         setLoading(false);
       }
     }
