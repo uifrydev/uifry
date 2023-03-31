@@ -24,7 +24,8 @@ import { useRouter } from "next/router";
 import { loadOutseta } from "@/utils/outseta";
 import { GetServerSideProps } from "next";
 import { getUser } from "@/apis/user";
-import { clearUser } from "@/store/slices/auth";
+import { clearUser, setToken } from "@/store/slices/auth";
+import { asyncGetUser } from "@/store/thunk/userAsync";
 
 interface OutsetaLoginModalProps {
   onLoginSuccess?: () => void;
@@ -47,7 +48,9 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
         // If there is an acccess token present
         // pass it along to Outseta
         outsetaRef.current.setAccessToken(accessToken);
-
+        dispatch(setToken(accessToken));
+        const getUser:any=await asyncGetUser({}) 
+        dispatch(getUser)
         // and clean up
         // router.push(router.pathname);
       }
@@ -74,14 +77,13 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
       authenticationCallbackUrl: window.location.href,
       ...options,
     });
-    
   };
   const logout = () => {
     // Unset access token
-    localStorage.removeItem('token')
+    localStorage.removeItem("token");
     outsetaRef.current.setAccessToken("");
     // and remove user state
-    dispatch(clearUser())
+    dispatch(clearUser());
   };
   return (
     <>
