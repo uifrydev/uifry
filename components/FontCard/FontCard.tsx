@@ -4,7 +4,6 @@ import _1 from "../../public/assets/images/1.jpg";
 import { FontCardProps } from "@/Interface/interface";
 
 const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
-  console.log(data)
   return (
     <div
       onClick={onClick}

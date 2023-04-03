@@ -24,20 +24,21 @@ import { useRouter } from "next/router";
 import { loadOutseta } from "@/utils/outseta";
 import { GetServerSideProps } from "next";
 import { getUser } from "@/apis/user";
-import { clearUser, setToken } from "@/store/slices/auth";
+import { clearUser, setToken, setUser } from "@/store/slices/auth";
 import { asyncGetUser } from "@/store/thunk/userAsync";
 
-interface OutsetaLoginModalProps {
-  onLoginSuccess?: () => void;
-}
 const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const features = useSelector((state: RootState) => state.features);
   const dispatch = useDispatch();
   const router = useRouter();
   const [status, setStatus] = useState<string>("init");
-  const [user, setUser] = useState<any>();
+  const [userDetailss, setUserDetails] = useState<any>();
   const outsetaRef = useRef<any>();
-  const userDetails = useSelector((state: RootState) => state.auth.user);
+  const { user, token } = useSelector((state: RootState) => state.auth);
+  interface AuthResult {
+    success: boolean;
+    error?: string;
+  }
   useEffect(() => {
     const init = async () => {
       // Await injection of the script
@@ -49,14 +50,16 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
         // pass it along to Outseta
         outsetaRef.current.setAccessToken(accessToken);
         dispatch(setToken(accessToken));
-        const getUser:any=await asyncGetUser({}) 
-        dispatch(getUser)
+        // const getUser:any=await asyncGetUser({})
+        // dispatch(getUser)
+        router.push(router.pathname);
         // and clean up
         // router.push(router.pathname);
       }
-
+      console.log("called");
       if (outsetaRef.current.getAccessToken()) {
         localStorage.setItem("token", outsetaRef.current.getAccessToken());
+        updateUser();
         // Outseta initialized with an authenticated user.
       } else {
         // Outseta initialized without an authenticated user.
@@ -70,20 +73,36 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
     };
   }, [router]);
 
-  const openLogin = async (options: any = {}) => {
-    if (!outsetaRef.current?.auth) return;
-    outsetaRef.current.auth.open({
-      widgetMode: "login|register",
-      authenticationCallbackUrl: window.location.href,
-      ...options,
+  const openLogin = async (options: any = {}): Promise<AuthResult> => {
+    return new Promise((resolve, reject) => {
+      if (!outsetaRef.current?.auth)
+        return reject({ success: false, error: "auth is not available" });
+      const authenticationCallbackUrl = "http://localhost:3000";
+      try {
+        outsetaRef.current.auth.open({
+          widgetMode: "login|register",
+          authenticationCallbackUrl,
+          ...options,
+        });
+      } catch (error) {
+        reject({ success: false, error });
+      }
     });
   };
   const logout = () => {
     // Unset access token
     localStorage.removeItem("token");
     outsetaRef.current.setAccessToken("");
-    // and remove user state
+    // router.push('/')
     dispatch(clearUser());
+  };
+  const updateUser = async () => {
+    // Fetch the current user data from outseta
+    const outsetaUser = await outsetaRef.current.getUser();
+    // Update user state
+    dispatch(setUser(outsetaUser));
+    // Make sure status = ready
+    setStatus("ready");
   };
   return (
     <>
@@ -153,7 +172,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login&planFamilyUid=wmjrZxmV&planPaymentTerm=month&skipPlanOptions=true#o-anonymous"
               }
             > */}
-            {userDetails ? (
+            {user ? (
               <>
                 <Button onClick={logout}>
                   <Image alt="" src={setting} />
@@ -169,7 +188,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
                 <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
                   Login
                 </span>
-                <Image src={user} alt="" className="min-xl:hidden" />
+                <Image src={userDetailss} alt="" className="min-xl:hidden" />
               </Button>
             )}
             {/* </Link> */}

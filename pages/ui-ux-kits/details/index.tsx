@@ -57,7 +57,6 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
 
   useEffect(() => {
     if (isElementAtTopOfView()) {
-      console.log("reached");
     }
     function handleScroll() {
       setIsElementAtTop(isElementAtTopOfView());

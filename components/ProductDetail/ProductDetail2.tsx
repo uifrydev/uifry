@@ -33,7 +33,6 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
         setLoading(false);
         setProducts(res);
       } catch (e) {
-        console.log(e);
         setLoading(false);
       }
     }

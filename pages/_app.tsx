@@ -12,7 +12,7 @@ import Sticker1 from "../components/Sticker/Sticker1";
 import { setToken } from "@/store/slices/auth";
 import { getUser } from "@/apis/user";
 import { asyncGetUser } from "@/store/thunk/userAsync";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 
@@ -21,10 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const isAnimating = useSelector(
     (state: RootState) => state.features.isAnimating
   );
-  const user = useSelector(
-    (state: RootState) => state.auth.user
-  );
-  console.log({user})
+  const user = useSelector((state: RootState) => state.auth.user);
   const router1 = useRouter();
   useEffect(() => {
     const handleStart = () => {
@@ -44,17 +41,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       router1.events.off("routeChangeError", handleStop);
     };
   }, [router1]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        dispatch(setToken(token));
-      }
-      const action:any=await asyncGetUser({})
-      dispatch(action)
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const token = localStorage.getItem("token");
+  //     console.log({ tkn: token });
+  //     if (token) {
+  //       dispatch(setToken(token));
+  //     }
+  //     const action: any = await asyncGetUser({});
+  //     dispatch(action);
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     <>
       <Progress isAnimating={isAnimating} />
@@ -65,18 +63,28 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
-export default function App({
-  Component,
-  pageProps,
-  router,
-}: AppProps ) {
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  // ...
+  try {
+    const res = await getUser();
+    const user = await res;
+    return {
+      props: {
+        user,
+      },
+    };
+  } catch (err) {
+    return { props: {} };
+  }
+};
+
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <Provider store={store}>
-      <MyApp
-        Component={Component}
-        pageProps={pageProps}
-        router={router}
-      />
+      <MyApp Component={Component} pageProps={pageProps} router={router} />
     </Provider>
   );
 }

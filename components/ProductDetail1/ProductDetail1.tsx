@@ -20,7 +20,6 @@ const ProductDetail1: any = ({ showCross, data }:any) => {
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(data?.slug?.current);
     async function fecthData() {
       setLoading(true);
       try {

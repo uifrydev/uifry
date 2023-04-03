@@ -94,7 +94,6 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                   erializers={{
                     types: {
                       block: (props: any) => {
-                        console.log(props);
                       },
                     },
                   }}
@@ -140,7 +139,6 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
           description,
     }`,
     });
-    console.log(res);
     if (!res.length) {
       return { notFound: true };
     }

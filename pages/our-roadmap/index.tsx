@@ -150,7 +150,6 @@ export async function getServerSideProps() {
           description,
     }`,
     });
-    console.log(res);
     if (!res.length) {
       return { notFound: true };
     }

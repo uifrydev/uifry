@@ -116,7 +116,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },"fileURL":zipFile.asset->url
   }`
     );
-    console.log({ res });
     return {
       props: {
         posts: res,
