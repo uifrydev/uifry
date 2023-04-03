@@ -40,6 +40,7 @@ const ProductDetail1: any = ({ showCross, data }: any) => {
     }
     fecthData();
   }, [router.asPath]);
+  
   if (loading) return;
   return (
     <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">

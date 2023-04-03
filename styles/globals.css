@@ -94,7 +94,9 @@ select {
 .middle-col {
   @apply flex flex-col justify-center items-center;
 }
-
+.o--Widget--popupBg{
+  z-index: 9999999999999999 !important;
+}
 
 .swiper-button-prev {
   left: 0;

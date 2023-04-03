@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -17,18 +17,25 @@ import { loadMore, perProduct } from "../../utils/consts";
 import { Data, ProductDetailProps } from "@/Interface/interface";
 import { useRouter } from "next/router";
 import { RootState } from "@/store/store";
+import { setLoading } from "@/store/slices/auth";
+import { loadOutseta } from "@/utils/outseta";
 
 const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading1] = useState(false);
   const router = useRouter();
+  const outsetaRef = useRef<any>();
   const pid = router.query;
   const { user } = useSelector((state: RootState) => state.auth);
-
+  interface AuthResult {
+    success: boolean;
+    error?: string;
+  }
   useEffect(() => {
     async function fecthData() {
-      setLoading(true);
+      outsetaRef.current = await loadOutseta();
+      setLoading1(true);
       try {
         const res = await sanity.fetch(
           `*[_type=='uitemplate' && category=='${
@@ -39,14 +46,32 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
         },tags,image
       }`
         );
-        setLoading(false);
+        setLoading1(false);
         setProducts(res);
       } catch (e) {
-        setLoading(false);
+        setLoading1(false);
       }
     }
     fecthData();
   }, [router.asPath]);
+  const openLogin = async (options: any = {}): Promise<AuthResult> => {
+    dispatch(setLoading(true));
+    return new Promise((resolve, reject) => {
+      if (!outsetaRef.current?.auth)
+        return reject({ success: false, error: "auth is not available" });
+      const authenticationCallbackUrl = "http://localhost:3000";
+      try {
+        outsetaRef.current.auth.open({
+          widgetMode: "login|register",
+          authenticationCallbackUrl,
+          ...options,
+        });
+      } catch (error) {
+        reject({ success: false, error });
+      }
+    });
+  };
+
   return (
     <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
       {showCross && (
@@ -102,7 +127,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
               </Button>
             </Link>
           ) : (
-            <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+            <Button onClick={openLogin} classes={"bg-gradient rounded-[10rem] w-full"}>
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                 Download
               </span>
