@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import logo from "../../public/assets/images/logobeta.svg";
+import userIcon from "../../public/assets/icons/user.svg";
 import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
@@ -24,7 +25,7 @@ import { useRouter } from "next/router";
 import { loadOutseta } from "@/utils/outseta";
 import { GetServerSideProps } from "next";
 import { getUser } from "@/apis/user";
-import { clearUser, setToken, setUser } from "@/store/slices/auth";
+import { clearUser, setLoading, setToken, setUser } from "@/store/slices/auth";
 import { asyncGetUser } from "@/store/thunk/userAsync";
 
 const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
@@ -32,13 +33,14 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [status, setStatus] = useState<string>("init");
-  const [userDetailss, setUserDetails] = useState<any>();
+  const [isSetting, setSetting] = useState<boolean>();
   const outsetaRef = useRef<any>();
   const { user, token } = useSelector((state: RootState) => state.auth);
   interface AuthResult {
     success: boolean;
     error?: string;
   }
+  console.log(user);
   useEffect(() => {
     const init = async () => {
       // Await injection of the script
@@ -74,6 +76,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   }, [router]);
 
   const openLogin = async (options: any = {}): Promise<AuthResult> => {
+    dispatch(setLoading(true));
     return new Promise((resolve, reject) => {
       if (!outsetaRef.current?.auth)
         return reject({ success: false, error: "auth is not available" });
@@ -99,10 +102,15 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const updateUser = async () => {
     // Fetch the current user data from outseta
     const outsetaUser = await outsetaRef.current.getUser();
+    console.log({ outsetaUser });
+    const { Account, Name, PrimaryContact, Email, FullName } = outsetaUser;
     // Update user state
-    dispatch(setUser(outsetaUser));
+    dispatch(setUser({ Account, Name, PrimaryContact, Email, FullName }));
     // Make sure status = ready
     setStatus("ready");
+  };
+  const openProfile = async (options: any) => {
+    outsetaRef.current.profile.open({ tab: "profile", ...options });
   };
   return (
     <>
@@ -153,10 +161,11 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login#o-anonymous"
               }
             > */}
-            <Button
+            {/* <Button
               classes={
                 "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
               }
+              onClick={openProfile}
               // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
             >
               <div className="flex gap-[.8rem]">
@@ -165,7 +174,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
                   Join Pro
                 </span>
               </div>
-            </Button>
+            </Button> */}
             {/* </Link> */}
             {/* <Link
               href={
@@ -174,22 +183,66 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
             > */}
             {user ? (
               <>
-                <Button onClick={logout}>
-                  <Image alt="" src={setting} />
-                </Button>
+                <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
+                  {user?.FullName}
+                </span>
+                <div className="relative ">
+                  <Button
+                    classes="!px-[.3rem]"
+                    onClick={() => setSetting((prev) => !prev)}
+                    // onBlur={() => setSetting(false)}
+                  >
+                    <Image alt="" src={setting} />
+                  </Button>
+                  {isSetting && (
+                    <div
+                      // tabIndex={1}
+                      className="bg-[#fff] shadow-xl absolute top-[4rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
+                    >
+                      <ul>
+                        <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
+                          Profile
+                        </li>
+                        <li
+                          onClick={logout}
+                          className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
+                        >
+                          Logout
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
-              <Button
-                classes={
-                  "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
-                }
-                onClick={openLogin}
-              >
-                <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
-                  Login
-                </span>
-                <Image src={userDetailss} alt="" className="min-xl:hidden" />
-              </Button>
+              <>
+               <Button
+                  classes={
+                    "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
+                  }
+                  onClick={openProfile}
+                  // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+                >
+                  <div className="flex gap-[.8rem]">
+                    <Image src={star} className="" alt="" />
+                    <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
+                      Join Pro
+                    </span>
+                  </div>
+                </Button>
+                <Button
+                  classes={
+                    "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
+                  }
+                  onClick={openLogin}
+                >
+                  <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
+                    Login
+                  </span>
+                  <Image src={userIcon} alt="" className="min-xl:hidden" />
+                </Button>
+               
+              </>
             )}
             {/* </Link> */}
           </div>

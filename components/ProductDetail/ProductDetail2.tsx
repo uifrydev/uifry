@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
 import Tag from "../Tag/Tag";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cross from "../../public/assets/icons/cross.svg";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd1.svg";
@@ -15,10 +15,13 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
 import { Data, ProductDetailProps } from "@/Interface/interface";
+import { RootState } from "@/store/store";
 const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
+  const outsetaRef = useRef<any>();
+  const { user } = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     async function fecthData() {
       setLoading(true);
@@ -60,7 +63,11 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
           <span className="satoshi font-500 text-[1.6rem] leading-[2.3rem] text-primaryBlack ">
             {data?.category}
           </span>
-          <Carousel images={data.images.map((item: { asset: { url: string } }) => item?.asset?.url)} />
+          <Carousel
+            images={data.images.map(
+              (item: { asset: { url: string } }) => item?.asset?.url
+            )}
+          />
         </div>
         <div className="flex relative items-start max-w-[32rem] lg:mx-[4rem] sm:mx-[0rem] lg:max-w-full rounded-[2rem] sm:max-w-full right-0 p-[3.1rem] pl-[4.3rem] bg-primary border-l-[1px] border-[#E5E9FF]">
           <div className="flex w-full flex-col gap-[4rem]">
@@ -109,13 +116,23 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                   </div>
                 )}
               </div>
-              <Link href={data?.fileURL} download>
+              {user ? (
+                <Link href={data?.fileURL} download>
+                  <Button
+                    classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
+                  >
+                    <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
+                      Download
+                    </span>
+                  </Button>
+                </Link>
+              ) : (
                 <Button classes={"w-full py-[1.7rem] bg-gradient rounded-full"}>
                   <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                     Download
                   </span>
                 </Button>
-              </Link>
+              )}
             </div>
 
             <div className="flex gap-[2rem] flex-col ">

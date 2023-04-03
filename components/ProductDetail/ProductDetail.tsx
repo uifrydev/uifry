@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
 import Tag from "../Tag/Tag";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cross from "../../public/assets/icons/cross.svg";
 import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
@@ -16,6 +16,7 @@ import Link from "next/link";
 import { loadMore, perProduct } from "../../utils/consts";
 import { Data, ProductDetailProps } from "@/Interface/interface";
 import { useRouter } from "next/router";
+import { RootState } from "@/store/store";
 
 const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
   const dispatch = useDispatch();
@@ -23,12 +24,15 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const pid = router.query;
+  const { user } = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
     async function fecthData() {
       setLoading(true);
       try {
         const res = await sanity.fetch(
-          `*[_type=='uitemplate' && category=='${data?.category
+          `*[_type=='uitemplate' && category=='${
+            data?.category
           }' && slug.current!='${data.slug.current || ""}'][0...${loadMore}]{
         title,slug,description,category,sanityFilter,images[]{
           asset->{url}
@@ -88,16 +92,31 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
               </div>
             )}
           </div>
-          <Link href={data?.fileURL || ""} download>
+
+          {user ? (
+            <Link href={data?.fileURL || ""} download>
+              <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                  Download
+                </span>
+              </Button>
+            </Link>
+          ) : (
             <Button classes={"bg-gradient rounded-[10rem] w-full"}>
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                 Download
               </span>
             </Button>
-          </Link>
+          )}
         </div>
       </div>
-      <Carousel images={data?.images?.map((item: { asset: { url: string } }) => item?.asset?.url) || []} />
+      <Carousel
+        images={
+          data?.images?.map(
+            (item: { asset: { url: string } }) => item?.asset?.url
+          ) || []
+        }
+      />
 
       <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-[#E5E9FF] max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">

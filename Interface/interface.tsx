@@ -2,6 +2,7 @@ export interface ButtonProps {
   children: React.ReactNode;
   classes?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onBlur?: React.FocusEventHandler<HTMLButtonElement> | undefined
 }
 
 export interface Data {

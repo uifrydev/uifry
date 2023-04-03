@@ -3,17 +3,19 @@ import { updateModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Tag from "../Tag/Tag";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
 import sanity from "../../sanity";
 import Link from "next/link";
-import { Data, ProductDetailProps, } from "@/Interface/interface";
+import { Data, ProductDetailProps } from "@/Interface/interface";
 import { useRouter } from "next/router";
 import { loadMore } from "@/utils/consts";
+import { RootState } from "@/store/store";
 
-const ProductDetail1: any = ({ showCross, data }:any) => {
+const ProductDetail1: any = ({ showCross, data }: any) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state: RootState) => state.auth);
 
   const router = useRouter();
   const pid = router.query;
@@ -66,7 +68,19 @@ const ProductDetail1: any = ({ showCross, data }:any) => {
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          <Link href={data?.fileURL || ""} download>
+          {user ? (
+            <Link href={data?.fileURL || ""} download>
+              <Button
+                classes={
+                  "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
+                }
+              >
+                <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                  Download
+                </span>
+              </Button>
+            </Link>
+          ) : (
             <Button
               classes={
                 "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
@@ -76,7 +90,7 @@ const ProductDetail1: any = ({ showCross, data }:any) => {
                 Download
               </span>
             </Button>
-          </Link>
+          )}
         </div>
       </div>
 
@@ -96,7 +110,7 @@ const ProductDetail1: any = ({ showCross, data }:any) => {
           </span>
           <div className="flex flex-wrap gap-[.8rem] ">
             {data?.tags &&
-              data?.tags.map((item:string) => (
+              data?.tags.map((item: string) => (
                 <Tag
                   classess={
                     "bg-[#fff] text-secondaryGray !text-[1.4rem] !font-[400] "
