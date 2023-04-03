@@ -84,7 +84,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
       try {
         outsetaRef.current.auth.open({
           widgetMode: "login|register",
-          authenticationCallbackUrl,
+          authenticationCallbackUrl:window.location.href,
           ...options,
         });
       } catch (error) {

@@ -63,7 +63,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
       try {
         outsetaRef.current.auth.open({
           widgetMode: "login|register",
-          authenticationCallbackUrl,
+          authenticationCallbackUrl:window.location.href,
           ...options,
         });
       } catch (error) {
