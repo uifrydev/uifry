@@ -90,7 +90,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
       <div className="min-lg:pl-[234px] bg-[white] xs1:px-0 flex-col relative flex lg:pl-[1rem] gap-[4rem] pr-[0rem]  w-full ">
         <div className="flex gap-[4rem] sm:flex-col ">
           <div className="flex flex-col gap-[6rem]">
-            <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
+            <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[1rem] pt-[3rem] ">
               {details.images.map((item: string, index: number) => (
                 <div
                   key={index}
@@ -111,11 +111,11 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
               ))}
             </div>
           </div>
-          <div className="flex  relative max-w-[32rem]  sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
-            <div className="flex relative w-full flex-col gap-[0rem]">
+          <div className="flex  relative max-w-[27rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
+            <div className="flex relative w-full flex-col gap-[4rem]">
               {true && (
                 <div
-                  className={`sticky z-[1] sm:relative
+                  className={` z-[1] sm:relative
               ${
                 isElementAtTop && "rounded-bl-[1rem]"
               } border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]`}
@@ -193,8 +193,8 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                   </div>
                 </div>
               )}
-              <div className=" z-[2] bg-primary pt-[4rem]">
-                <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-[4rem]">
+              <div className=" z-[2] bg-primary">
+                <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-[0rem]">
                   <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
                     Features
                   </p>

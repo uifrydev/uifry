@@ -83,7 +83,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                   className={`body text flex flex-col gap-[2rem] pt-[3rem] `}
                   blocks={res?.text1?.body}
                 />
-                <RoadmapSticker src={user}>
+                <RoadmapSticker classes="py-[2.5rem]" src={user}>
                   <span className="satoshi max-w-[36rem] text-[1.8rem] font-700 leading-[130%] text-primaryBlack">
                     We will be constantly uploading new resources every day in
                     all categories!

@@ -27,8 +27,9 @@ import { GetServerSideProps } from "next";
 import { getUser } from "@/apis/user";
 import { clearUser, setLoading, setToken, setUser } from "@/store/slices/auth";
 import { asyncGetUser } from "@/store/thunk/userAsync";
+import userss from "../../public/assets/images/users.svg";
 
-const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
+const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   const features = useSelector((state: RootState) => state.features);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -40,7 +41,6 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
     success: boolean;
     error?: string;
   }
-  console.log(user);
   useEffect(() => {
     const init = async () => {
       // Await injection of the script
@@ -58,7 +58,6 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
         // and clean up
         // router.push(router.pathname);
       }
-      console.log("called");
       if (outsetaRef.current.getAccessToken()) {
         localStorage.setItem("token", outsetaRef.current.getAccessToken());
         updateUser();
@@ -83,8 +82,8 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
       const authenticationCallbackUrl = "http://localhost:3000";
       try {
         outsetaRef.current.auth.open({
-          widgetMode: "login|register",
-          authenticationCallbackUrl:window.location.href,
+          widgetMode: "login",
+          authenticationCallbackUrl: window.location.href,
           ...options,
         });
       } catch (error) {
@@ -102,7 +101,6 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
   const updateUser = async () => {
     // Fetch the current user data from outseta
     const outsetaUser = await outsetaRef.current.getUser();
-    console.log({ outsetaUser });
     const { Account, Name, PrimaryContact, Email, FullName } = outsetaUser;
     // Update user state
     dispatch(setUser({ Account, Name, PrimaryContact, Email, FullName }));
@@ -116,45 +114,60 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
     <>
       {/* <div id="signup-embed"></div> */}
       <header className="flex flex-col z-[154] bg-primary  sticky top-[6.3rem] border-b-[1px] w-full border-[#efe9ff]">
-        <div className="flex w-full">
+        <div className="flex w-full sm:flex-col">
           <Link
             href={"/"}
             className="py-[2.237rem] px-[3.95rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-[#efe9ff]"
           >
             <Image src={logo} alt={""} />
           </Link>
-          <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-[#efe9ff]">
-            <p className="text-[3rem] font-700 leading-[4.1rem] font-safi">
-              <span className="gradient-text">{title[0]}</span> {title[1]}
-            </p>
-          </div>
-          <div className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
-            <div className="">
-              <Image src={home} alt={""} />
-            </div>
-            {breadcrums.map((item, index) => {
-              return (
-                <Fragment key={index}>
-                  <div className="">
-                    <Image src={arrow} alt={""} />
-                  </div>
-                  <span
-                    className={`text-[1.6rem] ${
-                      index == 0 ? "text-[#160042]" : "text-secondaryGray"
-                    } leading-[150%] font-400`}
-                  >
-                    {item}
-                  </span>
-                </Fragment>
-              );
-            })}
-            {/* <div className="">
+          {istitle == false ? (
+            <>
+              <div className="flex flex-1 px-[4rem] items-center gap-[1.6rem]">
+                <Image src={userss} alt='' />
+                <p className="text-primaryBlack text-[1.6rem] ">
+                  Join <span className="font-700 leading-[130%] ">56,000+</span>{" "}
+                  designers today!
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-[#efe9ff]">
+                <p className="text-[3rem] font-700 leading-[4.1rem] font-safi">
+                  <span className="gradient-text">{title[0]}</span> {title[1]}
+                </p>
+              </div>
+              <div className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
+                <div className="">
+                  <Image src={home} alt={""} />
+                </div>
+                {breadcrums.map((item, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <div className="">
+                        <Image src={arrow} alt={""} />
+                      </div>
+                      <span
+                        className={`text-[1.6rem] ${
+                          index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                        } leading-[150%] font-400`}
+                      >
+                        {item}
+                      </span>
+                    </Fragment>
+                  );
+                })}
+                {/* <div className="">
             <Image src={arrow} alt={""} />
           </div>
           <span className="text-[1.6rem] text-[#6B7194] leading-[150%] font-400 ">
             UI Templates
           </span> */}
-          </div>
+              </div>
+            </>
+          )}
+
           <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
             {/* <Link
               href={
@@ -216,7 +229,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
               </>
             ) : (
               <>
-               <Button
+                <Button
                   classes={
                     "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
                   }
@@ -241,14 +254,13 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [] }) => {
                   </span>
                   <Image src={userIcon} alt="" className="min-xl:hidden" />
                 </Button>
-               
               </>
             )}
             {/* </Link> */}
           </div>
           <div
             onClick={() => dispatch(updateMenu(!features.isMenu))}
-            className="hidden  lg:flex mr-[3.2rem] ml-auto cursor-pointer"
+            className="hidden  lg:flex mr-[3.2rem] absolute right-0 top-[3.5rem] ml-auto cursor-pointer"
           >
             <Image src={features.isMenu ? cross : menu} alt={""} />
           </div>

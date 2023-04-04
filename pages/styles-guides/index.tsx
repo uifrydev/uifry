@@ -32,7 +32,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
   return (
     <>
-      {openModal && <DetailsModal1 data={modalData} />}
+      {openModal && <DetailsModal1 data={modalData} setData={setModalData} />}
       <Header title={["Styles", "Guides"]} breadcrums={["Style Guides"]} />
       <Sidebar isDetail />
       {/* <FilterBar

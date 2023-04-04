@@ -13,7 +13,13 @@ import { useRouter } from "next/router";
 import { loadMore } from "@/utils/consts";
 import { RootState } from "@/store/store";
 
-const ProductDetail1: any = ({ showCross, data }: any) => {
+const ProductDetail1: any = ({
+  showCross,
+  data,
+  setData,
+}: ProductDetailProps & {
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.auth);
 
@@ -40,7 +46,7 @@ const ProductDetail1: any = ({ showCross, data }: any) => {
     }
     fecthData();
   }, [router.asPath]);
-  
+
   if (loading) return;
   return (
     <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
@@ -149,15 +155,22 @@ const ProductDetail1: any = ({ showCross, data }: any) => {
         <div className=" grid grid-cols-3  2xl:grid-cols-2 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
           {!loading &&
             products.map((item, index) => (
-              <Link
+              // <Link
+              //   key={index}
+              //   href={{
+              //     pathname: "/styles-guides/details",
+              //     query: { style: item.slug.current },
+              //   }}
+              // >
+              <Card
                 key={index}
-                href={{
-                  pathname: "/styles-guides/details",
-                  query: { style: item.slug.current },
+                onClick={() => {
+                  setData(item);
+                  // dispatch(updateModal(true));
                 }}
-              >
-                <Card onClick={() => dispatch(updateModal(true))} data={item} />
-              </Link>
+                data={item}
+              />
+              // </Link>
             ))}
         </div>
       </div>

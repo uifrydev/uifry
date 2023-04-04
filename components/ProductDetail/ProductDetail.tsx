@@ -20,7 +20,9 @@ import { RootState } from "@/store/store";
 import { setLoading } from "@/store/slices/auth";
 import { loadOutseta } from "@/utils/outseta";
 
-const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
+const ProductDetail: FC<
+  ProductDetailProps & { setData: React.Dispatch<React.SetStateAction<Data>> }
+> = ({ showCross, data ,setData}) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading1] = useState(false);
@@ -62,8 +64,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
       const authenticationCallbackUrl = "http://localhost:3000";
       try {
         outsetaRef.current.auth.open({
-          widgetMode: "login|register",
-          authenticationCallbackUrl:window.location.href,
+          widgetMode: "login",
+          authenticationCallbackUrl: window.location.href,
           ...options,
         });
       } catch (error) {
@@ -127,7 +129,10 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
               </Button>
             </Link>
           ) : (
-            <Button onClick={openLogin} classes={"bg-gradient rounded-[10rem] w-full"}>
+            <Button
+              onClick={openLogin}
+              classes={"bg-gradient rounded-[10rem] w-full"}
+            >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                 Download
               </span>
@@ -181,20 +186,21 @@ const ProductDetail: FC<ProductDetailProps> = ({ showCross, data }) => {
         </h2>
         <div className="  grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl:grid-cols-2 md:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
           {products.map((item, index) => (
-            <Link
-              href={{
-                pathname: "/ui-templates/details",
-                query: { template: item.slug.current || "" },
-              }}
-            >
+            // <Link
+            //   href={{
+            //     pathname: "/ui-templates/details",
+            //     query: { template: item.slug.current || "" },
+            //   }}
+            // >
               <Card
                 key={index}
                 onClick={() => {
-                  updateModal(false);
+                  // updateModal(false);
+                  setData(item)
                 }}
                 data={item}
               />
-            </Link>
+            // </Link>
           ))}
         </div>
       </div>

@@ -72,6 +72,7 @@ export interface FilterBar1Props extends FilterBarProps {
 export interface HeaderProps {
   breadcrums: string[];
   title: string[];
+  istitle?:boolean
 }
 
 export interface DetailData {

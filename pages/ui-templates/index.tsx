@@ -36,7 +36,7 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
  
   return (
     <>
-      {openModal && <DetailsModal data={modalData} />}
+      {openModal && <DetailsModal data={modalData} setData={setModalData} />}
       <Header
         title={["UI", "Templates"]}
         breadcrums={["UI Templates", "All Templates"]}

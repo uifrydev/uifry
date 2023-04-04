@@ -35,7 +35,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const openModal = useSelector((state: RootState) => state.features.openModal);
-  const title = titleWithSlug(String(pid?.slug) || '');
+  const title = titleWithSlug(String(pid?.slug) || "");
   const [filter, setFilter] = useState({
     subCategory: "All",
     figma: false,
@@ -46,12 +46,11 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
     setProductIndex(posts.length);
     setCards(posts);
   }, [router.asPath]);
-
   return (
     <>
-      {openModal && <DetailsModal data={modalData} />}
+      {openModal && <DetailsModal data={modalData} setData={setModalData} />}
       <Header
-        title={[String(title)?.split(" ")[0], String(title)?.split(" ")[1]]}
+        title={[...String(title)?.split(" ")]}
         breadcrums={["UI Templates", String(title)]}
       />
       <Sidebar isDetail={false} />
@@ -101,8 +100,9 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                 sanity,
                 query: `*[category=="${slugToCapitalize(
                   String(pid.slug)
-                )}"  && _type=='uitemplate'] | [${productIndex}...${productIndex + loadMore
-                  }]{
+                )}"  && _type=='uitemplate'] | [${productIndex}...${
+                  productIndex + loadMore
+                }]{
                 title,slug,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
@@ -120,7 +120,9 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   );
 };
 // http://localhost:1337/api/posts?populate=*
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   const params = context.params;
   try {
     const res = await fetchDataServer({
@@ -153,5 +155,5 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
       },
     };
   }
-}
+};
 export default UiTemplatesType;

@@ -17,129 +17,59 @@ import { Data } from "@/Interface/interface";
 import { useLoadProducts } from "@/customHooks/loadProduct";
 import { perProduct } from "@/utils/consts";
 import Swipper from "@/components/Swipper/Swipper";
-const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
+import List from "@/components/List/List";
+const Home: NextPage<{
+  uiTemplates: Data[];
+  uiKits: Data[];
+  fonts: Data[];
+  styleGuides: Data[];
+}> = ({ uiTemplates, uiKits, fonts, styleGuides }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const dispatch = useDispatch();
-  const [card, setCard] = useState<Data[]>(posts);
-  const [uiData, setUiData] = useState(posts[0]);
-  const [noOfProducts, setNoOfProducts] = useState(0);
-  // const { hasMore, loading } = useLoadProducts(
-  //   noOfProducts,
-  //   `*[] |[${noOfProducts}...${noOfProducts + 12}] { 
-  //   title,slug,description,sanityFilter,images[]{
-  //     asset->{url}
-  //   },tags,image,category
-  // }`,
-  //   setCard
-  // );
-  // const observer = useRef<globalThis.IntersectionObserver | null>(null);
-
-  // interface IntersectionObserverCallback {
-  //   (
-  //     entries: IntersectionObserverEntry[],
-  //     observer: IntersectionObserver
-  //   ): void;
-  // }
-
-  // interface IntersectionObserverOptions {
-  //   root?: Element | null;
-  //   rootMargin?: string;
-  //   threshold?: number | number[];
-  // }
-
-  // interface IntersectionObserverEntry {
-  //   boundingClientRect: DOMRectReadOnly;
-  //   intersectionRatio: number;
-  //   intersectionRect: DOMRectReadOnly;
-  //   isIntersecting: boolean;
-  //   rootBounds: DOMRectReadOnly | null;
-  //   target: Element;
-  //   time: number;
-  // }
-
-  // interface IntersectionObserver {
-  //   new (
-  //     callback: IntersectionObserverCallback,
-  //     options?: IntersectionObserverOptions
-  //   ): IntersectionObserver;
-  //   observe: (target: Element) => void;
-  //   unobserve: (target: Element) => void;
-  //   disconnect: () => void;
-  // }
-
-  // const lastBookElementRef = useCallback(
-  //   (node: HTMLAnchorElement | null) => {
-  //     if (loading) return;
-
-  //     if (observer.current) observer.current.disconnect();
-
-  //     observer.current = new IntersectionObserver((entries) => {
-  //       if (entries[0].isIntersecting && hasMore) {
-  //         setNoOfProducts((prevPageNumber) => prevPageNumber + 12);
-  //       }
-  //     });
-
-  //     if (node) observer.current.observe(node);
-
-  //     return () => {
-  //       if (observer.current) observer.current.disconnect();
-  //     };
-  //   },
-  //   [loading, hasMore]
-  // );
-
+  const [modalData, setModalData] = useState(uiTemplates[0]);
   return (
     <>
-      {openModal && <DetailsModal data={uiData} />}
-      <Header title={["Home"]} breadcrums={["Home"]} />
+      {openModal && <DetailsModal setData={setModalData} data={modalData} />}
+      <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
       {/* <KitHeader /> */}
       <Sidebar isDetail={false} />
       {/* <FilterBar /> */}
-      <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
-        <div className=" grid grid-cols-4 2xl1:grid-cols-3 xl:grid-cols-2 sm:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]">
-          { card.map((item, index) => {
-            
-              return (
-                <Link
-                  href={"product-detail"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                  key={index}
-                >
-                  <Card
-                    key={index}
-                    data={item}
-                    onClick={() => {
-                      document.body.classList.add("overflow-hidden");
-                      dispatch(updateModal(true));
-                      setUiData(item);
-                    }}
-                  />
-                </Link>
-              );
-            
-          })}
-          {/* {card.map((item, key) => (
-            <Link
-              href={"product-detail"}
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <Card
-                key={key}
-                data={item}
-                onClick={() => {
-                  document.body.classList.add("overflow-hidden");
-                  dispatch(updateModal(true));
-                  setUiData(item);
+      <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
+        <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
+          <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+            Discover templates, briefs, jobs, resources crafted for
+            <span className="gradient-text"> UI UX designers</span>
+          </h2>
+          <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
+            UIFry is the ultimate hub for UI UX designers to grow, learn and
+            smash client work daily with so much more.
+          </p>
+        </div>
+        <div className="flex flex-col gap-[2rem]">
+          <List classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1" resources={2} title="UI Templates">
+            {uiTemplates.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/ui-templates/details",
+                  // href: "/ui-templates/details",
+                  query: { template: item?.slug?.current },
                 }}
-              />
-            </Link>
-          ))} */}
-          {/* <Swipper />
-           */}
+                onClick={(e) => e.preventDefault()}
+              >
+                <Card
+                  key={index}
+                  onClick={() => {
+                    window.scrollBy(0, 1);
+                    document.body.classList.add("overflow-hidden");
+                    dispatch(updateModal(true));
+                    setModalData(item);
+                  }}
+                  data={item}
+                />
+              </Link>
+            ))}
+          </List>
         </div>
       </div>
     </>
@@ -148,16 +78,36 @@ const Home: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
 export async function getServerSideProps() {
   try {
-    const res = await sanity.fetch(
-      `*[_type=='uitemplate'] |[0...12] { 
+    const uiTemplates = await sanity.fetch(
+      `*[_type=='uitemplate'] |[0...3] { 
     title,slug,description,sanityFilter,images[]{
       asset->{url}
     },tags,image,category
   }`
     );
+    const uiKits = await sanity.fetch(
+      `*[_type=='uxKit'][0...3]{
+    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
+}`
+    );
+    const fonts = await sanity.fetch(
+      `*[_type=='font']{
+    title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
+}`
+    );
+    const styleGuides = await sanity.fetch(
+      `*[_type=='styleGuide']{
+    title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
+      asset->{url}
+    },"fileURL":zipFile.asset->url
+  }`
+    );
     return {
       props: {
-        posts: res,
+        uiTemplates,
+        uiKits,
+        fonts,
+        styleGuides,
       },
     };
   } catch (e) {

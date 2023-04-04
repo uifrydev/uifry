@@ -52,7 +52,7 @@ const Details = ({ details, others }) => {
               <Image src={_1} className="aspect-[1.368/1] rounded-[8px]" />
             </div>
           </div>
-          <div className="flex  relative max-w-[32rem]  sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
+          <div className="flex  relative max-w-[27rem]  sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
             <div className="flex relative w-full flex-col gap-[4rem]">
               <div className=" sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
                 <div className="flex flex-col gap-[1rem] items-start">

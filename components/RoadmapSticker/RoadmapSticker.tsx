@@ -15,9 +15,9 @@ const RoadmapSticker: FC<RoadmapStickerProps> = ({
 }) => {
   return (
     <div
-      className={`bg-primary flex justify-between 2xl1:flex-col lg:flex-row  md:flex-col rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[1rem] items-center ${classes}`}
+      className={`bg-primary flex justify-between 2xl:flex-col lg:flex-row  md:flex-col rounded-[2.4rem] py-[1.6rem] px-[3.4rem] gap-[1rem] items-center ${classes}`}
     >
-      <div className="flex gap-[2.6rem] sm:flex-col items-center">
+      <div className="flex gap-[1.6rem] sm:flex-col items-center">
         <Image src={src} alt="" />
         {children}
       </div>
