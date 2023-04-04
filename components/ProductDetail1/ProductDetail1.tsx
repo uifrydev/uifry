@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { updateModal } from "../../store/slices/featues";
+import { updateModal1 } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Tag from "../Tag/Tag";
@@ -56,7 +56,7 @@ const ProductDetail1: any = ({
         <div
           onClick={() => {
             document.body.classList.remove("!overflow-y-hidden");
-            dispatch(updateModal(false));
+            dispatch(updateModal1(false));
           }}
           className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto "
         >

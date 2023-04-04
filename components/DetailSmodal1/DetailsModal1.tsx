@@ -3,7 +3,7 @@ import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
 import Carousel from "../Carousel/Carousel";
 import { useDispatch } from "react-redux";
-import { updateModal } from "../../store/slices/featues";
+import { updateModal1 } from "../../store/slices/featues";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import ProductDetail1 from "../ProductDetail1/ProductDetail1";
 import { Data } from "@/Interface/interface";
@@ -17,7 +17,7 @@ const DetailsModal1: FC<{
       <div
         onClick={() => {
           document.body.classList.remove("!overflow-y-hidden");
-          dispatch(updateModal(false));
+          dispatch(updateModal1(false));
         }}
         className="flex cursor-pointer lg:hidden p-[1.5rem] bg-[#ffffff] rounded-full ml-auto "
       >

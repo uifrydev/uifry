@@ -25,7 +25,7 @@ const List = ({
           </div>
         </div>
         <Button classes="text-primaryBlack font-500 text-[1.6rem] items-center leading-[150%] py-[1.5rem] flex gap-[4rem] px-[2.5rem] bg-[#fff] rounded-[.6rem] ">
-          <span>{title}</span>
+          <span>View All</span>
           <Image alt="" src={viewAll} />
         </Button>
       </div>

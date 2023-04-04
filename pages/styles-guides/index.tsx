@@ -20,7 +20,7 @@ import { applyFilter } from "@/utils/functions";
 const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [num, setNum] = useState(0);
   const [cards, setCards] = useState(posts);
-  const openModal = useSelector((state: RootState) => state.features.openModal);
+  const openModal1 = useSelector((state: RootState) => state.features.openModal1);
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
@@ -32,7 +32,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
   return (
     <>
-      {openModal && <DetailsModal1 data={modalData} setData={setModalData} />}
+      {openModal1 && <DetailsModal1 data={modalData} setData={setModalData} />}
       <Header title={["Styles", "Guides"]} breadcrums={["Style Guides"]} />
       <Sidebar isDetail />
       {/* <FilterBar

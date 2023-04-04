@@ -148,9 +148,11 @@ const ProductDetail: FC<
       </div>
       <Carousel
         images={
-          data?.images?.map(
-            (item: { asset: { url: string } }) => item?.asset?.url
-          ) || []
+          data?.images
+            ? data?.images?.map(
+                (item: { asset: { url: string } }) => item?.asset?.url
+              ) 
+            : []
         }
       />
 
@@ -217,7 +219,7 @@ const ProductDetail: FC<
                   onClick={() => {
                     // updateModal(false);
                     if (ref.current) {
-                      ref.current.scrollIntoView({behavior:'smooth'});
+                      ref.current.scrollIntoView({ behavior: "smooth" });
                     }
 
                     setData(item);
