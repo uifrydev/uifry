@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { ReactNode } from "react";
 import viewAll from "../../public/assets/icons/viewall.svg";
 import Button from "../Button/Button";
@@ -7,11 +8,13 @@ const List = ({
   children,
   title,
   resources,
+  link
 }: {
   classes: string;
   children: ReactNode;
   title: string;
   resources: number;
+  link:string;
 }) => {
   return (
     <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] py-[3rem] px-[4rem]">
@@ -24,10 +27,12 @@ const List = ({
             Browse {resources} resources
           </div>
         </div>
+        <Link href={link}>
         <Button classes="text-primaryBlack font-500 text-[1.6rem] items-center leading-[150%] py-[1.5rem] flex gap-[4rem] px-[2.5rem] bg-[#fff] rounded-[.6rem] ">
           <span>View All</span>
           <Image alt="" src={viewAll} />
         </Button>
+        </Link>
       </div>
       <div className={`grid ${classes}  gap-[3rem] `}>{children}</div>
     </div>

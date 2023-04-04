@@ -57,6 +57,7 @@ const Home: NextPage<{
             classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
             resources={2}
             title="UI Templates"
+            link='/ui-templates'
           >
             {uiTemplates.map((item, index) => (
               <Link
@@ -86,6 +87,7 @@ const Home: NextPage<{
             classes="4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1 "
             resources={2}
             title="UI UX Kits"
+            link='/ui-ux-kits'
           >
             {uiKits.map((item, index) => (
               <Link
@@ -114,6 +116,7 @@ const Home: NextPage<{
             classes="4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1"
             resources={2}
             title="Fonts"
+            link='/fonts'
           >
             {fonts.map((item, index) => (
               <Link
@@ -142,6 +145,7 @@ const Home: NextPage<{
             classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
             resources={2}
             title="Style Guides"
+            link='/styles-guides'
           >
             {styleGuides.map((item, index) => (
               <Link
@@ -169,6 +173,7 @@ const Home: NextPage<{
             classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
             resources={2}
             title="Jobs"
+            link='/jobs'
           >
             {jobs.map((item, index) => (
               <Link
