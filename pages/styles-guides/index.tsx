@@ -93,7 +93,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   key={index}
                   onClick={() => {
                     window.scrollBy(0, 222);
-                    document.body.classList.add("overflow-hidden");
+                    document.body.classList.add("!overflow-y-hidden");
                     dispatch(updateModal(true));
                     setModalData(item);
                   }}

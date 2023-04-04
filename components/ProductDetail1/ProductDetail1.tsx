@@ -17,8 +17,10 @@ const ProductDetail1: any = ({
   showCross,
   data,
   setData,
+  isModal,
 }: ProductDetailProps & {
   setData: React.Dispatch<React.SetStateAction<Data>>;
+  isModal?: boolean;
 }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.auth);
@@ -53,7 +55,7 @@ const ProductDetail1: any = ({
       {showCross && (
         <div
           onClick={() => {
-            document.body.classList.remove("overflow-hidden");
+            document.body.classList.remove("!overflow-y-hidden");
             dispatch(updateModal(false));
           }}
           className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto "
@@ -154,24 +156,37 @@ const ProductDetail1: any = ({
         </h2>
         <div className=" grid grid-cols-3  2xl:grid-cols-2 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
           {!loading &&
-            products.map((item, index) => (
-              // <Link
-              //   key={index}
-              //   href={{
-              //     pathname: "/styles-guides/details",
-              //     query: { style: item.slug.current },
-              //   }}
-              // >
-              <Card
-                key={index}
-                onClick={() => {
-                  setData(item);
-                  // dispatch(updateModal(true));
-                }}
-                data={item}
-              />
-              // </Link>
-            ))}
+            products.map((item, index) => {
+              if (isModal == false) {
+                return (
+                  <Link
+                    href={{
+                      pathname: "/styles-guides/details",
+                      query: { style: item.slug.current || "" },
+                    }}
+                  >
+                    <Card
+                      key={index}
+                      onClick={() => {
+                        // updateModal(false);
+                        setData(item);
+                      }}
+                      data={item}
+                    />
+                  </Link>
+                );
+              } else
+                return (
+                  <Card
+                    key={index}
+                    onClick={() => {
+                      // updateModal(false);
+                      setData(item);
+                    }}
+                    data={item}
+                  />
+                );
+            })}
         </div>
       </div>
     </div>

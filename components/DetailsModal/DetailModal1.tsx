@@ -13,14 +13,14 @@ const DetailsModal1: FC<{ data: Data }> = ({ data }) => {
     <div className="flex flex-col  absolute z-[1000] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-xl:px-[9rem] min-lg:px-[2rem] min-lg:pt-[15rem]">
       <div
         onClick={() => {
-          document.body.classList.remove("overflow-hidden");
+          document.body.classList.remove("!overflow-y-hidden");
           dispatch(updateModal(false));
         }}
         className="flex cursor-pointer lg:hidden p-[1.5rem] bg-[#ffffff] rounded-full ml-auto "
       >
         <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
       </div>
-      <ProductDetail2 data={data} showCross={true} />
+      <ProductDetail2 data={data} showCross={true}  />
     </div>
   );
 };

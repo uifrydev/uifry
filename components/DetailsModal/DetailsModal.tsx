@@ -13,10 +13,10 @@ const DetailsModal = ({ data,setData }:{
 }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-col sticky z-[10000001] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-lg:px-[2rem] min-lg:py-[3rem]">
+    <div className="flex flex-col totop sticky z-[10000001] gap-[1.6rem] top-0 left-0 w-full overflow-y-scroll h-[100vh] bg-[#15191D]/[0.9] min-lg:px-[2rem] min-lg:py-[3rem]">
       <div
         onClick={() => {
-          document.body.classList.remove("overflow-hidden");
+          document.body.classList.remove("!overflow-y-hidden");
           dispatch(updateModal(false));
         }}
         className="flex cursor-pointer lg:hidden p-[1.5rem] bg-[#ffffff] rounded-full ml-auto "

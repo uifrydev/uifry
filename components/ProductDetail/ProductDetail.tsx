@@ -21,8 +21,11 @@ import { setLoading } from "@/store/slices/auth";
 import { loadOutseta } from "@/utils/outseta";
 
 const ProductDetail: FC<
-  ProductDetailProps & { setData: React.Dispatch<React.SetStateAction<Data>> }
-> = ({ showCross, data ,setData}) => {
+  ProductDetailProps & {
+    setData: React.Dispatch<React.SetStateAction<Data>>;
+    isModal?: boolean;
+  }
+> = ({ showCross, data, setData, isModal }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading1] = useState(false);
@@ -73,13 +76,16 @@ const ProductDetail: FC<
       }
     });
   };
-
+  const ref = useRef<HTMLDivElement>(null);
   return (
-    <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
+    <div
+      ref={ref}
+      className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] "
+    >
       {showCross && (
         <div
           onClick={() => {
-            document.body.classList.remove("overflow-hidden");
+            document.body.classList.remove("!overflow-hidden");
             dispatch(updateModal(false));
           }}
           className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto "
@@ -185,23 +191,41 @@ const ProductDetail: FC<
           You Might <span className="gradient-text">Like</span> These
         </h2>
         <div className="  grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl:grid-cols-2 md:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
-          {products.map((item, index) => (
-            // <Link
-            //   href={{
-            //     pathname: "/ui-templates/details",
-            //     query: { template: item.slug.current || "" },
-            //   }}
-            // >
-              <Card
-                key={index}
-                onClick={() => {
-                  // updateModal(false);
-                  setData(item)
-                }}
-                data={item}
-              />
-            // </Link>
-          ))}
+          {products.map((item, index) => {
+            if (isModal == false) {
+              return (
+                <Link
+                  href={{
+                    pathname: "/ui-templates/details",
+                    query: { template: item.slug.current || "" },
+                  }}
+                >
+                  <Card
+                    key={index}
+                    onClick={() => {
+                      // updateModal(false);
+                      setData(item);
+                    }}
+                    data={item}
+                  />
+                </Link>
+              );
+            } else
+              return (
+                <Card
+                  key={index}
+                  onClick={() => {
+                    // updateModal(false);
+                    if (ref.current) {
+                      ref.current.scrollIntoView({behavior:'smooth'});
+                    }
+
+                    setData(item);
+                  }}
+                  data={item}
+                />
+              );
+          })}
         </div>
       </div>
     </div>

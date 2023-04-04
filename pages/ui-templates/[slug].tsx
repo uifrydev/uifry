@@ -78,8 +78,8 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   <Card
                     key={index}
                     onClick={() => {
-                      window.scrollBy(0, 1);
-                      document.body.classList.add("overflow-hidden");
+                      window.scrollBy(0, 2);
+                      document.body.classList.add("overflow-y-hidden");
                       dispatch(updateModal(true));
                       setModalData(item);
                     }}
