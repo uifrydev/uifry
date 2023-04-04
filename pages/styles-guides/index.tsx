@@ -7,7 +7,7 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import sanity from "../../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import Card from "../../components/Card/Card";
-import { updateModal } from "../../store/slices/featues";
+import { updateModal, updateModal1 } from "../../store/slices/featues";
 import Link from "next/link";
 import { list } from "../../utils/links";
 import DetailsModal1 from "../../components/DetailSmodal1/DetailsModal1";
@@ -92,9 +92,9 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                 <Card
                   key={index}
                   onClick={() => {
-                    window.scrollBy(0, 222);
+                    window.scrollBy(0, 2);
                     document.body.classList.add("!overflow-y-hidden");
-                    dispatch(updateModal(true));
+                    dispatch(updateModal1(true));
                     setModalData(item);
                   }}
                   data={item}
