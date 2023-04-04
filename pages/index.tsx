@@ -18,6 +18,7 @@ import { useLoadProducts } from "@/customHooks/loadProduct";
 import { perProduct } from "@/utils/consts";
 import Swipper from "@/components/Swipper/Swipper";
 import List from "@/components/List/List";
+import UiKitCard from "@/components/UiKitCard/UiKitCard";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
@@ -70,6 +71,65 @@ const Home: NextPage<{
               </Link>
             ))}
           </List>
+
+          <List classes="4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1 " resources={2} title="UI Templates">
+            {uiKits.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/ui-templates/details",
+                  // href: "/ui-templates/details",
+                  query: { template: item?.slug?.current },
+                }}
+                onClick={(e) => e.preventDefault()}
+              >
+                <Card
+                  key={index}
+                  onClick={() => {
+                    window.scrollBy(0, 1);
+                    document.body.classList.add("overflow-hidden");
+                    dispatch(updateModal(true));
+                    setModalData(item);
+                  }}
+                  data={item}
+                />
+              </Link>
+            ))}
+          </List>
+          <List classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1" resources={2} title="UI Templates">
+            {fonts.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/ui-templates/details",
+                  // href: "/ui-templates/details",
+                  query: { template: item?.slug?.current },
+                }}
+                onClick={(e) => e.preventDefault()}
+              >
+                <Card
+                  key={index}
+                  onClick={() => {
+                    window.scrollBy(0, 1);
+                    document.body.classList.add("overflow-hidden");
+                    dispatch(updateModal(true));
+                    setModalData(item);
+                  }}
+                  data={item}
+                />
+              </Link>
+            ))}
+          </List>
+          <List classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1" resources={2} title="UI Templates">
+            {styleGuides.map((item, index) => (
+              <Link key={index} href={{pathname:"ui-ux-kits/details",query:{kit:item.slug.current}}}>
+              <UiKitCard
+                onClick={() => {}}
+                data={item}
+              />
+            </Link>
+            ))}
+          </List>
         </div>
       </div>
     </>
@@ -86,17 +146,19 @@ export async function getServerSideProps() {
   }`
     );
     const uiKits = await sanity.fetch(
-      `*[_type=='uxKit'][0...3]{
-    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
+      `*[_type=='uxKit'][0...2]{
+    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+      asset->{url}
+    },tags,features,"fileURL":zipFile.asset->url
 }`
     );
     const fonts = await sanity.fetch(
-      `*[_type=='font']{
+      `*[_type=='font'][0...3]{
     title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
 }`
     );
     const styleGuides = await sanity.fetch(
-      `*[_type=='styleGuide']{
+      `*[_type=='styleGuide'][0...3]{
     title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
       asset->{url}
     },"fileURL":zipFile.asset->url

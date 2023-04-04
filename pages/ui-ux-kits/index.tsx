@@ -86,7 +86,9 @@ export async function getServerSideProps() {
   try {
     const res = await sanity.fetch(
       `*[_type=='uxKit'][0...165]{
-    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
+    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+      asset->{url}
+    },tags,features,"fileURL":zipFile.asset->url
 }`
     );
     return {

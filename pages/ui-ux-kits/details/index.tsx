@@ -266,12 +266,16 @@ export const getServerSideProps: GetServerSideProps = async (
   try {
     const res = await sanity.fetch(
       `*[_type=='uxKit' && slug.current=="${context.query.kit}"]{
-    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
+    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+      asset->{url}
+    },tags,features,"fileURL":zipFile.asset->url
 }`
     );
     const res1 = await sanity.fetch(
       `*[_type=='uxKit' && slug.current!="${context.query.kit}"]{
-    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images,tags,features,"fileURL":zipFile.asset->url
+    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+      asset->{url}
+    },tags,features,"fileURL":zipFile.asset->url
 }`
     );
     if (!res.length) {

@@ -20,7 +20,7 @@ const UiKitCard: FC<CardProps> = ({ data, onClick }) => {
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
-          src={urlFor(data.images[0]).url()}
+          src={data?.images[0]?.asset?.url}
           className="w-full h-full aspect-[1.785/1] "
           width={700}
           height={600}
