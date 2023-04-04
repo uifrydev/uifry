@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Header from "../../../components/Header/Header";
 import ProductDetail from "../../../components/ProductDetail/ProductDetail";
@@ -11,7 +11,7 @@ import { Data } from "@/Interface/interface";
 
 const Detail: NextPage<{ details: Data }> = ({ details }) => {
   const dispatch = useDispatch();
-
+  const [modalData,setModalData]=useState<any>()
   useEffect(() => {
     document.body.style.overflowY = "scroll";
     return () => {
@@ -27,7 +27,7 @@ const Detail: NextPage<{ details: Data }> = ({ details }) => {
       <Sidebar isDetail />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         {/* <div className=" grid grid-cols-5 3xlpx]:grid-cols-4 2xl:grid-cols-3 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]"> */}
-        <ProductDetail showCross data={details} />
+        <ProductDetail showCross data={details} setData={setModalData} />
         {/* </div> */}
       </div>
     </>
