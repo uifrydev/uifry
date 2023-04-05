@@ -113,7 +113,11 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   return (
     <>
       {/* <div id="signup-embed"></div> */}
-      <header className="flex flex-col z-[154] bg-primary  sticky top-[6.3rem] border-b-[1px] w-full border-[#efe9ff]">
+      <header
+        className={`flex flex-col z-[154] bg-primary  sticky ${
+          !user ? "top-[6.3rem]" : "top-0"
+        } border-b-[1px] w-full border-[#efe9ff]`}
+      >
         <div className="flex w-full sm:flex-col">
           <Link
             href={"/"}

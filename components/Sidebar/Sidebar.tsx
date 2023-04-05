@@ -15,9 +15,10 @@ import { RootState } from "@/store/store";
 const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
   const [toggle, setToggle] = useState(-1);
   const features = useSelector((state: RootState) => state.features);
+  const { user } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
   const pid = router.query;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -25,47 +26,52 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
       setHeight(window.innerHeight);
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
     <div className="">
       <div
-        className={`w-[194px] scroll h-[100%]  transition-all ease-linear duration-500 lg:w-full ${height<800 && "!overflow-y-scroll"} overflow-hidden fixed top-[6.3rem] z-[10] bg-primary pt-[9rem] ${isDetail ? "lg:pt-[17rem]" : "lg:pt-[17rem]"
-          }  h-[100vh] ${features.isMenu  ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
-          }  `}
+        className={`w-[194px] scroll h-[100%]  transition-all ease-linear duration-500 lg:w-full ${
+          height < 800 && "!overflow-y-scroll"
+        } overflow-hidden fixed ${
+          !user ? "top-[6.3rem]" : "top-0"
+        } z-[10] bg-primary pt-[9rem] ${
+          isDetail ? "lg:pt-[17rem]" : "lg:pt-[17rem]"
+        }  h-[100vh] ${
+          features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
+        }  `}
       >
         {list.map((item, index) => (
           <Link key={index} target={"_blank"} legacyBehavior href={item.link}>
             <div
               // onClick={(e) => e.preventDefault()}
               // onClick={() => setToggle(index)}
-              className={`border-r-[1px] border-b-[1px] ${toggle == index || router.pathname.includes(item.link)
+              className={`border-r-[1px] border-b-[1px] ${
+                toggle == index || router.pathname.includes(item.link)
                   ? "border-r-[#00B3FF] bg-[#fff]"
                   : "border-[#efe9ff]"
-                } py-[1.2rem] px-[2rem] cursor-pointer`}
+              } py-[1.2rem] px-[2rem] cursor-pointer`}
               onClick={() => dispatch(updateMenu(false))}
             >
               <p
-                className={`text-[1.6rem] flex justify-between ${toggle == index || router.pathname.includes(item.link)
+                className={`text-[1.6rem] flex justify-between ${
+                  toggle == index || router.pathname.includes(item.link)
                     ? "gradient-text"
                     : "text-primaryBlack"
-                  } font-700 leading-[150%] satoshi w-full`}
+                } font-700 leading-[150%] satoshi w-full`}
               >
-                {item.title}{" "}
-
-                {/* comment for temporarily */}
+                {item.title} {/* comment for temporarily */}
                 {/* {!router.pathname.includes(item.link) && item.list.length ? (
                   <Image src={arrow} alt="" />
                 ) : (
                   ""
                 )} */}
               </p>
-
 
               {/* comment for temporarily */}
               {/* {router.pathname.includes(item.link) && item.list.length ? (
@@ -77,9 +83,6 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
                 {item.subTitle}
               </span>
               {/* )} */}
-
-
-
 
               {/* comment for temporarily */}
               {/* {item.list.length ? (
@@ -110,11 +113,17 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
           </Link>
         ))}
 
-        <div className={`p-[2rem] ${height<800 && "pb-[10rem]"} relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]`}>
+        <div
+          className={`p-[2rem] ${
+            height < 800 && "pb-[10rem]"
+          } relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]`}
+        >
           <div className="flex flex-col gap-[.5rem]">
             <div className="flex">
-
-              <Link href={'license-agreement'} className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
+              <Link
+                href={"license-agreement"}
+                className="text-secondaryGray text-[1.2rem] leading-[150%] font-400"
+              >
                 License, Terms & Policy
               </Link>
             </div>

@@ -14,9 +14,10 @@ import Link from "next/link";
 import { RootState } from "@/store/store";
 const DetailHeader = ({ link }: { link: string }) => {
   const features = useSelector((state:RootState) => state.features);
+  const {user} = useSelector((state:RootState) => state.auth);
   const dispatch = useDispatch();
   return (
-    <header className="flex flex-col z-[154] bg-primary  sticky top-[6.3rem] border-b-[1px] w-full border-[#efe9ff]">
+    <header className={`flex flex-col z-[154] bg-primary  sticky ${user?"top-0":"top-[6.3rem]"} border-b-[1px] w-full border-[#efe9ff]`}>
       <div className="flex w-full">
         <Link
           href={"/"}

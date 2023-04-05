@@ -51,6 +51,9 @@ body {
     #293fff 100%
   );
 }
+.bg-gradient1{
+  background: linear-gradient(90.89deg, #002D6A 14.44%, #0072FF 89.6%);
+}
 select {
   background: url(../public/assets/icons/arrow-da.svg) no-repeat left;
   -webkit-appearance: none;

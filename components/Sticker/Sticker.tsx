@@ -4,19 +4,18 @@ import drop from "../../public/assets/images/drop.png";
 import gradient from "../../public/assets/images/gradient.png";
 import drop1 from "../../public/assets/images/drop1.png";
 import gradient1 from "../../public/assets/images/gradient1.png";
-const Sticker = ({ classes = "" }: { classes: string }) => {
+const Sticker = ({ classes = "",text='' }: { classes: string,text?:string }) => {
   return (
     <div
-      className={`w-full relative  flex z-[1] justify-center gap-[2rem] py-[1.5rem] overflow-hidden px-[2rem] items-center rounded-full bg-[#002D6A] ${classes}`}
+      className={`w-full relative  flex z-[1] justify-center max-w-[50rem] gap-[2rem] py-[1.5rem] mx-auto overflow-hidden px-[2rem] items-center rounded-full bg-gradient1 ${classes}`}
     >
       <p className="text-[#fff] font-[700] text-[1.6rem] satoshi">
-        We Added <span className="gradient-text"> 150 new UI templates </span>
-        this week!
+        We Added 150 new UI templates this week!
       </p>
       <span className="py-[5px] text-[1.4rem] px-[13px] rounded-full bg-[#fff]/[0.1] border-[1px] text-white border-[#fff]/[0.2]">
         Thanks
       </span>
-      <Image
+      {/* <Image
         src={drop}
         className="absolute top-0 right-0 h-full object-cover z-[1]"
         alt=""
@@ -25,17 +24,17 @@ const Sticker = ({ classes = "" }: { classes: string }) => {
         src={gradient}
         className="absolute top-0 right-0 h-full object-cover"
         alt=""
-      />
+      /> */}
       <Image
         src={drop1}
-        className="absolute top-0 left-0 h-full object-cover z-[1]"
+        className="absolute top-0 -left-[12rem] h-full object-cover z-[1]"
         alt=""
       />
-      <Image
+      {/* <Image
         src={gradient1}
         className="absolute top-0 left-0 h-full object-cover"
         alt=""
-      />
+      /> */}
     </div>
   );
 };

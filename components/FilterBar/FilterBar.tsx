@@ -7,6 +7,8 @@ import Image from "next/image";
 import { list } from "../../utils/links";
 import { applyFilter } from "../../utils/functions";
 import { FilterBarProps, FilterParams } from "@/Interface/interface";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 const FilterBar: FC<FilterBarProps> = ({
   filter,
@@ -21,10 +23,11 @@ const FilterBar: FC<FilterBarProps> = ({
     { img: xd, title: "xd" },
     { img: Sketch, title: "sketch" },
   ];
+  const {user} =useSelector((state:RootState)=>state.auth)
 
   return (
     <div
-      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky top-[15.31rem] pt-[2rem] lg:top-[26.9rem] pr-[4rem] `}
+      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky  pt-[2rem] ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"} pr-[4rem] `}
     >
       <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
         {buttons.map((item, index) => (

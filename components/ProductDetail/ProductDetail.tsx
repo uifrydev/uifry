@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { updateModal } from "../../store/slices/featues";
+import { updateModal, updateProModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
@@ -10,7 +10,6 @@ import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
 import Link from "next/link";
 import { loadMore, perProduct } from "../../utils/consts";
@@ -136,7 +135,7 @@ const ProductDetail: FC<
             </Link>
           ) : (
             <Button
-              onClick={openLogin}
+              onClick={()=>dispatch(updateProModal(true))}
               classes={"bg-gradient rounded-[10rem] w-full"}
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
