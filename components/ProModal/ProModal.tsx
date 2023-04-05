@@ -5,15 +5,32 @@ import { useDispatch } from "react-redux";
 import Button from "../Button/Button";
 import cross from "../../public/assets/icons/cross-white.svg";
 import logo from "../../public/assets/images/logo2.png";
+import pro1 from "../../public/assets/images/pro1.png";
+import pro2 from "../../public/assets/images/pro2.png";
+import pro3 from "../../public/assets/images/pro3.png";
+import pro4 from "../../public/assets/images/pro4.png";
+import pro5 from "../../public/assets/images/pro5.png";
 import sphere from "../../public/assets/images/sphere.png";
 import heart from "../../public/assets/images/heart.png";
 import cancel from "../../public/assets/images/cancel.png";
 import star from "../../public/assets/icons/star.svg";
+
 const ProModal = () => {
   const dispatch = useDispatch();
   return (
     <div className="min-w-full min-h-full z-[9908989898989] absolute top-0 left-0 bg-[#000]/[0.6] pt-[10rem]">
-      <div className="flex flex-col bg-[#09397B] py-[6.5rem] px-[5rem] rounded-[1.6rem] justify-center items-center max-w-[63rem] mx-auto relative">
+      <div className="flex flex-col bg-[#09397B] py-[6.5rem] px-[5rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[63rem] mx-auto relative">
+      <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
+      <Image src={pro2} alt="" className="absolute left-0 top-0 " />
+      <Image src={pro3} alt=""  className="absolute right-0 top-0 z-[1]"/>
+      <Image src={pro4} alt=""  className="absolute right-0 top-0"/>
+      <Image src={pro5} alt=""  className="absolute right-0 bottom-0"/>
+        
+        
+        
+        
+        
+        
         <Button
           onClick={() => {
             dispatch(updateProModal(false));
