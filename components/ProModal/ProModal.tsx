@@ -14,23 +14,19 @@ import sphere from "../../public/assets/images/sphere.png";
 import heart from "../../public/assets/images/heart.png";
 import cancel from "../../public/assets/images/cancel.png";
 import star from "../../public/assets/icons/star.svg";
+import Link from "next/link";
 
 const ProModal = () => {
   const dispatch = useDispatch();
   return (
-    <div className="min-w-full min-h-full z-[9908989898989] absolute top-0 left-0 bg-[#000]/[0.6] pt-[10rem]">
+    <div className="min-w-full min-h-full z-[9908989898989] fixed top-0 left-0 bg-[#000]/[0.6] pt-[10rem]">
       <div className="flex flex-col bg-[#09397B] py-[6.5rem] px-[5rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[63rem] mx-auto relative">
-      <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
-      <Image src={pro2} alt="" className="absolute left-0 top-0 " />
-      <Image src={pro3} alt=""  className="absolute right-0 top-0 z-[1]"/>
-      <Image src={pro4} alt=""  className="absolute right-0 top-0"/>
-      <Image src={pro5} alt=""  className="absolute right-0 bottom-0"/>
-        
-        
-        
-        
-        
-        
+        <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
+        <Image src={pro2} alt="" className="absolute left-0 top-0 " />
+        <Image src={pro3} alt="" className="absolute right-0 top-0 z-[1]" />
+        <Image src={pro4} alt="" className="absolute right-0 top-0" />
+        <Image src={pro5} alt="" className="absolute right-0 bottom-0" />
+
         <Button
           onClick={() => {
             dispatch(updateProModal(false));
@@ -63,22 +59,26 @@ const ProModal = () => {
             title="Cancel anytime! No strings attached!"
             description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
           />
-
-          <Button
-            classes={"bg-gradient !py-[2rem] rounded-[5rem] "}
-            onClick={() => {
-            //   dispatch(updateProModal(true));
-            //   document.body.classList.add("!overflow-y-hidden");
-            }}
-            // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+          <Link
+            href={"https://uifry.outseta.com/profile#o-authenticated"}
+            className="w-full"
           >
-            <div className="flex justify-center gap-[.8rem]">
-              <Image src={star} className="" alt="" />
-              <span className="text-[#ffffff] font-[500] text-[2rem] leading-[2.4rem]  flex satoshi">
-                Become aPro
-              </span>
-            </div>
-          </Button>
+            <Button
+              classes={"bg-gradient !py-[2rem] rounded-[5rem] w-full"}
+              onClick={() => {
+                //   dispatch(updateProModal(true));
+                //   document.body.classList.add("!overflow-y-hidden");
+              }}
+              // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+            >
+              <div className="flex justify-center gap-[.8rem]">
+                <Image src={star} className="" alt="" />
+                <span className="text-[#ffffff] font-[500] text-[2rem] leading-[2.4rem]  flex satoshi">
+                  Become aPro
+                </span>
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
