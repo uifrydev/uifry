@@ -30,9 +30,12 @@ const Home: NextPage<{
   styleGuides: Data[];
   jobs: JobProps[];
 }> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs }) => {
-  const {openModal,openModal1} = useSelector((state: RootState) => state.features);
+  const { openModal, openModal1 } = useSelector(
+    (state: RootState) => state.features
+  );
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState(uiTemplates[0]);
+  console.log({ uiTemplates });
   return (
     <>
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
@@ -54,10 +57,12 @@ const Home: NextPage<{
         </div>
         <div className="flex flex-col gap-[2rem]">
           <List
-            classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
-            resources={2}
+            classes={`4xl:grid-cols-3 grid-cols-4 ${
+              uiTemplates.length == 4 && "uitemphome"
+            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
+            resources={Number(uiTemplates[0]?.total)}
             title="UI Templates"
-            link='/ui-templates'
+            link="/ui-templates"
           >
             {uiTemplates.map((item, index) => (
               <Link
@@ -84,10 +89,12 @@ const Home: NextPage<{
           </List>
 
           <List
-            classes="4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1 "
-            resources={2}
+            classes={`4xl:grid-cols-2 grid-cols-3 ${
+              uiKits.length == 3 && "uitemphome"
+            } xl:grid-cols-1 `}
             title="UI UX Kits"
-            link='/ui-ux-kits'
+            link="/ui-ux-kits"
+            resources={Number(uiKits[0]?.total) || 0}
           >
             {uiKits.map((item, index) => (
               <Link
@@ -113,10 +120,12 @@ const Home: NextPage<{
             ))}
           </List>
           <List
-            classes="4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1"
-            resources={2}
+            classes={`4xl:grid-cols-2 grid-cols-3 ${
+              fonts.length == 3 && "uitemphome"
+            } xl:grid-cols-1`}
+            resources={Number(fonts[0]?.total) || 0}
             title="Fonts"
-            link='/fonts'
+            link="/fonts"
           >
             {fonts.map((item, index) => (
               <Link
@@ -142,10 +151,12 @@ const Home: NextPage<{
             ))}
           </List>
           <List
-            classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
-            resources={2}
+            classes={`4xl:grid-cols-3 grid-cols-4  ${
+              styleGuides.length == 4 && "uitemphome"
+            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
+            resources={Number(styleGuides[0]?.total) || 0}
             title="Style Guides"
-            link='/styles-guides'
+            link="/styles-guides"
           >
             {styleGuides.map((item, index) => (
               <Link
@@ -170,10 +181,12 @@ const Home: NextPage<{
           </List>
 
           <List
-            classes="4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1"
-            resources={2}
+            classes={`4xl:grid-cols-3 grid-cols-4 ${
+              jobs.length == 4 && "uitemphome"
+            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
             title="Jobs"
-            link='/jobs'
+            link="/jobs"
+            resources={Number(jobs[0]?.total) || 0}
           >
             {jobs.map((item, index) => (
               <Link
@@ -184,9 +197,7 @@ const Home: NextPage<{
                 }}
                 onClick={(e) => e.preventDefault()}
               >
-                <JobCard
-                  data={item}
-                />
+                <JobCard data={item} />
               </Link>
             ))}
           </List>
@@ -199,37 +210,37 @@ const Home: NextPage<{
 export async function getServerSideProps() {
   try {
     const uiTemplates = await fetchDataServer({
-      query: `*[_type=='uitemplate'] |[0...3] { 
+      query: `*[_type=='uitemplate'] |[0...4] { 
     title,slug,description,sanityFilter,images[]{
       asset->{url}
-    },tags,image,category
+    },tags,image,category,"total": count(*[_type == "uitemplate"])
   }`,
       sanity,
     });
     const uiKits = await fetchDataServer({
-      query: `*[_type=='uxKit'][0...2]{
+      query: `*[_type=='uxKit'][0...3]{
     title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
       asset->{url}
-    },tags,features,"fileURL":zipFile.asset->url
+    },tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
 }`,
       sanity,
     });
     const fonts = await fetchDataServer({
       query: `*[_type=='font'][0...3]{
-    title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
+    title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "font"])
 }`,
       sanity,
     });
     const styleGuides = await fetchDataServer({
-      query: `*[_type=='styleGuide'][0...3]{
+      query: `*[_type=='styleGuide'][0...4]{
     title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
       asset->{url}
-    },"fileURL":zipFile.asset->url
+    },"fileURL":zipFile.asset->url,"total": count(*[_type == "styleGuide"])
   }`,
       sanity,
     });
     const jobs = await fetchDataServer({
-      query: `*[_type=='job'][0...3]{
+      query: `*[_type=='job'][0...4]{
         body,
         companyName,
         salaryRange,
@@ -240,7 +251,7 @@ export async function getServerSideProps() {
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore
+          subCategory,jobPosted,applyBefore,"total": count(*[_type == "job"])
   }`,
       sanity,
     });

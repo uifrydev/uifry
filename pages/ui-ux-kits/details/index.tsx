@@ -111,7 +111,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
               ))}
             </div>
           </div>
-          <div className="flex  relative max-w-[27rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
+          <div className="flex  relative max-w-[27rem] min-2xl:max-w-[32rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
             <div className="flex relative w-full flex-col gap-[4rem]">
               {true && (
                 <div

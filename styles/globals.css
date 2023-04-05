@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @import url(./Carousel.css);
- 
+
 * {
   padding: 0;
   margin: 0;
@@ -14,18 +14,17 @@ html {
   box-shadow: 51px 51px 132px -16px rgb(49 51 114 / 12%);
 }
 @font-face {
-  font-family: 'safi';
+  font-family: "safi";
   src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.ttf);
 }
 @font-face {
-  font-family: 'inters';
+  font-family: "inters";
   src: url(../public/assets/fonts/inter/Inter-Regular.ttf);
   /* src: url(../public/assets/fonts/inter/Inter-Medium.ttf); */
 }
 html,
 body {
   @apply font-inters;
-
 }
 .satoshi {
   @apply font-safi;
@@ -65,11 +64,11 @@ select {
 .body li {
   @apply text-secondaryGray text-[1.6rem] font-[400] leading-[150%];
 }
-.body{
-  @apply pb-[5rem]
+.body {
+  @apply pb-[5rem];
 }
 .text ol {
-  @apply flex flex-col gap-[2rem]
+  @apply flex flex-col gap-[2rem];
 }
 .body a {
   color: #00b3ff;
@@ -78,23 +77,23 @@ select {
 .body ul {
   @apply list-disc pl-[3rem];
 }
-.body h2{
-  @apply text-primaryBlack satoshi text-[2.4rem] font-700
+.body h2 {
+  @apply text-primaryBlack satoshi text-[2.4rem] font-700;
 }
 .middle {
   @apply flex justify-center items-center;
 }
 .body ol em {
   font-style: normal;
-  @apply text-primaryBlack font-[600]
+  @apply text-primaryBlack font-[600];
 }
-.body strong{
-  @apply text-[#0A2540]
+.body strong {
+  @apply text-[#0A2540];
 }
 .middle-col {
   @apply flex flex-col justify-center items-center;
 }
-.o--Widget--popupBg{
+.o--Widget--popupBg {
   z-index: 9999999999999999 !important;
 }
 
@@ -107,7 +106,6 @@ select {
   right: 0;
   transform: translateX(50%);
 }
-
 
 .two-line-ellipsis {
   display: -webkit-box;
@@ -125,8 +123,8 @@ select {
   -webkit-line-clamp: 3;
   line-clamp: 3;
 }
-.text16-gray{
-  @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%]
+.text16-gray {
+  @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%];
 }
 
 .scroll::-webkit-scrollbar {
@@ -140,5 +138,9 @@ select {
 .scroll::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
-
+@media screen and (max-width: 1920px) {
+  .uitemphome a:last-child {
+    display: none;
+  }
+}
 @tailwind utilities;

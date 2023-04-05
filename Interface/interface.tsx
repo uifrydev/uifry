@@ -24,6 +24,7 @@ export interface Data {
   tags: string[];
   noOfScreens?: any;
   features?: string[];
+  total?:number;
 }
 
 export interface CardProps {
@@ -44,6 +45,7 @@ export interface FeatureState {
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;
+  proModal:boolean
 }
 export interface FilterParams {
   subCategory: string;
@@ -112,6 +114,8 @@ export interface JobProps {
   slug: {
     current: string;
   };
+  total?:number;
+
 }
 export interface JobDetailProps extends JobProps {
   body: any;

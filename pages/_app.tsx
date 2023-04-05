@@ -15,11 +15,12 @@ import { asyncGetUser } from "@/store/thunk/userAsync";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
+import ProModal from "@/components/ProModal/ProModal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
-  const isAnimating = useSelector(
-    (state: RootState) => state.features.isAnimating
+  const { isAnimating, proModal } = useSelector(
+    (state: RootState) => state.features
   );
   const user = useSelector((state: RootState) => state.auth.user);
   const router1 = useRouter();
@@ -58,6 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Progress isAnimating={isAnimating} />
       <main className={"relative"}>
         <Sticker1 classes={"!rounded-none mx-auto"} />
+        {proModal && <ProModal />}
         <Component {...pageProps} />
       </main>
     </>

@@ -17,7 +17,7 @@ import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { updateMenu } from "../../store/slices/featues";
+import { updateMenu, updateProModal } from "../../store/slices/featues";
 import Link from "next/link";
 import { HeaderProps } from "@/Interface/interface";
 import { RootState } from "@/store/store";
@@ -124,7 +124,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           {istitle == false ? (
             <>
               <div className="flex flex-1 px-[4rem] items-center gap-[1.6rem]">
-                <Image src={userss} alt='' />
+                <Image src={userss} alt="" />
                 <p className="text-primaryBlack text-[1.6rem] ">
                   Join <span className="font-700 leading-[130%] ">56,000+</span>{" "}
                   designers today!
@@ -233,7 +233,10 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   classes={
                     "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
                   }
-                  onClick={openProfile}
+                  onClick={() => {
+                    dispatch(updateProModal(true));
+                    document.body.classList.add("!overflow-y-hidden");
+                  }}
                   // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
                 >
                   <div className="flex gap-[.8rem]">

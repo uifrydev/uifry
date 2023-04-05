@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import KitHeader from "../../../components/KitHeader/KitHeader";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import figma from "../../../public/assets/icons/figma.svg";
@@ -25,15 +25,42 @@ import JobCard from "../../../components/JobCard/JobCard";
 import Link from "next/link";
 import sanity from "../../../sanity";
 import FontCard from "../../../components/FontCard/FontCard";
-const Details = ({ details, others }) => {
+import { Data } from "@/Interface/interface";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import imageUrlBuilder from "@sanity/image-url";
+import Lightbox from "react-image-lightbox";
+
+const Details: NextPage<{ details: Data; others: Data[] }> = ({ details, others }) => {
+  const builder = imageUrlBuilder(sanity);
+  const [photoIndex, setPhotoIndex] = React.useState(0);
+  const [isOpen, setOpen] = useState(false);
+  const images = details.images.map((item: any) => item?.asset?.url);
+  const urlFor = (source: string) => {
+    return builder.image(source);
+  };
   return (
     <>
+    {isOpen && (
+        <Lightbox
+          mainSrc={images[photoIndex]}
+          nextSrc={images[(photoIndex + 1) % images.length]}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+          onCloseRequest={() => setOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % images.length)
+          }
+          wrapperClassName="z-[100000000000998989]"
+        />
+      )}
       <KitHeader link={"/fonts"} />
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[0rem]  w-full ">
         <div className="flex gap-[6rem] lg:flex-col">
-          <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
-            <div className="">
+          <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[1rem] pt-[3rem] ">
+            {/* <div className="">
               <Image src={_1} className="aspect-[1.368/1] rounded-[8px]" />
             </div>
             <div className="">
@@ -50,9 +77,27 @@ const Details = ({ details, others }) => {
             </div>
             <div className="">
               <Image src={_1} className="aspect-[1.368/1] rounded-[8px]" />
-            </div>
+            </div> */}
+            {details.images.map((item: string, index: number) => (
+                <div
+                  key={index}
+                  className=""
+                  onClick={() => {
+                    window.scroll(0, 5);
+                    setOpen(true);
+                  }}
+                >
+                  <Image
+                    src={urlFor(item).url()}
+                    width={1000}
+                    height={1000}
+                    className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                    alt=""
+                  />
+                </div>
+              ))}
           </div>
-          <div className="flex  relative max-w-[27rem]  sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
+          <div className="flex  relative max-w-[27rem] min-2xl:max-w-[32rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
             <div className="flex relative w-full flex-col gap-[4rem]">
               <div className=" sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
                 <div className="flex flex-col gap-[1rem] items-start">
@@ -141,20 +186,18 @@ const Details = ({ details, others }) => {
     </>
   );
 };
-export async function getServerSideProps(context) {
-  const parentFilename = context.req.url.split("/")[1];
-  const params = context.params;
+export const getServerSideProps:GetServerSideProps=async(context:GetServerSidePropsContext)=> {
   try {
     const res = await sanity.fetch(
       `*[ _type=='font' && slug.current=="${context.query.font}" ]{
-        title,slug,subCategory,category,description,sanityFilter,tags,image,"images":image{
+        title,slug,subCategory,category,description,sanityFilter,tags,image,images[]{
           asset->{url}
         },"fileURL":zipFile.asset->url,features
           }`
     );
     const res1 = await sanity.fetch(
       `*[ _type=='font' && slug.current!="${context.query.font}" ]{
-        title,slug,subCategory,category,description,sanityFilter,tags,image,"images":image{
+        title,slug,subCategory,category,description,sanityFilter,tags,image,images[]{
           asset->{url}
         },"fileURL":zipFile.asset->url,features
           }`
