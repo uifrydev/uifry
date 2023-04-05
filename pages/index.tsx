@@ -102,17 +102,12 @@ const Home: NextPage<{
                 href={{
                   pathname: "/ui-ux-kits/details",
                   // href: "/ui-templates/details",
-                  query: { template: item?.slug?.current },
+                  query: { kit: item?.slug?.current },
                 }}
-                onClick={(e) => e.preventDefault()}
               >
                 <UiKitCard
                   key={index}
                   onClick={() => {
-                    window.scrollBy(0, 1);
-                    document.body.classList.add("overflow-hidden");
-                    dispatch(updateModal(true));
-                    setModalData(item);
                   }}
                   data={item}
                 />
@@ -133,17 +128,12 @@ const Home: NextPage<{
                 href={{
                   pathname: "/fonts/details",
                   // href: "/ui-templates/details",
-                  query: { template: item?.slug?.current },
+                  query: { font: item?.slug?.current },
                 }}
-                onClick={(e) => e.preventDefault()}
               >
                 <FontCard
                   key={index}
                   onClick={() => {
-                    window.scrollBy(0, 1);
-                    document.body.classList.add("!overflow-y-hidden");
-                    dispatch(updateModal(true));
-                    setModalData(item);
                   }}
                   data={item}
                 />
@@ -193,9 +183,8 @@ const Home: NextPage<{
                 key={index}
                 href={{
                   pathname: "/jobs/details",
-                  query: { style: item.slug.current },
+                  query: { job: item.slug.current },
                 }}
-                onClick={(e) => e.preventDefault()}
               >
                 <JobCard data={item} />
               </Link>
