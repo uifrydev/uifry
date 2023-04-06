@@ -1,6 +1,6 @@
 import { updateProModal } from "@/store/slices/featues";
 import Image, { ImageProps, StaticImageData } from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../Button/Button";
 import cross from "../../public/assets/icons/cross-white.svg";
@@ -11,16 +11,44 @@ import pro3 from "../../public/assets/images/pro3.png";
 import pro4 from "../../public/assets/images/pro4.png";
 import pro5 from "../../public/assets/images/pro5.png";
 import sphere from "../../public/assets/images/sphere.png";
+import unlimited from "../../public/assets/images/unlimited.png";
 import heart from "../../public/assets/images/heart.png";
 import cancel from "../../public/assets/images/cancel.png";
 import star from "../../public/assets/icons/star.svg";
 import Link from "next/link";
+import { setLoading } from "@/store/slices/auth";
+import { loadOutseta } from "@/utils/outseta";
 
 const ProModal = () => {
   const dispatch = useDispatch();
+  const outsetaRef = useRef<any>();
+  useEffect(() => {
+    async function fecthData() {
+      outsetaRef.current = await loadOutseta();
+    }
+    fecthData()
+  }, []);
+  const openLogin = async (options: any = {}): Promise<any> => {
+    dispatch(updateProModal(false));
+    dispatch(setLoading(true));
+    return new Promise((resolve, reject) => {
+      if (!outsetaRef.current?.auth)
+        return reject({ success: false, error: "auth is not available" });
+      const authenticationCallbackUrl = "http://localhost:3000";
+      try {
+        outsetaRef.current.auth.open({
+          widgetMode: "login",
+          authenticationCallbackUrl: window.location.href,
+          ...options,
+        });
+      } catch (error) {
+        reject({ success: false, error });
+      }
+    });
+  };
   return (
-    <div className="min-w-full min-h-full z-[9908989898989] fixed top-0 left-0 bg-[#000]/[0.6] pt-[10rem]">
-      <div className="flex flex-col bg-[#09397B] py-[6.5rem] px-[5rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[63rem] mx-auto relative">
+    <div className="min-w-full min-h-full z-[9908989898989] fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem]">
+      <div className="flex flex-col bg-[#09397B] py-[3rem] px-[4.7rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[58rem] mx-auto relative">
         <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
         <Image src={pro2} alt="" className="absolute left-0 top-0 " />
         <Image src={pro3} alt="" className="absolute right-0 top-0 z-[1]" />
@@ -32,18 +60,23 @@ const ProModal = () => {
             dispatch(updateProModal(false));
             document.body.classList.remove("!overflow-y-hidden");
           }}
-          classes="ml-auto absolute top-[2rem] right-[2rem]"
+          classes="ml-auto absolute top-[.4rem] -right-[1rem] z-[10]"
         >
           <Image src={cross} alt="" />
         </Button>
-        <Image src={logo} alt="" className="w-[4rem]" />
-        <h3 className="satoshi text-[4rem] font-700 text-[#fff] ">
+        <Image src={logo} alt="" className="w-[5rem]" />
+        <h3 className="satoshi text-[3.2rem] font-700 text-[#fff] ">
           Become a Pro
         </h3>
-        <p className="text-[1.8rem] font-400 text-[#fff] ">
+        <p className="text-[1.4rem] font-400 leading-[2.9rem] text-[#fff] ">
           Join 56,909 UI UX Designers today!
         </p>
         <div className="flex flex-col gap-[1rem] mt-[2.6rem]">
+          <ProTag
+            src={unlimited}
+            title="Unlimited downloads and access!"
+            description="Get unlimited access to UI templates, UI UX kits, briefs and more."
+          />
           <ProTag
             src={sphere}
             title="500+ templates till now! New added daily!"
@@ -59,7 +92,7 @@ const ProModal = () => {
             title="Cancel anytime! No strings attached!"
             description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
           />
-          <Link
+          <a
             href={"https://uifry.outseta.com/profile#o-authenticated"}
             className="w-full"
           >
@@ -78,7 +111,13 @@ const ProModal = () => {
                 </span>
               </div>
             </Button>
-          </Link>
+            <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[2rem] mx-auto">
+              Already a pro member?{" "}
+              <span onClick={openLogin} className="underline font-700">
+                Login here
+              </span>
+            </p>
+          </a>
         </div>
       </div>
     </div>
@@ -94,13 +133,13 @@ const ProTag = ({
   title: string;
   description: string;
 }) => (
-  <div className="w-full rounded-[1.6rem] py-[2.2rem] pl-[3rem] pr-[3rem] bg-[#fff] flex gap-[2.5rem] items-center">
+  <div className="w-full rounded-[1.6rem] pb-[2.2rem] pt-[1.7rem] pl-[3rem] pr-[3rem] bg-[#fff] flex gap-[2.5rem] items-center">
     <Image src={src} alt="" className="w-[5rem]" />
     <div className="flex flex-col gap-[.5rem]">
-      <span className="satoshi text-primaryBlack text-[1.8rem] font-700 leading-[2.6rem]">
+      <span className="satoshi text-primaryBlack text-[1.6rem] font-700 leading-[2.6rem]">
         {title}
       </span>
-      <span className="text-secondaryGray text-[1.6rem] font-500 leading-[2.6rem]">
+      <span className="text-secondaryGray text-[1.4rem] font-500 leading-[150%]">
         {description}
       </span>
     </div>

@@ -141,6 +141,19 @@ select {
 .scroll::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+.o--Button--btn {
+  background: linear-gradient(
+    259.1deg,
+    #00b3ff 0%,
+    #1579ff 26.56%,
+    #00b3ff 68.75%,
+    #293fff 100%
+  ) !important;
+  @apply !w-full 
+}
+.o--Label--label,.o--Widget--widget h1{
+  @apply font-safi
+}
 @media screen and (max-width: 1920px) {
   .uitemphome a:last-child {
     display: none;
