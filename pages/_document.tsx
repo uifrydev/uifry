@@ -24,7 +24,7 @@ var o_signup_options = {
   "load": "auth",
   "auth": {
     "widgetMode": "register",
-    "planFamilyUid": "wmjrZxmV",
+    "planUid": "OW4Yy4mg",
     "planPaymentTerm": "month",
     "skipPlanOptions": true,
     "id": "signup_embed",

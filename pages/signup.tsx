@@ -8,32 +8,24 @@ import heart from "../public/assets/images/heart.png";
 import cancel from "../public/assets/images/cancel.png";
 import PaymentTag from "@/components/PaymentTag/PaymentTag";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { updateProModal } from "@/store/slices/featues";
 const signup = () => {
   const [loading, setLoading] = useState(true);
-  const o_signup_options = {
-    id: "Outseta",
-    domain: "uifry.outseta.com",
-    load: "auth",
-    auth: {
-      widgetMode: "register",
-      planFamilyUid: "wmjrZxmV",
-      planPaymentTerm: "month",
-      skipPlanOptions: true,
-      id: "signup_embed",
-      mode: "embed",
-      selector: "#signup-embed",
-    },
-  };
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
+    dispatch(updateProModal(false));
+    document.body.classList.remove("!overflow-y-hidden");
 
     //     const script = document.createElement("script");
     //     script.src = "https://cdn.outseta.com/outseta.min.js";
     //     script.setAttribute("data-options", JSON.stringify(o_signup_options));
     //     document.body.appendChild(script);
     return () => {
-      sticker?.classList.add("!remove");
+      sticker?.classList.remove("!hidden");
     };
   }, []);
   return (
@@ -82,7 +74,7 @@ const signup = () => {
               />
             </div>
             <PaymentTag />
-            <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] pb-[33rem]">
+            <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] ">
               By purchasing UIFry Pro, you agree to our terms, conditions and
               all policies which are listed
               <span className="text-[#00B3FF] cursor-pointer font-700">

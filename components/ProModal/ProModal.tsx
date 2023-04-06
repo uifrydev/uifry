@@ -93,8 +93,8 @@ const ProModal = () => {
             title="Cancel anytime! No strings attached!"
             description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
           />
-          <a
-            href={"https://uifry.outseta.com/profile#o-authenticated"}
+          <Link
+            href={"/signup"}
             className="w-full"
           >
             <Button
@@ -118,7 +118,7 @@ const ProModal = () => {
                 Login here
               </span>
             </p>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

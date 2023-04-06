@@ -149,13 +149,16 @@ select {
     #00b3ff 68.75%,
     #293fff 100%
   ) !important;
-  @apply !w-full 
+  @apply !w-full !rounded-full
+}
+.o--Input--input,.o--Select--select{
+  @apply !rounded-full
 }
 .o--Label--label,.o--Widget--widget h1{
   @apply font-safi
 }
 #signup-embed{
-  @apply w-full
+  @apply w-full 
 }
 @media screen and (max-width: 1920px) {
   .uitemphome a:last-child {
