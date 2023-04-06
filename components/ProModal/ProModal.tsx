@@ -19,15 +19,17 @@ import Link from "next/link";
 import { setLoading } from "@/store/slices/auth";
 import { loadOutseta } from "@/utils/outseta";
 import ProTag from "./ProTag";
+import { useRouter } from "next/router";
 
 const ProModal = () => {
   const dispatch = useDispatch();
   const outsetaRef = useRef<any>();
+  const router = useRouter();
   useEffect(() => {
     async function fecthData() {
       outsetaRef.current = await loadOutseta();
     }
-    fecthData()
+    fecthData();
   }, []);
   const openLogin = async (options: any = {}): Promise<any> => {
     dispatch(updateProModal(false));
@@ -93,37 +95,37 @@ const ProModal = () => {
             title="Cancel anytime! No strings attached!"
             description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
           />
-          <Link
+          {/* <Link
             href={"/signup"}
             className="w-full"
+          > */}
+          <Button
+            classes={"bg-gradient !py-[2rem] rounded-[5rem] w-full"}
+            onClick={() => {
+              dispatch(updateProModal(false));
+              document.body.classList.remove("!overflow-y-hidden");
+              router.push("/signup");
+            }}
+            // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
           >
-            <Button
-              classes={"bg-gradient !py-[2rem] rounded-[5rem] w-full"}
-              onClick={() => {
-                //   dispatch(updateProModal(true));
-                //   document.body.classList.add("!overflow-y-hidden");
-              }}
-              // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
-            >
-              <div className="flex justify-center gap-[.8rem]">
-                <Image src={star} className="" alt="" />
-                <span className="text-[#ffffff] font-[500] text-[2rem] leading-[2.4rem]  flex satoshi">
-                  Become aPro
-                </span>
-              </div>
-            </Button>
-            <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[2rem] mx-auto">
-              Already a pro member?{" "}
-              <span onClick={openLogin} className="underline font-700">
-                Login here
+            <div className="flex justify-center gap-[.8rem]">
+              <Image src={star} className="" alt="" />
+              <span className="text-[#ffffff] font-[500] text-[2rem] leading-[2.4rem]  flex satoshi">
+                Become a Pro
               </span>
-            </p>
-          </Link>
+            </div>
+          </Button>
+          <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[2rem] mx-auto">
+            Already a pro member?{" "}
+            <span onClick={openLogin} className="underline font-700">
+              Login here
+            </span>
+          </p>
+          {/* </Link> */}
         </div>
       </div>
     </div>
   );
 };
-
 
 export default ProModal;

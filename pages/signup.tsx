@@ -10,10 +10,11 @@ import PaymentTag from "@/components/PaymentTag/PaymentTag";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { updateProModal } from "@/store/slices/featues";
+import { useRouter } from "next/router";
 const signup = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-
+  const router = useRouter();
   useEffect(() => {
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
@@ -27,7 +28,7 @@ const signup = () => {
     return () => {
       sticker?.classList.remove("!hidden");
     };
-  }, []);
+  }, [router.asPath]);
   return (
     <>
       <div className="flex w-full h-full justify-center bg-[#F6F9FC]">
@@ -84,7 +85,7 @@ const signup = () => {
               .
             </p>
           </div>
-          <div className="flex w-[64rem] bg-white">
+          <div className="flex w-[64rem] bg-white shadow-signup">
             <div id="signup-embed"></div>
           </div>
         </div>
