@@ -6,19 +6,21 @@ import { AppProps } from "next/app";
 import { Router, useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsAnimating } from "../store/slices/featues";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Progress } from "../components/progress/Progress";
 import Sticker1 from "../components/Sticker/Sticker1";
-import { setToken } from "@/store/slices/auth";
+import { setToken, setUser } from "@/store/slices/auth";
 import { getUser } from "@/apis/user";
 import { asyncGetUser } from "@/store/thunk/userAsync";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
+import { loadOutseta } from "@/utils/outseta";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
+  const outsetaRef = useRef<any>();
   const { isAnimating, proModal } = useSelector(
     (state: RootState) => state.features
   );
@@ -42,6 +44,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       router1.events.off("routeChangeError", handleStop);
     };
   }, [router1]);
+  // useEffect(() => {
+  //   const init = async () => {
+  //     outsetaRef.current = await loadOutseta();
+  //     const accessToken = localStorage.getItem("token");
+  //     if (accessToken) {
+  //       outsetaRef.current.setAccessToken(accessToken);
+  //       updateUser();
+  //     }
+  //   };
+  //   init();
+  // }, []);
+  // const updateUser = async () => {
+  //   // Fetch the current user data from outseta
+  //   const outsetaUser = await outsetaRef.current.getUser();
+  //   const { Account, Name, PrimaryContact, Email, FullName } = outsetaUser;
+  //   // Update user state
+  //   dispatch(setUser({ Account, Name, PrimaryContact, Email, FullName }));
+  //   // Make sure status = ready
+  // };
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const token = localStorage.getItem("token");

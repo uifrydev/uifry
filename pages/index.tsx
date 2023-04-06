@@ -36,6 +36,8 @@ const Home: NextPage<{
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState(uiTemplates[0]);
   console.log({ uiTemplates });
+ 
+
   return (
     <>
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
@@ -105,12 +107,7 @@ const Home: NextPage<{
                   query: { kit: item?.slug?.current },
                 }}
               >
-                <UiKitCard
-                  key={index}
-                  onClick={() => {
-                  }}
-                  data={item}
-                />
+                <UiKitCard key={index} onClick={() => {}} data={item} />
               </Link>
             ))}
           </List>
@@ -131,12 +128,7 @@ const Home: NextPage<{
                   query: { font: item?.slug?.current },
                 }}
               >
-                <FontCard
-                  key={index}
-                  onClick={() => {
-                  }}
-                  data={item}
-                />
+                <FontCard key={index} onClick={() => {}} data={item} />
               </Link>
             ))}
           </List>
@@ -191,6 +183,7 @@ const Home: NextPage<{
             ))}
           </List>
         </div>
+        <div id="signup-embed"></div>
       </div>
     </>
   );

@@ -18,27 +18,29 @@ const Document = () => {
 //   };
 // `;
 const outsetaOptions = `
-window.o_signup_options = {
-  id: "Outseta",
-  domain: "uifry.outseta.com",
-  load: "auth",
-  auth: {
-    widgetMode: "register_or_login",
-    skipPlanOptions: true,
-    id: "signup_embed",
-    mode: "popup",
-    selector: "#signup-embed",
-  },
+var o_signup_options = {
+  "id": "Outseta",
+  "domain": "uifry.outseta.com",
+  "load": "auth",
+  "auth": {
+    "widgetMode": "register",
+    "planFamilyUid": "wmjrZxmV",
+    "planPaymentTerm": "month",
+    "skipPlanOptions": true,
+    "id": "signup_embed",
+    "mode": "embed",
+    "selector": "#signup-embed"
+  }
 };
 `;
   return (
     <Html>
       <Head>
-        {/* <script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
+        <script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
         <script
           src="https://cdn.outseta.com/outseta.min.js"
-          data-options="o_options"
-        /> */}
+          data-options="o_signup_options"
+        />
       </Head>
       <body>
         <Main />

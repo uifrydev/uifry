@@ -154,6 +154,9 @@ select {
 .o--Label--label,.o--Widget--widget h1{
   @apply font-safi
 }
+#signup-embed{
+  @apply w-full
+}
 @media screen and (max-width: 1920px) {
   .uitemphome a:last-child {
     display: none;

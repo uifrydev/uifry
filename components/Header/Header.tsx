@@ -46,7 +46,8 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
       // Await injection of the script
       outsetaRef.current = await loadOutseta();
       // Get the access token from the callback url
-      const accessToken = router.query.access_token as string;
+      const accessToken =
+        (router.query.access_token as string) || localStorage.getItem("token");
       if (accessToken) {
         // If there is an acccess token present
         // pass it along to Outseta
