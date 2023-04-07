@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { updateModal1 } from "../../store/slices/featues";
+import { updateModal1, updateProModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Tag from "../Tag/Tag";
@@ -94,6 +94,8 @@ const ProductDetail1: any = ({
               classes={
                 "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
               }
+              onClick={()=>dispatch(updateProModal(true))}
+
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                 Download

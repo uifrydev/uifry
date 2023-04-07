@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { updateModal } from "../../store/slices/featues";
+import { updateModal, updateProModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
@@ -127,7 +127,10 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                   </Button>
                 </Link>
               ) : (
-                <Button classes={"w-full py-[1.7rem] bg-gradient rounded-full"}>
+                <Button
+                  onClick={() => dispatch(updateProModal(true))}
+                  classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
+                >
                   <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                     Download
                   </span>

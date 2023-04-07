@@ -29,18 +29,26 @@ import { Data } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import imageUrlBuilder from "@sanity/image-url";
 import Lightbox from "react-image-lightbox";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { updateProModal } from "@/store/slices/featues";
 
-const Details: NextPage<{ details: Data; others: Data[] }> = ({ details, others }) => {
+const Details: NextPage<{ details: Data; others: Data[] }> = ({
+  details,
+  others,
+}) => {
   const builder = imageUrlBuilder(sanity);
   const [photoIndex, setPhotoIndex] = React.useState(0);
+  const dispatch = useDispatch();
   const [isOpen, setOpen] = useState(false);
   const images = details.images.map((item: any) => item?.asset?.url);
   const urlFor = (source: string) => {
     return builder.image(source);
   };
+  const { user } = useSelector((state: RootState) => state.auth);
   return (
     <>
-    {isOpen && (
+      {isOpen && (
         <Lightbox
           mainSrc={images[photoIndex]}
           nextSrc={images[(photoIndex + 1) % images.length]}
@@ -79,23 +87,23 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({ details, others 
               <Image src={_1} className="aspect-[1.368/1] rounded-[8px]" />
             </div> */}
             {details.images.map((item: string, index: number) => (
-                <div
-                  key={index}
-                  className=""
-                  onClick={() => {
-                    window.scroll(0, 5);
-                    setOpen(true);
-                  }}
-                >
-                  <Image
-                    src={urlFor(item).url()}
-                    width={1000}
-                    height={1000}
-                    className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
-                    alt=""
-                  />
-                </div>
-              ))}
+              <div
+                key={index}
+                className=""
+                onClick={() => {
+                  window.scroll(0, 5);
+                  setOpen(true);
+                }}
+              >
+                <Image
+                  src={urlFor(item).url()}
+                  width={1000}
+                  height={1000}
+                  className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                  alt=""
+                />
+              </div>
+            ))}
           </div>
           <div className="flex  relative max-w-[27rem] min-2xl:max-w-[32rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-[#E5E9FF]">
             <div className="flex relative w-full flex-col gap-[4rem]">
@@ -119,20 +127,33 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({ details, others 
                     Files & Info
                   </p>
 
-                  <Link href={details?.fileURL || ""} download>
-                    {/* <Button
+                  {user ? (
+                    <Link href={details?.fileURL || ""} download>
+                      {/* <Button
+              onClick={()=>dispatch(updateProModal(true))}
+
                       classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
                     >
                       <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                         Download
                       </span>
                     </Button> */}
-                    <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                      <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                        <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                          Download
+                        </span>
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button
+                      onClick={() => dispatch(updateProModal(true))}
+                      classes={"bg-gradient rounded-[10rem] w-full"}
+                    >
                       <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                         Download
                       </span>
                     </Button>
-                  </Link>
+                  )}
                 </div>
               </div>
               <div className="flex gap-[2rem] flex-col pl-[3.5rem]  pr-[2.9rem] pt-0">
@@ -186,7 +207,9 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({ details, others 
     </>
   );
 };
-export const getServerSideProps:GetServerSideProps=async(context:GetServerSidePropsContext)=> {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   try {
     const res = await sanity.fetch(
       `*[ _type=='font' && slug.current=="${context.query.font}" ]{
@@ -226,5 +249,5 @@ export const getServerSideProps:GetServerSideProps=async(context:GetServerSidePr
       notFound: true,
     };
   }
-}
+};
 export default Details;

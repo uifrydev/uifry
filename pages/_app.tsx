@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Progress isAnimating={isAnimating} />
       <main className={"relative"}>
         {!user && <Sticker1 classes={"!rounded-none mx-auto"} />}
-        {proModal && <ProModal />}
+        {proModal && <ProModal classes="" />}
         <Component {...pageProps} />
       </main>
     </>

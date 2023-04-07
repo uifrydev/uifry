@@ -34,6 +34,9 @@ import {
   NextPage,
 } from "next";
 import { Data } from "@/Interface/interface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { updateProModal } from "@/store/slices/featues";
 const Details: NextPage<{ details: Data; others: Data[] }> = ({
   details,
   others,
@@ -46,7 +49,9 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
   const [isOpen, setOpen] = useState(false);
   const images = details.images.map((item: any) => urlFor(item).url());
   const [isElementAtTop, setIsElementAtTop] = useState(false);
+  const dispatch = useDispatch();
 
+  const { user } = useSelector((state: RootState) => state.auth);
   function isElementAtTopOfView() {
     const element = document.getElementById("tags");
     if (!element) return false; // element not found
@@ -176,7 +181,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                         </div>
                       )}
                     </div>
-                    <Link href={details?.fileURL} download>
+                    {user?<Link href={details?.fileURL} download>
                       {/* <Button
                       classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
                     >
@@ -189,7 +194,11 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                           Download
                         </span>
                       </Button>
-                    </Link>
+                    </Link>:<Button onClick={() => dispatch(updateProModal(true))} classes={"bg-gradient rounded-[10rem] w-full"}>
+                        <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                          Download
+                        </span>
+                      </Button>}
                   </div>
                 </div>
               )}

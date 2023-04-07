@@ -12,12 +12,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
 import { RootState } from "@/store/store";
+import { useRouter } from "next/router";
 const DetailHeader = ({ link }: { link: string }) => {
-  const features = useSelector((state:RootState) => state.features);
-  const {user} = useSelector((state:RootState) => state.auth);
+  const features = useSelector((state: RootState) => state.features);
+  const { user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const router = useRouter();
   return (
-    <header className={`flex flex-col z-[154] bg-primary  sticky ${user?"top-0":"top-[6.3rem]"} border-b-[1px] w-full border-[#efe9ff]`}>
+    <header
+      className={`flex flex-col z-[154] bg-primary  sticky ${
+        user ? "top-0" : "top-[6.3rem]"
+      } border-b-[1px] w-full border-[#efe9ff]`}
+    >
       <div className="flex w-full">
         <Link
           href={"/"}
@@ -26,19 +32,21 @@ const DetailHeader = ({ link }: { link: string }) => {
           <Image src={logo} alt={""} />
         </Link>
 
-        <Link href={link||'/'} className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
+        <div
+          // href={link || "/"}
+          onClick={() => router.back()}
+          className="lg:hidden flex-1 flex cursor-pointer items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]"
+        >
           <div className="">
             <Image src={arrow} alt={""} className="rotate-180" />
           </div>
           <span className="text-[1.6rem] text-[#160042] leading-[150%] font-400 ">
             Back
           </span>
-        </Link>
+        </div>
         <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
           <Button
-            classes={
-              "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
-            }
+            classes={"bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"}
           >
             <div className="flex gap-[.8rem]">
               <Image src={star} className="" alt="" />
@@ -88,7 +96,10 @@ const DetailHeader = ({ link }: { link: string }) => {
           </div>
         ) : (
           <>
-            <Link href={'/ui-ux-kits'} className="flex-1 flex items-center gap-[1.447rem]  ">
+            <Link
+              href={"/ui-ux-kits"}
+              className="flex-1 flex items-center gap-[1.447rem]  "
+            >
               <div className="">
                 <Image src={arrow} alt={""} className="rotate-180" />
               </div>

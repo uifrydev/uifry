@@ -71,6 +71,7 @@ module.exports = {
     transitionProperty: {
       height: "height",
       maxHeight: "maxHeight",
+      all:'all'
     },
   },
   plugins: [],

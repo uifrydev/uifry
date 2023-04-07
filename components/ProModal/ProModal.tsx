@@ -22,7 +22,7 @@ import ProTag from "./ProTag";
 import { useRouter } from "next/router";
 import useOutseta from "@/customHooks/useOutseta";
 
-const ProModal = () => {
+const ProModal = ({ classes }: { classes?: string }) => {
   const dispatch = useDispatch();
   //   const outsetaRef = useRef<any>();
   //   const router = useRouter();
@@ -52,7 +52,9 @@ const ProModal = () => {
   //   };
   const { openLogin } = useOutseta();
   return (
-    <div className="min-w-full min-h-full z-[9908989898989] fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem]">
+    <div
+      className={`min-w-full min-h-full z-[9908989898989]  ease-linear fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem] ${classes}`}
+    >
       <div className="flex flex-col bg-[#09397B] py-[3rem] px-[4.7rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[58rem] mx-auto relative">
         <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
         <Image src={pro2} alt="" className="absolute left-0 top-0 " />
@@ -122,7 +124,10 @@ const ProModal = () => {
           </Button>
           <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[1.5rem] mx-auto">
             Already a pro member?{" "}
-            <span onClick={openLogin} className="underline cursor-pointer font-700">
+            <span
+              onClick={openLogin}
+              className="underline cursor-pointer font-700"
+            >
               Login here
             </span>
           </p>

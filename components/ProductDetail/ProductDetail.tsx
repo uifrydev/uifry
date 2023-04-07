@@ -58,23 +58,6 @@ const ProductDetail: FC<
     }
     fecthData();
   }, [router.asPath]);
-  const openLogin = async (options: any = {}): Promise<AuthResult> => {
-    dispatch(setLoading(true));
-    return new Promise((resolve, reject) => {
-      if (!outsetaRef.current?.auth)
-        return reject({ success: false, error: "auth is not available" });
-      const authenticationCallbackUrl = "http://localhost:3000";
-      try {
-        outsetaRef.current.auth.open({
-          widgetMode: "login",
-          authenticationCallbackUrl: window.location.href,
-          ...options,
-        });
-      } catch (error) {
-        reject({ success: false, error });
-      }
-    });
-  };
   const ref = useRef<HTMLDivElement>(null);
   return (
     <div
