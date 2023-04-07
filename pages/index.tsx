@@ -33,10 +33,10 @@ const Home: NextPage<{
   const { openModal, openModal1 } = useSelector(
     (state: RootState) => state.features
   );
+  const { user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState(uiTemplates[0]);
   console.log({ uiTemplates });
- 
 
   return (
     <>
@@ -48,10 +48,20 @@ const Home: NextPage<{
       {/* <FilterBar /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
-          <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-            Discover templates, briefs, jobs, resources crafted for
-            <span className="gradient-text"> UI UX designers</span>
-          </h2>
+          {!user ? (
+            <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+              Discover templates, briefs, jobs, resources crafted for
+              <span className="gradient-text"> UI UX designers</span>
+            </h2>
+          ) : (
+            <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+              Wellcome,
+              <span className="gradient-text">
+                {" "}
+                {user?.FullName.split(" ")[0]}
+              </span>
+            </h2>
+          )}
           <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
             UIFry is the ultimate hub for UI UX designers to grow, learn and
             smash client work daily with so much more.

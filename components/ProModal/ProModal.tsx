@@ -20,35 +20,37 @@ import { setLoading } from "@/store/slices/auth";
 import { loadOutseta } from "@/utils/outseta";
 import ProTag from "./ProTag";
 import { useRouter } from "next/router";
+import useOutseta from "@/customHooks/useOutseta";
 
 const ProModal = () => {
   const dispatch = useDispatch();
-  const outsetaRef = useRef<any>();
-  const router = useRouter();
-  useEffect(() => {
-    async function fecthData() {
-      outsetaRef.current = await loadOutseta();
-    }
-    fecthData();
-  }, []);
-  const openLogin = async (options: any = {}): Promise<any> => {
-    dispatch(updateProModal(false));
-    dispatch(setLoading(true));
-    return new Promise((resolve, reject) => {
-      if (!outsetaRef.current?.auth)
-        return reject({ success: false, error: "auth is not available" });
-      const authenticationCallbackUrl = "http://localhost:3000";
-      try {
-        outsetaRef.current.auth.open({
-          widgetMode: "login",
-          authenticationCallbackUrl: window.location.href,
-          ...options,
-        });
-      } catch (error) {
-        reject({ success: false, error });
-      }
-    });
-  };
+  //   const outsetaRef = useRef<any>();
+  //   const router = useRouter();
+  //   useEffect(() => {
+  //     async function fecthData() {
+  //       outsetaRef.current = await loadOutseta();
+  //     }
+  //     fecthData();
+  //   }, []);
+  //   const openLogin = async (options: any = {}): Promise<any> => {
+  //     dispatch(updateProModal(false));
+  //     dispatch(setLoading(true));
+  //     return new Promise((resolve, reject) => {
+  //       if (!outsetaRef.current?.auth)
+  //         return reject({ success: false, error: "auth is not available" });
+  //       const authenticationCallbackUrl = "http://localhost:3000";
+  //       try {
+  //         outsetaRef.current.auth.open({
+  //           widgetMode: "login",
+  //           authenticationCallbackUrl: window.location.href,
+  //           ...options,
+  //         });
+  //       } catch (error) {
+  //         reject({ success: false, error });
+  //       }
+  //     });
+  //   };
+  const { openLogin } = useOutseta();
   return (
     <div className="min-w-full min-h-full z-[9908989898989] fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem]">
       <div className="flex flex-col bg-[#09397B] py-[3rem] px-[4.7rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[58rem] mx-auto relative">
@@ -120,7 +122,7 @@ const ProModal = () => {
           </Button>
           <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[1.5rem] mx-auto">
             Already a pro member?{" "}
-            <span onClick={openLogin} className="underline font-700">
+            <span onClick={openLogin} className="underline cursor-pointer font-700">
               Login here
             </span>
           </p>
