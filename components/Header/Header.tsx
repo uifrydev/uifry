@@ -116,14 +116,12 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   return (
     <>
       {/* <div id="signup-embed"></div> */}
-      
 
-      
       <header
         className={`flex flex-col z-[154] bg-primary 
          sticky ${
-          !user ? "top-[6.3rem]" : "top-0"
-        } border-b-[1px] w-full border-border`}
+           !user ? "top-[6.3rem]" : "top-0"
+         } border-b-[1px] w-full border-border`}
       >
         <div className="flex w-full sm:flex-col">
           <Link
@@ -282,8 +280,8 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
             <Image src={features.isMenu ? cross : menu} alt={""} />
           </div>
         </div>
-        <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border">
-          {features.isMenu ? (
+        {features.isMenu ? (
+          <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border">
             <div className="mr-auto flex items-center gap-[1rem]">
               <Button
                 classes={"bg-gradient rounded-[5rem] !px-[2.2rem] !py-[1rem]"}
@@ -305,37 +303,41 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                 </span>
               </Button>
             </div>
-          ) : (
-            <>
-              <div className=" border-r-[1px] border-border">
-                <p className="text-[2.4rem] font-700 ">
-                  <span className="gradient-text">{title[0]}</span> {title[1]}
-                </p>
+          </div>
+        ) : (
+          <div
+            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border ${
+              istitle == false  && "md:hidden"
+            }`}
+          >
+            <div className={`border-r-[1px] border-border `}>
+              <p className="text-[2.4rem] font-700 ">
+                <span className="gradient-text">{title[0]}</span> {title[1]}
+              </p>
+            </div>
+            <div className="flex-1 flex items-center gap-[1.447rem]  ">
+              <div className="">
+                <Image src={home} alt={""} />
               </div>
-              <div className="flex-1 flex items-center gap-[1.447rem]  ">
-                <div className="">
-                  <Image src={home} alt={""} />
-                </div>
-                {breadcrums.map((item, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <div className="">
-                        <Image src={arrow} alt={""} />
-                      </div>
-                      <span
-                        className={`text-[1.6rem] ${
-                          index == 0 ? "text-[#160042]" : "text-secondaryGray"
-                        } leading-[150%] font-400`}
-                      >
-                        {item}
-                      </span>
-                    </Fragment>
-                  );
-                })}
-              </div>
-            </>
-          )}
-        </div>
+              {breadcrums.map((item, index) => {
+                return (
+                  <Fragment key={index}>
+                    <div className="">
+                      <Image src={arrow} alt={""} />
+                    </div>
+                    <span
+                      className={`text-[1.6rem] ${
+                        index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                      } leading-[150%] font-400`}
+                    >
+                      {item}
+                    </span>
+                  </Fragment>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
     </>
   );

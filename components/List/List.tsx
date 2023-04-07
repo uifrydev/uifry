@@ -18,8 +18,8 @@ const List = ({
 }) => {
   return (
     <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] py-[3rem] px-[4rem]">
-      <div className="flex gap-[3rem] justify-between">
-        <div className="flex gap-[2rem] items-center">
+      <div className="flex gap-[3rem] sm:flex-col sm:items-center justify-between">
+        <div className="flex gap-[2rem] items-center sm:flex-wrap sm:justify-center">
           <div className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
             {title}
           </div>
