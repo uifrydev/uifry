@@ -41,7 +41,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         } overflow-hidden fixed ${
           !user ? "top-[6.3rem]" : "top-0"
         } z-[10] bg-primary pt-[9rem] ${
-          isDetail ? "lg:pt-[17rem] md:pt-[6.3rem]" : "lg:pt-[17rem] md:pt-[6.3rem]"
+          isDetail ? "lg:pt-[17rem]" : "lg:pt-[17rem]"
         }  h-[100vh] ${
           features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll" : "lg:max-h-0"
         }  `}
