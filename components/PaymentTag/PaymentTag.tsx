@@ -5,7 +5,7 @@ import payment2 from '../../public/assets/images/payment2.png'
 import payment3 from '../../public/assets/images/payment3.png'
 const PaymentTag = () => {
   return (
-    <div className="py-[1.4rem] pl-[4rem] pr-[2rem] bg-[#09397B] mt-[2.5rem] rounded-[1.6rem] relative overflow-hidden">
+    <div className="py-[1.9rem] pl-[4rem]  pr-[2rem] bg-[#09397B] mt-[1rem] rounded-[1.6rem] relative overflow-hidden">
         <Image src={payment1} className='absolute top-0 left-0' alt="" />
         <Image src={payment2} className='absolute top-0 right-0' alt="" />
         <Image src={payment3} className='absolute top-0 -right-[7rem]' alt="" />

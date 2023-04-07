@@ -56,10 +56,10 @@ const signup = () => {
             <h2 className="mt-[2.5rem] text-primaryBlack font-700 text-[3.4rem] leading-[5.4rem] satoshi">
               Become a Pro
             </h2>
-            <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mb-[2.5rem]">
+            <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mb-[1.5rem]">
               Join 56,909 UI UX Designers today!
             </p>
-            <div className="flex flex-col gap-[1rem] mt-[2rem]">
+            <div className="flex flex-col gap-[1rem] mt-[1rem]">
               <ProTag
                 src={unlimited}
                 title="Unlimited downloads and access!"
