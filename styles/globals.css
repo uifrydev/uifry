@@ -158,7 +158,7 @@ select {
   @apply font-safi
 }
 #signup-embed{
-  @apply w-full 
+  @apply w-full
 }
 .o--header{
   @apply !hidden

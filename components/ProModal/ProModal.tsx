@@ -74,7 +74,7 @@ const ProModal = () => {
         <p className="text-[1.4rem] font-400 leading-[2.9rem] text-[#fff] ">
           Join 56,909 UI UX Designers today!
         </p>
-        <div className="flex flex-col gap-[1rem] mt-[2.6rem]">
+        <div className="flex flex-col gap-[1rem] mt-[2rem]">
           <ProTag
             src={unlimited}
             title="Unlimited downloads and access!"
@@ -104,7 +104,10 @@ const ProModal = () => {
             onClick={() => {
               dispatch(updateProModal(false));
               document.body.classList.remove("!overflow-y-hidden");
-              router.push("/signup");
+              //   router.push("/signup");
+              if (window) {
+                window.location.href = "/signup";
+              }
             }}
             // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
           >
@@ -115,7 +118,7 @@ const ProModal = () => {
               </span>
             </div>
           </Button>
-          <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[2rem] mx-auto">
+          <p className="text-[#fff] text-[1.6rem] max-w-[30rem] font-400 mt-[1.5rem] mx-auto">
             Already a pro member?{" "}
             <span onClick={openLogin} className="underline font-700">
               Login here

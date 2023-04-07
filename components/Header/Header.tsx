@@ -131,7 +131,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
               <div className="flex flex-1 px-[4rem] items-center gap-[1.6rem]">
                 <Image src={userss} alt="" />
                 <p className="text-primaryBlack text-[1.6rem] ">
-                  Join <span className="font-700 leading-[130%] ">56,000+</span>{" "}
+                  Join <span className="font-700 leading-[130%] mt-[5px]">56,000+</span>{" "}
                   designers today!
                 </p>
               </div>
