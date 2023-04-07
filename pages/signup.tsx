@@ -38,7 +38,7 @@ const signup = () => {
   }, [router.asPath]);
   return (
     <>
-      <div className="flex flex-col items-center w-full min-h-[100vh] bg-[#F6F9FC]">
+      <div className="flex flex-col items-center w-full min-h-[100vh] bg-primary">
         <div className="flex max-w-[144rem]">
           <div className="flex flex-col flex-1 pr-[7rem] pt-[3.5rem] pl-[3rem]">
             <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-[#E5E9FF]">
@@ -83,6 +83,7 @@ const signup = () => {
                 title="Cancel anytime! No strings attached!"
                 description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
                 classes="!pb-[2.5rem] !pt-[2.2rem] "
+                imageClass="w-[6rem]"
               />
             </div>
             <PaymentTag />

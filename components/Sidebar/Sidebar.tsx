@@ -54,7 +54,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
               className={`border-r-[1px] border-b-[1px] ${
                 toggle == index || router.pathname.includes(item.link)
                   ? "border-r-[#00B3FF] bg-[#fff]"
-                  : "border-[#efe9ff]"
+                  : "border-border"
               } py-[1.2rem] px-[2rem] cursor-pointer`}
               onClick={() => dispatch(updateMenu(false))}
             >
@@ -116,7 +116,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         <div
           className={`p-[2rem] ${
             height < 800 && "pb-[10rem]"
-          } relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-[#efe9ff]`}
+          } relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-border`}
         >
           <div className="flex flex-col gap-[.5rem]">
             <div className="flex">

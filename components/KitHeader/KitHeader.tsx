@@ -22,12 +22,12 @@ const DetailHeader = ({ link }: { link: string }) => {
     <header
       className={`flex flex-col z-[154] bg-primary  sticky ${
         user ? "top-0" : "top-[6.3rem]"
-      } border-b-[1px] w-full border-[#efe9ff]`}
+      } border-b-[1px] w-full border-border`}
     >
       <div className="flex w-full">
         <Link
           href={"/"}
-          className="py-[2.237rem] px-[4rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-[#efe9ff]"
+          className="py-[2.237rem] px-[4rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-border"
         >
           <Image src={logo} alt={""} />
         </Link>
@@ -73,7 +73,7 @@ const DetailHeader = ({ link }: { link: string }) => {
           <Image src={features.isMenu ? cross : menu} alt={""} />
         </div>
       </div>
-      <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-[#efe9ff]">
+      <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border">
         {features.isMenu ? (
           <div className="mr-auto flex items-center gap-[1rem]">
             <Button

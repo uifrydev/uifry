@@ -46,23 +46,27 @@ module.exports = {
         safi: ["safi"],
         inters: ["inters"],
       },
+
       backgroundColor: {
-        primary: "#F6F9FC",
+        // primary: "#F6F9FC",
+        primary: "#eef2f6",
       },
       colors: {
         primaryBlack: "#160042",
-        secondaryBlack:'#0A2540',
+        secondaryBlack: "#0A2540",
         secondaryGray: "#6B7194",
         tertiaryGray: "#B6B9CE",
         heading: "#160042",
+        // border:'#efe9ff'
+        border:'#C8D4E3'
       },
       boxShadow: {
         cardShadow: "51px 51px 132px -16px rgb(49 51 114 / 8%)",
         cardShadowHover: "0px 21px 132px -16px rgba(49, 51, 114, 0.23)",
         info: "0px 50px 100px -20px rgb(50 50 93 / 0%),0px 30px 60px -30px rgb(0 0 0 / 9%)",
-        stcker:'0px 15px 20px rgba(0, 0, 0, 0.05)',
-        logo:'51px 51px 132px -16px rgba(49, 51, 114, 0.08);',
-        signup:'0px 4px 50px rgba(0, 0, 0, 0.1);'
+        stcker: "0px 15px 20px rgba(0, 0, 0, 0.05)",
+        logo: "51px 51px 132px -16px rgba(49, 51, 114, 0.08);",
+        signup: "0px 4px 50px rgba(0, 0, 0, 0.1);",
       },
       backgroundImage: {
         side: "linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))",
@@ -71,7 +75,7 @@ module.exports = {
     transitionProperty: {
       height: "height",
       maxHeight: "maxHeight",
-      all:'all'
+      all: "all",
     },
   },
   plugins: [],

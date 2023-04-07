@@ -116,15 +116,18 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   return (
     <>
       {/* <div id="signup-embed"></div> */}
+      
+
+      
       <header
-        className={`flex flex-col z-[154] bg-primary  sticky ${
+        className={`flex flex-col z-[154] bg-primary md:hidden sticky ${
           !user ? "top-[6.3rem]" : "top-0"
-        } border-b-[1px] w-full border-[#efe9ff]`}
+        } border-b-[1px] w-full border-border`}
       >
         <div className="flex w-full sm:flex-col">
           <Link
             href={"/"}
-            className="py-[2.237rem] px-[3.95rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-[#efe9ff]"
+            className="py-[2.237rem] px-[3.95rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-border"
           >
             <Image src={logo} alt={""} />
           </Link>
@@ -143,7 +146,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
             </>
           ) : (
             <>
-              <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-[#efe9ff]">
+              <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-border">
                 <p className="text-[3rem] font-700 leading-[4.1rem] font-safi">
                   <span className="gradient-text">{title[0]}</span> {title[1]}
                 </p>
@@ -278,7 +281,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
             <Image src={features.isMenu ? cross : menu} alt={""} />
           </div>
         </div>
-        <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-[#efe9ff]">
+        <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border">
           {features.isMenu ? (
             <div className="mr-auto flex items-center gap-[1rem]">
               <Button
@@ -303,7 +306,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
             </div>
           ) : (
             <>
-              <div className=" border-r-[1px] border-[#efe9ff]">
+              <div className=" border-r-[1px] border-border">
                 <p className="text-[2.4rem] font-700 ">
                   <span className="gradient-text">{title[0]}</span> {title[1]}
                 </p>
