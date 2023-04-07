@@ -49,7 +49,7 @@ module.exports = {
 
       backgroundColor: {
         // primary: "#F6F9FC",
-        primary: "#eef2f6",
+        primary: "#F3F8FA",
       },
       colors: {
         primaryBlack: "#160042",
@@ -58,7 +58,7 @@ module.exports = {
         tertiaryGray: "#B6B9CE",
         heading: "#160042",
         // border:'#efe9ff'
-        border:'#DDE5EE'
+        border:'#E4EBF1'
       },
       boxShadow: {
         cardShadow: "51px 51px 132px -16px rgb(49 51 114 / 8%)",
