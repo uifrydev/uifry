@@ -101,7 +101,7 @@ const signup = () => {
             {/* <OutsetaEmbed /> */}
           </div>
         </div>
-        <div className="flex justify-between items-center mt-[10rem] mb-[5rem] w-full max-w-[144rem]">
+        <div className="flex justify-between items-center mt-[2rem] mb-[2rem] w-full max-w-[144rem]">
           <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] ">
             All Rights Reserved 2023® UIFry LTD
           </p>
