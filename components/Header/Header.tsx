@@ -209,7 +209,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
               }
             > */}
             {user ? (
-              <>
+              <div className="flex items-center gap-[2rem] py-[.5rem] px-[2rem] rounded-full bg-[#fff] ">
                 <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
                   {user?.FullName}
                 </span>
@@ -224,7 +224,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   {isSetting && (
                     <div
                       // tabIndex={1}
-                      className="bg-[#fff] shadow-xl absolute top-[4rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
+                      className="bg-[#fff] shadow-xl absolute top-[5rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
                     >
                       <ul>
                         <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
@@ -240,7 +240,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                     </div>
                   )}
                 </div>
-              </>
+              </div>
             ) : (
               <>
                 <Button
