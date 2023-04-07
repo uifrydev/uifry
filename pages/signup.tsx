@@ -38,7 +38,7 @@ const signup = () => {
   }, [router.asPath]);
   return (
     <>
-      <div className="flex flex-col items-center w-full min-h-[100vh] justify-center bg-[#F6F9FC]">
+      <div className="flex flex-col items-center w-full min-h-[100vh] bg-[#F6F9FC]">
         <div className="flex max-w-[144rem]">
           <div className="flex flex-col flex-1 pr-[7rem] pt-[3.5rem] pl-[3rem]">
             <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-[#E5E9FF]">
@@ -47,7 +47,7 @@ const signup = () => {
               </Link>
               <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] ">
                 Already have an account?
-                <span className="text-[#00B3FF] cursor-pointer font-700">
+                <span onClick={()=>{}} className="text-[#00B3FF] cursor-pointer font-700">
                   {" "}
                   Login
                 </span>
@@ -101,7 +101,7 @@ const signup = () => {
             {/* <OutsetaEmbed /> */}
           </div>
         </div>
-        <div className="flex justify-between items-center mt-[2rem] mb-[2rem] w-full max-w-[144rem]">
+        <div className="flex justify-between items-center mt-[2rem] mb-[2rem] w-full max-w-[144rem] px-[3rem]">
           <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] ">
             All Rights Reserved 2023® UIFry LTD
           </p>
