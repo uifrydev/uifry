@@ -11,6 +11,13 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { updateProModal } from "@/store/slices/featues";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+const OutsetaEmbed = dynamic(
+  () => import("../components/OutsetaEmbedSignup/OutsetaEmbedSignup"),
+  {
+    ssr: false,
+  }
+);
 const signup = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -20,7 +27,7 @@ const signup = () => {
     sticker?.classList.add("!hidden");
     dispatch(updateProModal(false));
     document.body.classList.remove("!overflow-y-hidden");
-    
+
     //     const script = document.createElement("script");
     //     script.src = "https://cdn.outseta.com/outseta.min.js";
     //     script.setAttribute("data-options", JSON.stringify(o_signup_options));
@@ -91,6 +98,7 @@ const signup = () => {
           </div>
           <div className="flex w-[64rem] rounded-b-[1rem] bg-white shadow-signup">
             <div id="signup-embed"></div>
+            {/* <OutsetaEmbed /> */}
           </div>
         </div>
         <div className="flex justify-between items-center mt-[10rem] mb-[5rem] w-full max-w-[144rem]">
@@ -99,12 +107,18 @@ const signup = () => {
           </p>
           <ul className="flex gap-[1rem] ">
             <li>
-              <Link href={""} className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]">
+              <Link
+                href={""}
+                className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
+              >
                 FAQ's
               </Link>
             </li>
             <li>
-              <Link href={""} className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]">
+              <Link
+                href={""}
+                className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
+              >
                 Support
               </Link>
             </li>

@@ -183,7 +183,6 @@ const Home: NextPage<{
             ))}
           </List>
         </div>
-        <div id="signup-embed"></div>
       </div>
     </>
   );
