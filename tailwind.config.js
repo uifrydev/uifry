@@ -58,7 +58,7 @@ module.exports = {
         tertiaryGray: "#B6B9CE",
         heading: "#160042",
         // border:'#efe9ff'
-        border:'#C8D4E3'
+        border:'#DDE5EE'
       },
       boxShadow: {
         cardShadow: "51px 51px 132px -16px rgb(49 51 114 / 8%)",

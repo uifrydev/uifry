@@ -55,7 +55,7 @@ const Home: NextPage<{
             </h2>
           ) : (
             <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Wellcome,
+              Welcome,
               <span className="gradient-text">
                 {" "}
                 {user?.FullName.split(" ")[0]}
