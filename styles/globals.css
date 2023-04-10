@@ -151,7 +151,10 @@ select {
   ) !important;
   @apply !w-full !rounded-full
 }
-.o--Input--input,.o--Select--select,.o--PaymentInputStripe--stripe{
+.o--App--authWidget{
+  @apply !rounded-[2.4rem] overflow-hidden sm:!mx-[2rem]
+}
+.o--Input--input,.o--Select--select,.o--PaymentInputStripe--stripe {
   @apply !rounded-full !bg-[#EEF2F6] !border-[1px] !border-[#E5E9FF]
 }
 .o--Label--label,.o--Widget--widget h1{

@@ -12,6 +12,7 @@ import home from "../../public/assets/icons/home.svg";
 import arrow from "../../public/assets/icons/arrow-fa.svg";
 import star from "../../public/assets/icons/star.svg";
 import setting from "../../public/assets/icons/setting.svg";
+import proBadge from "../../public/assets/icons/pro-badge.svg";
 import menu from "../../public/assets/icons/menu.svg";
 import cross from "../../public/assets/icons/cross.svg";
 import Image from "next/image";
@@ -207,10 +208,14 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
               }
             > */}
             {user ? (
-              <div className="flex items-center gap-[2rem] py-[.5rem] px-[2rem] rounded-full bg-[#fff] ">
+              <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] rounded-full bg-[#fff] ">
                 <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
                   {user?.FullName}
                 </span>
+                <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                  <Image src={star} alt='' className="w-[1.2rem]" />
+                  <span className="text-[1.1rem] font-700 satoshi text-[#fff]">Pro</span>
+                </div>
                 <div className="relative ">
                   <Button
                     classes="!px-[.3rem]"
