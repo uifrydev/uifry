@@ -53,7 +53,7 @@ const ProModal = ({ classes }: { classes?: string }) => {
   const { openLogin } = useOutseta();
   return (
     <div
-      className={`min-w-full min-h-full z-[9908989898989]  ease-linear fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem] ${classes}`}
+      className={`min-w-full pb-[3rem] h-full z-[9908989898989] overflow-y-scroll ease-linear fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem] ${classes}`}
     >
       <div className="flex flex-col bg-[#09397B] py-[3rem] px-[4.7rem] overflow-hidden rounded-[1.6rem] justify-center items-center max-w-[58rem] mx-auto relative">
         <Image src={pro1} alt="" className="absolute left-0 top-0 z-[1]" />
