@@ -5,6 +5,7 @@ const initialState: FeatureState = {
   openModal: false,
   openModal1: false,
   proModal: false,
+  faqModal:false,
   isMenu: false,
   navigation: {
     mainPage: "",
@@ -26,6 +27,9 @@ const featureSlice = createSlice({
     updateProModal: (state, action: PayloadAction<boolean>) => {
       state.proModal = action.payload;
     },
+    updateFAQModal: (state, action: PayloadAction<boolean>) => {
+      state.faqModal = action.payload;
+    },
     updateMenu: (state, action: PayloadAction<boolean>) => {
       state.isMenu = action.payload;
     },
@@ -35,6 +39,6 @@ const featureSlice = createSlice({
   },
 });
 
-export const { updateModal, updateModal1, updateMenu, setIsAnimating,updateProModal } =
+export const { updateModal, updateModal1, updateMenu, setIsAnimating,updateProModal,updateFAQModal } =
   featureSlice.actions;
 export default featureSlice.reducer;

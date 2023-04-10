@@ -45,7 +45,8 @@ export interface FeatureState {
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;
-  proModal:boolean
+  proModal:boolean;
+  faqModal:boolean;
 }
 export interface FilterParams {
   subCategory: string;

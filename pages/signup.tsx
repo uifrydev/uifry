@@ -8,10 +8,12 @@ import heart from "../public/assets/images/heart.png";
 import cancel from "../public/assets/images/cancel.png";
 import PaymentTag from "@/components/PaymentTag/PaymentTag";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { updateProModal } from "@/store/slices/featues";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFAQModal, updateProModal } from "@/store/slices/featues";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import FAQsModal from "@/components/FAQModal/FAQModal";
+import { RootState } from "@/store/store";
 const OutsetaEmbed = dynamic(
   () => import("../components/OutsetaEmbedSignup/OutsetaEmbedSignup"),
   {
@@ -21,6 +23,7 @@ const OutsetaEmbed = dynamic(
 const signup = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const {faqModal} =useSelector((state:RootState)=>state.features)
   const router = useRouter();
   useEffect(() => {
     const sticker = document.getElementById("sticker");
@@ -81,14 +84,18 @@ const signup = () => {
           <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] order-1 xl:order-2">
             All Rights Reserved 2023® UIFry LTD
           </p>
-          <ul className="flex gap-[1rem] order-2 xl:order-1">
-            <li>
-              <Link
-                href={""}
+          <ul className="flex gap-[1rem] order-2 xl:order-1 cursor-pointer">
+            <li onClick={()=>{
+                    document.body.classList.add("!overflow-y-hidden");
+              
+              dispatch(updateFAQModal(true))
+
+            }}>
+              <span 
                 className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
               >
                 FAQ's
-              </Link>
+              </span>
             </li>
             <li>
               <Link

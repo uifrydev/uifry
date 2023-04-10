@@ -17,11 +17,12 @@ import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
 import { loadOutseta } from "@/utils/outseta";
+import FAQsModal from "@/components/FAQModal/FAQModal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const outsetaRef = useRef<any>();
-  const { isAnimating, proModal } = useSelector(
+  const { isAnimating, proModal, faqModal } = useSelector(
     (state: RootState) => state.features
   );
   const user = useSelector((state: RootState) => state.auth.user);
@@ -81,6 +82,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main className={"relative"}>
         {!user && <Sticker1 classes={"!rounded-none mx-auto"} />}
         {proModal && <ProModal classes="" />}
+        {faqModal && <FAQsModal />}
         <Component {...pageProps} />
       </main>
     </>
