@@ -22,7 +22,21 @@ const useOutseta = () => {
       const accessToken =
         (router.query.access_token as string) || localStorage.getItem("token");
       if (router.query.access_token) {
-        router.push(router.pathname);
+        // router.push(router.pathname);
+        const { query } = router;
+
+        // Remove the access_token from the query object
+        delete query.access_token;
+      
+        // Update the URL without a page refresh, and replace the current history entry
+        router.push(
+          {
+            pathname: router.pathname,
+            query,
+          },
+          undefined,
+          { shallow: true }
+        );
       }
       if (accessToken) {
         // If there is an acccess token present
