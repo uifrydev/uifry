@@ -41,9 +41,9 @@ const FilterBar: FC<FilterBarProps> = ({
               );
             }}
             key={index}
-            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${item.title.includes(filter?.subCategory)
+            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]  ${item.title.includes(filter?.subCategory)
                 ? "bg-gradient text-[#ffffff]"
-                : "border-[#E5E9FF]"
+                : "!border-border"
               }`}
           >
             <span>{item?.title}</span>

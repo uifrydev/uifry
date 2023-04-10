@@ -49,7 +49,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
               classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${
                 item.link == childLink
                   ? "bg-gradient text-[#ffffff]"
-                  : "border-[#E5E9FF]"
+                  : "!border-border"
               }`}
             >
               <span>{item?.title}</span>
