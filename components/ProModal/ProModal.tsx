@@ -24,32 +24,6 @@ import useOutseta from "@/customHooks/useOutseta";
 
 const ProModal = ({ classes }: { classes?: string }) => {
   const dispatch = useDispatch();
-  //   const outsetaRef = useRef<any>();
-  //   const router = useRouter();
-  //   useEffect(() => {
-  //     async function fecthData() {
-  //       outsetaRef.current = await loadOutseta();
-  //     }
-  //     fecthData();
-  //   }, []);
-  //   const openLogin = async (options: any = {}): Promise<any> => {
-  //     dispatch(updateProModal(false));
-  //     dispatch(setLoading(true));
-  //     return new Promise((resolve, reject) => {
-  //       if (!outsetaRef.current?.auth)
-  //         return reject({ success: false, error: "auth is not available" });
-  //       const authenticationCallbackUrl = "http://localhost:3000";
-  //       try {
-  //         outsetaRef.current.auth.open({
-  //           widgetMode: "login",
-  //           authenticationCallbackUrl: window.location.href,
-  //           ...options,
-  //         });
-  //       } catch (error) {
-  //         reject({ success: false, error });
-  //       }
-  //     });
-  //   };
   const { openLogin } = useOutseta();
   return (
     <div

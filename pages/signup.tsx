@@ -40,7 +40,7 @@ const signup = () => {
     <>
       <div className="flex flex-col items-center w-full min-h-[100vh] bg-primary">
         <div className="flex max-w-[144rem] w-full items-center xl:flex-col">
-          <div className="flex flex-col flex-1 xl:w-full pr-[7rem] pt-[3.5rem] pl-[5rem] sm:px-[2rem]">
+          <div className="flex flex-col flex-1 xl:w-full pt-[3.5rem] px-[5rem] sm:px-[2rem]">
             <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-[#E5E9FF]">
               <Link href={"/"}>
                 <Image src={logo} alt={""} />
@@ -71,7 +71,7 @@ const signup = () => {
               .
             </p>
           </div>
-          <div className="flex max-w-[64rem] w-full rounded-b-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
+          <div className="flex max-w-[64rem] sm:max-w-[36rem] xs:max-w-[32rem] w-full rounded-b-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
             <div id="signup-embed"></div>
             {/* <OutsetaEmbed /> */}
           </div>
