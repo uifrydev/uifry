@@ -288,7 +288,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
         {features.isMenu ? (
           <div className="flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border">
             <div className="mr-auto flex items-center gap-[1rem]">
-              <Button
+              {/* <Button
                 classes={"bg-gradient rounded-[5rem] !px-[2.2rem] !py-[1rem]"}
               >
                 <div className="flex gap-[.8rem]">
@@ -306,13 +306,81 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                 <span className="text-[#ffffff] font-[500]  text-[1.6rem]  leading-[150%] satoshi">
                   Login
                 </span>
-              </Button>
+              </Button> */}
+               {user ? (
+              <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] border-[1px] border-border rounded-full bg-[#fff] ">
+                <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
+                  {user?.FullName?.split(' ')[0]}
+                </span>
+                <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                  <Image src={star} alt='' className="w-[1.2rem]" />
+                  <span className="text-[1.1rem] font-700 satoshi text-[#fff]">Pro</span>
+                </div>
+                <div className="relative ">
+                  <Button
+                    classes="!px-[.3rem]"
+                    onClick={() => setSetting((prev) => !prev)}
+                    // onBlur={() => setSetting(false)}
+                  >
+                    <Image alt="" src={setting} />
+                  </Button>
+                  {isSetting && (
+                    <div
+                      // tabIndex={1}
+                      className="bg-[#fff] shadow-xl absolute top-[5rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
+                    >
+                      <ul>
+                        <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
+                          Profile
+                        </li>
+                        <li
+                          onClick={logout}
+                          className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
+                        >
+                          Logout
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <>
+                <Button
+                  classes={
+                    "bg-gradient rounded-[5rem]"
+                  }
+                  onClick={() => {
+                    dispatch(updateProModal(true));
+                    document.body.classList.add("!overflow-y-hidden");
+                  }}
+                  // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+                >
+                  <div className="flex gap-[.8rem]">
+                    <Image src={star} className="" alt="" />
+                    <span className="text-[#ffffff] font-[500] text-[1.6rem] flex satoshi">
+                      Join Pro
+                    </span>
+                  </div>
+                </Button>
+                <Button
+                  classes={
+                    "bg-[#0A2540]  rounded-[3.2rem] "
+                  }
+                  onClick={openLogin}
+                >
+                  <span className="text-[#ffffff] font-[500]  text-[1.6rem] leading-[150%] satoshi">
+                    Login
+                  </span>
+                </Button>
+              </>
+            )}
             </div>
           </div>
         ) : (
           <div
             className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border ${
-              istitle == false  && "md:hidden"
+              istitle == false  && "md:hiddens"
             }`}
           >
             <div className={`border-r-[1px] border-border `}>
