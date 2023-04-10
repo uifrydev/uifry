@@ -14,6 +14,7 @@ import {
   wrapper,
 } from "../utils/functions";
 import BlockContent from "@sanity/block-content-to-react";
+import profiles from "../public/assets/icons/logo1.svg";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Props } from "next/script";
 import { ExtrasProps } from "@/Interface/interface";
@@ -26,7 +27,6 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
     if (res.slug.current === "license-agreement") {
       // wrapper();
     }
-    
   }, [router.asPath]);
 
   return (
@@ -37,13 +37,15 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
         <div className="flex gap-[6rem] lg:flex-col">
           <div className="xs1:px-[1rem] flex flex-col flex-1 f rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
-              <Image
-                src={profile}
-                className="w-[8rem] h-[8rem] rounded-full relative top-[2.8rem] left-[4.4rem]"
-                width={80}
-                height={80}
-                alt=""
-              />
+              <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
+                <Image
+                  src={profiles}
+                  className="w-[3.8rem]  rounded-full "
+                  width={80}
+                  height={80}
+                  alt=""
+                />
+              </div>
             </div>
             <div className="flex flex-col px-[20px]">
               <div className="flex flex-col  gap-[1rem] pb-[3.6rem] border-b-[1px] border-[#E5E9FF]">
@@ -93,11 +95,10 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
                   blocks={res?.body?.body}
                   erializers={{
                     types: {
-                      block: (props: any) => {
-                      },
+                      block: (props: any) => {},
                     },
                   }}
-                  />
+                />
               </div>
             </div>
           </div>
