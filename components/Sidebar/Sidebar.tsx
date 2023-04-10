@@ -132,10 +132,10 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
             </span>
           </div>
           <div className="flex gap-[1.732rem] items-center">
-            <Image src={linkedin} alt="" />
-            <Image src={instagram} alt="" />
-            <Image src={twitter} alt="" />
-            <Image src={facebook} alt="" />
+            <Image src={linkedin} alt="" className="w-[1.6rem]" />
+            <Image src={instagram} alt="" className="w-[1.7rem]" />
+            <Image src={twitter} alt="" className="w-[1.9rem]" />
+            <Image src={facebook} alt="" className="w-[.9rem]" />
           </div>
           <span className="text-[1rem] font-400 text-[#160042]">
             UIFry LTD® 2023
