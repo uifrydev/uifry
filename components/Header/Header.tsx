@@ -208,9 +208,9 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
               }
             > */}
             {user ? (
-              <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] rounded-full bg-[#fff] ">
+              <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] border-[1px] border-border rounded-full bg-[#fff] ">
                 <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
-                  {user?.FullName}
+                  {user?.FullName?.split(' ')[0]}
                 </span>
                 <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
                   <Image src={star} alt='' className="w-[1.2rem]" />
