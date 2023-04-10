@@ -16,7 +16,6 @@ import {
 import BlockContent from "@sanity/block-content-to-react";
 import profiles from "../public/assets/icons/logo1.svg";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
-import { Props } from "next/script";
 import { ExtrasProps } from "@/Interface/interface";
 
 const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {

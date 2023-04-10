@@ -151,4 +151,5 @@ export const slugList = [
   { title: "Cookie Policy", link: "cookie-policy" },
   { title: "EULA", link: "end-user-license-agreement" },
   { title: "Returns & Refund", link: "return-refund-policy" },
+  { title: "Fair Policy Addition", link: "fair-policy-addition" },
 ];

@@ -121,7 +121,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
           <div className="flex flex-col gap-[.5rem]">
             <div className="flex">
               <Link
-                href={"license-agreement"}
+                href={"/license-agreement"}
                 className="text-secondaryGray text-[1.2rem] leading-[150%] font-400"
               >
                 License, Terms & Policy
