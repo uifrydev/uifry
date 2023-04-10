@@ -90,8 +90,7 @@ const FAQsModal = ({ classes }: { classes?: string }) => {
           <FAQTag
             description={
               <p className="text-secondaryGray text-[1.4rem] sm:text-center font-500 leading-[150%]">
-                Free trials were a limited time offer and are no longer
-                available in any country. This offer ended in March, 2023.
+                Yes, UIFry is available in all countries. If for some reason, you are not able to use UIFry in your country, please submit a <span className="text-[#00B3FF]">ticket here.</span>
               </p>
             }
             title="Is UIFry available in all countries?"
