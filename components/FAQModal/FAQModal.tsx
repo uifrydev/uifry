@@ -26,7 +26,7 @@ const FAQsModal = ({ classes }: { classes?: string }) => {
     <div
       className={`min-w-full pb-[3rem] h-full z-[9908989898989] overflow-y-scroll ease-linear fixed top-0 left-0 bg-[#000]/[0.6] pt-[5rem] ${classes}`}
     >
-      <div className="flex flex-col bg-[#fff] py-[3rem] px-[4.7rem] overflow-hidden rounded-[2.4rem] justify-center items-center max-w-[59rem] mx-auto relative">
+      <div className="flex flex-col bg-[#fff] py-[3rem] px-[4.7rem] overflow-hidden rounded-[2.4rem] justify-center items-center max-w-[61rem] mx-auto relative">
         <Image src={faq1} alt="" className="absolute left-0 top-0 z-[1]" />
         <Image src={faq2} alt="" className="absolute right-0 top-0 " />
         <Button
