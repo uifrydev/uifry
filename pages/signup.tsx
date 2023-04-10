@@ -71,7 +71,7 @@ const signup = () => {
               .
             </p>
           </div>
-          <div className="flex max-w-[64rem] rounded-b-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
+          <div className="flex max-w-[64rem] w-full rounded-b-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
             <div id="signup-embed"></div>
             {/* <OutsetaEmbed /> */}
           </div>
