@@ -39,7 +39,7 @@ const signup = () => {
   return (
     <>
       <div className="flex flex-col items-center w-full min-h-[100vh] bg-primary">
-        <div className="flex max-w-[144rem] w-full items-center xl:flex-col">
+        <div className="flex max-w-[144rem] w-full xl:items-center xl:flex-col">
           <div className="flex flex-col flex-1 xl:w-full pt-[3.5rem] px-[5rem] sm:px-[2rem]">
             <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-[#E5E9FF]">
               <Link href={"/"}>
