@@ -13,11 +13,14 @@ import { updateMenu } from "../../store/slices/featues";
 import Link from "next/link";
 import { RootState } from "@/store/store";
 import { useRouter } from "next/router";
+import useOutseta from "@/customHooks/useOutseta";
 const DetailHeader = ({ link }: { link: string }) => {
   const features = useSelector((state: RootState) => state.features);
   const { user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { logout, openLogin, openProfile, updateUser } = useOutseta();
+
   return (
     <header
       className={`flex flex-col z-[154] bg-primary  sticky ${

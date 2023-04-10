@@ -21,6 +21,9 @@ const useOutseta = () => {
       // Get the access token from the callback url
       const accessToken =
         (router.query.access_token as string) || localStorage.getItem("token");
+      if (router.query.access_token) {
+        router.push(router.pathname);
+      }
       if (accessToken) {
         // If there is an acccess token present
         // pass it along to Outseta
@@ -28,7 +31,6 @@ const useOutseta = () => {
         dispatch(setToken(accessToken));
         // const getUser:any=await asyncGetUser({})
         // dispatch(getUser)
-        router.push(router.pathname);
         // and clean up
         // router.push(router.pathname);
       }
@@ -83,7 +85,7 @@ const useOutseta = () => {
   const openProfile = async (options: any) => {
     outsetaRef.current.profile.open({ tab: "profile", ...options });
   };
-  return {openProfile,updateUser,logout,openLogin}
+  return { openProfile, updateUser, logout, openLogin };
 };
 
 export default useOutseta;
