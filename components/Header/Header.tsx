@@ -131,9 +131,9 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           >
             <Image src={logo} alt={""} />
           </Link>
-          {istitle == false ? (
+          {istitle == false && !features?.isMenu  ? (
             <>
-              <div className="flex flex-1 px-[4rem] items-center gap-[1.6rem]">
+              <div className="flex flex-1 px-[4rem] sm:pl-[2rem] items-center gap-[1.6rem]">
                 <Image src={userss} alt="" />
                 <p className="text-primaryBlack text-[1.6rem] mt-[5px]">
                   Join{" "}
@@ -379,8 +379,8 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           </div>
         ) : (
           <div
-            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden border-border ${
-              istitle == false  && "md:hiddens"
+            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden  border-border ${
+              istitle == false || true && "md:hidden"
             }`}
           >
             <div className={`border-r-[1px] border-border `}>
@@ -412,6 +412,41 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           </div>
         )}
       </header>
+      <div
+            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-md:hidden bg-primary border-border ${
+              istitle==false && "hidden"
+            }`}
+          >
+            <div className={`border-r-[1px] border-border `}>
+              <p className="text-[2.4rem] font-700 ">
+                <span className="gradient-text">{title[0]}</span> {title[1]}
+              </p>
+            </div>
+            <div className="flex-1 flex items-center gap-[1.447rem]  ">
+              <div className="">
+                <Image src={home} alt={""} />
+              </div>
+              {breadcrums.map((item, index) => {
+                return (
+                  <Fragment key={index}>
+                    <div className="">
+                      <Image src={arrow} alt={""} />
+                    </div>
+                    <span
+                      className={`text-[1.6rem] ${
+                        index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                      } leading-[150%] font-400`}
+                    >
+                      {item}
+                    </span>
+                  </Fragment>
+                );
+              })}
+            </div>
+          </div>
+
+
+
     </>
   );
 };

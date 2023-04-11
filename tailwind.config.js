@@ -13,6 +13,7 @@ module.exports = {
     screens: {
       "min-4xl": "1921px",
       "min-lg": "1024px",
+      "min-md": "769px",
       "min-xl": "1280px",
       "min-2xl": "1651px",
 
