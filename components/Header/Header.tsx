@@ -127,7 +127,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
         <div className="flex w-full sm:flex-col">
           <Link
             href={"/"}
-            className="py-[2.237rem] px-[3.95rem] lg:py-[2rem] lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-border"
+            className="py-[2.237rem] px-[3.95rem] lg:py-[2rem] mr-auto lg:pl-[2rem] min-lg:border-r-[1px]  min-lg:border-border"
           >
             <Image src={logo} alt={""} />
           </Link>

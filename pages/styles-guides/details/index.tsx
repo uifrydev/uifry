@@ -26,7 +26,7 @@ const Detail: NextPage<{ details: Data }> = ({ details }) => {
         title={["Styles", "Guides"]}
         breadcrums={["Styles Guides", "Details"]}
       />
-      <Sidebar isDetail />
+      <Sidebar isDetail={false} />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         {/* <div className=" grid grid-cols-5 3xlpx]:grid-cols-4 2xl:grid-cols-3 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]"> */}
         <ProductDetail1 isModal={false} data={details} setData={setModalData} />

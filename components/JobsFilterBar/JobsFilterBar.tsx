@@ -16,7 +16,7 @@ const JobsFilterBar = ({
   
   const [num, setNum] = useState(0);
   return (
-    <div className={`flex z-[1] lg:flex-col justify-between lg:px-[2rem] flex-wrap gap-[2rem] w-full items-center  lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"}  pt-[2rem]  pr-[4rem]`}>
+    <div className={`flex z-[1] lg:flex-col justify-between lg:px-[2rem] flex-wrap gap-[2rem] w-full items-center  lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:top-0 ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"}  pt-[2rem]  pr-[4rem]`}>
       <div className="flex-0  flex gap-[1.6rem]  lg:hidden">
         {list[5].buttons.map((item, index) => (
           <Button

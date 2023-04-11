@@ -58,13 +58,13 @@ const ProductDetail1: any = ({
             document.body.classList.remove("!overflow-y-hidden");
             dispatch(updateModal1(false));
           }}
-          className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto "
+          className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto  absolute right-[.6rem] top-[1rem]"
         >
           <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
         </div>
       )}
 
-      <div className="flex min-lg:min-w-[920px] lg:gap-[4.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-center max-w-[920px] ">
+      <div className="flex min-lg:min-w-[920px] lg:gap-[1.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-center max-w-[920px] ">
         <div className="flex flex-col gap-[1rem] lg:items-center">
           <span className="satoshi font-500 text-[1.6rem] leading-[2.3rem] text-primaryBlack ">
             {data?.subCategory}

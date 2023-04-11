@@ -34,7 +34,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
     <>
       {openModal1 && <DetailsModal1 data={modalData} setData={setModalData} />}
       <Header title={["Styles", "Guides"]} breadcrums={["Style Guides"]} />
-      <Sidebar isDetail />
+      <Sidebar isDetail={false} />
       {/* <FilterBar
         isFilter={false}
         initialData={posts}

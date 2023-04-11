@@ -27,7 +27,7 @@ const Sticker = ({ classes = "",text='' }: { classes: string,text?:string }) => 
       /> */}
       <Image
         src={drop1}
-        className="absolute top-0 -left-[12rem] h-full object-cover z-[1]"
+        className="absolute top-0 -left-[12rem] sm:hidden h-full object-cover z-[1]"
         alt=""
       />
       {/* <Image
