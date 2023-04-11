@@ -76,7 +76,7 @@ const ProductDetail: FC<
         </div>
       )}
 
-      <div className="flex min-lg:min-w-[820px] lg:gap-[4.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
+      <div className="flex min-lg:min-w-[820px] lg:gap-[1.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
         <div className="flex flex-col gap-[1rem] lg:items-center">
           <span className="font-[400] text-[1.6rem] leading-[2.2rem] text-primaryBlack ">
             {data?.category}
