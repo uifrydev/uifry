@@ -34,7 +34,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
         <div className="flex gap-[6rem] lg:flex-col">
-          <div className="xs1:px-[1rem] flex flex-col flex-1 f rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
+          <div className="xs1:px-[1rem] order-1 lg:order-2 flex flex-col flex-1 f rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
                 <Image
@@ -101,7 +101,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
               </div>
             </div>
           </div>
-          <div className="flex sticky top-[18rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[29rem] max-w-[29rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
+          <div className="flex sticky order-2 lg:order-1 lg:relative lg:top-0 top-[18rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[29rem] max-w-[29rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-[#E5E9FF]">
             <div className="flex flex-col gap-[1.6rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] w-full">
               <h4 className="satoshi text-primaryBlack text-[2.4rem] font-700 leading-[3rem]">
                 All Links
