@@ -80,7 +80,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                 </ol> */}
 
                 <BlockContent
-                  className={`body text flex flex-col gap-[2rem] pt-[3rem] `}
+                  className={`body roadmap text flex flex-col gap-[2rem] pt-[3rem] `}
                   blocks={res?.text1?.body}
                 />
                 <RoadmapSticker classes="py-[2.5rem]" src={user}>
@@ -90,12 +90,12 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                   </span>
                 </RoadmapSticker>
                 <BlockContent
-                  className={`body flex text flex-col gap-[2rem] pt-[3rem] `}
+                  className={`body flex roadmap text flex-col gap-[2rem] pt-[3rem] `}
                   blocks={res?.text2?.body}
                 />
                 <RoadmapSticker
                   src={userss}
-                  classes="border-[#00B3FF] border-l-[.5rem] !rounded-[.8rem] shadow-stcker !bg-[#fff] mb-[3.8rem]"
+                  classes="border-[#00B3FF] border-l-[.5rem] !rounded-[.8rem] shadow-stcker !bg-[#fff] mb-[.8rem]"
                 >
                     <p className="text-primaryBlack max-w-[15rem] text-[1.6rem] ">
                       Join{" "}

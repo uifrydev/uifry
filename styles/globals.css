@@ -166,6 +166,14 @@ select {
 .o--header{
   @apply !hidden
 }
+.roadmap{
+  @apply !py-[0rem]
+}
+.roadmap:first-child{
+
+  @apply !pt-[2rem]
+
+}
 @media screen and (max-width: 1920px) {
   .uitemphome a:last-child {
     display: none;

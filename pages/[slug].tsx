@@ -33,7 +33,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
       <DetailHeader link={"/"} />
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
-        <div className="flex gap-[6rem] lg:flex-col">
+        <div className="flex gap-[6rem] lg:flex-col lg:gap-[2rem]">
           <div className="xs1:px-[1rem] order-1 lg:order-2 flex flex-col flex-1 f rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
