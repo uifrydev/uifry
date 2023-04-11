@@ -180,7 +180,7 @@ const DetailHeader = ({ link }: { link: string }) => {
           <>
             <Link
               href={"/ui-ux-kits"}
-              className="flex-1 flex items-center gap-[1.447rem]  "
+              className="flex-1 flex items-center gap-[1.447rem] py-[1rem] "
             >
               <div className="">
                 <Image src={arrow} alt={""} className="rotate-180" />
