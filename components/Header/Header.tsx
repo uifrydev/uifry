@@ -133,7 +133,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           </Link>
           {istitle == false && !features?.isMenu  ? (
             <>
-              <div className="flex flex-1 px-[4rem] sm:mb-[1rem] sm:pl-[2rem] items-center gap-[1.6rem]">
+              <div className="flex flex-1 px-[4rem] sm:mb-[1.5rem] sm:pl-[2rem] items-center gap-[1.6rem]">
                 <Image src={userss} alt="" />
                 <p className="text-primaryBlack text-[1.6rem] mt-[5px]">
                   Join{" "}
