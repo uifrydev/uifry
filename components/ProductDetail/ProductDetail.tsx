@@ -62,21 +62,21 @@ const ProductDetail: FC<
   return (
     <div
       ref={ref}
-      className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] "
+      className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full relative  pt-[4rem] bg-[#ffffff] "
     >
       {showCross && (
         <div
           onClick={() => {
-            document.body.classList.remove("!overflow-hidden");
+            document.body.classList.remove("!overflow-y-hidden");
             dispatch(updateModal(false));
           }}
-          className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto "
+          className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto absolute right-[.6rem] top-[1rem]"
         >
           <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
         </div>
       )}
 
-      <div className="flex min-lg:min-w-[820px] lg:gap-[4.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end max-w-[1200px] ">
+      <div className="flex min-lg:min-w-[820px] lg:gap-[4.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
         <div className="flex flex-col gap-[1rem] lg:items-center">
           <span className="font-[400] text-[1.6rem] leading-[2.2rem] text-primaryBlack ">
             {data?.category}
