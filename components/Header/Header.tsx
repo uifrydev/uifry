@@ -380,7 +380,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
         ) : (
           <div
             className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden  border-border ${
-              istitle == false || true && "md:hidden"
+               true && "md:hidden"
             }`}
           >
             <div className={`border-r-[1px] border-border `}>
