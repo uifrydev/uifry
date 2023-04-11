@@ -18,6 +18,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
 import { loadOutseta } from "@/utils/outseta";
 import FAQsModal from "@/components/FAQModal/FAQModal";
+// Add this function before the `MyApp` component definition
 
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();

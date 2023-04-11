@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^5.3.0",

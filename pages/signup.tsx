@@ -14,13 +14,8 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import FAQsModal from "@/components/FAQModal/FAQModal";
 import { RootState } from "@/store/store";
-const OutsetaEmbed = dynamic(
-  () => import("../components/OutsetaEmbedSignup/OutsetaEmbedSignup"),
-  {
-    ssr: false,
-  }
-);
 const signup = () => {
+  
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { faqModal } = useSelector((state: RootState) => state.features);

@@ -1,3 +1,4 @@
+import { Data } from "@/Interface/interface";
 import Link from "next/link";
 import React, { useState } from "react";
 import Button from "../../components/Button/Button";
@@ -8,11 +9,11 @@ import Sticker from "../../components/Sticker/Sticker";
 import sanity from "../../sanity";
 import { list } from "../../utils/links";
 
-const Font = ({ posts }) => {
+const Font = ({ posts }:{posts:Data[]}) => {
   return (
     <>
       <Header title={["Fonts"]} breadcrums={["Fonts", "All Fonts"]} />
-      <Sidebar />
+      <Sidebar isDetail={false} />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" bg-primary rounded-[2.4rem] flex flex-col gap-[3rem] p-[3rem] items-center py-[6rem] xs:px-[1rem]">
           <div className="flex flex-col gap-[1rem] items-center">
@@ -40,7 +41,7 @@ const Font = ({ posts }) => {
               </Button>
             ))}
           </div> */}
-          <Sticker />
+          <Sticker classes=""  />
           <div className=" grid mt-[2rem] 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  gap-[3rem]">
             
             {posts.map((item, index) => (
