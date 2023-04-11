@@ -137,3 +137,12 @@ export const wrapper = (): void => {
     wrapElements(mainDiv);
   }
 };
+
+
+export const isTokenPresent = (): boolean => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+  return false;
+};

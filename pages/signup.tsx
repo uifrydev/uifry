@@ -14,6 +14,9 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import FAQsModal from "@/components/FAQModal/FAQModal";
 import { RootState } from "@/store/store";
+import { isTokenPresent } from "@/utils/functions";
+import { GetServerSideProps } from "next";
+import withRedirectIfUserPresent from "@/components/UserRedirection/UserRedirection";
 const signup = () => {
   
   const [loading, setLoading] = useState(true);
@@ -160,4 +163,5 @@ const TagList = ({ classes }: { classes?: string }) => {
   );
 };
 
-export default signup;
+
+export default withRedirectIfUserPresent(signup);
