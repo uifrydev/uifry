@@ -34,7 +34,7 @@ const ProductDetail1: any = ({
       setLoading(true);
       try {
         const res = await sanity.fetch(
-          `*[_type=='styleGuide' && slug.current!='${data?.slug?.current}'][0...${loadMore}]{
+          `*[_type=='styleGuide' && slug.current!='${data?.slug?.current}'] | order(_updatedAt desc)[0...${loadMore}]{
             title,slug,description,category,sanityFilter,"images":image{
               asset->{url}
             },tags,image

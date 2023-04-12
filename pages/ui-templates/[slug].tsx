@@ -24,6 +24,7 @@ import { loadMore, perProduct } from "../../utils/consts";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Data } from "@/Interface/interface";
 import { RootState } from "@/store/store";
+import LoadingCard from "@/components/Card/Loadingard";
 
 const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const router = useRouter();
@@ -46,6 +47,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
     setProductIndex(posts.length);
     setCards(posts);
   }, [router.asPath]);
+  console.log({ pid });
   return (
     <>
       {openModal && <DetailsModal data={modalData} setData={setModalData} />}
@@ -62,11 +64,19 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
         buttons={list[0].list}
         parentLink={"/ui-templates"}
         childLink={"/" + pid.slug}
+        setLoading={setLoading}
+        category={slugToCapitalize("" + pid?.slug)}
+        setProductIndex={setProductIndex}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
         <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
           <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1  gap-[3rem] p-[3rem]">
-            {cards &&
+            {isLoading &&
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                <LoadingCard key={item} />
+              ))}
+            {!isLoading &&
+              cards &&
               cards.map((item, index) => (
                 <Link
                   href={{
@@ -128,7 +138,7 @@ export const getServerSideProps: GetServerSideProps = async (
     const res = await fetchDataServer({
       query: `*[category=="${slugToCapitalize(
         String(params?.slug)
-      )}"  && _type=='uitemplate'] | [0...${perProduct}]{
+      )}"  && _type=='uitemplate'] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
         title,slug,subCategory,category,description,sanityFilter,images[]{
           asset->{url}
         },tags,"fileURL":zipFile.asset->url

@@ -71,6 +71,10 @@ export type FilterBarProps = {
 export interface FilterBar1Props extends FilterBarProps {
   parentLink: string;
   childLink: string;
+  onClickFilter?:any
+  setLoading:React.Dispatch<React.SetStateAction<any>>;
+  category:String
+  setProductIndex:React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface HeaderProps {

@@ -27,7 +27,7 @@ const FilterBar: FC<FilterBarProps> = ({
 
   return (
     <div
-      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:top-0 pt-[2rem] ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"} pr-[4rem] `}
+      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:!top-0 pt-[2rem] ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"} pr-[4rem] `}
     >
       <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
         {buttons.map((item, index) => (

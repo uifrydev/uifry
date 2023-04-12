@@ -44,7 +44,7 @@ const ProductDetail: FC<
         const res = await sanity.fetch(
           `*[_type=='uitemplate' && category=='${
             data?.category
-          }' && slug.current!='${data.slug.current || ""}'][0...${loadMore}]{
+          }' && slug.current!='${data.slug.current || ""}'] | order(_updatedAt desc)[0...${loadMore}]{
         title,slug,description,category,sanityFilter,images[]{
           asset->{url}
         },tags,image

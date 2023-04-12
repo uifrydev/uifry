@@ -132,7 +132,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
     const params = context.params;
     const res = await fetchDataServer({
       sanity,
-      query: `*[_type=='extra' && slug.current=='${params?.slug}']{
+      query: `*[_type=='extra' && slug.current=='${params?.slug}'] | order(_updatedAt desc){
           body->{title,body},
           title,
           slug,

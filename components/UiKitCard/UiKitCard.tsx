@@ -52,10 +52,10 @@ const UiKitCard: FC<CardProps> = ({ data, onClick }) => {
         </div>
       </div>
       <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] pt-[1.2rem]">
-        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem] xl:pb-[2rem] font-400 xl:border-r-[0px] xl:border-b-[1px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
+        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem] font-400 xl:border-r-[0px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
           {data?.description}
         </p>
-        <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]">
+        <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]  xl:border-t-[1px] xl:mt-[1rem]">
           <div className="flex items-center justify-between">
             <span className="text-secondaryGray leading-[2.1rem] font-400 text-[1.4rem]">
               Screens & blocks{" "}

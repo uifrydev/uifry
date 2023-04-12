@@ -18,6 +18,7 @@ import { loadMore, perProduct } from "../../utils/consts";
 import { RootState } from "@/store/store";
 import { GetServerSideProps, NextPage } from "next";
 import { Data } from "@/Interface/interface";
+import LoadingCard from "@/components/Card/Loadingard";
 const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const builder = imageUrlBuilder(sanity);
   const [cards, setCards] = useState(posts);
@@ -25,15 +26,47 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const [productIndex, setProductIndex] = useState(posts.length);
-
   const [filter, setFilter] = useState({
     subCategory: "All",
     figma: false,
     xd: false,
     sketch: false,
   });
- 
+  const onClickFilter = async () => {
+    setLoading(true);
+    setCards(
+      await sanity.fetch(`*[_type=='uitemplate' ${
+        filter.figma ? "" : " && sanityFilter.Figma==true"
+      } ${filter.sketch ? "" : " && sanityFilter.Sketch==true"} ${
+        filter.xd ? "" : " && sanityFilter.XD==true"
+      }] | order(_updatedAt desc) | [0...${loadMore}]{
+        title,slug,subCategory,category,description,sanityFilter,images[]{
+          asset->{url}
+        },tags,"fileURL":zipFile.asset->url
+      }`)
+    );
+    setLoading(false);
+    setProductIndex(0);
+  };
+  // await fetchData({
+  //   isLoading,
+  //   setLoading,
+  //   setProductIndex,
+  //   setCards,
+  //   sanity,
+  //   query: `*[_type=='uitemplate' ${
+  //     filter.figma ? "" : " && sanityFilter.Figma==true"
+  //   } ${filter.sketch ? "" : " && sanityFilter.Sketch==true"} ${
+  //     filter.xd ? "" : " && sanityFilter.XD==true"
+  //   }] | order(_updatedAt desc) | [0...${loadMore}]{
+  //   title,slug,subCategory,category,description,sanityFilter,images[]{
+  //     asset->{url}
+  //   },tags,"fileURL":zipFile.asset->url
+  // }`,
+  // });
+
   return (
     <>
       {openModal && <DetailsModal data={modalData} setData={setModalData} />}
@@ -50,44 +83,64 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
         buttons={list[0].list}
         parentLink={"/ui-templates"}
         childLink={"/"}
+        setLoading={setLoading}
+        category=""
+        setProductIndex={setProductIndex}
+        // onClickFilter={onClickFilter}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
         <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
           <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem] p-[3rem]">
-            {cards.map((item, index) => (
-              <Link
-                key={index}
-                href={{
-                  pathname: "/ui-templates/details",
-                  // href: "/ui-templates/details",
-                  query: { template: item?.slug?.current },
-                }}
-                onClick={(e) => e.preventDefault()}
-              >
-                <Card
+            {isLoading &&
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                <LoadingCard key={item} />
+              ))}
+            {!isLoading &&
+              cards.map((item, index) => (
+                <Link
                   key={index}
-                  onClick={() => {
-                    window.scrollBy(0, 2);
-                    document.body.classList.add("!overflow-y-hidden");
-                    dispatch(updateModal(true));
-                    setModalData(item);
+                  href={{
+                    pathname: "/ui-templates/details",
+                    // href: "/ui-templates/details",
+                    query: { template: item?.slug?.current },
                   }}
-                  data={item}
-                />
-              </Link>
-            ))}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Card
+                    key={index}
+                    onClick={() => {
+                      window.scrollBy(0, 2);
+                      document.body.classList.add("!overflow-y-hidden");
+                      dispatch(updateModal(true));
+                      setModalData(item);
+                    }}
+                    data={item}
+                  />
+                </Link>
+              ))}
+               {isLoadmoreLoading &&
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                <LoadingCard key={item} />
+              ))}
           </div>
 
           <Button
             onClick={async () =>
               await fetchData({
-                isLoading,
-                setLoading,
+                isLoading:isLoadmoreLoading,
+                setLoading:setLoadmoreLoading,
                 setProductIndex,
                 setCards,
                 sanity,
-                query: `*[_type=='uitemplate'] | [${productIndex}...${productIndex + loadMore
-                  }]{
+                query: `*[_type=='uitemplate' ${
+                  filter.figma == false ? "" : "&& sanityFilter.Figma==true"
+                } ${
+                  filter.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+                } ${
+                  filter.xd == false ? "" : "&& sanityFilter.XD==true"
+                }] | order(_updatedAt desc) | [${productIndex}...${
+                  productIndex + loadMore
+                }]{
                 title,slug,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
@@ -108,7 +161,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await fetchDataServer({
       sanity,
-      query: `*[_type=='uitemplate' ] | [0...${perProduct}]{
+      query: `*[_type=='uitemplate' ] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
       title,slug,subCategory,category,description,sanityFilter,images[]{
         asset->{url}
       },tags,image,"fileURL":zipFile.asset->url
@@ -127,5 +180,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     };
   }
-}
+};
 export default UiTemplates;

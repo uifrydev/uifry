@@ -10,6 +10,8 @@ import Link from "next/link";
 import { FilterBar1Props, FilterParams } from "@/Interface/interface";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { loadMore } from "@/utils/consts";
+import sanity from "@/sanity";
 const FilterBar1: FC<FilterBar1Props> = ({
   filter,
   setFilter,
@@ -19,18 +21,24 @@ const FilterBar1: FC<FilterBar1Props> = ({
   isFilter,
   parentLink,
   childLink,
+  onClickFilter,
+  setLoading,
+  category,
+  setProductIndex
 }) => {
   const images = [
     { img: figma, title: "figma" },
     { img: xd, title: "xd" },
     { img: Sketch, title: "sketch" },
   ];
-  const {user} =useSelector((state:RootState)=>state.auth)
+  const { user } = useSelector((state: RootState) => state.auth);
   return (
     //top-[14.71rem] //!top-[26.29rem]  without and with sticky min-4xl:top-[14.51rem]
     <div
       className={`flex z-[1] lg:flex-col gap-[2rem] w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] pt-[2rem] bg-[#ffffff] sticky md:relative ${
-        user ? "top-[8.94rem] lg:top-[20.62rem] md:top-0 " : "md:top-0 top-[15.24rem] lg:top-[26.29rem]"
+        user
+          ? "top-[8.94rem] lg:top-[20.62rem] md:top-0 "
+          : "md:top-0 top-[15.24rem] lg:top-[26.29rem]"
       } pr-[4rem]`}
     >
       <div className="flex-1 flex gap-[1.6rem] flex-wrap ">
@@ -88,16 +96,48 @@ const FilterBar1: FC<FilterBar1Props> = ({
           </span>
           {images.map((item, index) => (
             <Button
-              onClick={() => {
+              onClick={async () => {
+                setLoading(true);
                 setFilter((prev: any) => ({
                   ...prev,
                   [item?.title]: !prev[item.title],
                 }));
-                applyFilter(
-                  { ...filter, [item.title]: !filter[item.title] },
-                  setCards,
-                  initialData
-                );
+                const temp = {
+                  ...filter,
+                  [item?.title]: !filter[item.title],
+                };
+
+                const query = `*[_type=='uitemplate' ${
+                  category ? `&& category=='${category}'` : ""
+                } ${temp.figma == false ? "" : "&& sanityFilter.Figma==true"} ${
+                  temp.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+                } ${
+                  temp.xd == false ? "" : "&& sanityFilter.XD==true"
+                }] | order(_updatedAt desc) | [0...${loadMore}]{
+                  title,slug,subCategory,category,description,sanityFilter,images[]{
+                    asset->{url}
+                  },tags,"fileURL":zipFile.asset->url
+                }`;
+                console.log({
+                  query,
+                  temp,
+                  ...{
+                    Figma: temp.figma,
+                    Sketch: temp.sketch,
+                    XD: temp.sketch,
+                  },
+                });
+                let result=await sanity.fetch(query)
+                setCards(result);
+                setProductIndex(result.length)
+                setLoading(false);
+                // onClickFilter();
+
+                // applyFilter(
+                //   { ...filter, [item.title]: !filter[item.title] },
+                //   setCards,
+                //   initialData
+                // );
               }}
               key={index}
               classes={`flex w-[3.2rem] h-[3.2rem] items-center ${

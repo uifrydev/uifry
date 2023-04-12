@@ -27,7 +27,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
       setLoading(true);
       try {
         const res = await sanity.fetch(
-          `*[_type=='uitemplate']| [0...12]{
+          `*[_type=='uitemplate'] | order(_updatedAt desc)[0...12]{
         title,slug,description,sanityFilter,images[]{
             asset->{url}
           },tags,image

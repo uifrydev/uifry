@@ -124,7 +124,8 @@ select {
   overflow: hidden;
   text-overflow: clip;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
+  line-clamp: 3 !important;
+  /* max-height: 6.9rem; */
 }
 .text16-gray {
   @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%];

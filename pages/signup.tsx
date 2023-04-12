@@ -164,4 +164,4 @@ const TagList = ({ classes }: { classes?: string }) => {
 };
 
 
-export default withRedirectIfUserPresent(signup);
+export default signup;
