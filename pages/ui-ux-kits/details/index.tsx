@@ -181,7 +181,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                         </div>
                       )}
                     </div>
-                    {user.Account.AccountStage != 5 ? (
+                    {user?.Account?.AccountStage != 5 ? (
                       <Link href={details?.fileURL} download>
                         {/* <Button
                       classes={"w-full py-[1.7rem] bg-gradient rounded-full"}

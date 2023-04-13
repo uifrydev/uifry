@@ -110,7 +110,7 @@ const ProductDetail: FC<
             )}
           </div>
 
-          {user.Account.AccountStage != 5 ? (
+          {user?.Account?.AccountStage != 5 ? (
             <Link href={data?.fileURL || ""} download>
               <Button classes={"bg-gradient rounded-[10rem] w-full"}>
                 <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">

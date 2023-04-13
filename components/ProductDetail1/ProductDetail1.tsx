@@ -77,7 +77,7 @@ const ProductDetail1: any = ({
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          {user.Account.AccountStage != 5  ? (
+          {user?.Account?.AccountStage != 5  ? (
             <Link href={data?.fileURL || ""} download>
               <Button
                 classes={
