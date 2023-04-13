@@ -116,7 +116,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                   </div>
                 )}
               </div>
-              {user?.Account?.AccountStage != 5  ? (
+              {user?.Account?.AccountStage ||user?.Account?.AccountStage != 5  ? (
                 <Link href={data?.fileURL} download>
                   <Button
                     classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
