@@ -89,7 +89,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                     key={index}
                     onClick={() => {
                       window.scrollBy(0, 2);
-                      document.body.classList.add("overflow-y-hidden");
+                      document.body.classList.add("!overflow-y-hidden");
                       dispatch(updateModal(true));
                       setModalData(item);
                     }}
