@@ -44,7 +44,9 @@ const ProductDetail: FC<
         const res = await sanity.fetch(
           `*[_type=='uitemplate' && category=='${
             data?.category
-          }' && slug.current!='${data.slug.current || ""}'] | order(_updatedAt desc)[0...${loadMore}]{
+          }' && slug.current!='${
+            data.slug.current || ""
+          }'] | order(_updatedAt desc)[0...${loadMore}]{
         title,slug,description,category,sanityFilter,images[]{
           asset->{url}
         },tags,image
@@ -108,7 +110,7 @@ const ProductDetail: FC<
             )}
           </div>
 
-          {user ? (
+          {user.Account.AccountStage != 5 ? (
             <Link href={data?.fileURL || ""} download>
               <Button classes={"bg-gradient rounded-[10rem] w-full"}>
                 <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
@@ -118,7 +120,14 @@ const ProductDetail: FC<
             </Link>
           ) : (
             <Button
-              onClick={()=>dispatch(updateProModal(true))}
+              onClick={() => {
+                if (!user) {
+                  dispatch(updateProModal(true));
+                  return
+                }
+                alert('plan expired')
+                
+              }}
               classes={"bg-gradient rounded-[10rem] w-full"}
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
@@ -133,7 +142,7 @@ const ProductDetail: FC<
           data?.images
             ? data?.images?.map(
                 (item: { asset: { url: string } }) => item?.asset?.url
-              ) 
+              )
             : []
         }
       />

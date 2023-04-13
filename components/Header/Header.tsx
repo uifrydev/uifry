@@ -135,13 +135,15 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
             <>
               <div className="flex flex-1 px-[4rem] sm:mb-[1.5rem] sm:pl-[2rem] items-center gap-[1.6rem]">
                 <Image src={userss} alt="" />
-                <p className="text-primaryBlack text-[1.6rem] mt-[12px]">
+                {user?<p className="text-primaryBlack text-[1.6rem] mt-[12px]">
+                  Welcome to UIFry!
+                </p>:<p className="text-primaryBlack text-[1.6rem] mt-[12px]">
                   Join{" "}
                   <span className="font-700 leading-[130%] ">
                     56,000+
                   </span>{" "}
                   designers today!
-                </p>
+                </p>}
               </div>
             </>
           ) : (

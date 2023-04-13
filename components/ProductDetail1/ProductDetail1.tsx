@@ -77,7 +77,7 @@ const ProductDetail1: any = ({
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          {user ? (
+          {user.Account.AccountStage != 5  ? (
             <Link href={data?.fileURL || ""} download>
               <Button
                 classes={
@@ -94,7 +94,14 @@ const ProductDetail1: any = ({
               classes={
                 "bg-gradient !w-[23rem] rounded-[10rem] py-[1.7rem] w-full"
               }
-              onClick={()=>dispatch(updateProModal(true))}
+              onClick={() => {
+                if (!user) {
+                  dispatch(updateProModal(true));
+                  return
+                }
+                alert('plan expired')
+                
+              }}
 
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">

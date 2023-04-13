@@ -116,7 +116,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                   </div>
                 )}
               </div>
-              {user ? (
+              {user.Account.AccountStage != 5  ? (
                 <Link href={data?.fileURL} download>
                   <Button
                     classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
@@ -128,7 +128,14 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
                 </Link>
               ) : (
                 <Button
-                  onClick={() => dispatch(updateProModal(true))}
+                onClick={() => {
+                  if (!user) {
+                    dispatch(updateProModal(true));
+                    return
+                  }
+                  alert('plan expired')
+                  
+                }}
                   classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
                 >
                   <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">

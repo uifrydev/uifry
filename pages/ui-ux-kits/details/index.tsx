@@ -181,24 +181,37 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                         </div>
                       )}
                     </div>
-                    {user?<Link href={details?.fileURL} download>
-                      {/* <Button
+                    {user.Account.AccountStage != 5 ? (
+                      <Link href={details?.fileURL} download>
+                        {/* <Button
                       classes={"w-full py-[1.7rem] bg-gradient rounded-full"}
                     >
                       <span className="text-[1.4rem] font-[400] leading-[2rem] text-[#fff]">
                         Download
                       </span>
                     </Button> */}
-                      <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                        <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+                          <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
+                            Download
+                          </span>
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          if (!user) {
+                            dispatch(updateProModal(true));
+                            return;
+                          }
+                          alert("plan expired");
+                        }}
+                        classes={"bg-gradient rounded-[10rem] w-full"}
+                      >
                         <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                           Download
                         </span>
                       </Button>
-                    </Link>:<Button onClick={() => dispatch(updateProModal(true))} classes={"bg-gradient rounded-[10rem] w-full"}>
-                        <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
-                          Download
-                        </span>
-                      </Button>}
+                    )}
                   </div>
                 </div>
               )}

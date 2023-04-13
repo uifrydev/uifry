@@ -127,7 +127,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     Files & Info
                   </p>
 
-                  {user ? (
+                  {user.Account.AccountStage != 5 ? (
                     <Link href={details?.fileURL || ""} download>
                       {/* <Button
               onClick={()=>dispatch(updateProModal(true))}
@@ -146,7 +146,14 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     </Link>
                   ) : (
                     <Button
-                      onClick={() => dispatch(updateProModal(true))}
+                    onClick={() => {
+                      if (!user) {
+                        dispatch(updateProModal(true));
+                        return
+                      }
+                      alert('plan expired')
+                      
+                    }}
                       classes={"bg-gradient rounded-[10rem] w-full"}
                     >
                       <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
