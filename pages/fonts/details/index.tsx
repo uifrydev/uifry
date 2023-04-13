@@ -127,7 +127,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     Files & Info
                   </p>
 
-                  {user?.Account?.AccountStage || user?.Account?.AccountStage != 5 ? (
+                  {user?.Account?.AccountStage  && user?.Account?.AccountStage != 5 ? (
                     <Link href={details?.fileURL || ""} download>
                       {/* <Button
               onClick={()=>dispatch(updateProModal(true))}
