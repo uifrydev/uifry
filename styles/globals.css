@@ -155,6 +155,12 @@ select {
 .o--App--authWidget{
   @apply !rounded-[2.4rem] overflow-hidden sm:!mx-[2rem]
 }
+.o--Button--children{
+  @apply !text-[#fff]
+}
+.o--App--profileWidget{
+  @apply !rounded-[2.4rem]
+}
 .o--Input--input,.o--Select--select,.o--PaymentInputStripe--stripe {
   @apply !rounded-full !bg-[#EEF2F6] !border-[1px] !border-[#E5E9FF]
 }

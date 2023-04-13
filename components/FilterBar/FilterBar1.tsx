@@ -118,15 +118,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
                     asset->{url}
                   },tags,"fileURL":zipFile.asset->url
                 }`;
-                console.log({
-                  query,
-                  temp,
-                  ...{
-                    Figma: temp.figma,
-                    Sketch: temp.sketch,
-                    XD: temp.sketch,
-                  },
-                });
+                
                 let result=await sanity.fetch(query)
                 setCards(result);
                 setProductIndex(result.length)

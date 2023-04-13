@@ -47,7 +47,6 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
     setProductIndex(posts.length);
     setCards(posts);
   }, [router.asPath]);
-  console.log({ pid });
   return (
     <>
       {openModal && <DetailsModal data={modalData} setData={setModalData} />}

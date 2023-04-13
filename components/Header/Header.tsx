@@ -230,12 +230,12 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                       className="bg-[#fff] shadow-xl absolute top-[5rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
                     >
                       <ul>
-                        <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
+                        <li onClick={openProfile} className="px-[2rem] font-700 py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
                           Profile
                         </li>
                         <li
                           onClick={logout}
-                          className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
+                          className="px-[2rem] py-[0.5rem] text-[1.6rem] font-700 cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
                         >
                           Logout
                         </li>

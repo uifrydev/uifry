@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     (state: RootState) => state.features
   );
   const user = useSelector((state: RootState) => state.auth.user);
+  console.log({user})
   const router1 = useRouter();
   useEffect(() => {
     const handleStart = () => {
