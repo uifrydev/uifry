@@ -11,6 +11,7 @@ import sanity from "../../sanity";
 import { NextPage } from "next";
 import { Data, FilterParams } from "@/Interface/interface";
 import { RootState } from "@/store/store";
+import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
   const openModal = useSelector((state:RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
@@ -35,6 +36,7 @@ const UxUiKits:NextPage<{posts:Data[]}> = ({ posts }) => {
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem]  w-full ">
         <div className=" grid 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
+          <LoadingUIUXCard />
           {cards &&
             cards.map((item, index) => (
               <Link key={index} href={{pathname:"ui-ux-kits/details",query:{kit:item.slug.current}}}>
