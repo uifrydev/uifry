@@ -17,12 +17,14 @@ import { RootState } from "@/store/store";
 import { isTokenPresent } from "@/utils/functions";
 import { GetServerSideProps } from "next";
 import withRedirectIfUserPresent from "@/components/UserRedirection/UserRedirection";
+import useOutseta from "@/customHooks/useOutseta";
 const signup = () => {
   
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { faqModal } = useSelector((state: RootState) => state.features);
   const router = useRouter();
+  const {openLogin}=useOutseta()
   useEffect(() => {
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
@@ -49,7 +51,7 @@ const signup = () => {
               <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] sm:hidden">
                 Already have an account?
                 <span
-                  onClick={() => {}}
+                  onClick={openLogin}
                   className="text-[#00B3FF] cursor-pointer font-700"
                 >
                   {" "}
@@ -83,7 +85,7 @@ const signup = () => {
                 </li>
                 <li>
                   <Link
-                    href={""}
+                    href={"https://uifry.outseta.com/support/kb/categories"}
                     className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                   >
                     Support
@@ -115,7 +117,7 @@ const signup = () => {
                 </li>
                 <li>
                   <Link
-                    href={""}
+                    href={"https://uifry.outseta.com/support/kb/categories"}
                     className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                   >
                     Support

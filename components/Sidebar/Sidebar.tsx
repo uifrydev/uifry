@@ -127,9 +127,9 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
                 License, Terms & Policy
               </Link>
             </div>
-            <span className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
+            <Link href={'https://uifry.outseta.com/support/kb/categories'} className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
               Support
-            </span>
+            </Link>
           </div>
           <div className="flex gap-[1.732rem] items-center">
             <Image src={linkedin} alt="" className="w-[1.6rem]" />
