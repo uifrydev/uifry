@@ -35,7 +35,14 @@ const Home: NextPage<{
   );
   const { user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const [modalData, setModalData] = useState(uiTemplates[0]);
+  const [modalData, setModalData] = useState<Data>({
+    category: "",
+    fileURL: "",
+    slug: { current: "" },
+    subCategory: "",
+    tags:[],
+    title:''
+  });
 
   return (
     <>
