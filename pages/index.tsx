@@ -40,8 +40,8 @@ const Home: NextPage<{
     fileURL: "",
     slug: { current: "" },
     subCategory: "",
-    tags:[],
-    title:''
+    tags: [],
+    title: "",
   });
 
   return (
