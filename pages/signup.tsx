@@ -86,6 +86,7 @@ const signup = () => {
                 <li>
                   <Link
                     href={"https://uifry.outseta.com/support/kb/categories"}
+                    target='_blank'
                     className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                   >
                     Support
@@ -118,6 +119,7 @@ const signup = () => {
                 <li>
                   <Link
                     href={"https://uifry.outseta.com/support/kb/categories"}
+                    target='_blank'
                     className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                   >
                     Support

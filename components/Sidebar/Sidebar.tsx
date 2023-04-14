@@ -127,7 +127,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
                 License, Terms & Policy
               </Link>
             </div>
-            <Link href={'https://uifry.outseta.com/support/kb/categories'} className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
+            <Link href={'https://uifry.outseta.com/support/kb/categories'} target='_blank' className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
               Support
             </Link>
           </div>
