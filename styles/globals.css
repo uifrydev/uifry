@@ -161,6 +161,9 @@ select {
 .o--App--profileWidget{
   @apply !rounded-[2.4rem]
 }
+.red{
+  @apply !bg-[#000] !bg-gradient-to-r !from-red-500 !to-red-500 !border-none
+}
 .o--Input--input,.o--Select--select,.o--PaymentInputStripe--stripe {
   @apply !rounded-full !bg-[#EEF2F6] !border-[1px] !border-[#E5E9FF]
 }

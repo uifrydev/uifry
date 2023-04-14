@@ -15,7 +15,28 @@ const useOutseta = () => {
     error?: string;
   }
   useEffect(() => {
+    const interval = setInterval(() => {
+      const buttons=document.querySelectorAll('.o--Button--btn')
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+
+      // let span=button.innerHTML
+      let spanElement=button.children[0]
+      if(spanElement.textContent=='Cancel subscription'){
+        document.getElementsByClassName('o--Button--btn')[i].classList.add('red')
+      }
+      // Do something with each button, for example:
+    }
+    }, 1000);
+
+    // Clean up the interval when the component unmounts or the dependency array changes
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     const init = async () => {
+     
+      
       // Await injection of the script
       outsetaRef.current = await loadOutseta();
       // Get the access token from the callback url
