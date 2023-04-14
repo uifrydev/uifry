@@ -87,7 +87,7 @@ const useOutseta = () => {
     outsetaRef.current.setAccessToken("");
     // router.push('/?o-logout-link')
     dispatch(clearUser());
-    outsetaRef.current.auth.logout();
+    // outsetaRef.current.auth.logout();
   };
   const updateUser = async () => {
     // Fetch the current user data from outseta
