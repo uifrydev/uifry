@@ -1,3 +1,8 @@
+import { MainCardProps } from "@/Interface/interface";
+
+import pyramid from "../public/assets/icons/pyramid.svg";
+import product from "../public/assets/icons/product.svg";
+import bullseye from "../public/assets/icons/bullseye.svg";
 export const list = [
   {
     title: "UI Templates",
@@ -152,4 +157,49 @@ export const slugList = [
   { title: "EULA", link: "end-user-license-agreement" },
   { title: "Returns & Refund", link: "return-refund-policy" },
   { title: "Fair Policy", link: "fair-policy" },
+];
+
+export const breifList: MainCardProps[] = [
+  {
+    title: "Product UI Briefs",
+    img: {
+      alt: "",
+      src: product,
+    },
+    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
+    includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
+    link:''
+  },
+  {
+    title: "Product UI Briefs",
+    img: {
+      alt: "",
+      src: pyramid,
+    },
+    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
+    includes: [
+      "Squeeze & Splash ",
+      "Long Form Landing Pages",
+      "Lead Capture & Opt-in",
+      "Coming Soon & Get Started",
+      "Thank You & Pricing Pages",
+    ],
+    link:''
+  },
+  {
+    title: "Product UI Briefs",
+    img: {
+      alt: "",
+      src: bullseye,
+    },
+    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
+    includes: [
+      "Sitemaps",
+      "User Journeys",
+      "Personas",
+      "Wireframes & Flows",
+      "Analysis & Research",
+    ],
+    link:''
+  },
 ];

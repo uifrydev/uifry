@@ -1,8 +1,10 @@
+import { StaticImageData } from "next/image";
+
 export interface ButtonProps {
   children: React.ReactNode;
   classes?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onBlur?: React.FocusEventHandler<HTMLButtonElement> | undefined
+  onBlur?: React.FocusEventHandler<HTMLButtonElement> | undefined;
 }
 
 export interface Data {
@@ -24,7 +26,7 @@ export interface Data {
   tags: string[];
   noOfScreens?: any;
   features?: string[];
-  total?:number;
+  total?: number;
 }
 
 export interface CardProps {
@@ -45,8 +47,8 @@ export interface FeatureState {
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;
-  proModal:boolean;
-  faqModal:boolean;
+  proModal: boolean;
+  faqModal: boolean;
 }
 export interface FilterParams {
   subCategory: string;
@@ -71,16 +73,16 @@ export type FilterBarProps = {
 export interface FilterBar1Props extends FilterBarProps {
   parentLink: string;
   childLink: string;
-  onClickFilter?:any
-  setLoading:React.Dispatch<React.SetStateAction<any>>;
-  category:String
-  setProductIndex:React.Dispatch<React.SetStateAction<number>>
+  onClickFilter?: any;
+  setLoading: React.Dispatch<React.SetStateAction<any>>;
+  category: String;
+  setProductIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface HeaderProps {
   breadcrums: string[];
   title: string[];
-  istitle?:boolean
+  istitle?: boolean;
 }
 
 export interface DetailData {
@@ -119,8 +121,7 @@ export interface JobProps {
   slug: {
     current: string;
   };
-  total?:number;
-
+  total?: number;
 }
 export interface JobDetailProps extends JobProps {
   body: any;
@@ -128,4 +129,14 @@ export interface JobDetailProps extends JobProps {
   jobPosted: string;
   jobType: string;
   foundedIn: string;
+}
+export interface MainCardProps {
+  img: {
+    src: StaticImageData;
+    alt: string;
+  };
+  title: string;
+  desc: string;
+  includes: string[];
+  link?:string
 }

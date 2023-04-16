@@ -10,7 +10,7 @@ const SkeletonJobCard = () => {
         <div className="h-[1.4rem] w-[8rem] bg-gray-300 rounded-full animate-pulse"></div>
       </div>
     </div>
-    <div className="h-[1.8rem] w-[10rem] bg-gray-300 rounded-full animate-pulse"></div>
+    <div className="h-[1.8rem] w-full max-w-[20rem] bg-gray-300 rounded-full animate-pulse"></div>
     <div className="h-[6rem] bg-gray-300 rounded-lg animate-pulse"></div>
     <div className="flex gap-[1.3rem] flex-col">
       <div className="h-[1.8rem] w-[8rem] bg-gray-300 rounded-full animate-pulse"></div>
