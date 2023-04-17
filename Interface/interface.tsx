@@ -139,6 +139,15 @@ export interface MainCardProps {
   title: string;
   desc: string;
   includes: string[];
-  link:Url,
-  about?:any
+}
+export interface BriefList extends MainCardProps {
+  about: {
+    q: string;
+    a: string[];
+    video: {
+      src: string;
+    };
+  };
+  link: Url;
+  subCategories: string[];
 }

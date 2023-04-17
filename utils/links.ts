@@ -1,10 +1,10 @@
-import { MainCardProps } from "@/Interface/interface";
+import { BriefList, MainCardProps } from "@/Interface/interface";
 
 import pyramid from "../public/assets/icons/pyramid.svg";
 import product from "../public/assets/icons/product.svg";
 import bullseye from "../public/assets/icons/bullseye.svg";
 
-export const breifList: MainCardProps[] = [
+export const breifList: BriefList[] = [
   {
     title: "Landing Page Briefs",
     img: {
@@ -24,6 +24,18 @@ export const breifList: MainCardProps[] = [
         src: "",
       },
     },
+    subCategories: [
+      "All",
+      "Squeeze Page",
+      "Splash Page",
+      "Lead Capture Page",
+      "Webinar Page",
+      "Long Form Landing Page",
+      "Pricing Page",
+      "Thank You Page",
+      "Coming Soon Page",
+      "E-Book Page",
+    ],
   },
   {
     title: "Product UI Briefs",
@@ -50,6 +62,15 @@ export const breifList: MainCardProps[] = [
         src: "",
       },
     },
+    subCategories: [
+      "All",
+      "Websites",
+      "Apps",
+      "SaaS",
+      "Tools",
+      "Software",
+      "Other",
+    ],
   },
   {
     title: "UX Briefs",
@@ -76,6 +97,15 @@ export const breifList: MainCardProps[] = [
         src: "",
       },
     },
+    subCategories: [
+      "All",
+      "Sitemap",
+      "User Journey & Flows",
+      "Persona",
+      "Wireframe",
+      "Research",
+      "Other",
+    ],
   },
 ];
 

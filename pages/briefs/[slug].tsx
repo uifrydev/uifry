@@ -14,13 +14,15 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import Image from "next/image";
 import { RootState } from "@/store/store";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { MainCardProps } from "@/Interface/interface";
+import { BriefList, MainCardProps } from "@/Interface/interface";
+import Button from "@/components/Button/Button";
+import CategoryCard from "@/components/BriefComponents/CategoryCard";
 
-const UiTemplatesType = ({ res, data }: { res: any; data: MainCardProps }) => {
+const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
   const openModal = useSelector((state: RootState) => state.features.openModal);
-
+  const [filter, setFilter] = useState("All");
   return (
     <>
       {/* {openModal && <DetailsModal />} */}
@@ -42,7 +44,7 @@ const UiTemplatesType = ({ res, data }: { res: any; data: MainCardProps }) => {
             />
           </div>
         </div>
-        <div className="pl-[4rem]">
+        <div className="pl-[3rem]">
           <div className="w-full border-b-[1px] border-border2 pb-[1rem]">
             <h2 className="text-primaryBlack text-[3rem] leading-[150%] satoshi font-700">
               {data.title}
@@ -51,6 +53,62 @@ const UiTemplatesType = ({ res, data }: { res: any; data: MainCardProps }) => {
               Explore varied practice briefs to create captivating landing pages
               that drive conversions and user engagement.
             </span>
+          </div>
+          <div className="flex gap-[4.3rem] pt-[2.5rem] pb-[5rem]">
+            <div className="flex flex-col flex-1 gap-[2rem]">
+              <p className="text-primaryBlack text-[2rem] leading-[150%] satoshi font-700">
+                {data?.about?.q}
+              </p>
+              <div className="flex flex-col gap-[4rem]">
+                {data.about?.a.map((item, index) => (
+                  <span
+                    key={index}
+                    className="text-secondaryGray text-[1.6rem] leading-[2.8rem]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="w-[42rem] h-[29rem] bg-[#d9d9d9] rounded-[1.2rem]"></div>
+          </div>
+
+          <div className="p-[3rem] rounded-[2.4rem] bg-primary">
+            <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
+              {data.subCategories.map((item, index) => (
+                <Button
+                  onClick={() => {
+                    setFilter(item);
+                  }}
+                  key={index}
+                  classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px]  ${
+                    item == filter
+                      ? "bg-gradient text-[#ffffff]"
+                      : "!border-border"
+                  }`}
+                >
+                  <span>{item}</span>
+                </Button>
+              ))}
+            </div>
+            <div className="hidden  w-full lg:flex py-[2rem]">
+              <select
+                value={"filter?.subCategory"}
+                className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
+              >
+                {data.subCategories.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="grid grid-cols-3 py-[3rem] gap-[3rem]">
+              <CategoryCard />
+              <CategoryCard />
+              <CategoryCard />
+            </div>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import check from "../../public/assets/icons/check_green.svg";
 import Button from "../Button/Button";
-const MainCard = ({ title, desc, img, includes,link }: MainCardProps) => {
+const MainCard = ({ title, desc, img, includes }: MainCardProps) => {
   return (
     <div className="bg-[#fff] p-[3rem] flex flex-col gap-[1.6rem] rounded-[1.2rem]">
       <Image alt={img.alt} src={img.src} />
