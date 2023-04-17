@@ -69,7 +69,7 @@ const ProductDetail2: FC<ProductDetailProps> = ({ showCross, data }) => {
             )}
           />
         </div>
-        <div className="flex relative items-start max-w-[32rem] lg:mx-[4rem] sm:mx-[0rem] lg:max-w-full rounded-[2rem] sm:max-w-full right-0 p-[3.1rem] pl-[4.3rem] bg-primary border-l-[1px] border-[#E5E9FF]">
+        <div className="flex relative items-start max-w-[32rem] lg:mx-[4rem] sm:mx-[0rem] lg:max-w-full rounded-[2rem] sm:max-w-full right-0 p-[3.1rem] pl-[4.3rem] bg-primary border-l-[1px] border-border2">
           <div className="flex w-full flex-col gap-[4rem]">
             <div className="flex gap-[2rem] flex-col ">
               <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">

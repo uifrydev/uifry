@@ -10,12 +10,12 @@ const LoadingUIUXCard = () => {
       <div className="flex items-center justify-between gap-[2rem] w-full">
         <div className="bg-gray-300 h-4 w-80 mb-4 mr-auto rounded-full"></div>
         <div className="flex gap-[.5rem]">
-          <div className="flex w-[2.8rem] shadow-2xl border-[0.864051px] border-[#E5E9FF] h-[2.8rem] middle rounded-full bg-[#ffffff] animate-pulse"></div>
-          <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-[#E5E9FF] middle bg-[#ffffff] animate-pulse"></div>
-          <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-[#E5E9FF] middle bg-[#ffffff] animate-pulse"></div>
+          <div className="flex w-[2.8rem] shadow-2xl border-[0.864051px] border-border2 h-[2.8rem] middle rounded-full bg-[#ffffff] animate-pulse"></div>
+          <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-border2 middle bg-[#ffffff] animate-pulse"></div>
+          <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-border2 middle bg-[#ffffff] animate-pulse"></div>
         </div>
       </div>
-      <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] pt-[1.2rem]">
+      <div className="flex border-border2 xl:flex-col border-t-[1px] pt-[1.2rem]">
         <div className="flex flex-col w-[50%]">
           <div className="bg-gray-300 h-4 w-[90%] mb-4 mr-auto rounded-full animate-pulse"></div>
           <div className="bg-gray-300 h-4 w-[85%] mb-4 mr-auto rounded-full animate-pulse"></div>

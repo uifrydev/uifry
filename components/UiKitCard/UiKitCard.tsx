@@ -34,25 +34,25 @@ const UiKitCard: FC<CardProps> = ({ data, onClick }) => {
         </p>
         <div className="flex gap-[.5rem]">
           {data?.sanityFilter?.Figma && (
-            <div className="flex w-[2.8rem] shadow-2xl border-[0.864051px] border-[#E5E9FF] h-[2.8rem] middle rounded-full bg-[#ffffff]">
+            <div className="flex w-[2.8rem] shadow-2xl border-[0.864051px] border-border2 h-[2.8rem] middle rounded-full bg-[#ffffff]">
               <Image alt="" className="w-[1.4rem] " src={figma} />
             </div>
           )}
           {data?.sanityFilter?.XD
             && (
-              <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-[#E5E9FF]  middle bg-[#ffffff]">
+              <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-border2  middle bg-[#ffffff]">
                 <Image alt="" className="w-[1.4rem]" src={xd} />
               </div>
             )}
           {data?.sanityFilter?.Sketch && (
-            <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-[#E5E9FF] middle bg-[#ffffff]">
+            <div className="flex w-[2.8rem] h-[2.8rem] rounded-full border-[0.864051px] border-border2 middle bg-[#ffffff]">
               <Image alt="" className="w-[1.4rem]" src={Sketch} />
             </div>
           )}
         </div>
       </div>
-      <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] pt-[1.2rem]">
-        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem] font-400 xl:border-r-[0px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
+      <div className="flex border-border2 xl:flex-col border-t-[1px] pt-[1.2rem]">
+        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem] font-400 xl:border-r-[0px] border-r-[1px] border-border2  text-[1.4rem]">
           {data?.description}
         </p>
         <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]  xl:border-t-[1px] xl:mt-[1rem]">

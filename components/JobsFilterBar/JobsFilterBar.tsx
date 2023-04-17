@@ -25,7 +25,7 @@ const JobsFilterBar = ({
             }}
             key={index}
             classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${
-              num == index ? "bg-gradient text-[#ffffff]" : "border-[#E5E9FF]"
+              num == index ? "bg-gradient text-[#ffffff]" : "border-border2"
             }`}
           >
             <span>{item.title}</span>
@@ -33,7 +33,7 @@ const JobsFilterBar = ({
         ))}
       </div>
       <div className="hidden  w-full lg:flex py-[2rem]">
-        <select className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-[#E5E9FF] rounded-[1rem] outline-none ">
+        <select className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none ">
           {list[5].buttons.map((item, index) => (
             <option onClick={() => setNum(index)} key={index}>
               {item.title}

@@ -24,8 +24,8 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
           {data?.title}
         </p>
       </div>
-      <div className="flex border-[#E5E9FF] xl:flex-col border-t-[1px] pt-[1.2rem]">
-        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem]  font-400  xl:border-r-[0px] border-r-[1px] border-[#E5E9FF]  text-[1.4rem]">
+      <div className="flex border-border2 xl:flex-col border-t-[1px] pt-[1.2rem]">
+        <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem]  font-400  xl:border-r-[0px] border-r-[1px] border-border2  text-[1.4rem]">
           {data?.description}
         
         </p>

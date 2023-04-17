@@ -10,7 +10,7 @@ const MainCard = ({ title, desc, img, includes,link }: MainCardProps) => {
       <span className="satoshi font-700 text-[1.7rem] leading-[150%] text-primaryBlack">
         {title}
       </span>
-      <span className="text-[1.4rem] font-400 leading-[150%] text-secondaryGray w-full pt-[1rem] border-t-[1px] border-[#E5E9FF]">
+      <span className="text-[1.4rem] font-400 leading-[150%] text-secondaryGray w-full pt-[1rem] border-t-[1px] border-border2">
         {desc}
       </span>
       <span className="satoshi text-[1.4rem] font-400 leading-[150%] text-primaryBlack">Includes briefs for:</span>

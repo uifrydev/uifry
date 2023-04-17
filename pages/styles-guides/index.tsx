@@ -70,7 +70,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                 classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px] ${
                   num == index
                     ? "bg-gradient text-[#ffffff]"
-                    : "border-[#E5E9FF]"
+                    : "border-border2"
                 }`}
               >
                 <span>{item.title}</span>

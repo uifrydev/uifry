@@ -76,7 +76,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
               initialData
             );
           }}
-          className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-[#E5E9FF] rounded-[1rem] outline-none "
+          className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
         >
           {buttons.map((item, index) => (
             <option
@@ -133,7 +133,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
               }}
               key={index}
               classes={`flex w-[3.2rem] h-[3.2rem] items-center ${
-                filter[item?.title] == true && "!border-[#E5E9FF]  bg-[#160042]"
+                filter[item?.title] == true && "!border-border2  bg-[#160042]"
               } justify-center !p-0 border-[1px] rounded-full`}
             >
               <Image alt="" src={item.img} />

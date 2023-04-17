@@ -147,7 +147,7 @@ const ProductDetail: FC<
         }
       />
 
-      <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-[#E5E9FF] max-w-[92rem] rounded-[2rem]">
+      <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-border2 max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">
           <span className="text-[1.8rem] font-[500] satoshi text-primaryBlack leading-[2.3rem]">
             Info
