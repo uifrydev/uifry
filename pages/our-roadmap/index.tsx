@@ -33,15 +33,14 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
           <div className="xs1:px-[1rem] flex flex-col flex-1 pb-[15rem] rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
-
-              <Image
-                src={profile}
-                className="w-[3.8rem]  rounded-full "
-                width={80}
-                height={80}
-                alt=""
+                <Image
+                  src={profile}
+                  className="w-[3.8rem]  rounded-full "
+                  width={80}
+                  height={80}
+                  alt=""
                 />
-                </div>
+              </div>
             </div>
             <div className="flex flex-col px-[20px]">
               <div className="flex flex-col  gap-[1rem] pb-[3.6rem] border-b-[1px] border-[#E5E9FF]">
@@ -97,11 +96,11 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                   src={userss}
                   classes="border-[#00B3FF] border-l-[.5rem] !rounded-[.8rem] shadow-stcker !bg-[#fff] mb-[.8rem]"
                 >
-                    <p className="text-primaryBlack max-w-[15rem] text-[1.6rem] ">
-                      Join{" "}
-                      <span className="font-700 leading-[130%] ">56,000+</span>{" "}
-                      designers today!
-                    </p>
+                  <p className="text-primaryBlack max-w-[15rem] text-[1.6rem] ">
+                    Join{" "}
+                    <span className="font-700 leading-[130%] ">56,000+</span>{" "}
+                    designers today!
+                  </p>
                   {/* <div className="flex gap-[3rem]">
                     <Image alt="" className="w-[3rem]" src={figma} />
 

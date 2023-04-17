@@ -8,10 +8,10 @@ import MainCard from "@/components/BriefComponents/MainCard";
 import { RootState } from "@/store/store";
 import { MainCardProps } from "@/Interface/interface";
 import { breifList, list } from "@/utils/links";
+import Link from "next/link";
 const Briefs = () => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const dispatch = useDispatch();
-
 
   return (
     <>
@@ -22,13 +22,15 @@ const Briefs = () => {
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid grid-cols-3 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem]">
           {breifList.map((item, index) => (
-            <MainCard
-              key={index}
-              desc={item.desc}
-              img={item.img}
-              includes={item.includes}
-              title={item.title}
-            />
+            <Link href={{ pathname: `/briefs/${item.link}` }} key={index}>
+              <MainCard
+                desc={item.desc}
+                img={item.img}
+                includes={item.includes}
+                title={item.title}
+                link={item.link}
+              />
+            </Link>
           ))}
         </div>
       </div>

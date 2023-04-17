@@ -39,9 +39,9 @@ var o_signup_options = {
     <Html>
       <Head>
         
-        <script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
+        <Script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
         
-        <script
+        <Script
           src="https://cdn.outseta.com/outseta.min.js"
           data-options="o_signup_options"
           data-on-success="onSignupSuccess"

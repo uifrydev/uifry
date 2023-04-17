@@ -1,3 +1,4 @@
+import { Url } from "next/dist/shared/lib/router/router";
 import { StaticImageData } from "next/image";
 
 export interface ButtonProps {
@@ -138,5 +139,6 @@ export interface MainCardProps {
   title: string;
   desc: string;
   includes: string[];
-  link?:string
+  link:Url,
+  about?:any
 }

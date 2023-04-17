@@ -3,6 +3,82 @@ import { MainCardProps } from "@/Interface/interface";
 import pyramid from "../public/assets/icons/pyramid.svg";
 import product from "../public/assets/icons/product.svg";
 import bullseye from "../public/assets/icons/bullseye.svg";
+
+export const breifList: MainCardProps[] = [
+  {
+    title: "Landing Page Briefs",
+    img: {
+      alt: "",
+      src: product,
+    },
+    desc: "Explore varied practice briefs to create captivating landing pages that drive conversions and user engagement.",
+    includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
+    link: "landing-page",
+    about: {
+      q: "What are landing pages? How many types are there?",
+      a: [
+        "Landing pages are specialized web pages designed to convert visitors into leads or customers by driving a specific action. They play a crucial role in digital marketing campaigns, focusing on targeted audiences and promoting a single goal.",
+        " Various types of landing pages cater to different objectives. Check out the video to learn more about the landing pages and its types.",
+      ],
+      video: {
+        src: "",
+      },
+    },
+  },
+  {
+    title: "Product UI Briefs",
+    img: {
+      alt: "",
+      src: pyramid,
+    },
+    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
+    includes: [
+      "Squeeze & Splash ",
+      "Long Form Landing Pages",
+      "Lead Capture & Opt-in",
+      "Coming Soon & Get Started",
+      "Thank You & Pricing Pages",
+    ],
+    link: "product-ui",
+    about: {
+      q: "What are landing pages? How many types are there?",
+      a: [
+        `Product design UI, or User Interface design, is a vital aspect of creating digital products such as websites, mobile apps, or software. It focuses on designing visually appealing and easy-to-use interfaces that provide a seamless, intuitive experience for users.`,
+        "UI design considers elements like color schemes, typography, button placement, and navigation menus to craft engaging and functional interfaces.",
+      ],
+      video: {
+        src: "",
+      },
+    },
+  },
+  {
+    title: "UX Briefs",
+    img: {
+      alt: "",
+      src: bullseye,
+    },
+    desc: "Design engaging apps through targeted practice briefs that promote seamless user experience and functionality.",
+    includes: [
+      "Sitemaps",
+      "User Journeys",
+      "Personas",
+      "Wireframes & Flows",
+      "Analysis & Research",
+    ],
+    link: "ux",
+    about: {
+      q: "What are landing pages? How many types are there?",
+      a: [
+        `UX design, or User Experience design, is the process of creating digital products with a focus on providing users with enjoyable, efficient, and meaningful experiences. It involves understanding user needs, preferences, and behavior, and then designing the product to address those requirements.`,
+        "Learn more in quick video about UX design!",
+      ],
+      video: {
+        src: "",
+      },
+    },
+  },
+];
+
 export const list = [
   {
     title: "UI Templates",
@@ -60,28 +136,8 @@ export const list = [
     title: "Briefs",
     link: "/briefs",
     subTitle: "Practice Like A Pro",
-    list: [
-      { title: "All Briefs", link: "/" },
-      { title: "Websites", link: "/websites" },
-      { title: "Apps", link: "/apps" },
-      { title: "Landing Pages", link: "/landing-pages" },
-      { title: "Products", link: "/products" },
-      { title: "UX", link: "/ux" },
-    ],
-    buttons: [
-      { title: "All" },
-      { title: "Finance" },
-      { title: "SaaS" },
-      { title: "Education" },
-      { title: "Management" },
-      { title: "Real State" },
-      { title: "Resturant" },
-      { title: "Bloackchain" },
-      { title: "Agriculture" },
-      { title: "Portfolio" },
-      { title: "Tech" },
-      { title: "Fashion" },
-    ],
+    list: [],
+    buttons: [],
   },
   {
     title: "Fonts",
@@ -157,49 +213,4 @@ export const slugList = [
   { title: "EULA", link: "end-user-license-agreement" },
   { title: "Returns & Refund", link: "return-refund-policy" },
   { title: "Fair Policy", link: "fair-policy" },
-];
-
-export const breifList: MainCardProps[] = [
-  {
-    title: "Product UI Briefs",
-    img: {
-      alt: "",
-      src: product,
-    },
-    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
-    includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
-    link:''
-  },
-  {
-    title: "Product UI Briefs",
-    img: {
-      alt: "",
-      src: pyramid,
-    },
-    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
-    includes: [
-      "Squeeze & Splash ",
-      "Long Form Landing Pages",
-      "Lead Capture & Opt-in",
-      "Coming Soon & Get Started",
-      "Thank You & Pricing Pages",
-    ],
-    link:''
-  },
-  {
-    title: "Product UI Briefs",
-    img: {
-      alt: "",
-      src: bullseye,
-    },
-    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
-    includes: [
-      "Sitemaps",
-      "User Journeys",
-      "Personas",
-      "Wireframes & Flows",
-      "Analysis & Research",
-    ],
-    link:''
-  },
 ];
