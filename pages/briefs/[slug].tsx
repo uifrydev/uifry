@@ -107,7 +107,7 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
               </select>
             </div>
 
-            <div className="grid grid-cols-3 py-[3rem] gap-[3rem]">
+            <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
               <div
                 className=""
                 onClick={() => {
