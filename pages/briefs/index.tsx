@@ -28,7 +28,6 @@ const Briefs = () => {
                 img={item.img}
                 includes={item.includes}
                 title={item.title}
-                link={item.link}
               />
             </Link>
           ))}
