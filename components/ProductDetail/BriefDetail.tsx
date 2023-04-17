@@ -1,5 +1,9 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { updateBriefModal, updateModal, updateProModal } from "../../store/slices/featues";
+import {
+  updateBriefModal,
+  updateModal,
+  updateProModal,
+} from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
@@ -18,7 +22,9 @@ import { useRouter } from "next/router";
 import { RootState } from "@/store/store";
 import { setLoading } from "@/store/slices/auth";
 import { loadOutseta } from "@/utils/outseta";
-
+import image1 from "../../public/assets/images/1.jpg";
+import image2 from "../../public/assets/images/2.jpg";
+import image3 from "../../public/assets/images/3.jpg";
 const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
@@ -58,35 +64,13 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
       <div className="flex min-lg:min-w-[820px] lg:gap-[1.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
         <div className="flex flex-col gap-[1rem] lg:items-center">
           <span className="font-[400] text-[1.6rem] leading-[2.2rem] text-primaryBlack ">
-            {data?.category}
+            {data?.category || "Thank You Page"}
           </span>
           <span className="satoshi font-700 text-center text-[3.6rem] sm:text-[2.8rem] leading-[4rem] text-primaryBlack ">
-            {data?.title}
+            {data?.title || "Real Estate Thank You Page"}
           </span>
         </div>
         <div className="flex flex-col gap-[1.5rem] min-lg:ml-auto sm:w-full sm:items-center">
-          <div className="flex gap-[1rem] items-center pt-[.6rem]">
-            <span className="text-secondaryGray text-[1.6rem] font-400 leading-[2.2rem]">
-              Files Included
-            </span>
-
-            {data?.sanityFilter?.Figma && (
-              <div className="flex w-[3.2rem] h-[3.2rem] items-center justify-center !p-0 border-[1px] rounded-full">
-                <Image alt="" className="" src={figma} />
-              </div>
-            )}
-            {data?.sanityFilter?.XD && (
-              <div className="flex w-[3.2rem] h-[3.2rem] items-center justify-center !p-0 border-[1px] rounded-full">
-                <Image alt="" className="" src={xd} />
-              </div>
-            )}
-            {data?.sanityFilter?.Sketch && (
-              <div className="flex w-[3.2rem] h-[3.2rem] items-center justify-center !p-0 border-[1px] rounded-full">
-                <Image alt="" className="" src={Sketch} />
-              </div>
-            )}
-          </div>
-
           {user?.Account?.AccountStage && user?.Account?.AccountStage != 5 ? (
             <Link href={data?.fileURL || ""} download>
               <Button classes={"bg-gradient rounded-[10rem] w-full"}>
@@ -100,15 +84,14 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
               onClick={() => {
                 if (!user) {
                   dispatch(updateProModal(true));
-                  return
+                  return;
                 }
-                alert('plan expired')
-                
+                alert("plan expired");
               }}
-              classes={"bg-gradient rounded-[10rem] w-full"}
+              classes={"bg-gradient rounded-[10rem] !py-[1.5rem] !px-[5.1rem] w-full"}
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
-                Download
+                Download Brief
               </span>
             </Button>
           )}
@@ -120,7 +103,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             ? data?.images?.map(
                 (item: { asset: { url: string } }) => item?.asset?.url
               )
-            : []
+            : [image1, image2, image3]
         }
       />
 
@@ -140,22 +123,21 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             </span>
             <div className="flex flex-wrap gap-[.8rem] ">
               {data?.tags &&
-                data.tags.map((item:any) => (
+                data.tags.map((item: any) => (
                   <Tag text={item} key={item} classess="!bg-[#fff]" />
                 ))}
             </div>
           </div>
-          <div className="flex gap-[.5rem]">
-            <p className="text-[1.6rem] font-[500] leading-[2.4rem] text-primaryBlack">
-              Issue with this templates?
-            </p>
-            <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
-              Tell our team!
-            </p>
-          </div>
         </div>
       </div>
-
+      {/* <div className="flex gap-[.5rem]">
+        <p className="text-[1.6rem] font-[500] leading-[2.4rem] text-primaryBlack">
+          Issue with this templates?
+        </p>
+        <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
+          Tell our team!
+        </p>
+      </div> */}
     </div>
   );
 };

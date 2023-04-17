@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import sanity from "../../sanity";
-import { updateModal } from "../../store/slices/featues";
+import { updateBriefModal, updateModal } from "../../store/slices/featues";
 import { fetchDataServer, slugToCapitalize } from "../../utils/functions";
 import { useDispatch, useSelector } from "react-redux";
 import imageUrlBuilder from "@sanity/image-url";
@@ -22,7 +22,9 @@ import BriefModal from "@/components/DetailsModal/BreifModal";
 const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
-  const {openModal,briefModal} = useSelector((state: RootState) => state.features);
+  const { openModal, briefModal } = useSelector(
+    (state: RootState) => state.features
+  );
   const [filter, setFilter] = useState("All");
   return (
     <>
@@ -106,7 +108,16 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
             </div>
 
             <div className="grid grid-cols-3 py-[3rem] gap-[3rem]">
-              <CategoryCard />
+              <div
+                className=""
+                onClick={() => {
+                  window.scrollBy(0, 2);
+                  document.body.classList.add("!overflow-y-hidden");
+                  dispatch(updateBriefModal(true));
+                }}
+              >
+                <CategoryCard />
+              </div>
               <CategoryCard />
               <CategoryCard />
             </div>
