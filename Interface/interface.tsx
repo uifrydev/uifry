@@ -45,6 +45,7 @@ export interface NavigationState {
 export interface FeatureState {
   openModal: boolean;
   openModal1: boolean;
+  briefModal:boolean;
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;

@@ -17,15 +17,16 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { BriefList, MainCardProps } from "@/Interface/interface";
 import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
+import BriefModal from "@/components/DetailsModal/BreifModal";
 
 const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
-  const openModal = useSelector((state: RootState) => state.features.openModal);
+  const {openModal,briefModal} = useSelector((state: RootState) => state.features);
   const [filter, setFilter] = useState("All");
   return (
     <>
-      {/* {openModal && <DetailsModal />} */}
+      {briefModal && <BriefModal />}
       <Header
         title={["Briefs"]}
         breadcrums={["Briefs", data.title.split(" ").slice(0, -1).join(" ")]}

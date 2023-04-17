@@ -27,8 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     (state: RootState) => state.features
   );
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log({user})
-  const router1 = useRouter();
+  const router = useRouter();
   useEffect(() => {
     const handleStart = () => {
       dispatch(setIsAnimating(true));
@@ -37,16 +36,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       dispatch(setIsAnimating(false));
     };
     dispatch(updateMenu(false))
-    router1.events.on("routeChangeStart", handleStart);
-    router1.events.on("routeChangeComplete", handleStop);
-    router1.events.on("routeChangeError", handleStop);
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleStop);
+    router.events.on("routeChangeError", handleStop);
 
     return () => {
-      router1.events.off("routeChangeStart", handleStart);
-      router1.events.off("routeChangeComplete", handleStop);
-      router1.events.off("routeChangeError", handleStop);
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleStop);
+      router.events.off("routeChangeError", handleStop);
     };
-  }, [router1]);
+  }, [router]);
   // useEffect(() => {
   //   const init = async () => {
   //     outsetaRef.current = await loadOutseta();
@@ -91,22 +90,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  // ...
-  try {
-    const res = await getUser();
-    const user = await res;
-    return {
-      props: {
-        user,
-      },
-    };
-  } catch (err) {
-    return { props: {} };
-  }
-};
+// export const getServerSideProps: GetServerSideProps = async (
+//   context: GetServerSidePropsContext
+// ) => {
+//   // ...
+//   try {
+//     const res = await getUser();
+//     const user = await res;
+//     return {
+//       props: {
+//         user,
+//       },
+//     };
+//   } catch (err) {
+//     return { props: {} };
+//   }
+// };
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (

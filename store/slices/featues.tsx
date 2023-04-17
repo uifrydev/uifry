@@ -3,9 +3,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: FeatureState = {
   openModal: false,
+  briefModal: false,
   openModal1: false,
   proModal: false,
-  faqModal:false,
+  faqModal: false,
   isMenu: false,
   navigation: {
     mainPage: "",
@@ -30,6 +31,9 @@ const featureSlice = createSlice({
     updateFAQModal: (state, action: PayloadAction<boolean>) => {
       state.faqModal = action.payload;
     },
+    updateBriefModal: (state, action: PayloadAction<boolean>) => {
+      state.briefModal = action.payload;
+    },
     updateMenu: (state, action: PayloadAction<boolean>) => {
       state.isMenu = action.payload;
     },
@@ -39,6 +43,13 @@ const featureSlice = createSlice({
   },
 });
 
-export const { updateModal, updateModal1, updateMenu, setIsAnimating,updateProModal,updateFAQModal } =
-  featureSlice.actions;
+export const {
+  updateModal,
+  updateModal1,
+  updateMenu,
+  setIsAnimating,
+  updateProModal,
+  updateFAQModal,
+  updateBriefModal,
+} = featureSlice.actions;
 export default featureSlice.reducer;
