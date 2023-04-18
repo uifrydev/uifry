@@ -41,7 +41,11 @@ const DetailHeader = ({ link }: { link: string }) => {
 
         <div
           // href={link || "/"}
-          onClick={() => router.back()}
+          onClick={() => {
+
+            router.back();
+            console.log(router.basePath)
+          }}
           className="lg:hidden flex-1 flex cursor-pointer items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]"
         >
           <div className="">
@@ -52,12 +56,12 @@ const DetailHeader = ({ link }: { link: string }) => {
           </span>
         </div>
         <div className="lg:hidden flex gap-[.963rem] items-center pr-[4rem]">
-            {/* <Link
+          {/* <Link
               href={
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login#o-anonymous"
               }
             > */}
-            {/* <Button
+          {/* <Button
               classes={
                 "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
               }
@@ -71,83 +75,85 @@ const DetailHeader = ({ link }: { link: string }) => {
                 </span>
               </div>
             </Button> */}
-            {/* </Link> */}
-            {/* <Link
+          {/* </Link> */}
+          {/* <Link
               href={
                 "https://uifry.outseta.com/auth?widgetMode=register_or_login&planFamilyUid=wmjrZxmV&planPaymentTerm=month&skipPlanOptions=true#o-anonymous"
               }
             > */}
-            {user ? (
-              <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] border-[1px] border-border rounded-full bg-[#fff] ">
-                <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
-                  {user?.FullName?.split(' ')[0]}
+          {user ? (
+            <div className="flex items-center gap-[1rem] py-[.5rem] px-[2rem] border-[1px] border-border rounded-full bg-[#fff] ">
+              <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
+                {user?.FullName?.split(" ")[0]}
+              </span>
+              <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                <Image src={star} alt="" className="w-[1.2rem]" />
+                <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
+                  Pro
                 </span>
-                <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
-                  <Image src={star} alt='' className="w-[1.2rem]" />
-                  <span className="text-[1.1rem] font-700 satoshi text-[#fff]">Pro</span>
-                </div>
-                <div className="relative ">
-                  <Button
-                    classes="!px-[.3rem]"
-                    onClick={() => setSetting((prev) => !prev)}
-                    // onBlur={() => setSetting(false)}
-                  >
-                    <Image alt="" src={setting} />
-                  </Button>
-                  {isSetting && (
-                    <div
-                      // tabIndex={1}
-                      className="bg-[#fff] shadow-xl absolute top-[5rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
-                    >
-                      <ul>
-                        <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
-                          Profile
-                        </li>
-                        <li
-                          onClick={logout}
-                          className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
-                        >
-                          Logout
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
               </div>
-            ) : (
-              <>
+              <div className="relative ">
                 <Button
-                  classes={
-                    "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
-                  }
-                  onClick={() => {
-                    dispatch(updateProModal(true));
-                    document.body.classList.add("!overflow-y-hidden");
-                  }}
-                  // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+                  classes="!px-[.3rem]"
+                  onClick={() => setSetting((prev) => !prev)}
+                  // onBlur={() => setSetting(false)}
                 >
-                  <div className="flex gap-[.8rem]">
-                    <Image src={star} className="" alt="" />
-                    <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
-                      Join Pro
-                    </span>
+                  <Image alt="" src={setting} />
+                </Button>
+                {isSetting && (
+                  <div
+                    // tabIndex={1}
+                    className="bg-[#fff] shadow-xl absolute top-[5rem] -left-[6rem] rounded-[.5rem] overflow-hidden"
+                  >
+                    <ul>
+                      <li className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]">
+                        Profile
+                      </li>
+                      <li
+                        onClick={logout}
+                        className="px-[2rem] py-[0.5rem] text-[1.6rem] cursor-pointer text-primaryBlack hover:bg-[#000]/[0.1]"
+                      >
+                        Logout
+                      </li>
+                    </ul>
                   </div>
-                </Button>
-                <Button
-                  classes={
-                    "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
-                  }
-                  onClick={openLogin}
-                >
-                  <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
-                    Login
+                )}
+              </div>
+            </div>
+          ) : (
+            <>
+              <Button
+                classes={
+                  "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
+                }
+                onClick={() => {
+                  dispatch(updateProModal(true));
+                  document.body.classList.add("!overflow-y-hidden");
+                }}
+                // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+              >
+                <div className="flex gap-[.8rem]">
+                  <Image src={star} className="" alt="" />
+                  <span className="text-[#ffffff] font-[500] text-[1.6rem] flex xl:hidden satoshi">
+                    Join Pro
                   </span>
-                  <Image src={userIcon} alt="" className="min-xl:hidden" />
-                </Button>
-              </>
-            )}
-            {/* </Link> */}
-          </div>
+                </div>
+              </Button>
+              <Button
+                classes={
+                  "bg-[#0A2540] xl:!bg-[#fff] rounded-[3.2rem]  xl:!p-[1.7rem]"
+                }
+                onClick={openLogin}
+              >
+                <span className="text-[#ffffff] font-[500]  text-[1.6rem] xl:hidden leading-[150%] satoshi">
+                  Login
+                </span>
+                <Image src={userIcon} alt="" className="min-xl:hidden" />
+              </Button>
+            </>
+          )}
+          {/* </Link> */}
+        </div>
         <div
           onClick={() => dispatch(updateMenu(!features.isMenu))}
           className="hidden  lg:flex mr-[3.2rem] ml-auto cursor-pointer"
