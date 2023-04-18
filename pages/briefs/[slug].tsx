@@ -18,6 +18,7 @@ import { BriefList, MainCardProps } from "@/Interface/interface";
 import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
+import Link from "next/link";
 
 const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
@@ -108,6 +109,7 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
             </div>
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
+              <Link href={'/briefs/details'} onClick={(e)=>e.preventDefault()}>
               <div
                 className=""
                 onClick={() => {
@@ -115,9 +117,10 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
                   document.body.classList.add("!overflow-y-hidden");
                   dispatch(updateBriefModal(true));
                 }}
-              >
+                >
                 <CategoryCard />
               </div>
+                </Link>
               <CategoryCard />
               <CategoryCard />
             </div>

@@ -52,20 +52,21 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
       ref={ref}
       className="middle-col contain gap-[4rem] min-lg:rounded-[24px] w-full relative pt-[4rem] pb-[5.2rem] bg-[#ffffff] "
     >
-      <div className="flex  rounded-t-[3.4rem] overflow-hidden absolute top-[0rem] left-0 w-full">
-        <Image alt="" src={line} className="w-full " />
-      </div>
-
       {showCross && (
-        <div
-          onClick={() => {
-            document.body.classList.remove("!overflow-y-hidden");
-            dispatch(updateBriefModal(false));
-          }}
-          className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto absolute right-[.6rem] top-[1rem]"
-        >
-          <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
-        </div>
+        <>
+          <div className="flex  rounded-t-[3.4rem] overflow-hidden absolute top-[0rem] left-0 w-full">
+            <Image alt="" src={line} className="w-full " />
+          </div>
+          <div
+            onClick={() => {
+              document.body.classList.remove("!overflow-y-hidden");
+              dispatch(updateBriefModal(false));
+            }}
+            className="hidden cursor-pointer lg:flex p-[1.5rem]  ml-auto absolute right-[.6rem] top-[1rem]"
+          >
+            <Image src={cross} className="w-[1.4rem] h-[1.4rem]" alt="" />
+          </div>
+        </>
       )}
 
       <div className="flex min-lg:min-w-[820px]  lg:gap-[1.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
