@@ -25,6 +25,8 @@ import { loadOutseta } from "@/utils/outseta";
 import image1 from "../../public/assets/images/1.jpg";
 import image2 from "../../public/assets/images/2.jpg";
 import image3 from "../../public/assets/images/3.jpg";
+import check from "../../public/assets/icons/check_green.svg";
+
 const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
@@ -48,9 +50,11 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
   return (
     <div
       ref={ref}
-      className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full relative contain-paint pt-[4rem] bg-[#ffffff] "
+      className="middle-col contain gap-[4rem] min-lg:rounded-[24px] w-full relative pt-[4rem] pb-[5.2rem] bg-[#ffffff] "
     >
-      <Image alt="" src={line} className="w-full absolute top-0 left-0 rounded-t-[2.4rem]" />
+      <div className="flex  rounded-t-[3.4rem] overflow-hidden absolute top-[0rem] left-0 w-full">
+        <Image alt="" src={line} className="w-full " />
+      </div>
 
       {showCross && (
         <div
@@ -102,31 +106,39 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-border2 max-w-[92rem] rounded-[2rem]">
+      <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] bg-primary mx-[4rem] sm:mx-[2rem] p-[3rem] pl-[4rem] border-[1px] border-border2 max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">
           <span className="text-[1.8rem] font-[500] satoshi text-primaryBlack leading-[2.3rem]">
             Info
           </span>
           <span className="text-[1.6rem] font-[400] text-secondaryGray leading-[150%]">
-            {data?.description}
+            {data?.description ||
+              "We craft style guides to help designers start a project with predefined colors, type and examples! "}
           </span>
         </div>
-        <div className="flex flex-col gap-[4rem] p-[3rem] bg-primary">
+        <div className="flex flex-col gap-[4rem] ">
           <div className="flex flex-col gap-[1rem]">
             <span className="text-[1.8rem]  font-[500] satoshi text-primaryBlack leading-[2.3rem]">
-              Tags
+              What’s included?
             </span>
             <div className="flex flex-wrap gap-[.8rem] ">
-              {data?.tags &&
-                [
-                  "data.tags",
-                  "data.tags",
-                  "data.tags",
-                  "data.tags",
-                  "data.tags",
-                ].map((item: any) => (
-                  <Tag text={item} key={item} classess="!bg-[#fff]" />
-                ))}
+              {[
+                "data.tags",
+                "data.tags",
+                "data.tags",
+                "data.tags",
+                "data.tags",
+              ].map((item, index) => {
+                return (
+                  <li
+                    className="flex items-center gap-[.8rem] border-[1px] leading-[150%] rounded-full py-[.6rem] px-[1.4rem] bg-[#fff] text-secondaryGray text-[1.4rem]"
+                    key={index}
+                  >
+                    <Image alt={`check_list${index}`} src={check} />
+                    <span>{item}</span>
+                  </li>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -140,7 +152,24 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             : [image1, image2, image3]
         }
       />
-
+      <div className="flex px-[4rem] py-[2rem] bg-primary rounded-[2rem] max-w-[92rem]">
+        <span className="text-[1.4rem] font-[400] text-secondaryGray leading-[150%]">
+          A squeeze page is a specialized type of landing page tailored to
+          capture essential visitor information, predominantly email addresses,
+          with the primary goal of lead generation and list building. Squeeze
+          pages are characterized by concise, persuasive content and a
+          compelling offer, such as a free ebook, exclusive access to content,
+          or a valuable discount.
+        </span>
+      </div>
+      <div className="flex gap-[.5rem]">
+        <p className="text-[1.6rem] font-[500] leading-[2.4rem] text-primaryBlack">
+          Issue with this brief?
+        </p>
+        <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
+          Tell our team!
+        </p>
+      </div>
       {/* <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-border2 max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">
           <span className="text-[1.8rem] font-[500] satoshi text-primaryBlack leading-[2.3rem]">

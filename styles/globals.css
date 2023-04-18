@@ -184,6 +184,9 @@ select {
   @apply !pt-[2rem]
 
 }
+.contain{
+  contain: paint;
+}
 @media screen and (max-width: 1920px) {
   .uitemphome a:last-child {
     display: none;

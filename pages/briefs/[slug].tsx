@@ -97,7 +97,7 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
             <div className="hidden  w-full lg:flex py-[2rem]">
               <select
                 value={"filter?.subCategory"}
-                className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
+                className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] bg-[#fff] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
               >
                 {data.subCategories.map((item, index) => (
                   <option key={index} value={item}>
