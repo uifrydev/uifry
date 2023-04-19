@@ -24,7 +24,10 @@ import { perProduct } from "@/utils/consts";
 const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
-  const { openModal, briefModal } = useSelector(
+  const [cards, setCards] = useState<Data[]>(res || []);
+  const [isLoading, setLoading] = useState(false);
+  const [productIndex, setProductIndex] = useState(0);
+  const { briefModal } = useSelector(
     (state: RootState) => state.features
   );
   const [modalData, setModalData] = useState<Data>({
@@ -119,7 +122,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             </div>
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
-              {res.map((item, index) => (
+              {cards.map((item, index) => (
                 <Link
                   href={{
                     pathname: "/briefs/details",
