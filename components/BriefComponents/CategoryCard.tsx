@@ -1,8 +1,9 @@
+import { Data } from '@/Interface/interface';
 import Image from 'next/image';
 import React from 'react'
 import _1 from "../../public/assets/images/1.jpg";
 
-const CategoryCard = ({}) => {
+const CategoryCard = ({data}:{data:Data}) => {
   return (
     // <div className='bg-[#fff] rounded-[1.2rem] p-[3rem]'>
 <div
@@ -10,7 +11,7 @@ const CategoryCard = ({}) => {
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
-          src={ _1 || "url"}
+          src={ data?.images[0]?.asset?.url || "url"}
           className="w-full h-full aspect-[2/1]"
           width={2700}
           height={900}
@@ -19,11 +20,11 @@ const CategoryCard = ({}) => {
       </div>
       <div className="flex flex-col items-center">
         <p className="text-heading text-[1.7rem] satoshi font-700 leading-[150%] w-full pb-[1rem]">
-          {'Real Estate Thank You Page'}
+          {data.title||'Real Estate Thank You Page'}
         </p>
       <div className="flex border-border2 flex-col border-t-[1px] pt-[1.2rem]">
         <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem]  font-400 pb-[.4rem] text-[1.4rem]">
-          {'Captures visitor information, such as email addresses, for lead generation and list building.'}
+          {data.description||'Captures visitor information, such as email addresses, for lead generation and list building.'}
         </p>
         <div className="flex-1 gap-[1rem] flex flex-col pt-[2rem] mt-[1rem]">
           <div className="flex items-center justify-between">
@@ -31,7 +32,7 @@ const CategoryCard = ({}) => {
               Category{" "}
             </span>
             <span className="text-primaryBlack leading-[2.1rem] font-400 text-[1.4rem]">
-              {'Thank You Page'}
+              {data.subCategories}
             </span>
           </div>
           <div className="flex justify-between">

@@ -24,6 +24,7 @@ export interface Data {
     current: any;
   };
   subCategory: string;
+  subCategories?:string;
   tags: string[];
   noOfScreens?: any;
   features?: string[];
@@ -142,6 +143,7 @@ export interface MainCardProps {
   includes: string[];
 }
 export interface BriefList extends MainCardProps {
+  name:string;
   about: {
     q: string;
     a: string[];

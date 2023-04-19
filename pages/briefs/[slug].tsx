@@ -14,13 +14,14 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import Image from "next/image";
 import { RootState } from "@/store/store";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { BriefList, MainCardProps } from "@/Interface/interface";
+import { BriefList, Data, MainCardProps } from "@/Interface/interface";
 import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
 import Link from "next/link";
+import { perProduct } from "@/utils/consts";
 
-const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
+const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
   const { openModal, briefModal } = useSelector(
@@ -109,20 +110,30 @@ const UiTemplatesType = ({ res, data }: { res: any; data: BriefList }) => {
             </div>
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
-              <Link href={'/briefs/details'} onClick={(e)=>e.preventDefault()}>
-              <div
-                className=""
-                onClick={() => {
-                  window.scrollBy(0, 2);
-                  document.body.classList.add("!overflow-y-hidden");
-                  dispatch(updateBriefModal(true));
-                }}
+              {res.map((item, index) => (
+                <Link
+                  href={{
+                    pathname: "/briefs/details",
+                    query: {
+                      brief: item.slug.current,
+                    },
+                  }}
+                  onClick={(e) => e.preventDefault()}
                 >
-                <CategoryCard />
-              </div>
+                  <div
+                    className=""
+                    onClick={() => {
+                      window.scrollBy(0, 2);
+                      document.body.classList.add("!overflow-y-hidden");
+                      dispatch(updateBriefModal(true));
+                    }}
+                  >
+                    <CategoryCard data={item} />
+                  </div>
                 </Link>
-              <CategoryCard />
-              <CategoryCard />
+              ))}
+              {/* <CategoryCard />
+              <CategoryCard /> */}
             </div>
           </div>
         </div>
@@ -137,14 +148,21 @@ export const getServerSideProps: GetServerSideProps = async (
   try {
     const data = breifList.find((item) => item.link == context.params?.slug);
     // console.log(slug);
-    const res = await fetchDataServer({
-      query: `*[_type=='uxKit'][0...3]{
-      title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+    const res =
+      (await fetchDataServer({
+        query: `*[_type=='${data?.name}'][0...${perProduct}]{
+      title,slug,subCategories,description,images[]{
         asset->{url}
-      },tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
+      },includes,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
   }`,
-      sanity,
-    });
+        sanity,
+      })) || [];
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+    console.log({ res });
     return {
       props: {
         res,

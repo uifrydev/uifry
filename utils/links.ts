@@ -7,6 +7,7 @@ import bullseye from "../public/assets/icons/bullseye.svg";
 export const breifList: BriefList[] = [
   {
     title: "Landing Page Briefs",
+    name:"landingPageBrief",
     img: {
       alt: "",
       src: product,
@@ -39,6 +40,7 @@ export const breifList: BriefList[] = [
   },
   {
     title: "Product UI Briefs",
+    name:"productUiBrief",
     img: {
       alt: "",
       src: pyramid,
@@ -74,6 +76,7 @@ export const breifList: BriefList[] = [
   },
   {
     title: "UX Briefs",
+    name:"UxBrief",
     img: {
       alt: "",
       src: bullseye,
