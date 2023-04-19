@@ -20,6 +20,7 @@ import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
 import Link from "next/link";
 import { perProduct } from "@/utils/consts";
+import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
 
 const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
@@ -122,6 +123,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             </div>
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
+              <SkeletonCard />
               {cards.map((item, index) => (
                 <Link
                   href={{
