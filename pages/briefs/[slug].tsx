@@ -19,18 +19,17 @@ import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
 import Link from "next/link";
-import { perProduct } from "@/utils/consts";
+import { loadMore, perProduct } from "@/utils/consts";
 import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
 
 const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
   const dispatch = useDispatch();
+  const router = useRouter();
   const [cards, setCards] = useState<Data[]>(res || []);
   const [isLoading, setLoading] = useState(false);
   const [productIndex, setProductIndex] = useState(0);
-  const { briefModal } = useSelector(
-    (state: RootState) => state.features
-  );
+  const { briefModal } = useSelector((state: RootState) => state.features);
   const [modalData, setModalData] = useState<Data>({
     category: "",
     fileURL: "",
@@ -41,6 +40,21 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
     description: "",
   });
   const [filter, setFilter] = useState("All");
+  const applyFilter = async (text:string) => {
+    setLoading(true)
+    const query = `*[_type=='${data.name}' ${
+      text != "All" ? `&& subCategories=='${text}'` : ""
+    }] | order(_updatedAt desc) | [0...${loadMore}]{
+      title,slug,subCategory,category,description,sanityFilter,images[]{
+        asset->{url}
+      },tags,"fileURL":zipFile.asset->url
+    }`;
+
+    let result = await sanity.fetch(query);
+    setCards(result);
+    setProductIndex(result.length);
+    setLoading(false);
+  };
   return (
     <>
       {briefModal && <BriefModal data={modalData} setData={setModalData} />}
@@ -97,6 +111,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                 <Button
                   onClick={() => {
                     setFilter(item);
+                    applyFilter(item)
                   }}
                   key={index}
                   classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px]  ${
@@ -124,7 +139,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
               <SkeletonCard />
-              {cards.map((item, index) => (
+              {!isLoading && cards.map((item, index) => (
                 <Link
                   href={{
                     pathname: "/briefs/details",
