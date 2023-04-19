@@ -5,7 +5,6 @@ import sanity from "../../sanity";
 import { updateBriefModal, updateModal } from "../../store/slices/featues";
 import { fetchDataServer, slugToCapitalize } from "../../utils/functions";
 import { useDispatch, useSelector } from "react-redux";
-import imageUrlBuilder from "@sanity/image-url";
 import { breifList, list } from "../../utils/links";
 import DetailsModal from "../../components/DetailsModal/DetailsModal";
 import Header from "../../components/Header/Header";
@@ -40,11 +39,13 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
     description: "",
   });
   const [filter, setFilter] = useState("All");
-  const applyFilter = async (text:string) => {
-    setLoading(true)
+  const applyFilter = async (text: string) => {
+    if(text===filter)return
+    setLoading(true);
     const query = `*[_type=='${data.name}' ${
       text != "All" ? `&& subCategories=='${text}'` : ""
     }] | order(_updatedAt desc) | [0...${loadMore}]{
+      subCategories,"tags":includes,
       title,slug,subCategory,category,description,sanityFilter,images[]{
         asset->{url}
       },tags,"fileURL":zipFile.asset->url
@@ -111,7 +112,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                 <Button
                   onClick={() => {
                     setFilter(item);
-                    applyFilter(item)
+                    applyFilter(item);
                   }}
                   key={index}
                   classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px]  ${
@@ -138,30 +139,34 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             </div>
 
             <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
-              <SkeletonCard />
-              {!isLoading && cards.map((item, index) => (
-                <Link
-                  href={{
-                    pathname: "/briefs/details",
-                    query: {
-                      brief: item.slug.current,
-                    },
-                  }}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <div
-                    className=""
-                    onClick={() => {
-                      window.scrollBy(0, 2);
-                      setModalData(item);
-                      document.body.classList.add("!overflow-y-hidden");
-                      dispatch(updateBriefModal(true));
+              {isLoading &&
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
+                  <SkeletonCard key={item} />
+                ))}
+              {!isLoading &&
+                cards.map((item, index) => (
+                  <Link
+                    href={{
+                      pathname: "/briefs/details",
+                      query: {
+                        brief: item.slug.current,
+                      },
                     }}
+                    onClick={(e) => e.preventDefault()}
                   >
-                    <CategoryCard data={item} />
-                  </div>
-                </Link>
-              ))}
+                    <div
+                      className=""
+                      onClick={() => {
+                        window.scrollBy(0, 2);
+                        setModalData(item);
+                        document.body.classList.add("!overflow-y-hidden");
+                        dispatch(updateBriefModal(true));
+                      }}
+                    >
+                      <CategoryCard data={item} />
+                    </div>
+                  </Link>
+                ))}
               {/* <CategoryCard />
               <CategoryCard /> */}
             </div>
