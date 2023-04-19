@@ -36,10 +36,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
   const pid = router.query;
   const { user } = useSelector((state: RootState) => state.auth);
 
-  interface AuthResult {
-    success: boolean;
-    error?: string;
-  }
+  console.log(data)
   useEffect(() => {
     async function fecthData() {
       outsetaRef.current = await loadOutseta();
@@ -83,7 +80,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             <Link href={data?.fileURL || ""} download>
               <Button classes={"bg-gradient rounded-[10rem] w-full"}>
                 <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
-                  Download
+                  Download Brief
                 </span>
               </Button>
             </Link>
@@ -123,13 +120,8 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
               What’s included?
             </span>
             <div className="flex flex-wrap gap-[.8rem] ">
-              {[
-                "data.tags",
-                "data.tags",
-                "data.tags",
-                "data.tags",
-                "data.tags",
-              ].map((item, index) => {
+              
+              {data?.tags.map((item: string, index: number) => {
                 return (
                   <li
                     className="flex items-center gap-[.8rem] border-[1px] leading-[150%] rounded-full py-[.6rem] px-[1.4rem] bg-[#fff] text-secondaryGray text-[1.4rem]"

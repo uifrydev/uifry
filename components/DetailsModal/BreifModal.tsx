@@ -9,7 +9,7 @@ import ProductDetail2 from "../ProductDetail/ProductDetail2";
 import { Data } from "@/Interface/interface";
 import BriefDetail from "../ProductDetail/BriefDetail";
 const BriefModal = ({ data,setData }:{
-  data?: Data;
+  data: Data;
   setData?: React.Dispatch<React.SetStateAction<any>>;
 }) => {
   const dispatch = useDispatch();

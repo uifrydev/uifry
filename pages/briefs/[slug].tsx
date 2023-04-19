@@ -27,10 +27,19 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   const { openModal, briefModal } = useSelector(
     (state: RootState) => state.features
   );
+  const [modalData, setModalData] = useState<Data>({
+    category: "",
+    fileURL: "",
+    slug: { current: "" },
+    subCategory: "",
+    tags: [],
+    title: "",
+    description: "",
+  });
   const [filter, setFilter] = useState("All");
   return (
     <>
-      {briefModal && <BriefModal />}
+      {briefModal && <BriefModal data={modalData} setData={setModalData} />}
       <Header
         title={["Briefs"]}
         breadcrums={["Briefs", data.title.split(" ").slice(0, -1).join(" ")]}
@@ -124,6 +133,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                     className=""
                     onClick={() => {
                       window.scrollBy(0, 2);
+                      setModalData(item);
                       document.body.classList.add("!overflow-y-hidden");
                       dispatch(updateBriefModal(true));
                     }}
@@ -152,8 +162,8 @@ export const getServerSideProps: GetServerSideProps = async (
       (await fetchDataServer({
         query: `*[_type=='${data?.name}'][0...${perProduct}]{
       title,slug,subCategories,description,images[]{
-        asset->{url}
-      },includes,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
+        asset->{url},
+      },"tags":includes,includes,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
   }`,
         sanity,
       })) || [];
