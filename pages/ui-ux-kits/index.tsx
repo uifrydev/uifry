@@ -14,7 +14,7 @@ import { RootState } from "@/store/store";
 import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 import Button from "@/components/Button/Button";
 import { fetchData } from "@/utils/functions";
-import { loadMore } from "@/utils/consts";
+import { loadMore, perProduct } from "@/utils/consts";
 const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
@@ -103,7 +103,7 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
 export async function getServerSideProps() {
   try {
     const res = await sanity.fetch(
-      `*[_type=='uxKit'] | order(featured desc, _updatedAt desc)[0...24]{
+      `*[_type=='uxKit'] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
     title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
       asset->{url}
     },tags,features,"fileURL":zipFile.asset->url
