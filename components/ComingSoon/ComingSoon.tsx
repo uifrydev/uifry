@@ -12,21 +12,21 @@ import heart from "../../public/assets/images/heart.png";
 import ProTag from "../ProModal/ProTag";
 const ComingSoon = () => {
   return (
-    <div className="w-full h-[100vh] relative flex flex-col justify-center items-center px-[6rem] pt-[6rem] pb-[13rem] bg-[#F6F9FC]">
-      <Image alt="" src={comming1} className="absolute top-0 left-0" />
-      <Image alt="" src={comming2} className="absolute top-[12rem] right-0" />
+    <div className="w-full min-h-[100vh] relative flex flex-col  items-center px-[6rem] pt-[6rem] pb-[13rem] md:px-[3rem] bg-[#F6F9FC]">
+      <Image alt="" src={comming1} className="absolute top-0 left-0 " />
+      <Image alt="" src={comming2} className="absolute top-[12rem] md:top-[48rem] right-0" />
       <Image
         alt=""
         src={comming3}
-        className="absolute bottom-0 left-[12.5rem]"
+        className="absolute bottom-0 left-[12.5rem] sm:left-[5rem] w-[22rem]"
       />
       <div className="w-full pb-[3.7rem] border-b-[1px] flex justify-center">
         <Image src={logo} alt="" />
       </div>
-      <div className="flex flex-col gap-[2rem] items-center justify-center">
+      <div className="flex flex-col gap-[2rem] items-center justify-center z-[10]">
         <Player src={item} className="relative w-[12.2rem]" autoplay loop />
         <div className="flex flex-col justify-center items-center">
-          <h2 className="satoshi text-primaryBlack font-700 text-[4rem] leading-[5.3rem]">
+          <h2 className="satoshi text-primaryBlack font-700 text-[4rem] leading-[5.3rem] text-center">
             Launching Soon!
           </h2>
           <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] text-center">
