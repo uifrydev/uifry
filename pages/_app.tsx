@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const handleStop = () => {
       dispatch(setIsAnimating(false));
     };
-    dispatch(updateMenu(false))
+    dispatch(updateMenu(false));
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleStop);
     router.events.on("routeChangeError", handleStop);
@@ -77,6 +77,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   };
   //   fetchData();
   // }, []);
+  console.log(process.env.NODE_ENV);
+
   return (
     <>
       <Progress isAnimating={isAnimating} />
