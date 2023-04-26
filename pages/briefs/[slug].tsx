@@ -153,6 +153,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                       },
                     }}
                     onClick={(e) => e.preventDefault()}
+                    key={index}
                   >
                     <div
                       className=""
@@ -188,7 +189,7 @@ export const getServerSideProps: GetServerSideProps = async (
         query: `*[_type=='${data?.name}'][0...${perProduct}]{
       title,slug,subCategories,description,images[]{
         asset->{url},
-      },"tags":includes,includes,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
+      },"tags":includes,includes,"fileURL":zipFile.asset->url
   }`,
         sanity,
       })) || [];

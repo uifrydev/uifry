@@ -39,7 +39,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <Image
                 src={urlFor(detail.images[0]).url() || profile}
-                className="w-[8rem] h-[8rem] rounded-full relative top-[2.8rem] left-[4.4rem]"
+                className="w-[8rem] h-[8rem] p-[1rem] bg-[#fff]  rounded-full relative top-[3.8rem] left-[4.4rem]"
                 width={80}
                 height={80}
                 alt=""
@@ -95,7 +95,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
               </div>
             </div>
           </div>
-          <div className="flex relative mt-[3rem] lg1:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-border2">
+          <div className="flex relative mt-[3rem] lg1:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex w-full flex-col gap-[4rem] ">
               <ApplyCard companyName={detail.companyName} />
               <div className="flex flex-col gap-[2rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
@@ -223,7 +223,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
 ) => {
   try {
     const res = await sanity.fetch(
-      `*[_type=='job' && slug.current=='${context.query.job}']{
+      `*[_type=='job' && slug.current=='${context.query.job}' && applyBefore >= now()]{
         body,
         companyName,
         salaryRange,
@@ -238,7 +238,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
   }`
     );
     const res1 = await sanity.fetch(
-      `*[_type=='job']{
+      `*[_type=='job' && applyBefore >= now() ]{
         body,
         companyName,
         salaryRange,

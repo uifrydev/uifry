@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 
 const ApplyCard = ({ companyName }: { companyName: string }) => {
   return (
-    <div className="p-[3rem] pr-[2rem] flex flex-col gap-[3rem] rounded bg-[#fff]">
+    <div className="p-[3rem] pr-[2rem] flex flex-col gap-[3rem] rounded-[2rem] bg-[#fff]">
       <div className="flex flex-col gap-[1rem]">
         <span className="satoshi text-primaryBlack text-[1.8rem] font-[700] leading-[3rem]">
           Apply Now

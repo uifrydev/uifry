@@ -47,13 +47,13 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
   return (
     <div
       ref={ref}
-      className="middle-col contain gap-[4rem] min-lg:rounded-[24px] w-full relative pt-[4rem] pb-[5.2rem] bg-[#ffffff] "
+      className="middle-col contain gap-[4rem] min-lg:rounded-[24px] w-full relative pt-[4rem] pb-[5.2rem] bg-[#ffffff] px-[2rem]"
     >
       {showCross && (
         <>
-          <div className="flex  rounded-t-[3.4rem] overflow-hidden absolute top-[0rem] left-0 w-full">
+          {/* <div className="flex  rounded-t-[3.4rem] overflow-hidden absolute top-[0rem] left-0 w-full">
             <Image alt="" src={line} className="w-full " />
-          </div>
+          </div> */}
           <div
             onClick={() => {
               document.body.classList.remove("!overflow-y-hidden");

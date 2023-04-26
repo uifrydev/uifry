@@ -41,7 +41,7 @@ const Jobs: NextPage<{
 export async function getServerSideProps() {
   try {
     const res = await fetchDataServer({
-      query: `*[_type=='job']{
+      query: `*[_type=='job' && applyBefore >= now()]{
         body,
         companyName,
         salaryRange,

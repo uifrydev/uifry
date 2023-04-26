@@ -237,7 +237,7 @@ export async function getServerSideProps() {
       sanity,
     });
     const jobs = await fetchDataServer({
-      query: `*[_type=='job'][0...4]{
+      query: `*[_type=='job' && applyBefore >= now()][0...4]{
         body,
         companyName,
         salaryRange,

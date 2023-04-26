@@ -125,6 +125,7 @@ export interface JobProps {
     current: string;
   };
   total?: number;
+  subCategory:string
 }
 export interface JobDetailProps extends JobProps {
   body: any;
@@ -132,6 +133,7 @@ export interface JobDetailProps extends JobProps {
   jobPosted: string;
   jobType: string;
   foundedIn: string;
+  
 }
 export interface MainCardProps {
   img: {

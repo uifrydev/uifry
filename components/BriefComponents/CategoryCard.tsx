@@ -19,7 +19,7 @@ const CategoryCard = ({data}:{data:Data}) => {
         />
       </div>
       <div className="flex flex-col items-center">
-        <p className="text-heading text-[1.7rem] satoshi font-700 leading-[150%] w-full pb-[1rem]">
+        <p className="text-heading text-[1.7rem] satoshi font-700 leading-[150%] pt-[1rem] w-full pb-[1rem]">
           {data.title||'Real Estate Thank You Page'}
         </p>
       <div className="flex border-border2 flex-col border-t-[1px] pt-[1.2rem]">

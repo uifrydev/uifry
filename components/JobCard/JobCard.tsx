@@ -14,6 +14,7 @@ const JobCard: FC<{
     description: string;
     companySize: string;
     salaryRange: string;
+    subCategory:string
   };
 }> = ({ data }) => {
   const builder = imageUrlBuilder(sanity);
@@ -29,7 +30,7 @@ const JobCard: FC<{
             Added 16 days ago
           </span>
           <span className="text-primaryBlack leading-[2.4rem] text-[1.4rem] font-[500]">
-            {data.primaryIndustry || "UI UX Designer"}
+            {data.subCategory}
           </span>
         </div>
       </div>
