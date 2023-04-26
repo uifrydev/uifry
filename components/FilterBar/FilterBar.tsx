@@ -9,6 +9,7 @@ import { applyFilter } from "../../utils/functions";
 import { FilterBarProps, FilterParams } from "@/Interface/interface";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { perProduct } from "@/utils/consts";
 
 const FilterBar: FC<FilterBarProps> = ({
   filter,
@@ -17,6 +18,7 @@ const FilterBar: FC<FilterBarProps> = ({
   initialData,
   buttons = [],
   isFilter,
+  setLoading
 }) => {
   const images: { img: string, title: string }[] = [
     { img: figma, title: "figma" },
@@ -34,11 +36,17 @@ const FilterBar: FC<FilterBarProps> = ({
           <Button
             onClick={() => {
               setFilter((prev:FilterParams) => ({ ...prev, subCategory: item.title }));
-              applyFilter(
-                { ...filter, subCategory: item.title },
-                setCards,
-                initialData
-              );
+              setLoading(true)
+              let query=`*[_type=='uxKit'] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
+                title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+                  asset->{url}
+                },tags,features,"fileURL":zipFile.asset->url
+            }`
+              // applyFilter(
+              //   { ...filter, subCategory: item.title },
+              //   setCards,
+              //   initialData
+              // );
             }}
             key={index}
             classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]  ${item.title.includes(filter?.subCategory)
@@ -85,11 +93,11 @@ const FilterBar: FC<FilterBarProps> = ({
                   ...prev,
                   [item?.title]: !prev[item.title],
                 }));
-                applyFilter(
-                  { ...filter, [item.title]: !filter[item.title] },
-                  setCards,
-                  initialData
-                );
+                // applyFilter(
+                //   { ...filter, [item.title]: !filter[item.title] },
+                //   setCards,
+                //   initialData
+                // );
               }}
               key={index}
               classes={`flex w-[3.2rem] h-[3.2rem] items-center ${filter[item?.title] == true && "!border-border2  bg-[#160042]"

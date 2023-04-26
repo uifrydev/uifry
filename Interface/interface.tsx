@@ -71,6 +71,7 @@ export type FilterBarProps = {
   initialData: any[];
   buttons: { title: string; link?: string }[];
   isFilter?: boolean;
+  setLoading:React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export interface FilterBar1Props extends FilterBarProps {
