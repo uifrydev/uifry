@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const isProduction = process.env.NODE_ENV === 'production';
-    const specificDomain = 'uifry.com';
+    const specificDomain = 'www.uifry.com';
     console.log(window.location.hostname)
     if (isProduction && window.location.hostname === specificDomain) {
       setShowComingSoon(true);
