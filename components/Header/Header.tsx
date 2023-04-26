@@ -216,12 +216,17 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                 <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
                   {user?.FullName?.split(" ")[0]}
                 </span>
-                <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
-                  <Image src={star} alt="" className="w-[1.2rem]" />
-                  <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
-                    Pro
-                  </span>
-                </div>
+                {user?.Account?.AccountStage &&
+                user?.Account?.AccountStage != 5 ? (
+                  <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                    <Image src={star} alt="" className="w-[1.2rem]" />
+                    <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
+                      Pro
+                    </span>
+                  </div>
+                ) : (
+                  <></>
+                )}
                 <div className="relative ">
                   <Button
                     classes="!px-[.3rem]"
@@ -327,12 +332,12 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
                     {user?.FullName?.split(" ")[0]}
                   </span>
-                  <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                  {user?.Account?.AccountStage  && user?.Account?.AccountStage != 5?<div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
                     <Image src={star} alt="" className="w-[1.2rem]" />
                     <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
                       Pro
                     </span>
-                  </div>
+                  </div>:<></>}
                   <div className="relative ">
                     <Button
                       classes="!px-[.3rem]"
