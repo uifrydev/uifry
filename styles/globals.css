@@ -188,7 +188,26 @@ select {
   contain: paint;
 }
 @media screen and (max-width: 1920px) {
-  .uitemphome a:last-child {
+  .uitemphome a:nth-child(4) {
+    display: none;
+  }
+  .uiuxhome a:nth-child(3){
+    display: none;
+  }
+  
+}
+@media screen and (max-width: 1365px) {
+  .uitemphome a:nth-child(3) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .uiuxhome a:nth-child(2) {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .uitemphome a:nth-child(2) {
     display: none;
   }
 }

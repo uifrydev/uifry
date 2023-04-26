@@ -108,7 +108,7 @@ const Home: NextPage<{
 
           <List
             classes={`4xl:grid-cols-2 grid-cols-3 ${
-              uiKits.length == 3 && "uitemphome"
+              uiKits.length == 3 && "uiuxhome"
             } xl:grid-cols-1 `}
             title="UI UX Kits"
             link="/ui-ux-kits"
@@ -129,7 +129,7 @@ const Home: NextPage<{
           </List>
           <List
             classes={`4xl:grid-cols-2 grid-cols-3 ${
-              fonts.length == 3 && "uitemphome"
+              fonts.length == 3 && "uiuxhome"
             } xl:grid-cols-1`}
             resources={Number(fonts[0]?.total) || 0}
             title="Fonts"
