@@ -12,12 +12,17 @@ import Sticker1 from "../components/Sticker/Sticker1";
 import { setToken, setUser } from "@/store/slices/auth";
 import { getUser } from "@/apis/user";
 import { asyncGetUser } from "@/store/thunk/userAsync";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetStaticPropsContext,
+} from "next";
 import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
 import { loadOutseta } from "@/utils/outseta";
 import FAQsModal from "@/components/FAQModal/FAQModal";
+import ComingSoon from "@/components/ComingSoon/ComingSoon";
 // Add this function before the `MyApp` component definition
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -31,12 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
-    const isProduction = process.env.NODE_ENV === 'production';
-    const specificDomain = 'www.uifry.com';
-    console.log(window.location.hostname)
+    const isProduction = process.env.NODE_ENV === "production";
+    const specificDomain = "www.uifry.com";
+    console.log(window.location.hostname);
     if (isProduction && window.location.hostname === specificDomain) {
       setShowComingSoon(true);
-      alert('ssa')
+      alert("ssa");
     }
   }, []);
 
@@ -90,7 +95,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   fetchData();
   // }, []);
   console.log(process.env.NODE_ENV);
-
+  if (showComingSoon) return <ComingSoon />;
   return (
     <>
       <Progress isAnimating={isAnimating} />
