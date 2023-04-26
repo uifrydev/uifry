@@ -14,7 +14,7 @@ const ComingSoon = () => {
   return (
     <div className="w-full min-h-[100vh] relative flex flex-col  items-center px-[6rem] pt-[6rem] pb-[13rem] md:px-[3rem] bg-[#F6F9FC]">
       <Image alt="" src={comming1} className="absolute top-0 left-0 " />
-      <Image alt="" src={comming2} className="absolute top-[12rem] md:top-[48rem] right-0" />
+      <Image alt="" src={comming2} className="absolute top-[19rem] md:top-[48rem] right-0" />
       <Image
         alt=""
         src={comming3}
