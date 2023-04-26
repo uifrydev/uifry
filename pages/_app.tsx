@@ -28,6 +28,7 @@ import ComingSoon from "@/components/ComingSoon/ComingSoon";
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const outsetaRef = useRef<any>();
+  const [loading, setLoading] = useState(true);
   const { isAnimating, proModal, faqModal } = useSelector(
     (state: RootState) => state.features
   );
@@ -38,10 +39,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const isProduction = process.env.NODE_ENV === "production";
     const specificDomain = "www.uifry.com";
-    console.log(window.location.hostname);
     if (isProduction && window.location.hostname === specificDomain) {
       setShowComingSoon(true);
     }
+    setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -94,7 +95,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   fetchData();
   // }, []);
   console.log(process.env.NODE_ENV);
-  if (showComingSoon) return <ComingSoon />;
+  if (showComingSoon || loading) return <ComingSoon />;
   return (
     <>
       <Progress isAnimating={isAnimating} />
