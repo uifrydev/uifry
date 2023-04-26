@@ -6,13 +6,13 @@ import { AppProps } from "next/app";
 import { Router, useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsAnimating, updateMenu } from "../store/slices/featues";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Progress } from "../components/progress/Progress";
 import Sticker1 from "../components/Sticker/Sticker1";
 import { setToken, setUser } from "@/store/slices/auth";
 import { getUser } from "@/apis/user";
 import { asyncGetUser } from "@/store/thunk/userAsync";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext } from "next";
 import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
@@ -28,6 +28,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
+  const [showComingSoon, setShowComingSoon] = useState(false);
+
+  useEffect(() => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const specificDomain = 'uifry.com';
+
+    if (isProduction && window.location.hostname === specificDomain) {
+      setShowComingSoon(true);
+      alert('ssa')
+    }
+  }, []);
+
   useEffect(() => {
     const handleStart = () => {
       dispatch(setIsAnimating(true));
