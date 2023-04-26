@@ -41,7 +41,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     console.log(window.location.hostname);
     if (isProduction && window.location.hostname === specificDomain) {
       setShowComingSoon(true);
-      alert("ssa");
     }
   }, []);
 
