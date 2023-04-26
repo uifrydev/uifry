@@ -31,10 +31,10 @@ const signup = () => {
     dispatch(updateProModal(false));
     document.body.classList.remove("!overflow-y-hidden");
 
-    //     const script = document.createElement("script");
-    //     script.src = "https://cdn.outseta.com/outseta.min.js";
-    //     script.setAttribute("data-options", JSON.stringify(o_signup_options));
-    //     document.body.appendChild(script);
+        // const script = document.createElement("script");
+        // script.src = "https://cdn.outseta.com/outseta.min.js";
+        // script.setAttribute("data-options", JSON.stringify(o_signup_options));
+        // document.body.appendChild(script);
     return () => {
       sticker?.classList.remove("!hidden");
     };
