@@ -9,7 +9,8 @@ import { applyFilter } from "../../utils/functions";
 import { FilterBarProps, FilterParams } from "@/Interface/interface";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { perProduct } from "@/utils/consts";
+import { loadMore, perProduct } from "@/utils/consts";
+import sanity from "@/sanity";
 
 const FilterBar: FC<FilterBarProps> = ({
   filter,
@@ -18,30 +19,50 @@ const FilterBar: FC<FilterBarProps> = ({
   initialData,
   buttons = [],
   isFilter,
-  setLoading
+  setLoading,
+  setProductIndex,
 }) => {
-  const images: { img: string, title: string }[] = [
+  const images: { img: string; title: string }[] = [
     { img: figma, title: "figma" },
     { img: xd, title: "xd" },
     { img: Sketch, title: "sketch" },
   ];
-  const {user} =useSelector((state:RootState)=>state.auth)
+  const { user } = useSelector((state: RootState) => state.auth);
 
   return (
     <div
-      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:!top-0 pt-[2rem] ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"} pr-[4rem] `}
+      className={`flex z-[1] lg:flex-col w-full items-start lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:!top-0 pt-[2rem] ${
+        user
+          ? "top-[9.01rem] lg:top-[20.6rem]"
+          : "top-[15.31rem] lg:top-[26.9rem]"
+      } pr-[4rem] `}
     >
       <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
         {buttons.map((item, index) => (
           <Button
-            onClick={() => {
-              setFilter((prev:FilterParams) => ({ ...prev, subCategory: item.title }));
-              setLoading(true)
-              let query=`*[_type=='uxKit'] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
+            onClick={async () => {
+              setFilter((prev: FilterParams) => ({
+                ...prev,
+                subCategory: item.title,
+              }));
+              setLoading(true);
+              let query = `*[_type=='uxKit' ${
+                item.title !== "All Kits"
+                  ? ` && subCategory=='${item.title}'`
+                  : ""
+              } ${filter.figma == false ? "" : "&& sanityFilter.Figma==true"} ${
+                filter.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+              } ${
+                filter.xd == false ? "" : "&& sanityFilter.XD==true"
+              }] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
                 title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,features,"fileURL":zipFile.asset->url
-            }`
+            }`;
+              let result = await sanity.fetch(query);
+              setCards(result);
+              setProductIndex(result.length);
+              setLoading(false);
               // applyFilter(
               //   { ...filter, subCategory: item.title },
               //   setCards,
@@ -49,10 +70,11 @@ const FilterBar: FC<FilterBarProps> = ({
               // );
             }}
             key={index}
-            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]  ${item.title.includes(filter?.subCategory)
+            classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px]  ${
+              item.title.includes(filter?.subCategory)
                 ? "bg-gradient text-[#ffffff]"
                 : "!border-border"
-              }`}
+            }`}
           >
             <span>{item?.title}</span>
           </Button>
@@ -62,7 +84,10 @@ const FilterBar: FC<FilterBarProps> = ({
         <select
           value={filter?.subCategory}
           onChange={(e) => {
-            setFilter((prev:FilterParams) => ({ ...prev, subCategory: e.target.value }));
+            setFilter((prev: FilterParams) => ({
+              ...prev,
+              subCategory: e.target.value,
+            }));
             applyFilter(
               { ...filter, subCategory: e.target.value },
               setCards,
@@ -72,10 +97,7 @@ const FilterBar: FC<FilterBarProps> = ({
           className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
         >
           {buttons.map((item, index) => (
-            <option
-              key={index}
-              value={item?.title}
-            >
+            <option key={index} value={item?.title}>
               {item.title}
             </option>
           ))}
@@ -88,20 +110,41 @@ const FilterBar: FC<FilterBarProps> = ({
           </span>
           {images.map((item, index) => (
             <Button
-              onClick={() => {
-                setFilter((prev:any) => ({
+              onClick={async () => {
+                
+                setLoading(true)
+                setFilter((prev: any) => ({
                   ...prev,
                   [item?.title]: !prev[item.title],
                 }));
-                // applyFilter(
-                //   { ...filter, [item.title]: !filter[item.title] },
-                //   setCards,
-                //   initialData
-                // );
+                const temp = {
+                  ...filter,
+                  [item?.title]: !filter[item.title],
+                };
+
+                const query = `*[_type=='uxKit'  ${
+                  filter.subCategory !== "All Kits" 
+                    ? ` && subCategory=='${filter.subCategory}'`
+                    : ""
+                } ${temp.figma == false ? "" : "&& sanityFilter.Figma==true"} ${
+                  temp.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+                } ${
+                  temp.xd == false ? "" : "&& sanityFilter.XD==true"
+                }] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
+                  title,slug,subCategory,category,description,sanityFilter,images[]{
+                    asset->{url}
+                  },tags,"fileURL":zipFile.asset->url
+                }`;
+                console.log({ query });
+                let result = await sanity.fetch(query);
+                setCards(result);
+                setProductIndex(result.length);
+                setLoading(false);
               }}
               key={index}
-              classes={`flex w-[3.2rem] h-[3.2rem] items-center ${filter[item?.title] == true && "!border-border2  bg-[#160042]"
-                } justify-center !p-0 border-[1px] rounded-full`}
+              classes={`flex w-[3.2rem] h-[3.2rem] items-center ${
+                filter[item?.title] == true && "!border-border2  bg-[#160042]"
+              } justify-center !p-0 border-[1px] rounded-full`}
             >
               <Image alt="" src={item.img} />
             </Button>

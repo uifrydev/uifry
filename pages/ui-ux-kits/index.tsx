@@ -15,8 +15,9 @@ import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
+  const [productIndex, setProductIndex] = useState(posts.length);
   const [filter, setFilter] = useState({
-    subCategory: "All",
+    subCategory: "All Kits",
     figma: false,
     xd: false,
     sketch: false,
@@ -33,6 +34,7 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
         setFilter={setFilter}
         buttons={list[1].buttons}
         setLoading={setLoading}
+        setProductIndex={setProductIndex}
         // classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem]  w-full ">
