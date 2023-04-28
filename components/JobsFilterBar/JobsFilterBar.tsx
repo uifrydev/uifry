@@ -108,14 +108,41 @@ const JobsFilterBar = ({
       </div>
       <div className="hidden w-full lg:flex py-[2rem]">
         <select
-          onChange={(e) => {
+          onChange={async(e) => {
             setFilter((prev) => ({ ...prev, subCategory: e.target.value }));
+              setProducts([]);
+              await fetchData({
+                isLoading,
+                setLoading,
+                setProductIndex,
+                setCards: setProducts,
+                sanity,
+                query: `*[_type=='job' ${
+                  e.target.value !== "All Jobs"
+                    ? ` && subCategory=='${e.target.value}'`
+                    : ""
+                } ${
+                  filter.type !== "All" ? ` && jobType=='${filter.type}'` : ""
+                } && applyBefore >= now()]{
+                      body,
+                      companyName,
+                      salaryRange,
+                      title,
+                      slug,
+                      description,
+                      images,
+                      jobType,
+                       primaryIndustry,
+                      tags,foundedIn,companySize,
+                        subCategory,jobPosted,applyBefore
+                }`,
+              });
           }}
           value={filter.type}
           className="w-full h-[5.6rem] cursor-pointer text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
         >
           {list[5].buttons.map((item, index) => (
-            <option key={index}>{item.title}</option>
+            <option key={index} value={item.title}>{item.title}</option>
           ))}
         </select>
       </div>
@@ -125,8 +152,35 @@ const JobsFilterBar = ({
             Type
           </span>
           <select
-            onChange={(e) => {
+            onChange={async(e) => {
               setFilter((prev) => ({ ...prev, type: e.target.value }));
+              setProducts([]);
+              await fetchData({
+                isLoading,
+                setLoading,
+                setProductIndex,
+                setCards: setProducts,
+                sanity,
+                query: `*[_type=='job' ${
+                  filter.subCategory !== "All Jobs"
+                    ? ` && subCategory=='${filter.subCategory}'`
+                    : ""
+                } ${
+                  e.target.value !== "All" ? ` && jobType=='${e.target.value}'` : ""
+                } && applyBefore >= now()]{
+                      body,
+                      companyName,
+                      salaryRange,
+                      title,
+                      slug,
+                      description,
+                      images,
+                      jobType,
+                       primaryIndustry,
+                      tags,foundedIn,companySize,
+                        subCategory,jobPosted,applyBefore
+                }`,
+              });
             }}
             className="w-[18rem] cursor-pointer h-[4.4rem] text-[#160042] bg-primary text-[1.6rem] px-[2rem] py-[1rem] font-500 rounded-full outline-none "
           >
