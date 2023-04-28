@@ -60,25 +60,6 @@ const Jobs: NextPage<{
           </div>
           <Button
             onClick={async () => {
-              console.log(`*[_type=='job'${
-                filter.subCategory !== "All Jobs"
-                  ? ` && subCategory=='${filter.subCategory}'`
-                  : ""
-              }${
-                filter.type !== "All" ? ` && jobType=='${filter.type}'` : ""
-              } && applyBefore >= now()]{
-                    body,
-                    companyName,
-                    salaryRange,
-                    title,
-                    slug,
-                    description,
-                    ,
-                    jobType,
-                     priimagesmaryIndustry,
-                    tags,foundedIn,companySize,
-                      subCategory,jobPosted,applyBefore
-              }`)
               setProducts([]);
               await fetchData({
                 isLoading: isLoadmoreLoading,
@@ -86,27 +67,34 @@ const Jobs: NextPage<{
                 setProductIndex,
                 setCards: setProducts,
                 sanity,
-                query: `*[_type=='job'${
+                query: `*[_type=='job' ${
                   filter.subCategory !== "All Jobs"
                     ? ` && subCategory=='${filter.subCategory}'`
                     : ""
-                }${
+                } ${
                   filter.type !== "All" ? ` && jobType=='${filter.type}'` : ""
                 } && applyBefore >= now()]{
-                      body,
-                      companyName,
-                      salaryRange,
-                      title,
-                      slug,
-                      description,
-                      ,
-                      jobType,
-                       priimagesmaryIndustry,
-                      tags,foundedIn,companySize,
-                        subCategory,jobPosted,applyBefore
-                }`,
+                  body,
+                  companyName,
+                  salaryRange,
+                  title,
+                  slug,
+                  description,
+                  images,
+                  jobType,
+                   primaryIndustry,
+                  tags,foundedIn,companySize,
+                    subCategory,jobPosted,applyBefore
+            }`,
               });
             }}
+            //   ${
+            //     filter.subCategory !== "All Jobs"
+            //     ? ` && subCategory=='${filter.subCategory}'`
+            //     : ""
+            // } ${
+            //   filter.type !== "All" ? ` && jobType=='${filter.type}'` : ""
+            // }
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
               {isLoading ? "Loading..." : "Load More"}
