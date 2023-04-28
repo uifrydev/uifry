@@ -15,15 +15,28 @@ const Jobs: NextPage<{
 }> = ({ Jobs }) => {
   const [products, setProducts] = useState<JobProps[]>(Jobs);
   const [productIndex, setProductIndex] = useState(Jobs.length);
+  const [isLoading, setLoading] = useState(false);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
+  const [filter, setFilter] = useState({
+    subCategory: "All Jobs",
+    type: "All",
+  });
   return (
     <>
       <Header breadcrums={["Jobs"]} title={["Jobs"]} />
       <Sidebar isDetail={false} />
-      <JobsFilterBar initialData={Jobs} setProducts={setProducts} />
+      <JobsFilterBar
+        setFilter={setFilter}
+        filter={filter}
+        initialData={Jobs}
+        setProducts={setProducts}
+      />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
         <div className=" grid grid-cols-3 3xl:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] xs:px-[1rem] p-[3rem]">
-          <SkeletonJobCard />
+          {isLoading &&
+            Array.from({ length: 12 }).map((_, index) => (
+              <SkeletonJobCard key={index} />
+            ))}
           {products.map((item, index) => (
             <Link
               key={index}
@@ -35,6 +48,10 @@ const Jobs: NextPage<{
               <JobCard data={item} />
             </Link>
           ))}
+          {isLoadmoreLoading &&
+            Array.from({ length: 12 }).map((_, index) => (
+              <SkeletonJobCard key={index} />
+            ))}
         </div>
       </div>
     </>

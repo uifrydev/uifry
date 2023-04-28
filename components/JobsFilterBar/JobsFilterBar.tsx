@@ -8,24 +8,37 @@ import Button from "../Button/Button";
 const JobsFilterBar = ({
   initialData,
   setProducts,
+  filter,
+  setFilter,
 }: {
   initialData: JobProps[];
   setProducts: React.Dispatch<React.SetStateAction<JobProps[]>>;
+  filter: { subCategory: string; type: string };
+  setFilter: React.Dispatch<
+    React.SetStateAction<{ subCategory: string; type: string }>
+  >;
 }) => {
-  const {user} =useSelector((state:RootState)=>state.auth)
-  
-  const [num, setNum] = useState(0);
+  const { user } = useSelector((state: RootState) => state.auth);
+
   return (
-    <div className={`flex z-[1] lg:flex-col justify-between lg:px-[2rem] flex-wrap gap-[2rem] w-full items-center  lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:top-0 ${user?"top-[9.01rem] lg:top-[20.6rem]":"top-[15.31rem] lg:top-[26.9rem]"}  pt-[2rem]  pr-[4rem]`}>
+    <div
+      className={`flex z-[1] lg:flex-col justify-between lg:px-[2rem] flex-wrap gap-[2rem] w-full items-center  lg:pl-[2rem] pl-[23.4rem] pb-[2rem] bg-[#ffffff] sticky lg:relative lg:top-0 ${
+        user
+          ? "top-[9.01rem] lg:top-[20.6rem]"
+          : "top-[15.31rem] lg:top-[26.9rem]"
+      }  pt-[2rem]  pr-[4rem]`}
+    >
       <div className="flex-0  flex gap-[1.6rem]  lg:hidden">
         {list[5].buttons.map((item, index) => (
           <Button
             onClick={() => {
-              setNum(index);
+              setFilter((prev) => ({ ...prev, subCategory: item.title }));
             }}
             key={index}
             classes={`!px-[2rem] !py-[1rem]  rounded-[10rem] border-[1px] ${
-              num == index ? "bg-gradient text-[#ffffff]" : "border-border2"
+              filter.subCategory == item.title
+                ? "bg-gradient text-[#ffffff]"
+                : "border-border2"
             }`}
           >
             <span>{item.title}</span>
@@ -33,11 +46,12 @@ const JobsFilterBar = ({
         ))}
       </div>
       <div className="hidden  w-full lg:flex py-[2rem]">
-        <select className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none ">
+        <select
+          onChange={(e) => {}}
+          className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
+        >
           {list[5].buttons.map((item, index) => (
-            <option onClick={() => setNum(index)} key={index}>
-              {item.title}
-            </option>
+            <option key={index}>{item.title}</option>
           ))}
         </select>
       </div>
