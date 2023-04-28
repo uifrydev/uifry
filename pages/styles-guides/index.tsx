@@ -16,19 +16,21 @@ import Button from "../../components/Button/Button";
 import { GetServerSideProps, NextPage } from "next";
 import { RootState } from "@/store/store";
 import { Data } from "@/Interface/interface";
-import { applyFilter } from "@/utils/functions";
+import { applyFilter, fetchData } from "@/utils/functions";
+import { loadMore, perProduct } from "@/utils/consts";
+import LoadingCard from "@/components/Card/Loadingard";
 const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [num, setNum] = useState(0);
   const [cards, setCards] = useState(posts);
-  const openModal1 = useSelector((state: RootState) => state.features.openModal1);
+  const openModal1 = useSelector(
+    (state: RootState) => state.features.openModal1
+  );
   const [modalData, setModalData] = useState<Data>(posts[0]);
+  const [isLoading, setLoading] = useState(false);
+  const [productIndex, setProductIndex] = useState(0);
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState({
-    subCategory: "All",
-    figma: false,
-    xd: false,
-    sketch: false,
-  });
+  const [filter, setFilter] = useState("All");
 
   return (
     <>
@@ -58,17 +60,29 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
           <div className="flex gap-[1.6rem] flex-wrap justify-center my-[2rem] ">
             {list[4].buttons.map((item, index) => (
               <Button
-                onClick={() => {
-                  setNum(index);
-                  applyFilter(
-                    { ...filter, subCategory: item.title },
+                onClick={async () => {
+                  setFilter(item.title);
+                  setCards([]);
+                  await fetchData({
+                    isLoading,
+                    setLoading,
+                    setProductIndex,
                     setCards,
-                    posts
-                  );
+                    sanity,
+                    query: `*[_type=='styleGuide' ${
+                      item.title != "All"
+                        ? `&& subCategory=='${item.title}'`
+                        : ""
+                    }][0...${perProduct}]{
+                      title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
+                        asset->{url}
+                      },"fileURL":zipFile.asset->url
+                    }`,
+                  });
                 }}
                 key={index}
                 classes={`!px-[2rem] !py-[1rem] bg-[#fff] rounded-[10rem] border-[1px] ${
-                  num == index
+                  filter == item.title
                     ? "bg-gradient text-[#ffffff]"
                     : "border-border2"
                 }`}
@@ -79,29 +93,60 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
           </div>
           <Sticker classes="" />
           <div className=" grid 4xl:grid-cols-3 grid-cols-4 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
-            {cards.map((item, index) => (
-              <Link
-                key={index}
-                href={{
-                  pathname: "/styles-guides/details",
-                  // href: "/ui-templates/details",
-                  query: { style: item?.slug?.current },
-                }}
-                onClick={(e) => e.preventDefault()}
-              >
-                <Card
+            {isLoading &&
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                <LoadingCard key={item} />
+              ))}
+            {!isLoading &&
+              cards.map((item, index) => (
+                <Link
                   key={index}
-                  onClick={() => {
-                    window.scrollBy(0, 2);
-                    document.body.classList.add("!overflow-y-hidden");
-                    dispatch(updateModal1(true));
-                    setModalData(item);
+                  href={{
+                    pathname: "/styles-guides/details",
+                    // href: "/ui-templates/details",
+                    query: { style: item?.slug?.current },
                   }}
-                  data={item}
-                />
-              </Link>
-            ))}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Card
+                    key={index}
+                    onClick={() => {
+                      window.scrollBy(0, 2);
+                      document.body.classList.add("!overflow-y-hidden");
+                      dispatch(updateModal1(true));
+                      setModalData(item);
+                    }}
+                    data={item}
+                  />
+                </Link>
+              ))}
+            {isLoadmoreLoading &&
+              Array.from({ length: 12 }).map((_, index) => (
+                <LoadingCard key={index} />
+              ))}
           </div>
+          <Button
+            onClick={async () =>
+              await fetchData({
+                isLoading: isLoadmoreLoading,
+                setLoading: setLoadmoreLoading,
+                setProductIndex,
+                setCards,
+                sanity,
+                query: `*[_type=='styleGuide' ${
+                  filter != "All" ? `&& subCategory=='${filter}'` : ""
+                }][${productIndex}...${productIndex + perProduct}]{
+                  title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
+                    asset->{url}
+                  },"fileURL":zipFile.asset->url
+                }`,
+              })
+            }
+          >
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+              {isLoading ? "Loading..." : "Load More"}
+            </span>
+          </Button>
         </div>
       </div>
     </>
@@ -110,7 +155,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await sanity.fetch(
-      `*[_type=='styleGuide']{
+      `*[_type=='styleGuide'][0...${perProduct}]{
     title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
       asset->{url}
     },"fileURL":zipFile.asset->url

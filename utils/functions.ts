@@ -1,5 +1,6 @@
 import { FilterParams } from "@/Interface/interface";
 import { list } from "./links";
+import { loadMore } from "./consts";
 
 export const slugToCapitalize = (str = ""): String =>
   str
@@ -55,8 +56,8 @@ export const fetchData = async ({
 }) => {
   if (isLoading) return;
   setLoading(true);
-  setProductIndex((prev) => prev + 18);
   const res = await sanity.fetch(query);
+  setProductIndex((prev) => prev + loadMore);
   // if(!res.length && setEndProducts){
   //   setEndProducts(true)
   // }

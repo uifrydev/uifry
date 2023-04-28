@@ -34,6 +34,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [isLoading, setLoading] = useState(false);
   const [productIndex, setProductIndex] = useState(0);
   const dispatch = useDispatch();
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const title = titleWithSlug(String(pid?.slug) || "");
@@ -97,13 +98,17 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   />
                 </Link>
               ))}
+              {isLoadmoreLoading &&
+              Array.from({length:12}).map((_,index) => (
+                <LoadingCard key={index} />
+              ))}
           </div>
 
           <Button
             onClick={async () =>
               await fetchData({
-                isLoading,
-                setLoading,
+                isLoading:isLoadmoreLoading,
+                setLoading:setLoadmoreLoading,
                 setProductIndex,
                 setCards,
                 sanity,
