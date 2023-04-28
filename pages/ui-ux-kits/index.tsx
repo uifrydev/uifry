@@ -42,59 +42,65 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
         // classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem]  w-full ">
-      <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
-        <div className=" grid 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
-          {isLoading ? (
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
-              <LoadingUIUXCard key={item} />
-            ))
-          ) : (
-            <></>
-          )}
-          {!isLoading &&
-            cards &&
-            cards.map((item, index) => (
-              <Link
-                key={index}
-                href={{
-                  pathname: "ui-ux-kits/details",
-                  query: { kit: item.slug.current },
-                }}
-              >
-                <UiKitCard onClick={() => {}} data={item} />
-              </Link>
-            ))}
-        </div>
-        <Button
-          onClick={async () =>
-            await fetchData({
-              isLoading: isLoadmoreLoading,
-              setLoading: setLoadmoreLoading,
-              setProductIndex,
-              setCards,
-              sanity,
-              query: `*[_type=='uxKit'  ${
-                filter.subCategory !== "All Kits"
-                  ? ` && subCategory=='${filter.subCategory}'`
-                  : ""
-              } ${filter.figma == false ? "" : "&& sanityFilter.Figma==true"} ${
-                filter.sketch == false ? "" : "&& sanityFilter.Sketch==true"
-              } ${
-                filter.xd == false ? "" : "&& sanityFilter.XD==true"
-              }] | order(_updatedAt desc) | [${productIndex}...${
-                productIndex + loadMore
-              }]{
+        <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
+          <div className=" grid 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  bg-primary rounded-[2.4rem] gap-[3rem] p-[3rem] xs:px-[1rem]">
+            {isLoading ? (
+              Array.from({ length: 12 }).map((_, index) => (
+                <LoadingUIUXCard key={index} />
+              ))
+            ) : (
+              <></>
+            )}
+            {!isLoading &&
+              cards &&
+              cards.map((item, index) => (
+                <Link
+                  key={index}
+                  href={{
+                    pathname: "ui-ux-kits/details",
+                    query: { kit: item.slug.current },
+                  }}
+                >
+                  <UiKitCard onClick={() => {}} data={item} />
+                </Link>
+              ))}
+            {isLoadmoreLoading &&
+              Array.from({ length: 12 }).map((_, index) => (
+                <LoadingUIUXCard key={index} />
+              ))}
+          </div>
+          <Button
+            onClick={async () =>
+              await fetchData({
+                isLoading: isLoadmoreLoading,
+                setLoading: setLoadmoreLoading,
+                setProductIndex,
+                setCards,
+                sanity,
+                query: `*[_type=='uxKit'  ${
+                  filter.subCategory !== "All Kits"
+                    ? ` && subCategory=='${filter.subCategory}'`
+                    : ""
+                } ${
+                  filter.figma == false ? "" : "&& sanityFilter.Figma==true"
+                } ${
+                  filter.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+                } ${
+                  filter.xd == false ? "" : "&& sanityFilter.XD==true"
+                }] | order(_updatedAt desc) | [${productIndex}...${
+                  productIndex + loadMore
+                }]{
                 title,slug,subCategory,category,description,sanityFilter,images[]{
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
               }`,
-            })
-          }
-        >
-          <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-            {isLoadmoreLoading ? "Loading..." : "Load More"}
-          </span>
-        </Button>
+              })
+            }
+          >
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+              {isLoadmoreLoading ? "Loading..." : "Load More"}
+            </span>
+          </Button>
         </div>
       </div>
     </>

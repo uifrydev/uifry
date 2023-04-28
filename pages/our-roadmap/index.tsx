@@ -113,7 +113,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
               </div>
             </div>
           </div>
-          <div className="flex sticky top-[17.8rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl:max-w-[34.3rem] xl:min-w-[34.3rem] 2xl:max-w-[39.6rem] 2xl:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-l-[1px] border-border2">
+          <div className="flex sticky top-[17.8rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl:max-w-[34.3rem] xl:min-w-[34.3rem] 2xl:max-w-[39.6rem] 2xl:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex flex-col gap-[1rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
               <h3 className="satoshi text-[1.8rem] font-[700] leading-[3rem] text-primaryBlack">
                 {"Become a Pro with Special Access!"}

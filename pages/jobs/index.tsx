@@ -14,6 +14,8 @@ const Jobs: NextPage<{
   Jobs: JobProps[];
 }> = ({ Jobs }) => {
   const [products, setProducts] = useState<JobProps[]>(Jobs);
+  const [productIndex, setProductIndex] = useState(Jobs.length);
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   return (
     <>
       <Header breadcrums={["Jobs"]} title={["Jobs"]} />

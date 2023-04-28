@@ -47,11 +47,12 @@ const JobsFilterBar = ({
             Type
           </span>
           <select className="w-[18rem] h-[4.4rem] text-[#160042] bg-primary text-[1.6rem] px-[2rem] py-[1rem] font-500 rounded-full outline-none ">
+            <option>All</option>
             <option>Full Time</option>
             <option>Part Time</option>
           </select>
         </div>
-        <div className="flex items-center justify-between sm:w-full gap-[1.5rem]">
+        {/* <div className="flex items-center justify-between sm:w-full gap-[1.5rem]">
           <span className="text-secondaryGray text-[1.6rem] font-400 leading-[2.2rem]">
             Filter By
           </span>
@@ -59,7 +60,7 @@ const JobsFilterBar = ({
             <option>Most Relevant</option>
             <option>Most Recent</option>
           </select>
-        </div>
+        </div> */}
       </div>
     </div>
   );

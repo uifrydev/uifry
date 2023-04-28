@@ -83,16 +83,29 @@ const FilterBar: FC<FilterBarProps> = ({
       <div className="hidden  w-full lg:flex py-[2rem]">
         <select
           value={filter?.subCategory}
-          onChange={(e) => {
+          onChange={async (e) => {
             setFilter((prev: FilterParams) => ({
               ...prev,
               subCategory: e.target.value,
             }));
-            applyFilter(
-              { ...filter, subCategory: e.target.value },
-              setCards,
-              initialData
-            );
+            setLoading(true);
+            let query = `*[_type=='uxKit' ${
+              e.target.value !== "All Kits"
+                ? ` && subCategory=='${e.target.value}'`
+                : ""
+            } ${filter.figma == false ? "" : "&& sanityFilter.Figma==true"} ${
+              filter.sketch == false ? "" : "&& sanityFilter.Sketch==true"
+            } ${
+              filter.xd == false ? "" : "&& sanityFilter.XD==true"
+            }] | order(featured desc, _updatedAt desc)[0...${perProduct}]{
+              title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+                asset->{url}
+              },tags,features,"fileURL":zipFile.asset->url
+          }`;
+            let result = await sanity.fetch(query);
+            setCards(result);
+            setProductIndex(result.length);
+            setLoading(false);
           }}
           className="w-full h-[5.6rem] text-[#160042] text-[1.7rem] px-[2rem] font-500 border-[1px] border-border2 rounded-[1rem] outline-none "
         >
@@ -111,8 +124,7 @@ const FilterBar: FC<FilterBarProps> = ({
           {images.map((item, index) => (
             <Button
               onClick={async () => {
-                
-                setLoading(true)
+                setLoading(true);
                 setFilter((prev: any) => ({
                   ...prev,
                   [item?.title]: !prev[item.title],
@@ -123,7 +135,7 @@ const FilterBar: FC<FilterBarProps> = ({
                 };
 
                 const query = `*[_type=='uxKit'  ${
-                  filter.subCategory !== "All Kits" 
+                  filter.subCategory !== "All Kits"
                     ? ` && subCategory=='${filter.subCategory}'`
                     : ""
                 } ${temp.figma == false ? "" : "&& sanityFilter.Figma==true"} ${

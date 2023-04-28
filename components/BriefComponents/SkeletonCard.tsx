@@ -2,7 +2,7 @@ import React from "react";
 
 const SkeletonCard = () => {
   return (
-    <div className="flex cursor-pointer flex-col gap-[1rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] ">
+    <div className="flex cursor-pointer flex-col gap-[1rem] w-full group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] ">
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <div className="w-full h-full aspect-[2/1] bg-gray-300 animate-pulse"></div>
       </div>

@@ -114,6 +114,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   //   outsetaRef.current.profile.open({ tab: "profile", ...options });
   // };
   const { logout, openLogin, openProfile, updateUser } = useOutseta();
+  
   return (
     <>
       {/* <div id="signup-embed"></div> */}

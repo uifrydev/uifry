@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import sanity from "../../sanity";
 import { updateBriefModal, updateModal } from "../../store/slices/featues";
-import { fetchDataServer, slugToCapitalize } from "../../utils/functions";
+import {
+  fetchData,
+  fetchDataServer,
+  slugToCapitalize,
+} from "../../utils/functions";
 import { useDispatch, useSelector } from "react-redux";
 import { breifList, list } from "../../utils/links";
 import DetailsModal from "../../components/DetailsModal/DetailsModal";
@@ -23,11 +27,15 @@ import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
 
 const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
-  const dispatch = useDispatch();
+
   const router = useRouter();
+  const current = breifList.find((item) => item.link == router.query?.slug);
+  console.log(current);
+  const dispatch = useDispatch();
   const [cards, setCards] = useState<Data[]>(res || []);
   const [isLoading, setLoading] = useState(false);
-  const [productIndex, setProductIndex] = useState(0);
+  const [productIndex, setProductIndex] = useState(res.length);
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const { briefModal } = useSelector((state: RootState) => state.features);
   const [modalData, setModalData] = useState<Data>({
     category: "",
@@ -40,7 +48,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   });
   const [filter, setFilter] = useState("All");
   const applyFilter = async (text: string) => {
-    if(text===filter)return
+    if (text === filter) return;
     setLoading(true);
     const query = `*[_type=='${data.name}' ${
       text != "All" ? `&& subCategories=='${text}'` : ""
@@ -106,7 +114,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             <div className="w-[42rem] h-[29rem] bg-[#d9d9d9] rounded-[1.2rem]"></div>
           </div>
 
-          <div className="p-[3rem] rounded-[2.4rem] bg-primary">
+          <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center">
             <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
               {data.subCategories.map((item, index) => (
                 <Button
@@ -138,10 +146,10 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
               </select>
             </div>
 
-            <div className="grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
+            <div className="grid w-full 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 py-[3rem] gap-[3rem]">
               {isLoading &&
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
-                  <SkeletonCard key={item} />
+                Array.from({ length: 12 }).map((_, index) => (
+                  <SkeletonCard key={index} />
                 ))}
               {!isLoading &&
                 cards.map((item, index) => (
@@ -168,9 +176,38 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                     </div>
                   </Link>
                 ))}
+              {isLoadmoreLoading &&
+                Array.from({ length: 12 }).map((_, index) => (
+                  <SkeletonCard key={index} />
+                ))}
               {/* <CategoryCard />
               <CategoryCard /> */}
             </div>
+
+            <Button
+              onClick={async () =>
+                await fetchData({
+                  isLoading: isLoadmoreLoading,
+                  setLoading: setLoadmoreLoading,
+                  setProductIndex,
+                  setCards,
+                  sanity,
+                  query: `*[_type=='${current?.name}' ${
+                    filter != "All" ? `&& subCategories=='${filter}'` : ""
+                  }][${productIndex}...${
+                    productIndex + perProduct
+                  }]{
+                  title,slug,subCategories,description,images[]{
+                    asset->{url},
+                  },"tags":includes,includes,"fileURL":zipFile.asset->url
+              }`,
+                })
+              }
+            >
+              <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+                {isLoading ? "Loading..." : "Load More"}
+              </span>
+            </Button>
           </div>
         </div>
       </div>

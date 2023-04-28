@@ -8,8 +8,15 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Sticker from "../../components/Sticker/Sticker";
 import sanity from "../../sanity";
 import { list } from "../../utils/links";
+import { fetchData } from "@/utils/functions";
+import { loadMore } from "@/utils/consts";
+import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 
-const Font = ({ posts }:{posts:Data[]}) => {
+const Font = ({ posts }: { posts: Data[] }) => {
+  const [productIndex, setProductIndex] = useState(posts.length);
+  const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
+  const [cards, setCards] = useState<Data[]>(posts || []);
+
   return (
     <>
       <Header title={["Fonts"]} breadcrums={["Fonts", "All Fonts"]} />
@@ -41,20 +48,46 @@ const Font = ({ posts }:{posts:Data[]}) => {
               </Button>
             ))}
           </div> */}
-          <Sticker classes=""  />
+          <Sticker classes="" />
           <div className=" grid mt-[2rem] 4xl:grid-cols-2 grid-cols-3  xl:grid-cols-1  gap-[3rem]">
-            
-            {posts.map((item, index) => (
+            {cards.map((item, index) => (
               <Link
                 href={{
                   pathname: "fonts/details",
                   query: { font: item.slug.current },
                 }}
+                key={index}
               >
                 <FontCard data={item} />
               </Link>
             ))}
+            {isLoadmoreLoading &&
+              Array.from({ length: 12 }).map((_, index) => (
+                <LoadingUIUXCard key={index} />
+              ))}
           </div>
+          <Button
+            onClick={async () =>
+              await fetchData({
+                isLoading: isLoadmoreLoading,
+                setLoading: setLoadmoreLoading,
+                setProductIndex,
+                setCards,
+                sanity,
+                query: `*[_type=='font'] | order(_updatedAt desc) | [${productIndex}...${
+                  productIndex + loadMore
+                }]{
+                title,slug,subCategory,category,description,sanityFilter,images[]{
+                  asset->{url}
+                },tags,"fileURL":zipFile.asset->url
+              }`,
+              })
+            }
+          >
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+              {isLoadmoreLoading ? "Loading..." : "Load More"}
+            </span>
+          </Button>
         </div>
       </div>
     </>

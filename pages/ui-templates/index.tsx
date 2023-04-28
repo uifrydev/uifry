@@ -92,8 +92,8 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
         <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
           <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem] p-[3rem]">
             {isLoading &&
-              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <LoadingCard key={item} />
+              Array.from({length:12}).map((_,index) => (
+                <LoadingCard key={index} />
               ))}
             {!isLoading &&
               cards.map((item, index) => (
@@ -119,8 +119,8 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
                 </Link>
               ))}
                {isLoadmoreLoading &&
-              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <LoadingCard key={item} />
+              Array.from({length:12}).map((_,index) => (
+                <LoadingCard key={index} />
               ))}
           </div>
 

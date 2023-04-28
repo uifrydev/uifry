@@ -152,6 +152,11 @@ export const getServerSideProps: GetServerSideProps = async (
     //     notFound: true,
     //   };
     // }
+    if (!res.length) {
+      return {
+        notFound: true,
+      };
+    }
     return {
       props: {
         posts: res,
