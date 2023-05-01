@@ -156,13 +156,13 @@ const TagList = ({ classes }: { classes?: string }) => {
         description="Get access to real life client briefs, remote jobs & resources for UI UX designers!"
         classes="!pb-[2.5rem] !pt-[2.2rem] "
       />
-      <ProTag
+      {/* <ProTag
         src={cancel}
         title="Cancel anytime! No strings attached!"
         description="Yes, cancel your plan anytime. Pay monthly and cancel when you need!"
         classes="!pb-[2.5rem] !pt-[2.2rem] "
         imageClass="w-[6rem]"
-      />
+      /> */}
     </div>
   );
 };
