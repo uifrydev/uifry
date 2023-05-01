@@ -9,13 +9,14 @@ import Sticker from "../../components/Sticker/Sticker";
 import sanity from "../../sanity";
 import { list } from "../../utils/links";
 import { fetchData } from "@/utils/functions";
-import { loadMore } from "@/utils/consts";
+import { loadMore, perProduct } from "@/utils/consts";
 import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 
 const Font = ({ posts }: { posts: Data[] }) => {
   const [productIndex, setProductIndex] = useState(posts.length);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const [cards, setCards] = useState<Data[]>(posts || []);
+  const [isLoadMore, setLoadMore] = useState(posts.length === perProduct);
 
   return (
     <>
@@ -69,6 +70,7 @@ const Font = ({ posts }: { posts: Data[] }) => {
           <Button
             onClick={async () =>
               await fetchData({
+                setLoadMore,
                 isLoading: isLoadmoreLoading,
                 setLoading: setLoadmoreLoading,
                 setProductIndex,
@@ -96,7 +98,7 @@ const Font = ({ posts }: { posts: Data[] }) => {
 export async function getServerSideProps() {
   try {
     const res = await sanity.fetch(
-      `*[_type=='font']{
+      `*[_type=='font'][0...${perProduct}]{
     title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
 }`
     );

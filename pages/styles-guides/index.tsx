@@ -31,6 +31,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState("All");
+  const [isLoadMore, setLoadMore] = useState(posts.length === perProduct);
 
   return (
     <>
@@ -64,6 +65,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   setFilter(item.title);
                   setCards([]);
                   await fetchData({
+                    setLoadMore,
                     isLoading,
                     setLoading,
                     setProductIndex,
@@ -128,6 +130,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
           <Button
             onClick={async () =>
               await fetchData({
+                setLoadMore,
                 isLoading: isLoadmoreLoading,
                 setLoading: setLoadmoreLoading,
                 setProductIndex,

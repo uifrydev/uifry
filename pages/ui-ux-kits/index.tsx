@@ -19,6 +19,7 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
   const [productIndex, setProductIndex] = useState(posts.length);
+  const [isLoadMore, setLoadMore] = useState(posts.length === perProduct);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const [filter, setFilter] = useState({
     subCategory: "All Kits",
@@ -39,6 +40,7 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
         buttons={list[1].buttons}
         setLoading={setLoading}
         setProductIndex={setProductIndex}
+        setLoadMore={setLoadMore}
         // classes='min-4xl:!top-[14.51rem] !top-[14.64rem] lg:!top-[26.29rem]'
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem]  w-full ">
@@ -72,6 +74,7 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
           <Button
             onClick={async () =>
               await fetchData({
+                setLoadMore,
                 isLoading: isLoadmoreLoading,
                 setLoading: setLoadmoreLoading,
                 setProductIndex,

@@ -34,6 +34,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   const dispatch = useDispatch();
   const [cards, setCards] = useState<Data[]>(res || []);
   const [isLoading, setLoading] = useState(false);
+  const [isLoadMore, setLoadMore] = useState(res.length === perProduct);
   const [productIndex, setProductIndex] = useState(res.length);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const { briefModal } = useSelector((state: RootState) => state.features);
@@ -85,7 +86,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             />
           </div>
         </div>
-        <div className="pl-[3rem]">
+        <div className="pl-[3rem] sm:px-[1.5rem]">
           <div className="w-full border-b-[1px] border-border2 pb-[1rem]">
             <h2 className="text-primaryBlack text-[3rem] leading-[150%] satoshi font-700">
               {data.title}
@@ -95,7 +96,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
               that drive conversions and user engagement.
             </span>
           </div>
-          <div className="flex gap-[4.3rem] pt-[2.5rem] pb-[5rem]">
+          <div className="flex gap-[4.3rem] xl:flex-col pt-[2.5rem] pb-[5rem]">
             <div className="flex flex-col flex-1 gap-[2rem]">
               <p className="text-primaryBlack text-[2rem] leading-[150%] satoshi font-700">
                 {data?.about?.q}
@@ -111,7 +112,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                 ))}
               </div>
             </div>
-            <div className="w-[42rem] h-[29rem] bg-[#d9d9d9] rounded-[1.2rem]"></div>
+            <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div>
           </div>
 
           <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center">
@@ -187,6 +188,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             <Button
               onClick={async () =>
                 await fetchData({
+                  setLoadMore,
                   isLoading: isLoadmoreLoading,
                   setLoading: setLoadmoreLoading,
                   setProductIndex,

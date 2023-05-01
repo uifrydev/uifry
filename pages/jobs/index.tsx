@@ -10,6 +10,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import sanity from "../../sanity";
 import { fetchData, fetchDataServer } from "../../utils/functions";
 import Button from "@/components/Button/Button";
+import { perProduct } from "@/utils/consts";
 
 const Jobs: NextPage<{
   Jobs: JobProps[];
@@ -17,6 +18,7 @@ const Jobs: NextPage<{
   const [products, setProducts] = useState<JobProps[]>(Jobs);
   const [productIndex, setProductIndex] = useState(Jobs.length);
   const [isLoading, setLoading] = useState(false);
+  const [isLoadMore, setLoadMore] = useState(Jobs.length === perProduct);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
   const [filter, setFilter] = useState({
     subCategory: "All Jobs",
@@ -62,6 +64,7 @@ const Jobs: NextPage<{
             onClick={async () => {
               setProducts([]);
               await fetchData({
+                setLoadMore,
                 isLoading: isLoadmoreLoading,
                 setLoading: setLoadmoreLoading,
                 setProductIndex,
@@ -108,7 +111,7 @@ const Jobs: NextPage<{
 export async function getServerSideProps() {
   try {
     const res = await fetchDataServer({
-      query: `*[_type=='job' && applyBefore >= now()]{
+      query: `*[_type=='job' && applyBefore >= now()][0...${perProduct}]{
         body,
         companyName,
         salaryRange,
