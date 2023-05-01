@@ -57,7 +57,7 @@ body {
 select {
   background: url(../public/assets/icons/arrow-da.svg) no-repeat left;
   -webkit-appearance: none;
-  background-position-x: calc(95% + -2rem);
+  background-position-x: calc(100% - 2rem);
 }
 .body h3 {
   font-family: "Satoshi", sans-serif;
