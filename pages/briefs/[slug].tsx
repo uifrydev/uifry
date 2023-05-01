@@ -186,7 +186,8 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             </div>
 
             <Button
-              onClick={async () =>
+              onClick={async () => {
+                if (!isLoadMore) return;
                 await fetchData({
                   setLoadMore,
                   isLoading: isLoadmoreLoading,
@@ -196,18 +197,20 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                   sanity,
                   query: `*[_type=='${current?.name}' ${
                     filter != "All" ? `&& subCategories=='${filter}'` : ""
-                  }][${productIndex}...${
-                    productIndex + perProduct
-                  }]{
+                  }][${productIndex}...${productIndex + perProduct}]{
                   title,slug,subCategories,description,images[]{
                     asset->{url},
                   },"tags":includes,includes,"fileURL":zipFile.asset->url
               }`,
-                })
-              }
+                });
+              }}
             >
               <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-                {isLoading ? "Loading..." : "Load More"}
+                {isLoadmoreLoading
+                  ? "Loading..."
+                  : !isLoadMore
+                  ? "All Data Loaded"
+                  : "Load More"}
               </span>
             </Button>
           </div>

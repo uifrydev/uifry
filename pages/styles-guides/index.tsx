@@ -128,7 +128,8 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
               ))}
           </div>
           <Button
-            onClick={async () =>
+            onClick={async () => {
+              if (!isLoadMore) return;
               await fetchData({
                 setLoadMore,
                 isLoading: isLoadmoreLoading,
@@ -143,11 +144,15 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                     asset->{url}
                   },"fileURL":zipFile.asset->url
                 }`,
-              })
-            }
+              });
+            }}
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {isLoading ? "Loading..." : "Load More"}
+              {isLoadmoreLoading
+                ? "Loading..."
+                : !isLoadMore
+                ? "All Data Loaded"
+                : "Load More"}
             </span>
           </Button>
         </div>
