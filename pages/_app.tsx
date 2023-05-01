@@ -94,7 +94,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   };
   //   fetchData();
   // }, []);
-  // if (showComingSoon || loading) return <ComingSoon />;
+
+
+  if (showComingSoon || loading) return <ComingSoon />;
   return (
     <>
       <Progress isAnimating={isAnimating} />
