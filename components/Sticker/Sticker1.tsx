@@ -18,9 +18,16 @@ const Sticker1 = ({ classes = "" }: { classes: string }) => {
             <span className="gradie"> 20,000+ resources. </span>
             Join us at 50% off this month!
           </p>
-          <span className="py-[5px] lg:hidden flex text-[1.4rem] px-[13px] rounded-full bg-[#fff]/[0.1] border-[1px] text-white border-[#fff]/[0.2]">
+          <button
+            onClick={() => {
+              if (window) {
+                window.location.href = "/signup";
+              }
+            }}
+            className="py-[5px] lg:hidden flex text-[1.4rem] px-[13px] rounded-full bg-[#fff]/[0.1] border-[1px] text-white border-[#fff]/[0.2]"
+          >
             Learn More
-          </span>
+          </button>
         </div>
         <div className="">
           <Image
