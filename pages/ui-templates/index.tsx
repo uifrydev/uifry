@@ -120,7 +120,7 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
             }}
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {isLoading
+              {isLoadmoreLoading
                 ? "Loading..."
                 : !isLoadMore
                 ? "All Data Loaded"

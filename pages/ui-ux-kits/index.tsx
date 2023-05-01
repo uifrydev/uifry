@@ -101,7 +101,11 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
             }
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {isLoadmoreLoading ? "Loading..." : "Load More"}
+            {isLoadmoreLoading
+                ? "Loading..."
+                : !isLoadMore
+                ? "All Data Loaded"
+                : "Load More"}
             </span>
           </Button>
         </div>
