@@ -46,6 +46,7 @@ export const fetchData = async ({
   setCards,
   sanity,
   query,
+  setLoadMore,
 }: {
   isLoading: Boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -53,10 +54,12 @@ export const fetchData = async ({
   setCards: React.Dispatch<React.SetStateAction<any[]>>;
   sanity: any;
   query: string;
+  setLoadMore: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   if (isLoading) return;
   setLoading(true);
   const res = await sanity.fetch(query);
+  setLoadMore(res.length == loadMore);
   setProductIndex((prev) => prev + loadMore);
   // if(!res.length && setEndProducts){
   //   setEndProducts(true)
@@ -84,13 +87,13 @@ export const removeEmptyPTagsFromClass = () => {
   if (!mainDiv) return;
   // Remove all <br> tags
   mainDiv.querySelectorAll("br").forEach((br) => br.remove());
-    const emptyPTags = Array.from(mainDiv.querySelectorAll("p")).filter(
-      (p) => !p.textContent?.trim()
-    );
+  const emptyPTags = Array.from(mainDiv.querySelectorAll("p")).filter(
+    (p) => !p.textContent?.trim()
+  );
 
-    emptyPTags.forEach((p) => {
-      p.style.display='none';
-    });
+  emptyPTags.forEach((p) => {
+    p.style.display = "none";
+  });
 };
 // export const wrapper = (): void => {
 //   const mainDiv: HTMLElement | null = document.querySelector(".main");
@@ -139,10 +142,9 @@ export const wrapper = (): void => {
   }
 };
 
-
 export const isTokenPresent = (): boolean => {
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('token');
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
     return !!token;
   }
   return false;

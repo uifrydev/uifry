@@ -27,6 +27,7 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
+  const [isLoadMore, setLoadMore] = useState(posts.length === perProduct);
   const [productIndex, setProductIndex] = useState(posts.length);
   const [filter, setFilter] = useState({
     subCategory: "All",
@@ -34,38 +35,6 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
     xd: false,
     sketch: false,
   });
-  const onClickFilter = async () => {
-    setLoading(true);
-    setCards(
-      await sanity.fetch(`*[_type=='uitemplate' ${
-        filter.figma ? "" : " && sanityFilter.Figma==true"
-      } ${filter.sketch ? "" : " && sanityFilter.Sketch==true"} ${
-        filter.xd ? "" : " && sanityFilter.XD==true"
-      }] | order(_updatedAt desc) | [0...${loadMore}]{
-        title,slug,subCategory,category,description,sanityFilter,images[]{
-          asset->{url}
-        },tags,"fileURL":zipFile.asset->url
-      }`)
-    );
-    setLoading(false);
-    setProductIndex(0);
-  };
-  // await fetchData({
-  //   isLoading,
-  //   setLoading,
-  //   setProductIndex,
-  //   setCards,
-  //   sanity,
-  //   query: `*[_type=='uitemplate' ${
-  //     filter.figma ? "" : " && sanityFilter.Figma==true"
-  //   } ${filter.sketch ? "" : " && sanityFilter.Sketch==true"} ${
-  //     filter.xd ? "" : " && sanityFilter.XD==true"
-  //   }] | order(_updatedAt desc) | [0...${loadMore}]{
-  //   title,slug,subCategory,category,description,sanityFilter,images[]{
-  //     asset->{url}
-  //   },tags,"fileURL":zipFile.asset->url
-  // }`,
-  // });
 
   return (
     <>
@@ -86,13 +55,13 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
         setLoading={setLoading}
         category=""
         setProductIndex={setProductIndex}
-        // onClickFilter={onClickFilter}
+        setLoadMore={setLoadMore}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
         <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
           <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem] p-[3rem]">
             {isLoading &&
-              Array.from({length:12}).map((_,index) => (
+              Array.from({ length: 12 }).map((_, index) => (
                 <LoadingCard key={index} />
               ))}
             {!isLoading &&
@@ -118,17 +87,19 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   />
                 </Link>
               ))}
-               {isLoadmoreLoading &&
-              Array.from({length:12}).map((_,index) => (
+            {isLoadmoreLoading &&
+              Array.from({ length: 12 }).map((_, index) => (
                 <LoadingCard key={index} />
               ))}
           </div>
 
           <Button
-            onClick={async () =>
+            onClick={async () => {
+              if (!isLoadMore) return;
               await fetchData({
-                isLoading:isLoadmoreLoading,
-                setLoading:setLoadmoreLoading,
+                setLoadMore,
+                isLoading: isLoadmoreLoading,
+                setLoading: setLoadmoreLoading,
                 setProductIndex,
                 setCards,
                 sanity,
@@ -145,11 +116,15 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
               }`,
-              })
-            }
+              });
+            }}
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {isLoading ? "Loading..." : "Load More"}
+              {isLoading
+                ? "Loading..."
+                : !isLoadMore
+                ? "All Data Loaded"
+                : "Load More"}
             </span>
           </Button>
         </div>

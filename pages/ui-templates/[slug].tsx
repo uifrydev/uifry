@@ -35,6 +35,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [productIndex, setProductIndex] = useState(0);
   const dispatch = useDispatch();
   const [isLoadmoreLoading, setLoadmoreLoading] = useState(false);
+  const [isLoadMore, setLoadMore] = useState(posts.length === perProduct);
   const [modalData, setModalData] = useState<Data>(posts[0]);
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const title = titleWithSlug(String(pid?.slug) || "");
@@ -67,6 +68,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
         setLoading={setLoading}
         category={slugToCapitalize("" + pid?.slug)}
         setProductIndex={setProductIndex}
+        setLoadMore={setLoadMore}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
         <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
@@ -98,17 +100,19 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   />
                 </Link>
               ))}
-              {isLoadmoreLoading &&
-              Array.from({length:12}).map((_,index) => (
+            {isLoadmoreLoading &&
+              Array.from({ length: 12 }).map((_, index) => (
                 <LoadingCard key={index} />
               ))}
           </div>
 
           <Button
-            onClick={async () =>
+            onClick={async () => {
+              if (!isLoadMore) return;
               await fetchData({
-                isLoading:isLoadmoreLoading,
-                setLoading:setLoadmoreLoading,
+                setLoadMore,
+                isLoading: isLoadmoreLoading,
+                setLoading: setLoadmoreLoading,
                 setProductIndex,
                 setCards,
                 sanity,
@@ -121,11 +125,15 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
                   asset->{url}
                 },tags,"fileURL":zipFile.asset->url
               }`,
-              })
-            }
+              });
+            }}
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {isLoading ? "Loading..." : "Load More"}
+              {isLoading
+                ? "Loading..."
+                : !isLoadMore
+                ? "All Data Loaded"
+                : "Load More"}
             </span>
           </Button>
         </div>

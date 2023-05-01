@@ -24,7 +24,7 @@ export interface Data {
     current: any;
   };
   subCategory: string;
-  subCategories?:string;
+  subCategories?: string;
   tags: string[];
   noOfScreens?: any;
   features?: string[];
@@ -46,7 +46,7 @@ export interface NavigationState {
 export interface FeatureState {
   openModal: boolean;
   openModal1: boolean;
-  briefModal:boolean;
+  briefModal: boolean;
   isMenu: boolean;
   navigation: NavigationState;
   isAnimating: boolean;
@@ -71,8 +71,9 @@ export type FilterBarProps = {
   initialData: any[];
   buttons: { title: string; link?: string }[];
   isFilter?: boolean;
-  setLoading:React.Dispatch<React.SetStateAction<boolean>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
+  setLoadMore: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export interface FilterBar1Props extends FilterBarProps {
@@ -127,7 +128,7 @@ export interface JobProps {
     current: string;
   };
   total?: number;
-  subCategory:string
+  subCategory: string;
 }
 export interface JobDetailProps extends JobProps {
   body: any;
@@ -135,7 +136,6 @@ export interface JobDetailProps extends JobProps {
   jobPosted: string;
   jobType: string;
   foundedIn: string;
-  
 }
 export interface MainCardProps {
   img: {
@@ -147,7 +147,7 @@ export interface MainCardProps {
   includes: string[];
 }
 export interface BriefList extends MainCardProps {
-  name:string;
+  name: string;
   about: {
     q: string;
     a: string[];
