@@ -272,8 +272,11 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                     "bg-gradient xl:!bg-[#fff] rounded-[5rem] xl:!p-[1.5rem]"
                   }
                   onClick={() => {
-                    dispatch(updateProModal(true));
-                    document.body.classList.add("!overflow-y-hidden");
+                    // dispatch(updateProModal(true));
+                    // document.body.classList.add("!overflow-y-hidden");
+                    if (window) {
+                      window.location.href = "/signup";
+                    }
                   }}
                   // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
                 >
