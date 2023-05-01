@@ -36,6 +36,7 @@ const Jobs: NextPage<{
         setLoading={setLoading}
         setProductIndex={setProductIndex}
         isLoading={isLoading}
+        setLoadMore={setLoadMore}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem]  w-full ">
         <div className="bg-primary rounded-[2.4rem] flex flex-col gap-[2rem]">

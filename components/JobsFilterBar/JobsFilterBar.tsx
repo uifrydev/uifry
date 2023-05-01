@@ -17,6 +17,7 @@ const JobsFilterBar = ({
   setLoading,
   setProductIndex,
   isLoading,
+  setLoadMore
 }: {
   initialData: JobProps[];
   isLoading: boolean;
@@ -26,6 +27,7 @@ const JobsFilterBar = ({
     React.SetStateAction<{ subCategory: string; type: string }>
   >;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoadMore: React.Dispatch<React.SetStateAction<boolean>>;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -47,6 +49,7 @@ const JobsFilterBar = ({
               setProducts([]);
               console.log(filter);
               await fetchData({
+                setLoadMore,
                 isLoading,
                 setLoading,
                 setProductIndex,
@@ -113,6 +116,7 @@ const JobsFilterBar = ({
             setFilter((prev) => ({ ...prev, subCategory: e.target.value }));
             setProducts([]);
             await fetchData({
+              setLoadMore,
               isLoading,
               setLoading,
               setProductIndex,
@@ -159,6 +163,7 @@ const JobsFilterBar = ({
               setFilter((prev) => ({ ...prev, type: e.target.value }));
               setProducts([]);
               await fetchData({
+                setLoadMore,
                 isLoading,
                 setLoading,
                 setProductIndex,
