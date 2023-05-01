@@ -94,8 +94,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   };
   //   fetchData();
   // }, []);
-  console.log(process.env.NODE_ENV);
-  if (showComingSoon || loading) return <ComingSoon />;
+  // if (showComingSoon || loading) return <ComingSoon />;
   return (
     <>
       <Progress isAnimating={isAnimating} />
