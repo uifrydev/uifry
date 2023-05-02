@@ -375,8 +375,11 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   <Button
                     classes={"bg-gradient rounded-[5rem]"}
                     onClick={() => {
-                      dispatch(updateProModal(true));
-                      document.body.classList.add("!overflow-y-hidden");
+                      // dispatch(updateProModal(true));
+                      // document.body.classList.add("!overflow-y-hidden");
+                      if (window) {
+                        window.location.href = "/signup";
+                      }
                     }}
                     // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
                   >
