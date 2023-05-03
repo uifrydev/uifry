@@ -95,7 +95,8 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
               </div>
             </div>
           </div>
-          <div className="flex relative mt-[3rem] lg1:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem]  right-0 p-[2rem] bg-primary border-[1px] border-border2">
+          {/* min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem] */}
+          <div className="flex relative mt-[3rem] lg1:min-w-full min-w-[32rem] max-w-[32rem]  rounded-[2.4rem] mb-auto   right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex w-full flex-col gap-[4rem] ">
               <ApplyCard companyName={detail.companyName} />
               <div className="flex flex-col gap-[2rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
