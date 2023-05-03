@@ -40,7 +40,8 @@ const Jobs: NextPage<{
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem]  w-full ">
         <div className="bg-primary rounded-[2.4rem] flex flex-col gap-[2rem]">
-          <div className=" grid grid-cols-3 3xl:grid-cols-2 xs1:grid-cols-1 gap-[3rem] xs:px-[1rem] p-[3rem]">
+        {/* 3xl:grid-cols-2 */}
+          <div className=" grid grid-cols-3 xl3:grid-cols-2 xs1:grid-cols-1 gap-[3rem] xs:px-[1rem] p-[3rem]">
             {isLoading &&
               Array.from({ length: 12 }).map((_, index) => (
                 <SkeletonJobCard key={index} />
