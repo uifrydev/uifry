@@ -37,8 +37,8 @@ var o_signup_options = {
   return (
     <Html>
       <Head>
-        <link rel="manifest" href="/menifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
         <meta name="theme-color" content="#fff" />
         <script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
         <script
