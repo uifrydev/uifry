@@ -252,52 +252,6 @@ export async function getServerSideProps() {
       queries.map((queryObj) => fetchDataServer(queryObj))
     );
 
-    //     const uiTemplates = await fetchDataServer({
-    //       query: `*[_type=='uitemplate'] |[0...4] {
-    //     title,slug,description,sanityFilter,images[]{
-    //       asset->{url}
-    //     },tags,image,category,"total": count(*[_type == "uitemplate"])
-    //   }`,
-    //       sanity,
-    //     });
-    //     const uiKits = await fetchDataServer({
-    //       query: `*[_type=='uxKit'][0...3]{
-    //     title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
-    //       asset->{url}
-    //     },tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
-    // }`,
-    //       sanity,
-    //     });
-    //     const fonts = await fetchDataServer({
-    //       query: `*[_type=='font'][0...3]{
-    //     title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "font"])
-    // }`,
-    //       sanity,
-    //     });
-    //     const styleGuides = await fetchDataServer({
-    //       query: `*[_type=='styleGuide'][0...4]{
-    //     title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
-    //       asset->{url}
-    //     },"fileURL":zipFile.asset->url,"total": count(*[_type == "styleGuide"])
-    //   }`,
-    //       sanity,
-    //     });
-    //     const jobs = await fetchDataServer({
-    //       query: `*[_type=='job' && applyBefore >= now()][0...4]{
-    //         body,
-    //         companyName,
-    //         salaryRange,
-    //         title,
-    //         slug,
-    //         description,
-    //         images,
-    //         jobType,
-    //          primaryIndustry,
-    //         tags,foundedIn,companySize,
-    //           subCategory,jobPosted,applyBefore,"total": count(*[_type == "job"])
-    //   }`,
-    //       sanity,
-    //     });
     return {
       props: {
         uiTemplates,

@@ -48,7 +48,7 @@ export const loadOutseta = async (): Promise<any> => {
       };
 
       script.onerror = () => {
-        reject(new Error("Failed to load Outseta.js"));
+        // reject(new Error("Failed to load Outseta.js"));
       };
 
       document.head.appendChild(script);
