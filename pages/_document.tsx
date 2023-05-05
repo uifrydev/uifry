@@ -42,6 +42,7 @@ var o_signup_options = {
         <meta name="theme-color" content="#fff" />
         <script dangerouslySetInnerHTML={{ __html: outsetaOptions }} />
         <script
+          async
           src="https://cdn.outseta.com/outseta.min.js"
           data-options="o_signup_options"
           data-on-success="onSignupSuccess"
