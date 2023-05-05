@@ -21,7 +21,7 @@ import List from "@/components/List/List";
 import UiKitCard from "@/components/UiKitCard/UiKitCard";
 import DetailsModal1 from "@/components/DetailSmodal1/DetailsModal1";
 import FontCard from "@/components/FontCard/FontCard";
-import { fetchDataServer } from "@/utils/functions";
+import { fetchDataServer, generateQuery } from "@/utils/functions";
 import JobCard from "@/components/JobCard/JobCard";
 const Home: NextPage<{
   uiTemplates: Data[];
@@ -205,53 +205,99 @@ const Home: NextPage<{
 };
 
 export async function getServerSideProps() {
+  const uiTemplateFields = `
+  title,slug,description,sanityFilter,images[]{
+    asset->{url}
+  },tags,image,category
+`;
+
+  const uiKitFields = `
+  title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+    asset->{url}
+  },tags,features,"fileURL":zipFile.asset->url
+`;
+
+  const fontFields = `
+  title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
+`;
+
+  const styleGuideFields = `
+  title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
+    asset->{url}
+  },"fileURL":zipFile.asset->url
+`;
+
+  const jobFields = `
+  body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore
+`;
+  const uiTemplatesQuery = generateQuery("uitemplate", uiTemplateFields, 5);
+  const uiKitsQuery = generateQuery("uxKit", uiKitFields, 4);
+  const fontsQuery = generateQuery("font", fontFields, 4);
+  const styleGuidesQuery = generateQuery("styleGuide", styleGuideFields, 5);
+  const jobsQuery = generateQuery("job", jobFields, 5);
+
   try {
-    const uiTemplates = await fetchDataServer({
-      query: `*[_type=='uitemplate'] |[0...4] { 
-    title,slug,description,sanityFilter,images[]{
-      asset->{url}
-    },tags,image,category,"total": count(*[_type == "uitemplate"])
-  }`,
-      sanity,
-    });
-    const uiKits = await fetchDataServer({
-      query: `*[_type=='uxKit'][0...3]{
-    title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
-      asset->{url}
-    },tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
-}`,
-      sanity,
-    });
-    const fonts = await fetchDataServer({
-      query: `*[_type=='font'][0...3]{
-    title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "font"])
-}`,
-      sanity,
-    });
-    const styleGuides = await fetchDataServer({
-      query: `*[_type=='styleGuide'][0...4]{
-    title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
-      asset->{url}
-    },"fileURL":zipFile.asset->url,"total": count(*[_type == "styleGuide"])
-  }`,
-      sanity,
-    });
-    const jobs = await fetchDataServer({
-      query: `*[_type=='job' && applyBefore >= now()][0...4]{
-        body,
-        companyName,
-        salaryRange,
-        title,
-        slug,
-        description,
-        images,
-        jobType,
-         primaryIndustry,
-        tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore,"total": count(*[_type == "job"])
-  }`,
-      sanity,
-    });
+    const queries = [
+      { query: uiTemplatesQuery, sanity },
+      { query: uiKitsQuery, sanity },
+      { query: fontsQuery, sanity },
+      { query: styleGuidesQuery, sanity },
+      {
+        query: `*[_type=='job' && applyBefore >= now()]${jobsQuery.slice(1)}`,
+        sanity,
+      },
+    ];
+
+    const [uiTemplates, uiKits, fonts, styleGuides, jobs] = await Promise.all(
+      queries.map((queryObj) => fetchDataServer(queryObj))
+    );
+
+    //     const uiTemplates = await fetchDataServer({
+    //       query: `*[_type=='uitemplate'] |[0...4] {
+    //     title,slug,description,sanityFilter,images[]{
+    //       asset->{url}
+    //     },tags,image,category,"total": count(*[_type == "uitemplate"])
+    //   }`,
+    //       sanity,
+    //     });
+    //     const uiKits = await fetchDataServer({
+    //       query: `*[_type=='uxKit'][0...3]{
+    //     title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
+    //       asset->{url}
+    //     },tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "uxKit"])
+    // }`,
+    //       sanity,
+    //     });
+    //     const fonts = await fetchDataServer({
+    //       query: `*[_type=='font'][0...3]{
+    //     title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url,"total": count(*[_type == "font"])
+    // }`,
+    //       sanity,
+    //     });
+    //     const styleGuides = await fetchDataServer({
+    //       query: `*[_type=='styleGuide'][0...4]{
+    //     title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
+    //       asset->{url}
+    //     },"fileURL":zipFile.asset->url,"total": count(*[_type == "styleGuide"])
+    //   }`,
+    //       sanity,
+    //     });
+    //     const jobs = await fetchDataServer({
+    //       query: `*[_type=='job' && applyBefore >= now()][0...4]{
+    //         body,
+    //         companyName,
+    //         salaryRange,
+    //         title,
+    //         slug,
+    //         description,
+    //         images,
+    //         jobType,
+    //          primaryIndustry,
+    //         tags,foundedIn,companySize,
+    //           subCategory,jobPosted,applyBefore,"total": count(*[_type == "job"])
+    //   }`,
+    //       sanity,
+    //     });
     return {
       props: {
         uiTemplates,
