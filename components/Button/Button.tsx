@@ -12,7 +12,7 @@ const Button: NextPage<ButtonProps> = ({
       onClick={onClick}
       onBlur={onBlur}
       className={`font-500 text-[1.6rem] py-[1.1rem] px-[2.6rem]  ${classes} `}
-      tabIndex={1}
+      // tabIndex={1}
     >
       {children}
     </button>
