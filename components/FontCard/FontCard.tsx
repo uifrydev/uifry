@@ -11,7 +11,7 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
-          src={url || _1}
+          src={data.images[0].asset.url}
           className="w-full h-full aspect-[1.785/1] "
           width={700}
           height={600}

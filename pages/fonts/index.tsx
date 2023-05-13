@@ -104,7 +104,9 @@ export async function getServerSideProps() {
   try {
     const res = await sanity.fetch(
       `*[_type=='font'][0...${perProduct}]{
-    title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
+    title,slug,noOfScreens,subCategory,category,description,images[]{
+      asset->{url}
+    },tags,features,"fileURL":zipFile.asset->url
 }`
     );
     return {

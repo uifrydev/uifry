@@ -29,6 +29,7 @@ import { Data } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import imageUrlBuilder from "@sanity/image-url";
 import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateProModal } from "@/store/slices/featues";
