@@ -100,7 +100,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                   src={urlFor(item).url()}
                   width={1000}
                   height={1000}
-                  className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                  className=" aspect-[1.368/1.1] object-cover object-left rounded-[8px]"
                   alt=""
                 />
               </div>
