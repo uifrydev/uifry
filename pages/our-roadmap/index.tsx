@@ -20,12 +20,18 @@ import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
 import Team from "@/components/Team/Team";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
   useEffect(() => {
     removeEmptyPTagsFromClass();
   }, []);
   return (
     <>
+      <MetaHead
+        title={`Roadmap - UIFry`}
+        link="our-roadmap"
+        description="Embark on a journey with us as we unveil our strategic 6-month roadmap, outlining our ambitious goals, key milestones, and innovative initiatives. Join us in navigating the path to growth & our plan for the next 6 month."
+      />
       <DetailHeader link={"/jobs"} />
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">

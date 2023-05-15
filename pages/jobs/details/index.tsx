@@ -17,6 +17,7 @@ import JobCard from "../../../components/JobCard/JobCard";
 import { removeEmptyPTagsFromClass } from "@/utils/functions";
 import { JobDetailProps, JobProps } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
   detail,
@@ -31,6 +32,11 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
   }, []);
   return (
     <>
+      <MetaHead
+        title={`${detail?.title} - UIFry`}
+        link={`jobs/details?job=${detail.slug.current}`}
+        description={detail?.description}
+      />
       <DetailHeader link={"/jobs"} />
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px]  flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
@@ -51,9 +57,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
                   {detail.title || "Associate Product Managesr"}
                 </p>
                 <p className="satoshi text-secondaryGray text-[1.6rem] font-[400]">
-                  {detail.description ||
-                    `Remote empowers companies of all sizes to pay and manage
-                  full-time and contract workers around the world.`}
+                  {detail.description}
                 </p>
                 <div className="flex gap-[2.4rem]">
                   <span className="text-primaryBlack text-[1.6rem] font-[500] ">

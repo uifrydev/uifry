@@ -17,6 +17,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import profiles from "../public/assets/icons/logo1.svg";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { ExtrasProps } from "@/Interface/interface";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
   const router = useRouter();
@@ -30,6 +31,11 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
 
   return (
     <>
+      <MetaHead
+        title={`${res?.title} - UIFry`}
+        link="signup"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <DetailHeader link={"/"} />
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">

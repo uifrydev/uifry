@@ -9,12 +9,18 @@ import { RootState } from "@/store/store";
 import { MainCardProps } from "@/Interface/interface";
 import { breifList, list } from "@/utils/links";
 import Link from "next/link";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const Briefs = () => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const dispatch = useDispatch();
 
   return (
     <>
+    <MetaHead
+        title={`Briefs - UIFry`}
+        link={`briefs`}
+        description={''}
+      />
       {/* {openModal && <DetailsModal  />} */}
       <Header title={["Briefs"]} breadcrums={["Briefs"]} />
       <Sidebar isDetail={false} />

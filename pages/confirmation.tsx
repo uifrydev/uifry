@@ -4,6 +4,7 @@ import item from "../public/assets/images/tick.json";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/assets/images/logobeta.svg";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const Confirmation = () => {
   useEffect(() => {
     const sticker = document.getElementById("sticker");
@@ -11,6 +12,11 @@ const Confirmation = () => {
   }, []);
   return (
     <div className="py-[6rem] px-[2rem] flex flex-col items-center gap-[2rem] bg-primary min-h-[100vh]">
+      <MetaHead
+        title="Confirmation - UIFry"
+        link="confirmation"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Link href={"/"}>
         <Image src={logo} alt="" />
       </Link>

@@ -11,6 +11,7 @@ import sanity from "../../sanity";
 import { fetchData, fetchDataServer } from "../../utils/functions";
 import Button from "@/components/Button/Button";
 import { perProduct } from "@/utils/consts";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Jobs: NextPage<{
   Jobs: JobProps[];
@@ -26,6 +27,11 @@ const Jobs: NextPage<{
   });
   return (
     <>
+    <MetaHead
+        title={`Jobs - UIFry`}
+        link="jobs"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Header breadcrums={["Jobs"]} title={["Jobs"]} />
       <Sidebar isDetail={false} />
       <JobsFilterBar

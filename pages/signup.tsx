@@ -18,6 +18,7 @@ import { isTokenPresent } from "@/utils/functions";
 import { GetServerSideProps } from "next";
 import withRedirectIfUserPresent from "@/components/UserRedirection/UserRedirection";
 import useOutseta from "@/customHooks/useOutseta";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const signup = () => {
   
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,11 @@ const signup = () => {
   }, [router.asPath]);
   return (
     <>
+    <MetaHead
+        title="Signup - UIFry"
+        link="signup"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <div className="flex flex-col items-center w-full min-h-[100vh] bg-primary">
         <div className="flex max-w-[144rem] w-full xl:items-center xl:flex-col">
           <div className="flex flex-col flex-1 xl:w-full pt-[3.5rem] px-[5rem] sm:px-[2rem]">

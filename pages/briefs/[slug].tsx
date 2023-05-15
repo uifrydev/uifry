@@ -24,6 +24,7 @@ import BriefModal from "@/components/DetailsModal/BreifModal";
 import Link from "next/link";
 import { loadMore, perProduct } from "@/utils/consts";
 import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
@@ -67,6 +68,11 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   };
   return (
     <>
+    <MetaHead
+        title={`${'res?.title'} - UIFry`}
+        link={`briefs/${'res?.slug?.current'}`}
+        description={'res?.description'}
+      />
       {briefModal && <BriefModal data={modalData} setData={setModalData} />}
       <Header
         title={["Briefs"]}
