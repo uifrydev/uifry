@@ -221,9 +221,9 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     Features
                   </p>
                   {details?.features && (
-                    <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
+                    <ul className="text-secondaryGray font-[400] text-[1.4rem] flex flex-col gap-[.7rem] list-disc pl-[2rem] leading-[200%]">
                       {details?.features.map((item: string) => (
-                        <li key={item}>{item}</li>
+                        <li className="leading-[130%]" key={item}>{item}</li>
                       ))}
                     </ul>
                   )}
@@ -260,7 +260,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
           </div>
         </div>
         <div className="middle-col gap-[6rem] rounded-[2.4rem] bg-primary p-[6rem] xs:px-[4rem] w-full">
-          <h2 className="text-[3.6rem] font-[700] text-primaryBlack leading-[6.3rem] satoshi">
+          <h2 className="text-[3.6rem] font-[700] xs1:text-[2.4rem] text-primaryBlack leading-[6.3rem] satoshi">
             You Might <span className="gradient-text">Like</span> These
           </h2>
           <div className=" grid 4xl:grid-cols-2 grid-cols-3  2xl2:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">

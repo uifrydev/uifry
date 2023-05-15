@@ -218,7 +218,9 @@ export async function getServerSideProps() {
 `;
 
   const fontFields = `
-  title,slug,noOfScreens,subCategory,category,description,images,tags,features,"fileURL":zipFile.asset->url
+  title,slug,noOfScreens,subCategory,category,description,images[]{
+    asset->{url}
+  },tags,features,"fileURL":zipFile.asset->url
 `;
 
   const styleGuideFields = `

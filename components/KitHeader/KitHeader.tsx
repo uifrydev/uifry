@@ -27,8 +27,8 @@ const DetailHeader = ({ link }: { link: string }) => {
 
   return (
     <header
-      className={`flex flex-col z-[154] bg-primary  sticky ${
-        user ? "top-0" : "top-[6.3rem]"
+      className={`flex flex-col z-[156] bg-primary  sticky ${
+        user ? "top-0" : "top-[6.3rem]  xs1:top-[6.9rem] xs:top-[9.2rem]"
       } border-b-[1px] w-full border-border`}
     >
       <div className="flex w-full">

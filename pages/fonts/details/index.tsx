@@ -29,6 +29,7 @@ import { Data } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import imageUrlBuilder from "@sanity/image-url";
 import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateProModal } from "@/store/slices/featues";
@@ -65,7 +66,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
       )}
       <KitHeader link={"/fonts"} />
       <Sidebar isDetail={true} />
-      <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[0rem]  w-full ">
+      <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:px-[1rem] gap-[4rem] pr-[0rem]  w-full ">
         <div className="flex gap-[6rem] lg:flex-col">
           <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[1rem] pt-[3rem] ">
             {/* <div className="">
@@ -99,13 +100,13 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                   src={urlFor(item).url()}
                   width={1000}
                   height={1000}
-                  className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                  className=" aspect-[1.368/1.1] object-cover object-left rounded-[8px]"
                   alt=""
                 />
               </div>
             ))}
           </div>
-          <div className="flex  relative max-w-[27rem] min-2xl:max-w-[32rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem]  bg-primary border-l-[1px] border-b-[1px] border-border2">
+          <div className="flex  relative max-w-[27rem] min-2xl:max-w-[32rem] sm:max-w-full right-0 pt-0 rounded-bl-[1rem] lg:max-w-full lg:pb-[2rem] lg:rounded-[1rem] lg:border-[1px] bg-primary border-l-[1px] border-b-[1px] border-border2">
             <div className="flex relative w-full flex-col gap-[4rem]">
               <div className=" sm:relative border-[#e5eaff] pl-[3.5rem]  pr-[2.9rem] shadow-info border-b-[1px] pb-[3rem] sm:top-0 top-[14.65rem] lg1:top-[20.68rem] bg-primary pt-[4rem]">
                 <div className="flex flex-col gap-[1rem] items-start">
@@ -167,9 +168,9 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                 <p className="font-[500] satoshi text-[1.8rem] leading-[2.3rem] text-primaryBlack">
                   Features
                 </p>
-                <ul className="text-secondaryGray font-[400] text-[1.4rem] list-disc pl-[2rem] leading-[200%]">
+                <ul className="text-secondaryGray font-[400] text-[1.4rem] flex flex-col gap-[.7rem] list-disc pl-[2rem] leading-[200%]">
                   {details?.features &&
-                    details?.features.map((item) => <li key={item}>{item}</li>)}
+                    details?.features.map((item) => <li className="leading-[130%]" key={item}>{item}</li>)}
                 </ul>
               </div>
 
@@ -193,7 +194,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
           </div>
         </div>
         <div className="middle-col gap-[6rem]  rounded-[2.4rem] bg-primary p-[6rem] xs:px-[4rem] ">
-          <h2 className="text-[3.6rem] font-[700] text-primaryBlack leading-[6.3rem] satoshi">
+          <h2 className="text-[3.6rem] font-[700] xs1:text-[2.4rem] text-primaryBlack leading-[6.3rem] satoshi">
             You Might <span className="gradient-text">Like</span> These
           </h2>
           <div className=" grid 4xl:grid-cols-2 grid-cols-3  2xl2:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">

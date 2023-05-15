@@ -33,6 +33,7 @@ module.exports = {
       sm: { max: "600px" },
       xs1: { max: "500px" },
       xs: { max: "400px" },
+      330: { max: "330px" },
     },
     extend: {
       fontWeight: {

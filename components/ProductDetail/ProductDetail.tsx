@@ -180,7 +180,7 @@ const ProductDetail: FC<
       </div>
 
       <div className="middle-col gap-[6rem] rounded-[2.4rem] bg-primary p-[6rem] xs:px-[4rem] w-full">
-        <h2 className="text-[3.6rem] font-[700] text-primaryBlack leading-[6.3rem] satoshi">
+        <h2 className="text-[3.6rem] text-center xs1:text-[2.4rem] font-[700] text-primaryBlack leading-[6.3rem] satoshi">
           You Might <span className="gradient-text">Like</span> These
         </h2>
         <div className="  grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl:grid-cols-2 md:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">

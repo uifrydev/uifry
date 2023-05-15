@@ -11,7 +11,7 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
-          src={url || _1}
+          src={data.images[0].asset.url}
           className="w-full h-full aspect-[1.785/1] "
           width={700}
           height={600}
@@ -29,7 +29,7 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
           {data?.description}
         
         </p>
-        <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] xl:pt-[2rem]  xl:border-t-[1px] xl:mt-[1rem]">
+        <div className="flex-1 gap-[1rem] flex flex-col pl-[2.5rem] lg:pl-0 xl:pt-[2rem]  xl:border-t-[1px] xl:mt-[1rem]">
           <div className="flex items-center justify-between">
             <span className="text-secondaryGray leading-[2.1rem] font-400 text-[1.4rem]">
               Type{" "}

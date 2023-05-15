@@ -36,7 +36,7 @@ export interface CardProps {
   data: Data;
 }
 export interface FontCardProps extends CardProps {
-  url?: string;
+  url?: StaticImageData;
 }
 export interface NavigationState {
   mainPage: string;

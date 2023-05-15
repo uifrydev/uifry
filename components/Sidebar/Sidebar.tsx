@@ -39,7 +39,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         className={`w-[194px] scroll h-[100%]  transition-all ease-linear duration-500 lg:w-full ${
           height < 800 && "!overflow-y-scroll"
         } overflow-hidden fixed ${
-          !user ? "top-[6.3rem]" : "top-0"
+          !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[8.2rem]" : "top-0"
         } z-[10] bg-primary pt-[9rem] ${
           isDetail ? "lg:pt-[17rem]" : "lg:pt-[8.4rem]"
         }  h-[100vh] ${

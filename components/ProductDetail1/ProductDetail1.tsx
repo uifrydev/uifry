@@ -160,7 +160,7 @@ const ProductDetail1: any = ({
         />
       </div>
       <div className="middle-col gap-[6rem] rounded-[2.4rem] bg-primary p-[6rem] sm:px-[2rem] w-full">
-        <h2 className="text-[3.6rem] font-[700] text-primaryBlack leading-[6.3rem] satoshi">
+        <h2 className="text-[3.6rem] font-[700] xs1:text-[2.4rem] text-primaryBlack leading-[6.3rem] satoshi">
           You Might <span className="gradient-text">Like</span> These
         </h2>
         <div className=" grid grid-cols-3  2xl:grid-cols-2 lg1:grid-cols-2 xs1:grid-cols-1 bg-primary rounded-[2.4rem] gap-[3rem] ">
