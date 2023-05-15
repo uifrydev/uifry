@@ -19,7 +19,8 @@ const Briefs = () => {
     <MetaHead
         title={`Briefs - UIFry`}
         link={`briefs`}
-        description={''}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+
       />
       {/* {openModal && <DetailsModal  />} */}
       <Header title={["Briefs"]} breadcrums={["Briefs"]} />

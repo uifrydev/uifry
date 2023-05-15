@@ -27,7 +27,7 @@ import image2 from "../../public/assets/images/2.jpg";
 import image3 from "../../public/assets/images/3.jpg";
 import check from "../../public/assets/icons/check_green.svg";
 
-const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
+const BriefDetail: FC<any> = ({ showCross, data }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading1] = useState(false);
@@ -69,10 +69,10 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
       <div className="flex min-lg:min-w-[820px]  lg:gap-[1.5rem]  lg:flex-col mx-[4rem] sm:mx-[2rem] items-end lg:items-center max-w-[1200px] ">
         <div className="flex flex-col gap-[1rem] lg:items-center">
           <span className="font-[400] text-[1.6rem] leading-[2.2rem] text-primaryBlack ">
-            {data?.category || "Thank You Page"}
+            {data?.category}
           </span>
           <span className="satoshi font-700 text-center text-[3.6rem] sm:text-[2.8rem] leading-[4rem] text-primaryBlack ">
-            {data?.title || "Real Estate Thank You Page"}
+            {data?.title}
           </span>
         </div>
         <div className="flex flex-col gap-[1.5rem] min-lg:ml-auto sm:w-full sm:items-center">
@@ -110,9 +110,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             Info
           </span>
           <span className="text-[1.6rem] font-[400] text-secondaryGray leading-[150%]">
-            {data?.description ||
-              "We craft style guides to help designers start a project with predefined colors, type and examples! "}
-          </span>
+            {data?.description}</span>
         </div>
         <div className="flex flex-col gap-[4rem] ">
           <div className="flex flex-col gap-[1rem]">
@@ -121,7 +119,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             </span>
             <div className="flex flex-wrap gap-[.8rem] ">
               
-              {data?.tags.map((item: string, index: number) => {
+              {data?.tags?.map((item: string, index: number) => {
                 return (
                   <li
                     className="flex items-center gap-[.8rem] border-[1px] leading-[150%] rounded-full py-[.6rem] px-[1.4rem] bg-[#fff] text-secondaryGray text-[1.4rem]"
@@ -142,7 +140,7 @@ const BriefDetail: FC<any> = ({ showCross, data, setData, isModal }) => {
             ? data?.images?.map(
                 (item: { asset: { url: string } }) => item?.asset?.url
               )
-            : [image1, image2, image3]
+            : []
         }
       />
       <div className="flex px-[4rem] py-[2rem] bg-primary rounded-[2rem] max-w-[92rem]">

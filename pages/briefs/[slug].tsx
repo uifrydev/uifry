@@ -68,10 +68,10 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
   };
   return (
     <>
-    <MetaHead
-        title={`${'res?.title'} - UIFry`}
-        link={`briefs/${'res?.slug?.current'}`}
-        description={'res?.description'}
+      <MetaHead
+        title={`${data?.title} - UIFry`}
+        link={`briefs/${data.link}`}
+        description={data?.desc}
       />
       {briefModal && <BriefModal data={modalData} setData={setModalData} />}
       <Header
@@ -164,6 +164,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                     href={{
                       pathname: "/briefs/details",
                       query: {
+                        category: String(data.link),
                         brief: item.slug.current,
                       },
                     }}
