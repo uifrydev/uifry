@@ -25,7 +25,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
   useEffect(() => {
     removeEmptyPTagsFromClass();
     if (res.slug.current === "license-agreement") {
-      // wrapper();
+      //// wrapper();
     }
   }, [router.asPath]);
 
