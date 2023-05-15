@@ -43,7 +43,7 @@ const FilterBar1: FC<FilterBar1Props> = ({
     >
       <div className="flex-1 flex gap-[1.6rem] flex-wrap ">
         {buttons.map((item, index) => (
-          <Link href={parentLink + item.link}>
+          <Link key={index} href={parentLink + item.link}>
             <Button
               onClick={() => {
                 // setFilter((prev) => ({ ...prev, subCategory: item.title }));

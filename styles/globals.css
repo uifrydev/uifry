@@ -15,9 +15,9 @@ html {
 }
 @font-face {
   font-family: "safi";
-  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.ttf) format('truetype'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff) format('woff'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff2) format('woff2');
+  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf) format('truetype'),
+       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff) format('woff'),
+       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2) format('woff2');
 }
 @font-face {
   font-family: "inters";
