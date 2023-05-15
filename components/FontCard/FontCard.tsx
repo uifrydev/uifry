@@ -8,13 +8,13 @@ const FontCard: FC<FontCardProps> = ({ data, url, onClick }) => {
     <div
       onClick={onClick}
       className="flex cursor-pointer flex-col gap-[2rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] "
-    >
+>
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image
           src={data.images[0].asset.url}
           className="w-full h-full aspect-[1.785/1] "
-          width={700}
-          height={600}
+          width={1780}
+          height={1000}
           alt=""
         />
       </div>

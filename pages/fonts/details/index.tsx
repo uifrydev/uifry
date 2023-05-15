@@ -98,7 +98,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
               >
                 <Image
                   src={urlFor(item).url()}
-                  width={1000}
+                  width={2000}
                   height={1000}
                   className=" aspect-[1.368/1.1] object-cover object-left rounded-[8px]"
                   alt=""
