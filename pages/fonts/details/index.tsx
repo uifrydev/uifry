@@ -33,6 +33,7 @@ import "react-image-lightbox/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateProModal } from "@/store/slices/featues";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Details: NextPage<{ details: Data; others: Data[] }> = ({
   details,
@@ -49,6 +50,11 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
   const { user } = useSelector((state: RootState) => state.auth);
   return (
     <>
+      <MetaHead
+        title={`${details?.title} - UIFry`}
+        link={`ui-ux-kits/details?kit=${details.slug.current}`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {isOpen && (
         <Lightbox
           mainSrc={images[photoIndex]}
@@ -128,7 +134,8 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     Files & Info
                   </p>
 
-                  {user?.Account?.AccountStage  && user?.Account?.AccountStage != 5 ? (
+                  {user?.Account?.AccountStage &&
+                  user?.Account?.AccountStage != 5 ? (
                     <Link href={details?.fileURL || ""} download>
                       {/* <Button
               onClick={()=>dispatch(updateProModal(true))}
@@ -147,14 +154,13 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     </Link>
                   ) : (
                     <Button
-                    onClick={() => {
-                      if (!user) {
-                        dispatch(updateProModal(true));
-                        return
-                      }
-                      alert('plan expired')
-                      
-                    }}
+                      onClick={() => {
+                        if (!user) {
+                          dispatch(updateProModal(true));
+                          return;
+                        }
+                        alert("plan expired");
+                      }}
                       classes={"bg-gradient rounded-[10rem] w-full"}
                     >
                       <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
@@ -170,7 +176,11 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                 </p>
                 <ul className="text-secondaryGray font-[400] text-[1.4rem] flex flex-col gap-[.7rem] list-disc pl-[2rem] leading-[200%]">
                   {details?.features &&
-                    details?.features.map((item) => <li className="leading-[130%]" key={item}>{item}</li>)}
+                    details?.features.map((item) => (
+                      <li className="leading-[130%]" key={item}>
+                        {item}
+                      </li>
+                    ))}
                 </ul>
               </div>
 

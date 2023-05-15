@@ -8,6 +8,7 @@ import { updateModal } from "../../../store/slices/featues";
 import { slugToCapitalize } from "../../../utils/functions";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Data } from "@/Interface/interface";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Detail: NextPage<{ details: Data }> = ({ details }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,11 @@ const Detail: NextPage<{ details: Data }> = ({ details }) => {
   }, []);
   return (
     <>
+    <MetaHead
+        title={`${details?.title} - UIFry`}
+        link={`ui-templates/details?template=${details.slug.current}`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Header
         title={["UI", "Templates"]}
         breadcrums={["UI Templates", "Details"]}

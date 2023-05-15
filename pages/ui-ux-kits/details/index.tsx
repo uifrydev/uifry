@@ -37,6 +37,7 @@ import { Data } from "@/Interface/interface";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateProModal } from "@/store/slices/featues";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const Details: NextPage<{ details: Data; others: Data[] }> = ({
   details,
   others,
@@ -74,6 +75,11 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
 
   return (
     <>
+    <MetaHead
+        title={`${details?.title} - UIFry`}
+        link={`ui-ux-kits/details?kit=${details.slug.current}`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {isOpen && (
         <Lightbox
           mainSrc={images[photoIndex]}

@@ -25,6 +25,7 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Data } from "@/Interface/interface";
 import { RootState } from "@/store/store";
 import LoadingCard from "@/components/Card/Loadingard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const router = useRouter();
@@ -51,6 +52,11 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   }, [router.asPath]);
   return (
     <>
+      <MetaHead
+        title={`${String(title)} - UIFry`}
+        link={`uitemplates/${pid.slug}`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {openModal && <DetailsModal data={modalData} setData={setModalData} />}
       <Header
         title={[...String(title)?.split(" ")]}

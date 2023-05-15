@@ -33,7 +33,7 @@ const Slug: NextPage<{ res: ExtrasProps }> = ({ res }) => {
     <>
       <MetaHead
         title={`${res?.title} - UIFry`}
-        link="signup"
+        link={res.slug.current}
         description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
       />
       <DetailHeader link={"/"} />

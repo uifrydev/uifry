@@ -9,6 +9,7 @@ import { updateModal } from "../../../store/slices/featues";
 import { slugToCapitalize } from "../../../utils/functions";
 import { Data } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Detail: NextPage<{ details: Data }> = ({ details }) => {
   const dispatch = useDispatch();
@@ -22,6 +23,11 @@ const Detail: NextPage<{ details: Data }> = ({ details }) => {
   }, []);
   return (
     <>
+    <MetaHead
+        title={`${details?.title} - UIFry`}
+        link={`styles-guides/details?style=${details.slug.current}`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Header
         title={["Styles", "Guides"]}
         breadcrums={["Styles Guides", "Details"]}

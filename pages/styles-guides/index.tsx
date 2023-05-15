@@ -19,6 +19,7 @@ import { Data } from "@/Interface/interface";
 import { applyFilter, fetchData } from "@/utils/functions";
 import { loadMore, perProduct } from "@/utils/consts";
 import LoadingCard from "@/components/Card/Loadingard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [num, setNum] = useState(0);
   const [cards, setCards] = useState(posts);
@@ -35,6 +36,11 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
   return (
     <>
+    <MetaHead
+        title={`Styles Guides - UIFry`}
+        link={`styles-guides`}
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {openModal1 && <DetailsModal1 data={modalData} setData={setModalData} />}
       <Header title={["Styles", "Guides"]} breadcrums={["Style Guides"]} />
       <Sidebar isDetail={false} />

@@ -15,6 +15,7 @@ import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
 import Button from "@/components/Button/Button";
 import { fetchData } from "@/utils/functions";
 import { loadMore, perProduct } from "@/utils/consts";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const openModal = useSelector((state: RootState) => state.features.openModal);
   const [cards, setCards] = useState<Data[]>(posts || []);
@@ -30,6 +31,11 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const [isLoading, setLoading] = useState(false);
   return (
     <>
+    <MetaHead
+        title="UI UX Kits - UIFry"
+        link="ui-ux-kits"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Header title={["UI UX", "Kits"]} breadcrums={["UI UX Kits"]} />
       <Sidebar isDetail={false} />
       <FilterBar

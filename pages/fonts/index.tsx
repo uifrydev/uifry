@@ -11,6 +11,7 @@ import { list } from "../../utils/links";
 import { fetchData } from "@/utils/functions";
 import { loadMore, perProduct } from "@/utils/consts";
 import LoadingUIUXCard from "@/components/UiKitCard/LoadingUIUXCard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 
 const Font = ({ posts }: { posts: Data[] }) => {
   const [productIndex, setProductIndex] = useState(posts.length);
@@ -20,6 +21,11 @@ const Font = ({ posts }: { posts: Data[] }) => {
 
   return (
     <>
+    <MetaHead
+        title="Fonts - UIFry"
+        link="fonts"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       <Header title={["Fonts"]} breadcrums={["Fonts", "All Fonts"]} />
       <Sidebar isDetail={false} />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">

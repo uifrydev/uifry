@@ -19,6 +19,7 @@ import { RootState } from "@/store/store";
 import { GetServerSideProps, NextPage } from "next";
 import { Data } from "@/Interface/interface";
 import LoadingCard from "@/components/Card/Loadingard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
   const builder = imageUrlBuilder(sanity);
   const [cards, setCards] = useState(posts);
@@ -38,6 +39,11 @@ const UiTemplates: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
   return (
     <>
+      <MetaHead
+        title="UI Templates - UIFry"
+        link="ui-templates"
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {openModal && <DetailsModal data={modalData} setData={setModalData} />}
       <Header
         title={["UI", "Templates"]}
