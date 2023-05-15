@@ -37,18 +37,13 @@ const Font = ({ posts }: { posts: Data[] }) => {
               Welcome to the Fonts section. This is your destination for
               incredible fonts, specifically tailored for UI/UX projects. All of
               our fonts are designed with clarity and scalability in mind,
-              ensuring they function seamlessly even at the smallest sizes.
+              ensuring they function seamlessly even at the smallest
+              sizes.Creating fonts is a complex task, and here at UIFry, we
+              prioritize quality over quantity. We meticulously review each font
+              before adding it to our library, which is why we introduce only
+              one new font each week.
             </p>
-            <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
-              These are perfect for apps, websites, and various products.
-              Creating fonts is a complex task, and here at UIFry, we prioritize
-              quality over quantity. We meticulously review each font before
-              adding it to our library, which is why we introduce only one new
-              font each week. Rest assured, we are committed to continuously
-              expanding our collection with fresh offerings for our subscribers
-              every week.
-            </p>
-          </div>
+          </div> 
           {/* <div className="flex gap-[1.6rem] flex-wrap 2xl:hidden">
             {list[3].buttons.map((item, index) => (
               <Button

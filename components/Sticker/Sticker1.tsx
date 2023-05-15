@@ -22,7 +22,7 @@ const Sticker1 = ({ classes = "" }: { classes: string }) => {
                 window.location.href = "/signup";
               }
             }}
-            className="py-[5px] flex text-[1.4rem] px-[13px] min-w-[10.4rem] rounded-full bg-[#fff]/[0.1] border-[1px] text-white border-[#fff]/[0.2]"
+            className="py-[5px] flex justify-center text-[1.4rem] px-[3px] min-w-[11rem] rounded-full bg-[#fff]/[0.1] border-[1px] text-white border-[#fff]/[0.2]"
           >
             Learn More
           </button>

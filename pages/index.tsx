@@ -23,6 +23,7 @@ import DetailsModal1 from "@/components/DetailSmodal1/DetailsModal1";
 import FontCard from "@/components/FontCard/FontCard";
 import { fetchDataServer, generateQuery } from "@/utils/functions";
 import JobCard from "@/components/JobCard/JobCard";
+import MetaHead from "@/components/MetaHead/MeatHead";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
@@ -46,6 +47,11 @@ const Home: NextPage<{
 
   return (
     <>
+      <MetaHead
+        title="Home - UIFry"
+        link=""
+        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+      />
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
       <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
