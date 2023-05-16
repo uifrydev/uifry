@@ -39,7 +39,7 @@ const Font = ({ posts }: { posts: Data[] }) => {
               UIFry is the ultimate hub for UI UX designers to grow, learn and
               smash client work daily with so much more.
             </p> */}
-            <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
+            <p className="text-[1.8rem] font-[400] text-center text-secondaryGray px-[2rem]">
               Welcome to the Fonts section. This is your destination for
               incredible fonts, specifically tailored for UI/UX projects. All of
               our fonts are designed with clarity and scalability in mind,
