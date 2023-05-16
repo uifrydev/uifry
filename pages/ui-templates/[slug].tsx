@@ -77,7 +77,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
         setLoadMore={setLoadMore}
       />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full ">
-        <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem]">
+        <div className="flex flex-col gap-[2rem] bg-primary rounded-[2.4rem] pb-[3rem] mb-[3rem]">
           <div className=" grid 4xl:grid-cols-3 grid-cols-4  2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1  gap-[3rem] p-[3rem]">
             {isLoading &&
               [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (

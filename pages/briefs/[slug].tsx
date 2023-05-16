@@ -120,7 +120,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
             <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div>
           </div>
 
-          <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center">
+          <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center  mb-[3rem]">
             <div className="flex-1 flex gap-[1.6rem] flex-wrap lg:hidden">
               {data.subCategories.map((item, index) => (
                 <Button

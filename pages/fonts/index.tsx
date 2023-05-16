@@ -29,7 +29,7 @@ const Font = ({ posts }: { posts: Data[] }) => {
       <Header title={["Fonts"]} breadcrums={["Fonts", "All Fonts"]} />
       <Sidebar isDetail={false} />
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full ">
-        <div className=" bg-primary rounded-[2.4rem] flex flex-col gap-[3rem] p-[3rem] items-center py-[6rem] xs:px-[1rem]">
+        <div className=" bg-primary rounded-[2.4rem] flex flex-col gap-[3rem] p-[3rem] items-center py-[6rem] mb-[3rem] xs:px-[1rem]">
           <div className="flex flex-col gap-[1rem] items-center">
             <h2 className="satoshi text-center text-primaryBlack text-[4.8rem] font-[800] leading-[120%]">
               Fonts crafted for{" "}
