@@ -47,7 +47,6 @@ const JobsFilterBar = ({
               if (item.title == filter.subCategory) return;
               setFilter((prev) => ({ ...prev, subCategory: item.title }));
               setProducts([]);
-              console.log(filter);
               await fetchData({
                 setLoadMore,
                 isLoading,

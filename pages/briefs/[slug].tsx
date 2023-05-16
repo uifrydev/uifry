@@ -31,7 +31,6 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
 
   const router = useRouter();
   const current = breifList.find((item) => item.link == router.query?.slug);
-  console.log(current);
   const dispatch = useDispatch();
   const [cards, setCards] = useState<Data[]>(res || []);
   const [isLoading, setLoading] = useState(false);
@@ -232,7 +231,6 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   try {
     const data = breifList.find((item) => item.link == context.params?.slug);
-    // console.log(slug);
     const res =
       (await fetchDataServer({
         query: `*[_type=='${data?.name}'][0...${perProduct}]{
@@ -247,7 +245,6 @@ export const getServerSideProps: GetServerSideProps = async (
         notFound: true,
       };
     }
-    console.log({ res });
     return {
       props: {
         res,

@@ -19,30 +19,34 @@ import { GetServerSideProps } from "next";
 import withRedirectIfUserPresent from "@/components/UserRedirection/UserRedirection";
 import useOutseta from "@/customHooks/useOutseta";
 import MetaHead from "@/components/MetaHead/MeatHead";
+import { NextResponse } from "next/server";
 const signup = () => {
-  
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { faqModal } = useSelector((state: RootState) => state.features);
+  const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
-  const {openLogin}=useOutseta()
+  const { openLogin } = useOutseta();
   useEffect(() => {
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
     dispatch(updateProModal(false));
     document.body.classList.remove("!overflow-y-hidden");
 
-        // const script = document.createElement("script");
-        // script.src = "https://cdn.outseta.com/outseta.min.js";
-        // script.setAttribute("data-options", JSON.stringify(o_signup_options));
-        // document.body.appendChild(script);
+    // const script = document.createElement("script");
+    // script.src = "https://cdn.outseta.com/outseta.min.js";
+    // script.setAttribute("data-options", JSON.stringify(o_signup_options));
+    // document.body.appendChild(script);
     return () => {
       sticker?.classList.remove("!hidden");
     };
   }, [router.asPath]);
+  if (user) {
+    return NextResponse.redirect("/abc");
+  }
   return (
     <>
-    <MetaHead
+      <MetaHead
         title="Signup - UIFry"
         link="signup"
         description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
@@ -92,7 +96,7 @@ const signup = () => {
                 <li>
                   <Link
                     href={"https://uifry.outseta.com/support/kb/categories"}
-                    target='_blank'
+                    target="_blank"
                     className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                   >
                     Support
@@ -107,32 +111,32 @@ const signup = () => {
           </div>
           <TagList classes="hidden xl:flex max-w-[52rem] mt-[4.5rem]" />
           <div className="xl:flex-col justify-between items-center xl:flex hidden mt-[2rem] mb-[2rem] w-full">
-              <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] order-1 xl:order-2">
-                All Rights Reserved 2023® UIFry LTD
-              </p>
-              <ul className="flex gap-[1rem] order-2 xl:order-1 cursor-pointer">
-                <li
-                  onClick={() => {
-                    document.body.classList.add("!overflow-y-hidden");
+            <p className="text-secondaryGray text-[1.6rem] leading-[2.9rem] mt-[2rem] order-1 xl:order-2">
+              All Rights Reserved 2023® UIFry LTD
+            </p>
+            <ul className="flex gap-[1rem] order-2 xl:order-1 cursor-pointer">
+              <li
+                onClick={() => {
+                  document.body.classList.add("!overflow-y-hidden");
 
-                    dispatch(updateFAQModal(true));
-                  }}
+                  dispatch(updateFAQModal(true));
+                }}
+              >
+                <span className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]">
+                  FAQ's
+                </span>
+              </li>
+              <li>
+                <Link
+                  href={"https://uifry.outseta.com/support/kb/categories"}
+                  target="_blank"
+                  className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
                 >
-                  <span className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]">
-                    FAQ's
-                  </span>
-                </li>
-                <li>
-                  <Link
-                    href={"https://uifry.outseta.com/support/kb/categories"}
-                    target='_blank'
-                    className="text-[#00B3FF] text-[1.6rem] leading-[2.9rem]"
-                  >
-                    Support
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                  Support
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </>
@@ -172,6 +176,5 @@ const TagList = ({ classes }: { classes?: string }) => {
     </div>
   );
 };
-
 
 export default signup;

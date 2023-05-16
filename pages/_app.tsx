@@ -27,7 +27,6 @@ import ComingSoon from "@/components/ComingSoon/ComingSoon";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
-  const outsetaRef = useRef<any>();
   const [loading, setLoading] = useState(true);
   const { isAnimating, proModal, faqModal } = useSelector(
     (state: RootState) => state.features
@@ -85,7 +84,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const token = localStorage.getItem("token");
-  //     console.log({ tkn: token });
   //     if (token) {
   //       dispatch(setToken(token));
   //     }

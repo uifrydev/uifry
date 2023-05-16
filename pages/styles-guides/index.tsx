@@ -53,7 +53,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
         buttons={list[0].buttons}
       /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem]  w-full ">
-        <div className="flex flex-col bg-primary rounded-[2.4rem] py-[6rem] p-[3rem] ">
+        <div className="flex flex-col bg-primary rounded-[2.4rem] mb-[3rem] py-[6rem] p-[3rem] ">
           <div className="flex flex-col gap-[1rem] items-center ">
             <h2 className="satoshi text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
               Fonts crafted for{" "}
@@ -152,6 +152,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
                 }`,
               });
             }}
+            classes="mt-[2rem]"
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
               {isLoadmoreLoading

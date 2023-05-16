@@ -36,7 +36,6 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
   const pid = router.query;
   const { user } = useSelector((state: RootState) => state.auth);
 
-  console.log(data)
   useEffect(() => {
     async function fecthData() {
       outsetaRef.current = await loadOutseta();

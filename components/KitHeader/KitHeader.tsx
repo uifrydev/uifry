@@ -43,7 +43,6 @@ const DetailHeader = ({ link }: { link: string }) => {
           // href={link || "/"}
           onClick={() => {
             router.back();
-            console.log(router.basePath);
           }}
           className="lg:hidden flex-1 flex cursor-pointer items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]"
         >

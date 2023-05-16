@@ -147,7 +147,6 @@ const FilterBar: FC<FilterBarProps> = ({
                     asset->{url}
                   },tags,"fileURL":zipFile.asset->url
                 }`;
-                console.log({ query });
                 let result = await sanity.fetch(query);
                 setCards(result);
                 setProductIndex(result.length);
