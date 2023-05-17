@@ -103,7 +103,10 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
           {/* min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem] */}
           <div className="flex relative mt-[3rem] lg1:min-w-full min-w-[32rem] max-w-[32rem]  rounded-[2.4rem] mb-auto   right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex w-full flex-col gap-[4rem] ">
-              <ApplyCard applyNow={detail.applyNow} companyName={detail.companyName} />
+              <ApplyCard
+                applyNow={detail.applyNow}
+                companyName={detail.companyName}
+              />
               <div className="flex flex-col gap-[2rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
                 <h3 className="satoshi text-[1.8rem] font-[700] leading-[3rem] text-primaryBlack">
                   {"About this role"}
@@ -192,7 +195,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
                     Job Categories
                   </p>
                   <p className="text-primaryBlack font-[400] text-[1.6rem] leading-[2.4rem]">
-                    {detail.foundedIn}
+                    {detail.subCategory}
                   </p>
                 </div>
               </div>
