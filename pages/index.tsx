@@ -236,7 +236,7 @@ export async function getServerSideProps() {
 `;
 
   const jobFields = `
-  body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore
+  body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow
 `;
   const uiTemplatesQuery = generateQuery("uitemplate", uiTemplateFields, 5);
   const uiKitsQuery = generateQuery("uxKit", uiKitFields, 4);

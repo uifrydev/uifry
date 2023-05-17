@@ -87,6 +87,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
                   classes={
                     "w-full max-w-[40rem] lg1:max-w-full py-[1.7rem] bg-gradient rounded-full"
                   }
+                  onClick={() => window.open(detail.applyNow)}
                 >
                   <span
                     className={
@@ -102,7 +103,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
           {/* min-w-[48.8rem] xl2:max-w-[34.3rem] xl2:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem] */}
           <div className="flex relative mt-[3rem] lg1:min-w-full min-w-[32rem] max-w-[32rem]  rounded-[2.4rem] mb-auto   right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex w-full flex-col gap-[4rem] ">
-              <ApplyCard companyName={detail.companyName} />
+              <ApplyCard applyNow={detail.applyNow} companyName={detail.companyName} />
               <div className="flex flex-col gap-[2rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
                 <h3 className="satoshi text-[1.8rem] font-[700] leading-[3rem] text-primaryBlack">
                   {"About this role"}
@@ -239,7 +240,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore
+          subCategory,jobPosted,applyBefore,applyNow
   }`
     );
     const res1 = await sanity.fetch(
@@ -254,7 +255,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore
+          subCategory,jobPosted,applyBefore,applyNow
   }`
     );
     if (!res?.length) {

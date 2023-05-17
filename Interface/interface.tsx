@@ -136,6 +136,7 @@ export interface JobDetailProps extends JobProps {
   jobPosted: string;
   jobType: string;
   foundedIn: string;
+  applyNow:string
 }
 export interface MainCardProps {
   img: {

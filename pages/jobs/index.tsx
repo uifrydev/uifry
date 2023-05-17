@@ -96,7 +96,7 @@ const Jobs: NextPage<{
                   jobType,
                    primaryIndustry,
                   tags,foundedIn,companySize,
-                    subCategory,jobPosted,applyBefore
+                    subCategory,jobPosted,applyBefore,applyNow
             }`,
               });
             }}
@@ -136,7 +136,7 @@ export async function getServerSideProps() {
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore
+          subCategory,jobPosted,applyBefore,applyNow
   }`,
       sanity,
     });
