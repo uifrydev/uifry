@@ -35,14 +35,14 @@ const JobCard: FC<{
         </div>
       </div>
       <span className="satoshi text-primaryBlack leading-[120%] text-[1.8rem] font-[700]">
-        {data.title || "Junior UX Lead"}
+        {data.title}
       </span>
       <span className="text-secondaryGray two-line-ellipsis leading-[150%] text-[1.4rem] font-[400]">
         {data?.description}
       </span>
       <div className="flex gap-[1.3rem] flex-col">
         <span className="satoshi text-primaryBlack leading-[120%] text-[1.8rem] font-[700]">
-          {data.companyName || 'Blinkist'}
+          {data.companyName}
         </span>
         <div className="flex gap-[2rem]">
           <div className="flex gap-[0.7rem]">
