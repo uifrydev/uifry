@@ -12,7 +12,6 @@ const ApplyCard = ({
     <div className="p-[3rem] pr-[2rem] flex flex-col gap-[3rem] rounded-[2rem] bg-[#fff]">
       <div className="flex flex-col gap-[1rem]">
         <span
-          onClick={() => window.open(applyNow)}
           className="satoshi text-primaryBlack text-[1.8rem] font-[700] leading-[3rem]"
         >
           Apply Now
@@ -22,7 +21,9 @@ const ApplyCard = ({
           help us grow!
         </span>
       </div>
-      <Button classes={"w-full py-[1.7rem] bg-gradient rounded-full"}>
+      <Button
+          onClick={() => window.open(applyNow)}
+          classes={"w-full py-[1.7rem] bg-gradient rounded-full"}>
         <span
           className={
             "satoshi text-[1.6rem] font-[700] text-[#fff] leading-[2.4rem]"
