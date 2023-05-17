@@ -37,10 +37,8 @@ const JobCard: FC<{
       <span className="satoshi text-primaryBlack leading-[120%] text-[1.8rem] font-[700]">
         {data.title || "Junior UX Lead"}
       </span>
-      <span className="text-secondaryGray leading-[150%] text-[1.4rem] font-[400]">
-        {data.description || `As the world’s leading video marketing platform, Vidyard’s technology
-        shows our As the world’s leading video marketing platform, Vidyard’s
-        technology shows our`}
+      <span className="text-secondaryGray two-line-ellipsis leading-[150%] text-[1.4rem] font-[400]">
+        {data?.description}
       </span>
       <div className="flex gap-[1.3rem] flex-col">
         <span className="satoshi text-primaryBlack leading-[120%] text-[1.8rem] font-[700]">
