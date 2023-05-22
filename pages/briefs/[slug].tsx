@@ -191,7 +191,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
               <CategoryCard /> */}
             </div>
 
-            <Button
+            {/* <Button
               onClick={async () => {
                 if (!isLoadMore) return;
                 await fetchData({
@@ -218,7 +218,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                   ? "All Loaded - We add more resources daily"
                   : "Load More"}
               </span>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
