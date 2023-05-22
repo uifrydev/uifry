@@ -71,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //       updateUser();
   //     }
   //   };
-  //   init();
+  //   init();`
   // }, []);
   // const updateUser = async () => {
   //   // Fetch the current user data from outseta

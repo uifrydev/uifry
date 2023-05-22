@@ -100,7 +100,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
             ))}
           </div>
           <Sticker classes="" />
-          <div className=" grid 4xl:grid-cols-3 grid-cols-4 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
+          <div className=" grid 4xl:grid-cols-3 grid-cols-3 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
             {isLoading &&
               [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
                 <LoadingCard key={item} />
