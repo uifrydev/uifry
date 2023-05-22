@@ -138,7 +138,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
               {isLoadmoreLoading
                 ? "Loading..."
                 : !isLoadMore
-                ? "All Data Loaded"
+                ? "All Loaded - We add more resources daily"
                 : "Load More"}
             </span>
           </Button>

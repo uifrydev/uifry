@@ -215,7 +215,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                 {isLoadmoreLoading
                   ? "Loading..."
                   : !isLoadMore
-                  ? "All Data Loaded"
+                  ? "All Loaded - We add more resources daily"
                   : "Load More"}
               </span>
             </Button>
