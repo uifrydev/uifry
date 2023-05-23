@@ -13,7 +13,13 @@ export const breifList: BriefList[] = [
       src: product,
     },
     desc: "Explore varied practice briefs to create captivating landing pages that drive conversions and user engagement.",
-    includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
+    includes: [
+      "Squeeze & Splash ",
+      "Long Form Landing Pages",
+      "Lead Capture & Opt-in",
+      "Coming Soon & Get Started",
+      "Thank You & Pricing Pages",
+    ],
     link: "landing-page",
     about: {
       q: "What are landing pages? How many types are there?",
@@ -46,13 +52,9 @@ export const breifList: BriefList[] = [
       src: pyramid,
     },
     desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
-    includes: [
-      "Squeeze & Splash ",
-      "Long Form Landing Pages",
-      "Lead Capture & Opt-in",
-      "Coming Soon & Get Started",
-      "Thank You & Pricing Pages",
-    ],
+    
+    includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
+
     link: "product-ui",
     about: {
       q: "What are landing pages? How many types are there?",
