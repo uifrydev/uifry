@@ -183,9 +183,9 @@ const Home: NextPage<{
             ))}
           </div>
         </div>
-        <div className="flex gap-[2rem] justify-center mb-[3.3rem] mt-[3rem]">
-          <div className="flex flex-col">
-            <p className="satoshi font-700 text-primaryBlack text-[3.6rem] leading-[120%] ">
+        <div className="flex gap-[2rem] justify-center mb-[4.3rem] mt-[4rem]">
+          <div className="flex flex-col gap-[.8rem]">
+            <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
               Latest this week
             </p>
             <p className="text-secondaryGray text-[1.8rem] leading-[150%]">
