@@ -24,13 +24,15 @@ import FontCard from "@/components/FontCard/FontCard";
 import { fetchDataServer, generateQuery } from "@/utils/functions";
 import JobCard from "@/components/JobCard/JobCard";
 import MetaHead from "@/components/MetaHead/MeatHead";
+import CategoryCard from "@/components/BriefComponents/CategoryCard";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
   fonts: Data[];
   styleGuides: Data[];
   jobs: JobProps[];
-}> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs }) => {
+  briefs: Data[];
+}> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs }) => {
   const { openModal, openModal1 } = useSelector(
     (state: RootState) => state.features
   );
@@ -82,7 +84,7 @@ const Home: NextPage<{
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
-              uiTemplates.length == 4 && "uitemphome"
+              uiTemplates?.length == 4 && "uitemphome"
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
             resources={Number(uiTemplates[0]?.total)}
             title="UI Templates"
@@ -130,6 +132,30 @@ const Home: NextPage<{
                 }}
               >
                 <UiKitCard key={index} onClick={() => {}} data={item} />
+              </Link>
+            ))}
+          </List>
+
+          <List
+            classes={`4xl:grid-cols-3 grid-cols-4 ${
+              briefs.length == 4 && "uitemphome"
+            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 `}
+            title="Briefs"
+            link="/briefs"
+            resources={Number(briefs[0]?.total) || 0}
+          >
+            {briefs.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/briefs/details",
+                  query: {
+                    category: String(item._type),
+                    brief: item.slug.current,
+                  },
+                }}
+              >
+                <CategoryCard data={item} key={index} />
               </Link>
             ))}
           </List>
@@ -234,7 +260,11 @@ export async function getServerSideProps() {
     asset->{url}
   },"fileURL":zipFile.asset->url
 `;
-
+  const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'][0...4]{
+    title,slug,subCategories,description,images[]{
+      asset->{url}
+    },_type,,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
+}`;
   const jobFields = `
   body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow
 `;
@@ -251,14 +281,13 @@ export async function getServerSideProps() {
       { query: fontsQuery, sanity },
       { query: styleGuidesQuery, sanity },
       {
-        query: `*[_type=='job' && applyBefore >= now()]${jobsQuery.slice(1)}`,
+        query: `*[_type=='job' && applyBefore >= now()]${jobsQuery.slice(15)}`,
         sanity,
       },
+      { query: breifFields, sanity },
     ];
-
-    const [uiTemplates, uiKits, fonts, styleGuides, jobs] = await Promise.all(
-      queries.map((queryObj) => fetchDataServer(queryObj))
-    );
+    const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs] =
+      await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
 
     return {
       props: {
@@ -267,6 +296,7 @@ export async function getServerSideProps() {
         fonts,
         styleGuides,
         jobs,
+        briefs,
       },
     };
   } catch (e) {

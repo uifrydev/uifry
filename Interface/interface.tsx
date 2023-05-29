@@ -29,6 +29,7 @@ export interface Data {
   noOfScreens?: any;
   features?: string[];
   total?: number;
+  _type?:string
 }
 
 export interface CardProps {
