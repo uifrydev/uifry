@@ -154,7 +154,7 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
-        <div className="flex flex-col px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
+        <div className="flex flex-col items-center px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
           <div className="flex gap-[3rem] sm:flex-col items-center">
             <span className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
               What does UIFry offers?
@@ -163,12 +163,12 @@ const Home: NextPage<{
               Browse through the categories below!
             </span>
           </div>
-          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3">
+          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 max-w-[116.6rem]">
             {pages.map((item, index) => (
               <Link
                 href={item.link}
                 key={index}
-                className="flex flex-col gap-[2rem] bg-[#fff] p-[2rem] rounded-[1rem]"
+                className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]"
               >
                 <div className="rounded-[.8rem] shadow-cardShadow w-full flex middle aspect-[2/1]">
                   <Image src={item.img.src} alt={item.img.alt} />
@@ -176,14 +176,14 @@ const Home: NextPage<{
                 <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
                   {item?.title}
                 </p>
-                <p className="text-[#6B7194] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
+                <p className="text-[#6B7194] max-w-[28.2rem] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
                   {item?.desc}
                 </p>
               </Link>
             ))}
           </div>
         </div>
-        <div className="flex gap-[2rem] justify-center mb-[3.3rem]">
+        <div className="flex gap-[2rem] justify-center mb-[3.3rem] mt-[3rem]">
           <div className="flex flex-col">
             <p className="satoshi font-700 text-primaryBlack text-[3.6rem] leading-[120%] ">
               Latest this week
@@ -404,7 +404,6 @@ export async function getServerSideProps() {
     ];
     const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs] =
       await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
-    console.log({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs });
     return {
       props: {
         uiTemplates,
