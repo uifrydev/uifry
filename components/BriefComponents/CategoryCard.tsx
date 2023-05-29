@@ -7,7 +7,7 @@ const CategoryCard = ({data}:{data:Data}) => {
   return (
     // <div className='bg-[#fff] rounded-[1.2rem] p-[3rem]'>
 <div
-      className="flex cursor-pointer flex-col gap-[1rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] "
+      className="flex cursor-pointer flex-col h-full gap-[1rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] "
     >
       <div className="flex relative  border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
         <Image

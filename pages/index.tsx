@@ -25,6 +25,13 @@ import { fetchDataServer, generateQuery } from "@/utils/functions";
 import JobCard from "@/components/JobCard/JobCard";
 import MetaHead from "@/components/MetaHead/MeatHead";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
+import templates from "../public/assets/images/templates.png";
+import kits from "../public/assets/images/kits.png";
+import briefsImg from "../public/assets/images/briefs.png";
+import guides from "../public/assets/images/guides.png";
+import jobsImg from "../public/assets/images/jobs.png";
+import fontsImg from "../public/assets/images/fonts.png";
+import Image, { StaticImageData } from "next/image";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
@@ -46,7 +53,72 @@ const Home: NextPage<{
     tags: [],
     title: "",
   });
-
+  const compare = [
+    { title: "landingPageBrief", slug: "landing-page" },
+    { title: "productUiBrief", slug: "product-ui" },
+    { title: "UxBrief", slug: "ux" },
+  ];
+  const pages: {
+    title: string;
+    desc: string;
+    img: { src: StaticImageData; alt: string };
+    link: string;
+  }[] = [
+    {
+      title: "UI Templates",
+      desc: "UI Templates are single assets used to kick start and inspire yourself. Files available in Figma, XD and Sketch",
+      img: {
+        src: templates,
+        alt: "ui templates image",
+      },
+      link: "/ui-templates",
+    },
+    {
+      title: "UI UX Kits",
+      desc: "UI UX kits are full fledged kits to take on bigger projects with flows, style guides and more for UI UX projects",
+      img: {
+        src: kits,
+        alt: "ui ux kits image",
+      },
+      link: "/ui-ux-kits",
+    },
+    {
+      title: "Briefs",
+      desc: "Practice with real world challenges and UI UX briefs with broad categories and upscale yourself!",
+      img: {
+        src: briefsImg,
+        alt: "briefs image",
+      },
+      link: "/briefs",
+    },
+    {
+      title: "Fonts",
+      desc: "Crafted for UI UX projects. These fonts are made in-house perfect for scalability, usage and integrations",
+      img: {
+        src: fontsImg,
+        alt: "fonts image",
+      },
+      link: "/fonts",
+    },
+    {
+      title: "Style Guides",
+      desc: "Style guides are perfect for inspiration and starting a new project. Includes inspiration, fonts and colors",
+      img: {
+        src: guides,
+        alt: "Style Guides image",
+      },
+      link: "/styles-guides",
+    },
+    {
+      title: "Remote Jobs",
+      desc: "100% remote jobs only for UI UX positions. Find and apply using our website to land your dream job today!",
+      img: {
+        src: jobsImg,
+        alt: "remote jobs image",
+      },
+      link: "/jobs",
+    },
+  ];
   return (
     <>
       <MetaHead
@@ -81,6 +153,36 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
+        <div className="flex flex-col px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
+          <div className="flex gap-[3rem] sm:flex-col items-center">
+            <span className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
+              What does UIFry offers?
+            </span>
+            <span className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
+              Browse through the categories below!
+            </span>
+          </div>
+          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3">
+            {pages.map((item, index) => (
+              <Link
+                href={item.link}
+                key={index}
+                className="flex flex-col gap-[2rem] bg-[#fff] p-[2rem] rounded-[1rem]"
+              >
+                <div className="rounded-[.8rem] shadow-cardShadow w-full flex middle aspect-[2/1]">
+                  <Image src={item.img.src} alt={item.img.alt} />
+                </div>
+                <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
+                  {item?.title}
+                </p>
+                <p className="text-[#6B7194] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
+                  {item?.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
@@ -150,7 +252,9 @@ const Home: NextPage<{
                 href={{
                   pathname: "/briefs/details",
                   query: {
-                    category: String(item._type),
+                    category: String(
+                      compare.find((cat) => item._type == cat.title)?.slug
+                    ),
                     brief: item.slug.current,
                   },
                 }}
@@ -300,7 +404,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (e) {
-    console.log(e)
+    console.log(e);
     return {
       props: {
         uiTemplates: [],
