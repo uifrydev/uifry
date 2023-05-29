@@ -263,7 +263,7 @@ export async function getServerSideProps() {
   const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'][0...4]{
     title,slug,subCategories,description,images[]{
       asset->{url}
-    },_type,,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
+    },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
 }`;
   const jobFields = `
   body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow
@@ -288,7 +288,7 @@ export async function getServerSideProps() {
     ];
     const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs] =
       await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
-
+    console.log({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs });
     return {
       props: {
         uiTemplates,
@@ -300,9 +300,15 @@ export async function getServerSideProps() {
       },
     };
   } catch (e) {
+    console.log(e)
     return {
       props: {
-        posts: [],
+        uiTemplates: [],
+        uiKits: [],
+        fonts: [],
+        styleGuides: [],
+        jobs: [],
+        briefs: [],
       },
     };
   }
