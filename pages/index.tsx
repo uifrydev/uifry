@@ -163,7 +163,7 @@ const Home: NextPage<{
               Browse through the categories below!
             </span>
           </div>
-          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 max-w-[116.6rem]">
+          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2 max-w-[116.6rem] sm:grid-cols-1">
             {pages.map((item, index) => (
               <Link
                 href={item.link}
