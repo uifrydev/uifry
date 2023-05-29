@@ -32,6 +32,7 @@ import guides from "../public/assets/images/guides.png";
 import jobsImg from "../public/assets/images/jobs.png";
 import fontsImg from "../public/assets/images/fonts.png";
 import Image, { StaticImageData } from "next/image";
+import Sticker from "@/components/Sticker/Sticker";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
@@ -182,7 +183,18 @@ const Home: NextPage<{
             ))}
           </div>
         </div>
-
+        <div className="flex gap-[2rem] justify-center mb-[3.3rem]">
+          <div className="flex flex-col">
+            <p className="satoshi font-700 text-primaryBlack text-[3.6rem] leading-[120%] ">
+              Latest this week
+            </p>
+            <p className="text-secondaryGray text-[1.8rem] leading-[150%]">
+              Browse through the latest resources, briefs and jobs added this
+              week
+            </p>
+          </div>
+          <Sticker text="We added 10 new resources this week!" classes="!ml-auto !mr-0" />
+        </div>
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
