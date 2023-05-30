@@ -180,7 +180,7 @@ const Home: NextPage<{
             ))}
           </div>
         </div>
-        <div className="flex gap-[2rem] justify-center mb-[4.3rem] mt-[4rem]">
+        <div className="flex gap-[2rem] flex-wrap justify-center mb-[4.3rem] mt-[4rem]">
           <div className="flex flex-col gap-[.8rem]">
             <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
               Latest this week
