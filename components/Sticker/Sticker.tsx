@@ -13,7 +13,7 @@ const Sticker = ({
 }) => {
   return (
     <div
-      className={`w-full relative  flex z-[1] justify-center max-w-[50rem] gap-[2rem] py-[1.5rem] mx-auto overflow-hidden px-[2rem] items-center rounded-full bg-gradient1 ${classes}`}
+      className={`w-full relative  flex z-[1] justify-center max-w-[35rem] gap-[2rem] py-[1.5rem] mx-auto overflow-hidden px-[2rem] items-center rounded-full bg-gradient1 ${classes}`}
     >
       <p className="text-[#fff] font-[700] text-[1.6rem] satoshi">
         {text ? text : "We Added 150 new UI templates this week!"}

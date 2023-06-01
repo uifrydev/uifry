@@ -188,7 +188,7 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
-        <div className="flex flex-col px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
+        <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
           <div className="flex gap-[3rem] sm:flex-col items-center">
             <span className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
               What does UIFry offers?
@@ -205,16 +205,15 @@ const Home: NextPage<{
                 {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
               </Link>
             ))}
-            {pages.map((item, index) => (
+            {/* {pages.map((item, index) => (
               <Link href={item.link} key={index}>
                 <Card3 desc={item.desc} img={item.img1} title={item.title} />
-                {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
               </Link>
-            ))}
+            ))} */}
           </div>
         </div>
-        <div className="flex gap-[2rem] flex-wrap justify-center mb-[4.3rem] mt-[4rem]">
-          <div className="flex flex-col gap-[.8rem]">
+        <div className="flex gap-[2rem] justify-center  mb-[4.3rem] mt-[4rem] ">
+          <div className="flex flex-col gap-[.8rem] pl-[2rem]">
             <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
               Latest this week
             </p>
@@ -225,7 +224,7 @@ const Home: NextPage<{
           </div>
           <Sticker
             text="We added 10 new resources this week!"
-            classes="!ml-auto !mr-0"
+            classes=" !mr-0"
           />
         </div>
         <div className="flex flex-col gap-[2rem]">
@@ -260,29 +259,35 @@ const Home: NextPage<{
               </Link>
             ))}
           </List>
-
           <List
-            classes={`4xl:grid-cols-2 grid-cols-3 ${
-              uiKits.length == 3 && "uiuxhome"
-            } xl:grid-cols-1 `}
-            title="UI UX Kits"
-            link="/ui-ux-kits"
-            resources={Number(uiKits[0]?.total) || 0}
+            classes={`4xl:grid-cols-3 grid-cols-4  ${
+              styleGuides.length == 4 && "uitemphome"
+            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
+            resources={Number(styleGuides[0]?.total) || 0}
+            title="Style Guides"
+            link="/styles-guides"
           >
-            {uiKits.map((item, index) => (
+            {styleGuides.map((item, index) => (
               <Link
                 key={index}
                 href={{
-                  pathname: "/ui-ux-kits/details",
-                  // href: "/ui-templates/details",
-                  query: { kit: item?.slug?.current },
+                  pathname: "/styles-guides/details",
+                  query: { style: item.slug.current },
                 }}
+                onClick={(e) => e.preventDefault()}
               >
-                <UiKitCard key={index} onClick={() => {}} data={item} />
+                <Card
+                  onClick={() => {
+                    window.scrollBy(0, 1);
+                    document.body.classList.add("!overflow-y-hidden");
+                    dispatch(updateModal1(true));
+                    setModalData(item);
+                  }}
+                  data={item}
+                />
               </Link>
             ))}
           </List>
-
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
               briefs.length == 4 && "uitemphome"
@@ -320,6 +325,29 @@ const Home: NextPage<{
           </List>
           <List
             classes={`4xl:grid-cols-2 grid-cols-3 ${
+              uiKits.length == 3 && "uiuxhome"
+            } xl:grid-cols-1 `}
+            title="UI UX Kits"
+            link="/ui-ux-kits"
+            resources={Number(uiKits[0]?.total) || 0}
+          >
+            {uiKits.map((item, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/ui-ux-kits/details",
+                  // href: "/ui-templates/details",
+                  query: { kit: item?.slug?.current },
+                }}
+              >
+                <UiKitCard key={index} onClick={() => {}} data={item} />
+              </Link>
+            ))}
+          </List>
+
+         
+          <List
+            classes={`4xl:grid-cols-2 grid-cols-3 ${
               fonts.length == 3 && "uiuxhome"
             } xl:grid-cols-1`}
             resources={Number(fonts[0]?.total) || 0}
@@ -339,35 +367,7 @@ const Home: NextPage<{
               </Link>
             ))}
           </List>
-          <List
-            classes={`4xl:grid-cols-3 grid-cols-4  ${
-              styleGuides.length == 4 && "uitemphome"
-            } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
-            resources={Number(styleGuides[0]?.total) || 0}
-            title="Style Guides"
-            link="/styles-guides"
-          >
-            {styleGuides.map((item, index) => (
-              <Link
-                key={index}
-                href={{
-                  pathname: "/styles-guides/details",
-                  query: { style: item.slug.current },
-                }}
-                onClick={(e) => e.preventDefault()}
-              >
-                <Card
-                  onClick={() => {
-                    window.scrollBy(0, 1);
-                    document.body.classList.add("!overflow-y-hidden");
-                    dispatch(updateModal1(true));
-                    setModalData(item);
-                  }}
-                  data={item}
-                />
-              </Link>
-            ))}
-          </List>
+          
 
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
@@ -503,7 +503,7 @@ const Card2 = ({
   desc: string;
 }) => (
   <>
-    <div className="flex gap-[2rem] p-[2rem] rounded-[2rem] bg-[#fff] h-full items-center">
+    <div className="flex gap-[2rem] p-[2rem] pr-[2.7rem] rounded-[2rem] bg-[#fff] h-full items-center">
       <div className="w-[19rem]">
         <Image src={img.src} alt={img.alt} className="w-full" />
       </div>
