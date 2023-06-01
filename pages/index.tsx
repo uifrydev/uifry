@@ -7,7 +7,11 @@ import Sidebar from "../components/Sidebar/Sidebar";
 // import '../styles/global.css'
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
-import { updateBriefModal, updateModal, updateModal1 } from "../store/slices/featues";
+import {
+  updateBriefModal,
+  updateModal,
+  updateModal1,
+} from "../store/slices/featues";
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import KitHeader from "../components/KitHeader/KitHeader";
@@ -28,6 +32,12 @@ import briefsImg from "../public/assets/images/briefs.png";
 import guides from "../public/assets/images/guides.png";
 import jobsImg from "../public/assets/images/jobs.png";
 import fontsImg from "../public/assets/images/fonts.png";
+import templates1 from "../public/assets/images/templates1.png";
+import kits1 from "../public/assets/images/kits1.png";
+import briefsImg1 from "../public/assets/images/briefs1.png";
+import guides1 from "../public/assets/images/guides1.png";
+import jobsImg1 from "../public/assets/images/jobs1.png";
+import fontsImg1 from "../public/assets/images/fonts1.png";
 import Image, { StaticImageData } from "next/image";
 import Sticker from "@/components/Sticker/Sticker";
 import BriefModal from "@/components/DetailsModal/BreifModal";
@@ -61,6 +71,7 @@ const Home: NextPage<{
     title: string;
     desc: string;
     img: { src: StaticImageData; alt: string };
+    img1: { src: StaticImageData; alt: string };
     link: string;
   }[] = [
     {
@@ -68,6 +79,10 @@ const Home: NextPage<{
       desc: "UI Templates are single assets used to kick start and inspire yourself. Files available in Figma, XD and Sketch",
       img: {
         src: templates,
+        alt: "ui templates image",
+      },
+      img1: {
+        src: templates1,
         alt: "ui templates image",
       },
       link: "/ui-templates",
@@ -79,6 +94,10 @@ const Home: NextPage<{
         src: kits,
         alt: "ui ux kits image",
       },
+      img1: {
+        src: kits1,
+        alt: "ui templates image",
+      },
       link: "/ui-ux-kits",
     },
     {
@@ -87,6 +106,10 @@ const Home: NextPage<{
       img: {
         src: briefsImg,
         alt: "briefs image",
+      },
+      img1: {
+        src: briefsImg1,
+        alt: "ui templates image",
       },
       link: "/briefs",
     },
@@ -97,6 +120,10 @@ const Home: NextPage<{
         src: fontsImg,
         alt: "fonts image",
       },
+      img1: {
+        src: fontsImg1,
+        alt: "ui templates image",
+      },
       link: "/fonts",
     },
     {
@@ -106,6 +133,10 @@ const Home: NextPage<{
         src: guides,
         alt: "Style Guides image",
       },
+      img1: {
+        src: guides1,
+        alt: "ui templates image",
+      },
       link: "/styles-guides",
     },
     {
@@ -114,6 +145,10 @@ const Home: NextPage<{
       img: {
         src: jobsImg,
         alt: "remote jobs image",
+      },
+      img1: {
+        src: jobsImg1,
+        alt: "ui templates image",
       },
       link: "/jobs",
     },
@@ -153,7 +188,7 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
-        <div className="flex flex-col items-center px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
+        <div className="flex flex-col px-[4rem] py-[3rem] bg-primary mb-[3.2rem] gap-[2rem]">
           <div className="flex gap-[3rem] sm:flex-col items-center">
             <span className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
               What does UIFry offers?
@@ -162,22 +197,18 @@ const Home: NextPage<{
               Browse through the categories below!
             </span>
           </div>
-          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2 max-w-[116.6rem] sm:grid-cols-1">
+          {/* max-w-[116.6rem] */}
+          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2  sm:grid-cols-1">
             {pages.map((item, index) => (
-              <Link
-                href={item.link}
-                key={index}
-                className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]"
-              >
-                <div className="rounded-[.8rem] shadow-cardShadow w-full flex middle aspect-[2/1]">
-                  <Image src={item.img.src} alt={item.img.alt} />
-                </div>
-                <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
-                  {item?.title}
-                </p>
-                <p className="text-[#6B7194] max-w-[28.2rem] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
-                  {item?.desc}
-                </p>
+              <Link href={item.link} key={index}>
+                <Card2 desc={item.desc} img={item.img} title={item.title} />
+                {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
+              </Link>
+            ))}
+            {pages.map((item, index) => (
+              <Link href={item.link} key={index}>
+                <Card3 desc={item.desc} img={item.img1} title={item.title} />
+                {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
               </Link>
             ))}
           </div>
@@ -440,4 +471,74 @@ export async function getServerSideProps() {
     };
   }
 }
+
+const Card1 = ({
+  img,
+  title,
+  desc,
+}: {
+  img: { src: StaticImageData; alt: string };
+  title: string;
+  desc: string;
+}) => (
+  <div className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]">
+    <div className="rounded-[.8rem] shadow-cardShadow w-full flex middle aspect-[2/1]">
+      <Image src={img.src} alt={img.alt} />
+    </div>
+    <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
+      {title}
+    </p>
+    <p className="text-[#6B7194] max-w-[28.2rem] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
+      {desc}
+    </p>
+  </div>
+);
+const Card2 = ({
+  img,
+  title,
+  desc,
+}: {
+  img: { src: StaticImageData; alt: string };
+  title: string;
+  desc: string;
+}) => (
+  <>
+    <div className="flex gap-[2rem] p-[2rem] rounded-[2rem] bg-[#fff]">
+      <div className="w-[19rem]">
+        <Image src={img.src} alt={img.alt} className="w-full" />
+      </div>
+      <div className="flex flex-col items-start">
+        <p className="text-primaryBlack text-center text-[1.6rem] satoshi font-700 leading-[2.6rem] ">
+          {title}
+        </p>
+        <p className="text-[#6B7194]  font-400 text-[1.4rem] leading-[2.4rem] three-line-ellipsis">
+          {desc}
+        </p>
+      </div>
+    </div>
+  </>
+);
+const Card3 = ({
+  img,
+  title,
+  desc,
+}: {
+  img: { src: StaticImageData; alt: string };
+  title: string;
+  desc: string;
+}) => (
+  <>
+    <div className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]">
+      <div className="rounded-[1.05085rem]  w-full flex middle aspect-[2/1]">
+        <Image src={img.src} alt={img.alt} className="w-full h-full" />
+      </div>
+      <p className="text-heading text-center text-[2rem] satoshi font-700 leading-[2.6rem] ">
+        {title}
+      </p>
+      <p className="text-[#6B7194]  font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
+        {desc}
+      </p>
+    </div>
+  </>
+);
 export default Home;
