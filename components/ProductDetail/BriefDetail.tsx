@@ -37,10 +37,10 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
   const { user } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    async function fecthData() {
+    async function fetchData() {
       outsetaRef.current = await loadOutseta();
     }
-    fecthData();
+    fetchData();
   }, [router.asPath]);
   const ref = useRef<HTMLDivElement>(null);
   return (
