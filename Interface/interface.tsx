@@ -29,9 +29,15 @@ export interface Data {
   noOfScreens?: any;
   features?: string[];
   total?: number;
-  _type?:string
+  _type?: string;
 }
-
+export interface CategoryCardProps extends Data {
+  coverImage: {
+    asset:{
+      url:string;
+    }
+  };
+}
 export interface CardProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   data: Data;
@@ -137,7 +143,7 @@ export interface JobDetailProps extends JobProps {
   jobPosted: string;
   jobType: string;
   foundedIn: string;
-  applyNow:string
+  applyNow: string;
 }
 export interface MainCardProps {
   img: {

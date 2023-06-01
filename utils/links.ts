@@ -51,7 +51,7 @@ export const breifList: BriefList[] = [
       alt: "",
       src: pyramid,
     },
-    desc: "Craft striking websites, apps & sfotwares with diverse practice briefs for improved usability and compelling visuals.",
+    desc: "Craft striking websites, apps & softwares with diverse practice briefs for improved usability and compelling visuals.",
     
     includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
 

@@ -17,7 +17,7 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import Image from "next/image";
 import { RootState } from "@/store/store";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { BriefList, Data, MainCardProps } from "@/Interface/interface";
+import { BriefList, CategoryCardProps, Data, MainCardProps } from "@/Interface/interface";
 import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
@@ -26,13 +26,13 @@ import { loadMore, perProduct } from "@/utils/consts";
 import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
 import MetaHead from "@/components/MetaHead/MeatHead";
 
-const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
+const UiTemplatesType = ({ res, data }: { res: CategoryCardProps[]; data: BriefList }) => {
   // const [cards, setCards] = useState(posts);
 
   const router = useRouter();
   const current = breifList.find((item) => item.link == router.query?.slug);
   const dispatch = useDispatch();
-  const [cards, setCards] = useState<Data[]>(res || []);
+  const [cards, setCards] = useState<CategoryCardProps[]>(res || []);
   const [isLoading, setLoading] = useState(false);
   const [isLoadMore, setLoadMore] = useState(res.length === perProduct);
   const [productIndex, setProductIndex] = useState(res.length);
@@ -55,7 +55,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
       text != "All" ? `&& subCategories=='${text}'` : ""
     }] | order(_updatedAt desc) | [0...${loadMore}]{
       subCategories,"tags":includes,
-      title,slug,subCategory,category,description,sanityFilter,images[]{
+      title,slug,subCategory,category,description,sanityFilter,coverImage{asset->{url}},images[]{
         asset->{url}
       },tags,"fileURL":zipFile.asset->url
     }`;
@@ -72,7 +72,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
         link={`briefs/${data.link}`}
         description={data?.desc}
       />
-      {briefModal && <BriefModal data={modalData} setData={setModalData} />}
+      {briefModal && <BriefModal data={modalData} />}
       <Header
         title={["Briefs"]}
         breadcrums={["Briefs", data.title.split(" ").slice(0, -1).join(" ")]}
@@ -204,7 +204,7 @@ const UiTemplatesType = ({ res, data }: { res: Data[]; data: BriefList }) => {
                   query: `*[_type=='${current?.name}' ${
                     filter != "All" ? `&& subCategories=='${filter}'` : ""
                   }][${productIndex}...${productIndex + perProduct}]{
-                  title,slug,subCategories,description,images[]{
+                  title,slug,subCategories,description,coverImage{asset->{url}},images[]{
                     asset->{url},
                   },"tags":includes,includes,"fileURL":zipFile.asset->url
               }`,
@@ -234,8 +234,8 @@ export const getServerSideProps: GetServerSideProps = async (
     const res =
       (await fetchDataServer({
         query: `*[_type=='${data?.name}'][0...${perProduct}]{
-      title,slug,subCategories,description,images[]{
-        asset->{url},
+      title,slug,subCategories,description,coverImage{asset->{url}},images[]{
+        asset->{url}
       },"tags":includes,includes,"fileURL":zipFile.asset->url
   }`,
         sanity,

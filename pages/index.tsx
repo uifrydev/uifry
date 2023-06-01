@@ -7,13 +7,13 @@ import Sidebar from "../components/Sidebar/Sidebar";
 // import '../styles/global.css'
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
-import { updateModal, updateModal1 } from "../store/slices/featues";
+import { updateBriefModal, updateModal, updateModal1 } from "../store/slices/featues";
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import KitHeader from "../components/KitHeader/KitHeader";
 import { RootState } from "@/store/store";
 import { NextPage } from "next";
-import { Data, JobProps } from "@/Interface/interface";
+import { CategoryCardProps, Data, JobProps } from "@/Interface/interface";
 import List from "@/components/List/List";
 import UiKitCard from "@/components/UiKitCard/UiKitCard";
 import DetailsModal1 from "@/components/DetailSmodal1/DetailsModal1";
@@ -30,15 +30,16 @@ import jobsImg from "../public/assets/images/jobs.png";
 import fontsImg from "../public/assets/images/fonts.png";
 import Image, { StaticImageData } from "next/image";
 import Sticker from "@/components/Sticker/Sticker";
+import BriefModal from "@/components/DetailsModal/BreifModal";
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
   fonts: Data[];
   styleGuides: Data[];
   jobs: JobProps[];
-  briefs: Data[];
+  briefs: CategoryCardProps[];
 }> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs }) => {
-  const { openModal, openModal1 } = useSelector(
+  const { openModal, openModal1, briefModal } = useSelector(
     (state: RootState) => state.features
   );
   const { user } = useSelector((state: RootState) => state.auth);
@@ -126,6 +127,7 @@ const Home: NextPage<{
       />
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
+      {briefModal && <BriefModal data={modalData} />}
       <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
       {/* <KitHeader /> */}
       <Sidebar isDetail={false} />
@@ -190,7 +192,10 @@ const Home: NextPage<{
               week
             </p>
           </div>
-          <Sticker text="We added 10 new resources this week!" classes="!ml-auto !mr-0" />
+          <Sticker
+            text="We added 10 new resources this week!"
+            classes="!ml-auto !mr-0"
+          />
         </div>
         <div className="flex flex-col gap-[2rem]">
           <List
@@ -267,8 +272,18 @@ const Home: NextPage<{
                     brief: item.slug.current,
                   },
                 }}
+                onClick={(e) => e.preventDefault()}
               >
-                <CategoryCard data={item} key={index} />
+                <div
+                  onClick={() => {
+                    window.scrollBy(0, 2);
+                    setModalData(item);
+                    document.body.classList.add("!overflow-y-hidden");
+                    dispatch(updateBriefModal(true));
+                  }}
+                >
+                  <CategoryCard data={item} key={index} />
+                </div>
               </Link>
             ))}
           </List>
@@ -374,7 +389,7 @@ export async function getServerSideProps() {
   },"fileURL":zipFile.asset->url
 `;
   const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'][0...4]{
-    title,slug,subCategories,description,images[]{
+    title,slug,subCategories,description,coverImage{asset->{url}},images[]{
       asset->{url}
     },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
 }`;

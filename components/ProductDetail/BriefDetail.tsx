@@ -133,7 +133,7 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
           </div>
         </div>
       </div>
-      <Carousel
+      {/* <Carousel
         images={
           data?.images
             ? data?.images?.map(
@@ -141,7 +141,16 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
               )
             : []
         }
-      />
+      /> */}
+      <div className="flex w-full py-[2.7rem] pl-[3.1rem] max-w-[92rem] pr-[3.8rem] rounded-[3rem] bg-primary">
+        <Image
+          src={data?.images[0]?.asset?.url}
+          alt=""
+          width={780}
+          className="w-full rounded-[2rem]"
+          height={735}
+        />
+      </div>
       <div className="flex px-[4rem] py-[2rem] bg-primary rounded-[2rem] max-w-[92rem]">
         <span className="text-[1.4rem] font-[400] text-secondaryGray leading-[150%]">
           A squeeze page is a specialized type of landing page tailored to
