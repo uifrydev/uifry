@@ -12,7 +12,7 @@ const Button: NextPage<ButtonProps &{disable?:boolean}> = ({
     <button type="submit" disabled={false || disable}
       onClick={onClick}
       onBlur={onBlur}
-      className={`font-500 text-[1.6rem] py-[1.1rem] px-[2.6rem]  ${classes} `}
+      className={`font-500 text-[1.6rem] py-[1.1rem] px-[2.6rem] box-border ${classes} `}
       // tabIndex={1}
     >
       {children}

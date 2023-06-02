@@ -70,14 +70,14 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
           {/* <span className="font-[400] text-[1.6rem] leading-[2.2rem] text-primaryBlack ">
             {data?.category}
           </span> */}
-          <span className="satoshi font-700 text-center text-[3.6rem] sm:text-[2.8rem] leading-[4rem] text-primaryBlack ">
+          <span className="satoshi font-700 lg:text-center text-[3.6rem] sm:text-[2.8rem] leading-[4rem] text-primaryBlack ">
             {data?.title}
           </span>
         </div>
         <div className="flex flex-col gap-[1.5rem] min-lg:ml-auto sm:w-full sm:items-center">
           {user?.Account?.AccountStage && user?.Account?.AccountStage != 5 ? (
             <Link href={data?.fileURL || ""} download>
-              <Button classes={"bg-gradient rounded-[10rem] w-full"}>
+              <Button classes={"bg-gradient rounded-[10rem] w-full min-w-[22rem]"}>
                 <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">
                   Download Brief
                 </span>
@@ -93,7 +93,7 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
                 alert("plan expired");
               }}
               classes={
-                "bg-gradient rounded-[10rem] !py-[1.5rem] !px-[5.1rem] w-full"
+                "bg-gradient rounded-[10rem] !py-[1.5rem] !px-[5.1rem] w-full min-w-[22rem]"
               }
             >
               <span className="text-[1.6rem] font-[700] text-[#fff] satoshi ">

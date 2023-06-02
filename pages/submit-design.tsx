@@ -3,11 +3,22 @@ import DetailHeader from "@/components/KitHeader/KitHeader";
 import MetaHead from "@/components/MetaHead/MeatHead";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import profile from "../public/assets/icons/logo1.svg";
 import Button from "@/components/Button/Button";
+import axiosInstance from "@/utils/axios";
+import axios from "axios";
 
 const SubmitDesign = () => {
+  const [details, setDetails] = useState({
+    name: "",
+    email: "",
+    comments: "",
+    link: "",
+  });
+  const onChnage = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <div>
       <MetaHead
@@ -40,30 +51,45 @@ const SubmitDesign = () => {
           </p>
         </div>
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const temp = axios.post("/api/send-mail", {});
+            console.log({ temp });
+          }}
           className="max-w-[63.8rem] flex flex-col gap-[2rem] w-full mx-auto mt-[3rem] mb-[10rem]"
         >
           <input
             type="text"
+            name="name"
+            onChange={onChnage}
             placeholder="Full Name"
             className="py-[1.8rem] px-[4.3rem] w-full rounded-full bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
           <input
             type="text"
+            name="email"
+            onChange={onChnage}
             placeholder="Email address"
             className="py-[1.8rem] px-[4.3rem] w-full rounded-full bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
           <textarea
             cols={5}
+            name="comments"
+            onChange={onChnage}
             placeholder="Any comments or information you would like to share"
             className="py-[1.8rem] resize-none px-[4.3rem] w-full h-[15rem] rounded-[2rem] bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
           <input
             type="text"
+            name="link"
+            onChange={onChnage}
             placeholder="Paste figma link or google drive link for designs"
             className="py-[1.8rem] px-[4.3rem] w-full rounded-full bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
-          <Button disable={true} classes="mt-[2rem] w-full  rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+          <Button
+            // disable={true}
+            classes="mt-[2rem] w-full  rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient"
+          >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD]">
               {false ? "Loading..." : "Submit for review"}
             </span>
