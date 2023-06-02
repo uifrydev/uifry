@@ -33,6 +33,10 @@ var o_signup_options = {
     "selector": "#signup-embed"
   }
 };
+var o_options = {
+  domain: 'uifry.outseta.com',
+  load: 'chat'
+};
 `;
   return (
     <Html lang="en">
@@ -47,6 +51,9 @@ var o_signup_options = {
           data-options="o_signup_options"
           data-on-success="onSignupSuccess"
         />
+        <script src="https://cdn.outseta.com/outseta.min.js"
+        data-options="o_options">
+</script>
       </Head>
       <body>
         <Main />
