@@ -39,7 +39,10 @@ const SubmitDesign = () => {
             designers in your email.
           </p>
         </div>
-        <form action="" className="max-w-[63.8rem] flex flex-col gap-[2rem] w-full mx-auto mt-[3rem]">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="max-w-[63.8rem] flex flex-col gap-[2rem] w-full mx-auto mt-[3rem] mb-[10rem]"
+        >
           <input
             type="text"
             placeholder="Full Name"
@@ -52,7 +55,6 @@ const SubmitDesign = () => {
           />
           <textarea
             cols={5}
-                
             placeholder="Any comments or information you would like to share"
             className="py-[1.8rem] resize-none px-[4.3rem] w-full h-[15rem] rounded-[2rem] bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
@@ -61,13 +63,9 @@ const SubmitDesign = () => {
             placeholder="Paste figma link or google drive link for designs"
             className="py-[1.8rem] px-[4.3rem] w-full rounded-full bg-[#faf7fa] text-secondaryGray border-none text-[1.6rem] leading-[150%] outline-none"
           />
-          <Button
-            classes="mt-[2rem]"
-          >
-            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
-              {true
-                ? "Loading..."
-                : "Load More"}
+          <Button disable={true} classes="mt-[2rem] w-full  rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD]">
+              {false ? "Loading..." : "Submit for review"}
             </span>
           </Button>
         </form>
