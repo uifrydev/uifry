@@ -25,7 +25,7 @@ const SubmitDesign = () => {
   });
   type ErrorsType = Partial<Record<keyof DetailsType, string>>;
   const [errors, setErrors] = useState<ErrorsType>({});
-
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     // async (e) => {
     //   e.preventDefault();
@@ -40,8 +40,15 @@ const SubmitDesign = () => {
     } else {
       setErrors({});
       console.log(details);
-      const temp = await axios.post("/api/send-mail", { ...details });
-      console.log({ temp });
+      try {
+        setLoading(true);
+        const temp = await axios.post("/api/send-mail", { ...details });
+        setLoading(false);
+        console.log({ temp });
+      } catch (err) {
+        setLoading(false);
+      }
+
       //Submit details
       //reset form
       setDetails({
@@ -152,11 +159,13 @@ const SubmitDesign = () => {
             )}
           </div>
           <Button
-            // disable={true}
-            classes="mt-[2rem] w-full  rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient"
+            disable={loading}
+            classes={`mt-[2rem] w-full  rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient  ${
+              loading && "cursor-progress"
+            }`}
           >
             <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD]">
-              {false ? "Loading..." : "Submit for review"}
+              {loading ? "Loading..." : "Submit for review"}
             </span>
           </Button>
         </form>
