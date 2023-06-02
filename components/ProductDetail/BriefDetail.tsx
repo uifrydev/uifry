@@ -151,7 +151,7 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
           height={735}
         />
       </div>
-      <div className="flex px-[4rem] py-[2rem] bg-primary rounded-[2rem] max-w-[92rem]">
+      {/* <div className="flex px-[4rem] py-[2rem] bg-primary rounded-[2rem] max-w-[92rem]">
         <span className="text-[1.4rem] font-[400] text-secondaryGray leading-[150%]">
           A squeeze page is a specialized type of landing page tailored to
           capture essential visitor information, predominantly email addresses,
@@ -160,14 +160,14 @@ const BriefDetail: FC<any> = ({ showCross, data }) => {
           compelling offer, such as a free ebook, exclusive access to content,
           or a valuable discount.
         </span>
-      </div>
+      </div> */}
       <div className="flex gap-[.5rem]">
         <p className="text-[1.6rem] font-[500] leading-[2.4rem] text-primaryBlack">
           Issue with this brief?
         </p>
-        <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
+        <Link href={'https://uifry.outseta.com/support/kb/categories'} target='_blank' className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
           Tell our team!
-        </p>
+        </Link>
       </div>
       {/* <div className="grid grid-cols-2 lg:grid-cols-1 gap-[6rem] mx-[4rem] sm:mx-[2rem] p-[4rem] border-[1px] border-border2 max-w-[92rem] rounded-[2rem]">
         <div className="flex flex-col gap-[1rem]">

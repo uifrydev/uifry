@@ -36,7 +36,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
 
   return (
     <>
-    <MetaHead
+      <MetaHead
         title={`Styles Guides - UIFry`}
         link={`styles-guides`}
         description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
@@ -56,12 +56,12 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
         <div className="flex flex-col bg-primary rounded-[2.4rem] mb-[3rem] py-[6rem] p-[3rem] ">
           <div className="flex flex-col gap-[1rem] items-center ">
             <h2 className="satoshi text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Fonts crafted for{" "}
+              Style Guides for{" "}
               <span className="gradient-text">UI UX projects</span>
             </h2>
             <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
-              UIFry is the ultimate hub for UI UX designers to grow, learn and
-              smash client work daily with so much more.
+              We craft style guides to help designers start a project with
+              predefined colors, type and examples!
             </p>
           </div>
           <div className="flex gap-[1.6rem] flex-wrap justify-center my-[2rem] ">
@@ -99,7 +99,7 @@ const StyleGuides: NextPage<{ posts: Data[] }> = ({ posts }) => {
               </Button>
             ))}
           </div>
-          <Sticker classes="" />
+          <Sticker classes="max-w-[50rem]" />
           <div className=" grid 4xl:grid-cols-3 grid-cols-3 mt-[3rem] 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 gap-[3rem]">
             {isLoading &&
               [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (

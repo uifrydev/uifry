@@ -190,7 +190,7 @@ const Home: NextPage<{
         </div>
         <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
           <div className="flex gap-[3rem] sm:flex-col items-center">
-            <span className="text-primaryBlack font-500 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
+            <span className="text-primaryBlack font-700 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
               What does UIFry offers?
             </span>
             <span className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
@@ -212,8 +212,8 @@ const Home: NextPage<{
             ))} */}
           </div>
         </div>
-        <div className="flex gap-[2rem] justify-center  mb-[4.3rem] mt-[4rem] ">
-          <div className="flex flex-col gap-[.8rem] pl-[2rem]">
+        <div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
+          <div className="flex flex-col gap-[.8rem] ">
             <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
               Latest this week
             </p>
@@ -224,7 +224,7 @@ const Home: NextPage<{
           </div>
           <Sticker
             text="We added 10 new resources this week!"
-            classes=" !mr-0"
+            classes="sm:!mx-0 !mr-0"
           />
         </div>
         <div className="flex flex-col gap-[2rem]">
@@ -507,8 +507,8 @@ const Card2 = ({
       <div className="w-[19rem]">
         <Image src={img.src} alt={img.alt} className="w-full" />
       </div>
-      <div className="flex flex-col items-start">
-        <p className="text-primaryBlack text-center text-[1.6rem] satoshi font-700 leading-[2.6rem] ">
+      <div className="flex flex-col items-start gap-[.5rem]">
+        <p className="text-primaryBlack text-center text-[1.8rem] satoshi font-700 leading-[2.6rem] ">
           {title}
         </p>
         <p className="text-[#6B7194]  font-400 text-[1.4rem] leading-[2.4rem] three-line-ellipsis">
