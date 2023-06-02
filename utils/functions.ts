@@ -156,3 +156,38 @@ export function generateQuery(type: string, fields: string, limit: number) {
     ,"total": count(*[_type == "${type}"])
   }`;
 }
+
+export const validateDetails = (details: {
+  name: string;
+  email: string;
+  link: string;
+  comments: string;
+}) => {
+  const errors: {
+    name?: string;
+    email?: string;
+    link?: string;
+    comments?: string;
+  } = {};
+
+  if (!details.name.trim()) {
+    errors.name = "Name cannot be empty!";
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(details.email)) {
+    errors.email = "Email is not valid!";
+  }
+
+  if (details.comments.length < 5) {
+    errors.comments = "Comments must be at least 5 characters!";
+  }
+
+  const figmaLinkRegex =
+    /^(?:https:\/\/)?(?:www\.)?(?:figma\.com\/.+|drive\.google\.com\/.+)/;
+  if (!figmaLinkRegex.test(details.link)) {
+    errors.link = "Link must be a valid Figma or Google Drive link!";
+  }
+
+  return errors;
+};

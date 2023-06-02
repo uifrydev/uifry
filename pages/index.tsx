@@ -503,7 +503,7 @@ const Card2 = ({
   desc: string;
 }) => (
   <>
-    <div className="flex gap-[2rem] p-[2rem] pr-[2.7rem] rounded-[2rem] bg-[#fff] h-full items-center">
+    <div className="flex gap-[2rem] p-[2rem] py-[2.5rem] pr-[2.7rem] rounded-[2rem] bg-[#fff] h-full items-center">
       <div className="w-[19rem]">
         <Image src={img.src} alt={img.alt} className="w-full" />
       </div>
