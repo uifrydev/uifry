@@ -188,30 +188,34 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
-        <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
-          <div className="flex gap-[3rem] sm:flex-col items-center">
-            <span className="text-primaryBlack font-700 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
-              What does UIFry offers?
-            </span>
-            <span className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
-              Browse through the categories below!
-            </span>
-          </div>
-          {/* max-w-[116.6rem] */}
-          <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2  sm:grid-cols-1">
-            {pages.map((item, index) => (
-              <Link href={item.link} key={index}>
-                <Card2 desc={item.desc} img={item.img} title={item.title} />
-                {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
-              </Link>
-            ))}
-            {/* {pages.map((item, index) => (
+        {!user ? (
+          <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
+            <div className="flex gap-[3rem] sm:flex-col items-center">
+              <span className="text-primaryBlack font-700 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
+                What does UIFry offers?
+              </span>
+              <span className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
+                Browse through the categories below!
+              </span>
+            </div>
+            {/* max-w-[116.6rem] */}
+            <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2  sm:grid-cols-1">
+              {pages.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  <Card2 desc={item.desc} img={item.img} title={item.title} />
+                  {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
+                </Link>
+              ))}
+              {/* {pages.map((item, index) => (
               <Link href={item.link} key={index}>
                 <Card3 desc={item.desc} img={item.img1} title={item.title} />
               </Link>
             ))} */}
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
         <div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
           <div className="flex flex-col gap-[.8rem] ">
             <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
@@ -345,7 +349,6 @@ const Home: NextPage<{
             ))}
           </List>
 
-         
           <List
             classes={`4xl:grid-cols-2 grid-cols-3 ${
               fonts.length == 3 && "uiuxhome"
@@ -367,7 +370,6 @@ const Home: NextPage<{
               </Link>
             ))}
           </List>
-          
 
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
