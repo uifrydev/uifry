@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { updateModal1, updateProModal } from "../../store/slices/featues";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -29,6 +29,7 @@ const ProductDetail1: any = ({
   const pid = router.query;
   const [products, setProducts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     async function fecthData() {
       setLoading(true);
@@ -51,7 +52,9 @@ const ProductDetail1: any = ({
 
   if (loading) return;
   return (
-    <div className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
+    <div
+      ref={ref}
+      className="middle-col gap-[4rem] min-lg:rounded-[24px] w-full   pt-[4rem] bg-[#ffffff] ">
       {showCross && (
         <div
           onClick={() => {
@@ -77,7 +80,7 @@ const ProductDetail1: any = ({
           </div> */}
         </div>
         <div className="flex flex-col gap-[2rem] min-lg:ml-auto sm:w-full sm:items-center">
-          {user?.Account?.AccountStage  && user?.Account?.AccountStage != 5  ? (
+          {user?.Account?.AccountStage && user?.Account?.AccountStage != 5 ? (
             <Link href={data?.fileURL || ""} download>
               <Button
                 classes={
@@ -100,7 +103,7 @@ const ProductDetail1: any = ({
                   return
                 }
                 alert('plan expired')
-                
+
               }}
 
             >
@@ -189,6 +192,9 @@ const ProductDetail1: any = ({
                   <Card
                     key={index}
                     onClick={() => {
+                      if (ref.current) {
+                        ref.current.scrollIntoView({ behavior: "smooth" });
+                      }
                       // updateModal(false);
                       setData(item);
                     }}
