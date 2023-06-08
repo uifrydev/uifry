@@ -202,7 +202,7 @@ const Home: NextPage<{
             smash client work daily with so much more.
           </p>
         </div>
-        {!user ? (
+        {!user && false ? (
           <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
             <div className="flex gap-[3rem] sm:flex-col items-center">
               <span className="text-primaryBlack font-700 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
@@ -230,7 +230,7 @@ const Home: NextPage<{
         ) : (
           <></>
         )}
-        <div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
+        {false ?<div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
           <div className="flex flex-col gap-[.8rem] ">
             <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
               Latest this week
@@ -244,7 +244,11 @@ const Home: NextPage<{
             text="We added 10 new resources this week!"
             classes="sm:!mx-0 !mr-0"
           />
-        </div>
+        </div>:<></>}
+        <Sticker
+            text="We added 10 new resources this week!"
+            classes="mb-[4rem]"
+          />
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${

@@ -100,8 +100,8 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] bg-[white] xs1:px-0 flex-col relative flex lg:pl-[1rem] gap-[4rem] pr-[0rem]  w-full ">
         <div className="flex gap-[4rem] sm:flex-col ">
-          <div className="flex flex-col gap-[6rem]">
-            <div className=" grid xs1:px-[1rem] grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[1rem] pt-[3rem] ">
+          <div className="flex flex-col gap-[6rem] flex-1">
+            <div className=" grid xs1:px-[1rem] min-2561:grid-cols-3 grid-cols-2 2xl:grid-cols-1 rounded-[2.4rem] gap-[1rem] pt-[3rem] ">
               {details.images.map((item: string, index: number) => (
                 <div
                   key={index}
@@ -115,7 +115,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                     src={urlFor(item).url()}
                     width={1000}
                     height={1000}
-                    className="aspect-[1.368/1] object-cover object-left rounded-[8px]"
+                    className="aspect-[1.368/1] object-cover object-left w-full rounded-[8px]"
                     alt=""
                   />
                 </div>

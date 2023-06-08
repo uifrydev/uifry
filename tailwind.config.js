@@ -16,6 +16,7 @@ module.exports = {
       "min-md": "769px",
       "min-xl": "1280px",
       "min-2xl": "1651px",
+      "min-2561": "2561px",
 
       "4xl": { max: "1920px" },
       "3xl": { max: "1850px" },

@@ -36,10 +36,10 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
   return (
     <div className="">
       <div
-        className={`w-[194px] scroll h-[100%]  transition-all ease-linear duration-500 lg:w-full ${
+        className={`w-[194px] flex flex-col scroll   transition-all ease-linear duration-500 lg:w-full ${
           height < 800 && "!overflow-y-scroll"
         } overflow-hidden fixed ${
-          !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[8.2rem]" : "top-0"
+          !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[8.2rem] pb-[6.2rem]" : "top-0"
         } z-[10] bg-primary pt-[9rem] ${
           isDetail ? "lg:pt-[17rem]" : "lg:pt-[8.4rem]"
         }  h-[100vh] ${
@@ -114,8 +114,8 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         ))}
 
         <div
-          className={`p-[2rem] ${
-            height < 800 && "pb-[10rem]"
+          className={`p-[2rem] mt-auto fixed bottom-0 ${
+            height < 800 && ""
           } relative bottom-[4rerm] flex-1 a justify-end flex flex-col gap-[1.883rem] pt-[6rem] border-r-[1px] border-b-[1px] border-border`}
         >
           <div className="flex flex-col gap-[.5rem]">
