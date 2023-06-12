@@ -141,7 +141,8 @@ export const wrapper = (): void => {
     wrapElements(mainDiv);
   }
 };
-
+export const toLink = (str: string): string =>
+  str.toLowerCase().split(" ").join("-");
 export const isTokenPresent = (): boolean => {
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
