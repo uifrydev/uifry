@@ -125,8 +125,6 @@ const ProductDetail: FC<
                   dispatch(updateProModal(true));
                   return
                 }
-                alert('plan expired')
-                
               }}
               classes={"bg-gradient rounded-[10rem] w-full"}
             >

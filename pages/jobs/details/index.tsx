@@ -18,12 +18,17 @@ import { removeEmptyPTagsFromClass } from "@/utils/functions";
 import { JobDetailProps, JobProps } from "@/Interface/interface";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import MetaHead from "@/components/MetaHead/MeatHead";
+import { RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProModal } from "@/store/slices/featues";
 
 const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
   detail,
   others = [],
 }) => {
   const builder = imageUrlBuilder(sanity);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
   const urlFor = (source: any) => {
     return builder.image(source);
   };
@@ -87,7 +92,19 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
                   classes={
                     "w-full max-w-[40rem] lg1:max-w-full py-[1.7rem] bg-gradient rounded-full"
                   }
-                  onClick={() => window.open(detail.applyNow)}
+                  onClick={() => {
+                    if (!user) {
+                      dispatch(updateProModal(true));
+                      return;
+                    }
+                    if (
+                      user?.Account?.AccountStage &&
+                      user?.Account?.AccountStage != 5
+                    ) {
+                      window.open(detail.applyNow);
+                      return;
+                    }
+                  }}
                 >
                   <span
                     className={
