@@ -30,6 +30,7 @@ export interface Data {
   features?: string[];
   total?: number;
   _type?: string;
+  _createdAt?:Date
 }
 export interface CategoryCardProps extends Data {
   coverImage: {
@@ -136,6 +137,7 @@ export interface JobProps {
   };
   total?: number;
   subCategory: string;
+  _createdAt?:Date
 }
 export interface JobDetailProps extends JobProps {
   body: any;

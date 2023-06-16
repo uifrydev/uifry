@@ -5,6 +5,8 @@ import profile from "../../public/assets/images/profile.png";
 import dollar from "../../public/assets/icons/dollar.svg";
 import imageUrlBuilder from "@sanity/image-url";
 import sanity from "../../sanity";
+import TimeAgo from "timeago-react"; // var TimeAgo = require('timeago-react');
+
 const JobCard: FC<{
   data: {
     companyName: string;
@@ -14,7 +16,8 @@ const JobCard: FC<{
     description: string;
     companySize: string;
     salaryRange: string;
-    subCategory:string
+    subCategory: string;
+    _createdAt?: Date;
   };
 }> = ({ data }) => {
   const builder = imageUrlBuilder(sanity);
@@ -24,10 +27,18 @@ const JobCard: FC<{
   return (
     <div className="p-[3rem] flex flex-col gap-[1.6rem] rounded-[1.2rem] bg-[#fff]">
       <div className="flex justify-between items-center">
-        <Image alt="" className="w-[5.4rem] h-[5.4rem] rounded-full" width={60} height={60} src={urlFor(data.images[0]).url()||profile} />
+        <Image
+          alt=""
+          className="w-[5.4rem] h-[5.4rem] rounded-full"
+          width={60}
+          height={60}
+          src={urlFor(data.images[0]).url() || profile}
+        />
         <div className="flex flex-col gap-[0rem]">
           <span className="text-tertiaryGray leading-[2rem] text-[1.2rem] font-[500]">
-            Added 16 days ago
+            {data?._createdAt && (
+              <TimeAgo datetime={data?._createdAt} locale="en" />
+            )}
           </span>
           <span className="text-primaryBlack leading-[2.4rem] text-[1.4rem] font-[500]">
             {data.subCategory}

@@ -192,3 +192,55 @@ export const validateDetails = (details: {
 
   return errors;
 };
+
+
+export function timeAgo(date: Date): string {
+  const now = new Date();
+  const timeDifference = now.getTime() - date.getTime();
+
+  // Milliseconds in different time units
+  const minute = 60 * 1000;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+  const month = 30 * day;
+  const year = 365 * day;
+
+  // Calculate time differences
+  const years = Math.floor(timeDifference / year);
+  const months = Math.floor(timeDifference / month);
+  const weeks = Math.floor(timeDifference / (7 * day));
+  const days = Math.floor(timeDifference / day);
+  const hours = Math.floor(timeDifference / hour);
+  const minutes = Math.floor(timeDifference / minute);
+  const seconds = Math.floor(timeDifference / 1000);
+
+  // Creating the time ago string
+  let timeAgoStr = "";
+  if (years > 0) {
+    timeAgoStr += years + " year" + (years > 1 ? "s" : "") + " ";
+  }
+  if (months > 0) {
+    timeAgoStr += months + " month" + (months > 1 ? "s" : "") + " ";
+  }
+  if (weeks > 0) {
+    timeAgoStr += weeks + " week" + (weeks > 1 ? "s" : "") + " ";
+  }
+  if (days > 0) {
+    timeAgoStr += days + " day" + (days > 1 ? "s" : "") + " ";
+  }
+  if (hours > 0) {
+    timeAgoStr += hours + " hour" + (hours > 1 ? "s" : "") + " ";
+  }
+  if (minutes > 0) {
+    timeAgoStr += minutes + " minute" + (minutes > 1 ? "s" : "") + " ";
+  }
+  if (seconds > 0) {
+    timeAgoStr += seconds + " second" + (seconds > 1 ? "s" : "") + " ";
+  }
+
+  if (!timeAgoStr) {
+    timeAgoStr = "just now";
+  }
+
+  return timeAgoStr.trim();
+}

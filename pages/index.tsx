@@ -445,7 +445,7 @@ export async function getServerSideProps() {
     },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
 }`;
   const jobFields = `
-  body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow
+  body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow,_createdAt
 `;
   const uiTemplatesQuery = generateQuery("uitemplate", uiTemplateFields, 5);
   const uiKitsQuery = generateQuery("uxKit", uiKitFields, 4);

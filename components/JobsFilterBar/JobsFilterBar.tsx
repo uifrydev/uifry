@@ -71,7 +71,7 @@ const JobsFilterBar = ({
                       jobType,
                        primaryIndustry,
                       tags,foundedIn,companySize,
-                        subCategory,jobPosted,applyBefore,applyNow
+                        subCategory,jobPosted,applyBefore,applyNow,_createdAt
                 }`,
               });
               //     setLoading(true);
@@ -138,7 +138,7 @@ const JobsFilterBar = ({
                       jobType,
                        primaryIndustry,
                       tags,foundedIn,companySize,
-                        subCategory,jobPosted,applyBefore,applyNow
+                        subCategory,jobPosted,applyBefore,applyNow,_createdAt
                 }`,
             });
           }}
@@ -187,7 +187,7 @@ const JobsFilterBar = ({
                       jobType,
                        primaryIndustry,
                       tags,foundedIn,companySize,
-                        subCategory,jobPosted,applyBefore,applyNow
+                        subCategory,jobPosted,applyBefore,applyNow,_createdAt
                 }`,
               });
             }}

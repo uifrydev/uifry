@@ -243,7 +243,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore,applyNow
+          subCategory,jobPosted,applyBefore,applyNow,_createdAt
   }`
     );
     const res1 = await sanity.fetch(
@@ -258,7 +258,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
         jobType,
          primaryIndustry,
         tags,foundedIn,companySize,
-          subCategory,jobPosted,applyBefore,applyNow
+          subCategory,jobPosted,applyBefore,applyNow,_createdAt
   }`
     );
     if (!res?.length) {
