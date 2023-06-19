@@ -29,7 +29,7 @@ body {
   @apply font-inters;
 }
 .satoshi {
-  @apply font-satoshi;
+  @apply font-safi;
 }
 .gradient-text {
   background: linear-gradient(
