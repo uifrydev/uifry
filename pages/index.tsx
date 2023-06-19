@@ -184,7 +184,7 @@ const Home: NextPage<{
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
           {!user ? (
-            <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+            <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
               Discover templates, briefs, jobs, resources crafted for
               <span className="gradient-text"> UI UX designers</span>
             </h2>
