@@ -24,7 +24,22 @@ import { loadOutseta } from "@/utils/outseta";
 import FAQsModal from "@/components/FAQModal/FAQModal";
 import ComingSoon from "@/components/ComingSoon/ComingSoon";
 // Add this function before the `MyApp` component definition
+import localFont from "next/font/local";
 
+const myFont = localFont({
+  src: [
+    {
+      path: "../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf",
+    },
+    {
+      path: "../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff",
+    },
+    {
+      path: "../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2",
+    },
+  ],
+  variable: "--font-variable",
+});
 function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -41,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (isProduction && window.location.hostname === specificDomain) {
       setShowComingSoon(true);
     }
-    setLoading(false)
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -93,12 +108,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   fetchData();
   // }, []);
 
-
   if (showComingSoon || loading) return <ComingSoon />;
   return (
     <>
       <Progress isAnimating={isAnimating} />
-      <main className={"relative"}>
+      <main className={`relative ${myFont.variable}`}>
         {!user && <Sticker1 classes={"!rounded-none mx-auto"} />}
         {proModal && <ProModal classes="" />}
         {faqModal && <FAQsModal />}

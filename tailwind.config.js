@@ -48,6 +48,7 @@ module.exports = {
       },
       fontFamily: {
         safi: ["safi"],
+        satoshi:['var(--font-variable)'],
         inters: ["inters"],
       },
 

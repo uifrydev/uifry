@@ -15,9 +15,9 @@ html {
 }
 @font-face {
   font-family: "safi";
-  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.ttf) format('truetype'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff) format('woff'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff2) format('woff2');
+  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf) format('truetype'),
+       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff) format('woff'),
+       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2) format('woff2');
 }
 @font-face {
   font-family: "inters";
@@ -29,7 +29,7 @@ body {
   @apply font-inters;
 }
 .satoshi {
-  @apply font-safi;
+  @apply font-satoshi;
 }
 .gradient-text {
   background: linear-gradient(
@@ -83,7 +83,7 @@ select {
   @apply list-disc pl-[3rem];
 }
 .body h2 {
-  @apply text-primaryBlack satoshi text-[2.4rem] font-700;
+  @apply text-primaryBlack font-satoshi font-safi text-[2.4rem] font-700;
 }
 .middle {
   @apply flex justify-center items-center;

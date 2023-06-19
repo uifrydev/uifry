@@ -13,7 +13,7 @@ const Sticker1 = ({ classes = "" }: { classes: string }) => {
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex items-center  gap-[2rem]  z-[12]">
-          <p className="text-[#fff] items-center gap-[1rem] 330:text-[1.4rem] flex pl-[5rem] xs1:text-center pr-[2rem] xs1:p-0 font-[700] text-[1.6rem] satoshi">
+          <p className="text-[#fff] items-center gap-[1rem] 330:text-[1.4rem] flex pl-[5rem] pr-[2rem] xs1:p-0 font-[700] text-[1.6rem] satoshi">
             Get access to unlimited resources.
             Join us at 50% off this month!
           <button
