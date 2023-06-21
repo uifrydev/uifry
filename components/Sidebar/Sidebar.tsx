@@ -43,7 +43,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         } z-[10] bg-primary pt-[9rem] ${
           isDetail ? "lg:pt-[17rem]" : "lg:pt-[8.4rem]"
         }  h-[100vh] ${
-          features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll lg:!pt-[17rem]" : "lg:max-h-0"
+          features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll lg:!pt-[17rem]" : "lg:max-h-0 lg:!pt-0"
         }  `}
       >
         {list.map((item, index) => (

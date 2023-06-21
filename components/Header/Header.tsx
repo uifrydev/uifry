@@ -79,7 +79,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           ) : (
             <>
               <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-border">
-                <Link href={`/${toLink(title[0] + (title[1] || ""))}`} className="text-[3rem] font-700 leading-[4.1rem] font-safi">
+                <Link href={`/${toLink(title[0] + (title[1] || ""))}`} className="text-[3rem] font-700 leading-[4.1rem] satoshi">
                   <span className="gradient-text">{title[0]}</span> {title[1]}
                 </Link>
               </div>
