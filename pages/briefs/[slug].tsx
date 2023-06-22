@@ -17,7 +17,12 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import Image from "next/image";
 import { RootState } from "@/store/store";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { BriefList, CategoryCardProps, Data, MainCardProps } from "@/Interface/interface";
+import {
+  BriefList,
+  CategoryCardProps,
+  Data,
+  MainCardProps,
+} from "@/Interface/interface";
 import Button from "@/components/Button/Button";
 import CategoryCard from "@/components/BriefComponents/CategoryCard";
 import BriefModal from "@/components/DetailsModal/BreifModal";
@@ -26,7 +31,13 @@ import { loadMore, perProduct } from "@/utils/consts";
 import SkeletonCard from "@/components/BriefComponents/SkeletonCard";
 import MetaHead from "@/components/MetaHead/MeatHead";
 
-const UiTemplatesType = ({ res, data }: { res: CategoryCardProps[]; data: BriefList }) => {
+const UiTemplatesType = ({
+  res,
+  data,
+}: {
+  res: CategoryCardProps[];
+  data: BriefList;
+}) => {
   // const [cards, setCards] = useState(posts);
 
   const router = useRouter();
@@ -117,7 +128,16 @@ const UiTemplatesType = ({ res, data }: { res: CategoryCardProps[]; data: BriefL
                 ))}
               </div>
             </div>
-            <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div>
+            {/* <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div> */}
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/buSFuePXI6g?rel=0&modestbranding=1&showinfo=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </div>
 
           <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center  mb-[3rem]">
