@@ -364,8 +364,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
         )}
       </header>
       <div
-        className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-md:hidden bg-primary border-border ${istitle == false && "hidden"
-          }`}
+        className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-md:hidden bg-primary border-border `}
       >
         <div className={`border-r-[1px] border-border `}>
           <p className="text-[2.4rem] font-700 ">
