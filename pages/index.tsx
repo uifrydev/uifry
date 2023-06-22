@@ -339,6 +339,7 @@ const Home: NextPage<{
                     document.body.classList.add("!overflow-y-hidden");
                     dispatch(updateBriefModal(true));
                   }}
+                  className="h-full"
                 >
                   <CategoryCard data={item} key={index} />
                 </div>
