@@ -21,7 +21,7 @@ const CategoryCard = ({ data }: { data: CategoryCardProps }) => {
           {data.title || "Real Estate Thank You Page"}
         </p>
         <div className="flex border-border2 flex-col border-t-[1px] pt-[1.2rem]">
-          <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem]  font-400 pb-[.4rem] text-[1.4rem]">
+          <p className="text-secondaryGray three-line-ellipsis flex-1 pr-[2.5rem]  font-400 pb-[.4rem] text-[1.4rem] leading-[2.4rem]">
             {data.description ||
               "Captures visitor information, such as email addresses, for lead generation and list building."}
           </p>
