@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
         </div>
       </div>
       <div className="flex flex-col gap-[1rem] items-center max-w-[80%]">
-        <p className="text-heading text-center text-[1.7rem] satoshi font-satoshi font-700 leading-[2.6rem] ">
+        <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
           {data?.title}
         </p>
         <p className="text-[#6B7194] font-400 text-[1.4rem] text-center leading-[2.4rem] two-line-ellipsis">
