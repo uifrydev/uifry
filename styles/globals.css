@@ -29,7 +29,7 @@ body {
   @apply font-inters;
 }
 .satoshi {
-  @apply font-satoshi;
+  @apply font-safi;
 }
 .gradient-text {
   background: linear-gradient(
@@ -83,7 +83,7 @@ select {
   @apply list-disc pl-[3rem];
 }
 .body h2 {
-  @apply text-primaryBlack font-satoshi font-safi text-[2.4rem] font-700;
+  @apply text-primaryBlack font-safi text-[2.4rem] font-700;
 }
 .middle {
   @apply flex justify-center items-center;
