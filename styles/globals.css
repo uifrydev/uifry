@@ -135,6 +135,15 @@ select {
   line-clamp: 3 !important;
   /* max-height: 6.9rem; */
 }
+.one-line-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: clip;
+  -webkit-line-clamp: 1;
+  line-clamp: 1 !important;
+  /* max-height: 6.9rem; */
+}
 .text16-gray {
   @apply text-secondaryGray text-[1.6rem] font-400 leading-[150%];
 }
