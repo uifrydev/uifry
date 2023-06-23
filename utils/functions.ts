@@ -152,7 +152,7 @@ export const isTokenPresent = (): boolean => {
 };
 
 export function generateQuery(type: string, fields: string, limit: number) {
-  return `*[_type=='${type}'][0...${limit - 1}]{
+  return `*[_type=='${type}'] | order(featured desc, _updatedAt desc)[0...${limit - 1}]{
     ${fields}
     ,"total": count(*[_type == "${type}"])
   }`;

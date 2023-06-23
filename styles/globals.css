@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @import url(./Carousel.css);
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -10,14 +10,20 @@
 html {
   font-size: 62.5%;
 }
+img {
+  user-select: none;
+}
 .shadowbox {
   box-shadow: 51px 51px 132px -16px rgb(49 51 114 / 12%);
 }
 @font-face {
   font-family: "safi";
-  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf) format('truetype'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff) format('woff'),
-       url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2) format('woff2');
+  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf)
+      format("truetype"),
+    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff)
+      format("woff"),
+    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2)
+      format("woff2");
 }
 @font-face {
   font-family: "inters";
@@ -53,8 +59,8 @@ body {
     #293fff 100%
   );
 }
-.bg-gradient1{
-  background: linear-gradient(90.89deg, #002D6A 14.44%, #0072FF 89.6%);
+.bg-gradient1 {
+  background: linear-gradient(90.89deg, #002d6a 14.44%, #0072ff 89.6%);
 }
 select {
   background: url(../public/assets/icons/arrow-da.svg) no-repeat left;
@@ -152,45 +158,46 @@ select {
     #00b3ff 68.75%,
     #293fff 100%
   ) !important;
-  @apply !w-full !rounded-full
+  @apply !w-full !rounded-full;
 }
-.o--App--authWidget{
-  @apply !rounded-[2.4rem] overflow-hidden sm:!mx-[2rem]
+.o--App--authWidget {
+  @apply !rounded-[2.4rem] overflow-hidden sm:!mx-[2rem];
 }
-.o--Button--children{
-  @apply !text-[#fff]
+.o--Button--children {
+  @apply !text-[#fff];
 }
-.o--App--profileWidget{
-  @apply !rounded-[2.4rem]
+.o--App--profileWidget {
+  @apply !rounded-[2.4rem];
 }
-.red{
-  @apply !bg-[#000] !bg-gradient-to-r !from-red-500 !to-red-500 !border-none
+.red {
+  @apply !bg-[#000] !bg-gradient-to-r !from-red-500 !to-red-500 !border-none;
 }
-.o--Input--input,.o--Select--select,.o--PaymentInputStripe--stripe {
-  @apply !rounded-full !bg-[#EEF2F6] !border-[1px] !border-border2
+.o--Input--input,
+.o--Select--select,
+.o--PaymentInputStripe--stripe {
+  @apply !rounded-full !bg-[#EEF2F6] !border-[1px] !border-border2;
 }
-.o--Label--label,.o--Widget--widget h1{
-  @apply font-safi
+.o--Label--label,
+.o--Widget--widget h1 {
+  @apply font-safi;
 }
-#signup-embed{
-  @apply w-full
+#signup-embed {
+  @apply w-full;
 }
-.o--header{
-  @apply !hidden
+.o--header {
+  @apply !hidden;
 }
-.roadmap{
-  @apply !py-[0rem]
+.roadmap {
+  @apply !py-[0rem];
 }
-.roadmap:first-child{
-
-  @apply !pt-[2rem]
-
+.roadmap:first-child {
+  @apply !pt-[2rem];
 }
-.contain{
+.contain {
   contain: paint;
 }
 @media screen and (min-width: 2561px) {
-  html{
+  html {
     font-size: 75%;
   }
 }
@@ -198,10 +205,9 @@ select {
   .uitemphome a:nth-child(4) {
     display: none;
   }
-  .uiuxhome a:nth-child(3){
+  .uiuxhome a:nth-child(3) {
     display: none;
   }
-  
 }
 @media screen and (max-width: 1365px) {
   .uitemphome a:nth-child(3) {
