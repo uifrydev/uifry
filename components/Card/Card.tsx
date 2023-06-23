@@ -4,27 +4,10 @@ import figma from "../../public/assets/icons/figma.svg";
 import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
 import { CardProps } from "../../Interface/interface";
-import Link from "next/link";
-import { toLink } from "@/utils/functions";
-import { useDispatch } from "react-redux";
-import { updateModal } from "@/store/slices/featues";
-import { useRouter } from "next/router";
 const Card: React.FC<CardProps> = ({ onClick, data }) => {
-  interface ElementClickEvent extends React.MouseEvent<HTMLDivElement> {
-    target: HTMLDivElement;
-  }
-
-  const [dispatch, router] = [useDispatch(), useRouter()];
-  const handleCardClick = (e: ElementClickEvent) => {
-    e.stopPropagation();
-    if (!e.target.matches(".button")) {
-      // Execute the code only if the button was not clicked
-      onClick(e);
-    }
-  };
   return (
     <div
-      onClick={handleCardClick}
+      onClick={onClick}
       className={`flex cursor-pointer items-center h-full flex-col gap-[2rem] group p-[2rem] pb-[3rem] rounded-[1.2rem] group bg-[#ffffff]   `}
     >
       <div className="flex relative border-[2px] border-[#fff] shadowbox ease-linear duration-500 transition-all group-hover:shadow-cardShadowHover rounded-[.8rem] overflow-hidden">
@@ -66,18 +49,10 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
         </p>
         <p className="text-[#B6B9CE] text-[1.2rem] font-[400] leading-[200%]">
           Added in{" "}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (window) {
-                router.push(`/ui-templates/${toLink("" + data?.category)}`);
-              }
-            }}
-            className="border-b-[1px] border-[#B6B9CE]"
-          >
+          {/* <span className="border-b-[1px] border-[#B6B9CE]"> */}
             {" "}
             {data?.category || data?.subCategory}
-          </button>
+          {/* </span> */}
         </p>
       </div>
     </div>

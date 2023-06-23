@@ -49,6 +49,7 @@ const UiTemplatesType: NextPage<{ posts: Data[] }> = ({ posts }) => {
   useEffect(() => {
     setProductIndex(posts.length);
     setCards(posts);
+    dispatch(updateModal(false));
   }, [router.asPath]);
   return (
     <>
