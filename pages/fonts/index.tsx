@@ -75,7 +75,7 @@ const Font = ({ posts }: { posts: Data[] }) => {
                 }}
                 key={index}
               >
-                <FontCard data={item} />
+                <FontCard onClick={() => {}} data={item} />
               </Link>
             ))}
             {isLoadmoreLoading &&

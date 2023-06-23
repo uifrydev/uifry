@@ -216,7 +216,7 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
                 }}
                 key={index}
               >
-                <FontCard data={item} />
+                <FontCard onClick={() => {}} data={item} />
               </Link>
             ))}
           </div>
