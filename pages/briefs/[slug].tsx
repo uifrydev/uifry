@@ -129,15 +129,18 @@ const UiTemplatesType = ({
               </div>
             </div>
             {/* <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div> */}
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/buSFuePXI6g?rel=0&modestbranding=1&showinfo=0"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+            <div className="max-w-[40rem] w-full">
+              <iframe
+                width="460"
+                height="250"
+                className="rounded-[2.5rem] aspect-[1/1] border-[2px] border-[#fff] shadowbox w-full"
+                src={`${data.about.video.src}?rel=0&modestbranding=1&showinfo=0`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
 
           <div className="p-[3rem] rounded-[2.4rem] bg-primary flex flex-col items-center  mb-[3rem]">
