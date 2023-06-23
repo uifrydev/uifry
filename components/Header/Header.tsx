@@ -49,8 +49,9 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
 
       <header
         className={`flex flex-col z-[155] bg-primary 
-         sticky ${!user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[9.2rem]" : "top-0"
-          } border-b-[1px] w-full border-border`}
+         sticky ${
+           !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[9.2rem]" : "top-0"
+         } border-b-[1px] w-full border-border`}
       >
         <div className="flex w-full sm:flex-col">
           <Link
@@ -79,12 +80,17 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           ) : (
             <>
               <div className=" lg:hidden py-[2.05rem] px-[4rem]  border-r-[1px] border-border">
-                <Link href={`/${toLink(title[0] + (title[1] || ""))}`} className="text-[3rem] font-700 leading-[4.1rem] satoshi">
+                <Link
+                  href={`/${toLink(
+                    title[0] + (title[1] ? " " + title[1] : "")
+                  )}`}
+                  className="text-[3rem] font-700 leading-[4.1rem] satoshi"
+                >
                   <span className="gradient-text">{title[0]}</span> {title[1]}
                 </Link>
               </div>
               <div className="lg:hidden flex-1 flex items-center gap-[1.447rem] py-[2.9rem] pl-[4.1rem]">
-                <Link href={'/'} className="">
+                <Link href={"/"} className="">
                   <Image src={home} alt={""} />
                 </Link>
                 {breadcrums.map((item, index) => {
@@ -94,10 +100,10 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                         <Image src={arrow} alt={""} />
                       </div>
                       <Link
-
                         href={`/${toLink(breadcrums[0])}`}
-                        className={`text-[1.6rem] ${index == 0 ? "text-[#160042]" : "text-secondaryGray"
-                          } leading-[150%] font-400`}
+                        className={`text-[1.6rem] ${
+                          index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                        } leading-[150%] font-400`}
                       >
                         {item}
                       </Link>
@@ -146,7 +152,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   {user?.FullName?.split(" ")[0]}
                 </span>
                 {user?.Account?.AccountStage &&
-                  user?.Account?.AccountStage != 5 ? (
+                user?.Account?.AccountStage != 5 ? (
                   <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
                     <Image src={star} alt="" className="w-[1.2rem]" />
                     <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
@@ -160,7 +166,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   <Button
                     classes="!px-[.3rem]"
                     onClick={() => setSetting((prev) => !prev)}
-                  // onBlur={() => setSetting(false)}
+                    // onBlur={() => setSetting(false)}
                   >
                     <Image alt="" src={setting} />
                   </Button>
@@ -206,7 +212,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                       window.location.href = "/signup";
                     }
                   }}
-                // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+                  // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
                 >
                   <div className="flex gap-[.8rem]">
                     <Image src={star} className="" alt="" />
@@ -264,17 +270,22 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                   <span className="text-primaryBlack text-[1.6rem] font-700 leading-[2.4rem]">
                     {user?.FullName?.split(" ")[0]}
                   </span>
-                  {user?.Account?.AccountStage && user?.Account?.AccountStage != 5 ? <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
-                    <Image src={star} alt="" className="w-[1.2rem]" />
-                    <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
-                      Pro
-                    </span>
-                  </div> : <></>}
+                  {user?.Account?.AccountStage &&
+                  user?.Account?.AccountStage != 5 ? (
+                    <div className="px-[1.3rem] flex rounded-full gap-[.438rem] bg-gradient items-center py-[.5rem]">
+                      <Image src={star} alt="" className="w-[1.2rem]" />
+                      <span className="text-[1.1rem] font-700 satoshi text-[#fff]">
+                        Pro
+                      </span>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   <div className="relative ">
                     <Button
                       classes="!px-[.3rem]"
                       onClick={() => setSetting((prev) => !prev)}
-                    // onBlur={() => setSetting(false)}
+                      // onBlur={() => setSetting(false)}
                     >
                       <Image alt="" src={setting} />
                     </Button>
@@ -309,7 +320,7 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
                         window.location.href = "/signup";
                       }
                     }}
-                  // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
+                    // onClick={()=>window.open('https://uifry.outseta.com/auth?widgetMode=register#o-anonymous','_blank')}
                   >
                     <div className="flex gap-[.8rem]">
                       <Image src={star} className="" alt="" />
@@ -332,30 +343,36 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
           </div>
         ) : (
           <div
-            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden  border-border ${true && "md:hidden"
-              }`}
+            className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-lg:hidden  border-border ${
+              true && "md:hidden"
+            }`}
           >
             <div className={`border-r-[1px] border-border `}>
-              <p className="text-[2.4rem] font-700 ">
+              <Link
+                href={`/${toLink(title[0] + (title[1] ? " " + title[1] : ""))}`}
+                className="text-[2.4rem] font-700 "
+              >
                 <span className="gradient-text">{title[0]}</span> {title[1]}
-              </p>
+              </Link>
             </div>
             <div className="flex-1 flex items-center gap-[1.447rem]  ">
-              <div className="">
+              <Link href="/" className="">
                 <Image src={home} alt={""} />
-              </div>
+              </Link>
               {breadcrums.map((item, index) => {
                 return (
                   <Fragment key={index}>
                     <div className="">
                       <Image src={arrow} alt={""} />
                     </div>
-                    <span
-                      className={`text-[1.6rem] ${index == 0 ? "text-[#160042]" : "text-secondaryGray"
-                        } leading-[150%] font-400`}
+                    <Link
+                      href={`/${toLink(breadcrums[0])}`}
+                      className={`text-[1.6rem] ${
+                        index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                      } leading-[150%] font-400`}
                     >
                       {item}
-                    </span>
+                    </Link>
                   </Fragment>
                 );
               })}
@@ -367,26 +384,31 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
         className={`flex flex-col py-[2rem] gap-[2rem] pl-[2rem] border-t-[1px] w-full min-md:hidden bg-primary border-border `}
       >
         <div className={`border-r-[1px] border-border `}>
-          <p className="text-[2.4rem] font-700 ">
+          <Link
+            href={`/${toLink(title[0] + (title[1] ? " " + title[1] : ""))}`}
+            className="text-[2.4rem] font-700 "
+          >
             <span className="gradient-text">{title[0]}</span> {title[1]}
-          </p>
+          </Link>
         </div>
         <div className="flex-1 flex items-center gap-[1.447rem]  ">
-          <div className="">
+          <Link href="/" className="">
             <Image src={home} alt={""} />
-          </div>
+          </Link>
           {breadcrums.map((item, index) => {
             return (
               <Fragment key={index}>
                 <div className="">
                   <Image src={arrow} alt={""} />
                 </div>
-                <span
-                  className={`text-[1.6rem] ${index == 0 ? "text-[#160042]" : "text-secondaryGray"
-                    } leading-[150%] font-400`}
+                <Link
+                  href={`/${toLink(breadcrums[0])}`}
+                  className={`text-[1.6rem] ${
+                    index == 0 ? "text-[#160042]" : "text-secondaryGray"
+                  } leading-[150%] font-400`}
                 >
                   {item}
-                </span>
+                </Link>
               </Fragment>
             );
           })}

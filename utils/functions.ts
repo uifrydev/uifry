@@ -142,7 +142,7 @@ export const wrapper = (): void => {
   }
 };
 export const toLink = (str: string): string =>
-  str.toLowerCase().split(" ").join("-");
+  str.toLowerCase() == "home" ? "" : str.toLowerCase().split(" ").join("-");
 export const isTokenPresent = (): boolean => {
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
@@ -152,7 +152,9 @@ export const isTokenPresent = (): boolean => {
 };
 
 export function generateQuery(type: string, fields: string, limit: number) {
-  return `*[_type=='${type}'] | order(featured desc, _updatedAt desc)[0...${limit - 1}]{
+  return `*[_type=='${type}'] | order(featured desc, _updatedAt desc)[0...${
+    limit - 1
+  }]{
     ${fields}
     ,"total": count(*[_type == "${type}"])
   }`;
@@ -192,7 +194,6 @@ export const validateDetails = (details: {
 
   return errors;
 };
-
 
 export function timeAgo(date: Date): string {
   const now = new Date();
