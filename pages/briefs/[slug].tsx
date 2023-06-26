@@ -129,9 +129,9 @@ const UiTemplatesType = ({
               </div>
             </div>
             {/* <div className="w-[42rem] h-[29rem] xl:h-auto xl:aspect-[2/1] sm:aspect-[1/.9] xl:w-full bg-[#d9d9d9] rounded-[1.2rem]"></div> */}
-            <div className="max-w-[40rem] w-full">
+            <div className="max-w-[44rem] w-full">
               <iframe
-                width="460"
+                width="5000"
                 height="250"
                 className="rounded-[2.5rem] aspect-[1/1] border-[2px] border-[#fff] shadowbox w-full"
                 src={`${data.about.video.src}?rel=0&modestbranding=1&showinfo=0`}
