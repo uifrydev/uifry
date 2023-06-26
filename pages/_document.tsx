@@ -57,14 +57,14 @@ var o_options = {
         ></script>
 
         <Script  strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=UA-236889710-1"
+          src="https://www.googletagmanager.com/gtag/js?id=G-H6YXLQ87T1"
         />
         <Script strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-236889710-1');`}
+  gtag('config', 'G-H6YXLQ87T1');`}
         </Script>
       </Head>
       <body>
