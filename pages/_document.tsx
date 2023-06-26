@@ -56,17 +56,16 @@ var o_options = {
           data-options="o_options"
         ></script>
 
-        <script
-          async
+        <Script  strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=UA-236889710-1"
-        ></script>
-        <script>
+        />
+        <Script strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-236889710-1');`}
-        </script>
+        </Script>
       </Head>
       <body>
         <Main />
