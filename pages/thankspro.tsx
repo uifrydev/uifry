@@ -33,8 +33,8 @@ const Confirmation = () => {
             Almost done!
           </h5>
           <p className="text-secondaryGray text-[1.4rem] leading-[150%] font-500 max-w-[46.4rem] text-center">
-            We have sent an email to{" "}
-            <span className="text-primaryBlack"> uininjazee@gmail.com. </span>{" "}
+            We sent an email to you.{" "}
+            {/* <span className="text-primaryBlack"> uininjazee@gmail.com. </span>{" "} */}
             Please click the link inside to complete the registration process.
           </p>
         </div>
@@ -42,7 +42,13 @@ const Confirmation = () => {
       <p className="text-secondaryGray text-[1.4rem] leading-[150%] font-500 max-w-[46.4rem] text-center">
         If you haven’t received any email, or signed up with a wrong email,
         please submit a ticket
-        <span className="text-[#00B3FF]"> here</span>{" "}
+        <Link
+          href={"https://uifry.outseta.com/support/kb/categories"}
+          target="_blank"
+          // className="text-secondaryGray text-[1.2rem] leading-[150%] font-400"
+        >
+          <span className="text-[#00B3FF]"> here</span>{" "}
+        </Link>
       </p>
 
       <p className="text-secondaryGray text-[1.4rem] leading-[150%] font-500 mt-[8.1rem] text-center">
