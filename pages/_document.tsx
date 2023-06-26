@@ -51,9 +51,22 @@ var o_options = {
           data-options="o_signup_options"
           data-on-success="onSignupSuccess"
         />
-        <script src="https://cdn.outseta.com/outseta.min.js"
-        data-options="o_options">
-</script>
+        <script
+          src="https://cdn.outseta.com/outseta.min.js"
+          data-options="o_options"
+        ></script>
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-236889710-1"
+        ></script>
+        <script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-236889710-1');`}
+        </script>
       </Head>
       <body>
         <Main />
