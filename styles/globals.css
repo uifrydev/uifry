@@ -18,11 +18,11 @@ img {
 }
 @font-face {
   font-family: "safi";
-  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.ttf)
+  src: url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.ttf)
       format("truetype"),
-    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff)
+    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff)
       format("woff"),
-    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Variable.woff2)
+    url(../public/assets/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Medium.woff2)
       format("woff2");
 }
 @font-face {
