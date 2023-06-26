@@ -263,6 +263,7 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     };
   } catch (e) {
+    console.log({ fontError: e });
     return {
       notFound: true,
     };
