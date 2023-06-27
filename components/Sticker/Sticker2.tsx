@@ -31,7 +31,7 @@ const Sticker2 = ({
           {/* <button className="py-[0.68rem] px-[1.54rem] rounded-full bg-[#09B673] satoshi text-[1.2rem] font-900 leading-[1.5rem] text-[#fff] ">
             Claim Offer
           </button> */}
-          {hideBtn == true && (
+          {hideBtn == false && (
             <Button classes="rounded-full bg-[#09B673] satoshi font-900 text-[#fff] ">
               Claim Offer
             </Button>
