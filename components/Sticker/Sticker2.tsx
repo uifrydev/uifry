@@ -32,7 +32,11 @@ const Sticker2 = ({
             Claim Offer
           </button> */}
           {hideBtn == false && (
-            <Button classes="rounded-full bg-[#09B673] satoshi font-900 text-[#fff] ">
+            <Button onClick=()=>{
+if (window) {
+                      window.location.href = "/signup";
+                    }
+            } classes="rounded-full bg-[#09B673] satoshi font-900 text-[#fff] ">
               Claim Offer
             </Button>
           )}
