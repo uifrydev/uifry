@@ -8,11 +8,18 @@ import gradient2 from "../../public/assets/images/gradient2.png";
 const CountdownTimer = dynamic(() => import("../Timer"), { ssr: false });
 import { headerHeight, smallHeaderHeight } from "@/utils/consts";
 import dynamic from "next/dynamic";
-const Sticker2 = ({ classes = "" }: { classes: string }) => {
+import Button from "../Button/Button";
+const Sticker2 = ({
+  classes = "",
+  hideBtn = false,
+}: {
+  classes: string;
+  hideBtn?: boolean;
+}) => {
   return (
     <div
       id="sticker"
-      className={`w-full flex z-[11] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-[${smallHeaderHeight}rem] h-[${headerHeight}rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
+      className={`w-full flex z-[31] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-[${smallHeaderHeight}rem] h-[${headerHeight}rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex xs1:flex-col items-center gap-[1rem]  z-[12]">
@@ -21,9 +28,14 @@ const Sticker2 = ({ classes = "" }: { classes: string }) => {
             <CountdownTimer futureTime={new Date("2023-06-30T15:30:00")} />
             <span className="md:hidden">Today Only!</span>
           </span>
-          <button className="py-[0.68rem] px-[1.54rem] rounded-full bg-[#09B673] satoshi text-[1rem] font-900 leading-[1.5rem] text-[#fff] ">
+          {/* <button className="py-[0.68rem] px-[1.54rem] rounded-full bg-[#09B673] satoshi text-[1.2rem] font-900 leading-[1.5rem] text-[#fff] ">
             Claim Offer
-          </button>
+          </button> */}
+          {hideBtn == true && (
+            <Button classes="rounded-full bg-[#09B673] satoshi font-900 text-[#fff] ">
+              Claim Offer
+            </Button>
+          )}
         </div>
         <div className="">
           <Image

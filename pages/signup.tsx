@@ -21,6 +21,7 @@ import useOutseta from "@/customHooks/useOutseta";
 import MetaHead from "@/components/MetaHead/MeatHead";
 import { NextResponse } from "next/server";
 import withAuth from "@/customHooks/withAuth";
+import Sticker2 from "@/components/Sticker/Sticker2";
 const signup = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const signup = () => {
         description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
       />
       <div className="flex flex-col items-center w-full min-h-[100vh] bg-primary">
+        <Sticker2 hideBtn={true} classes={"!rounded-none mx-auto"} />
         <div className="flex max-w-[144rem] w-full xl:items-center xl:flex-col">
           <div className="flex flex-col flex-1 xl:w-full pt-[3.5rem] px-[5rem] sm:px-[2rem]">
             <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-border2">
