@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
         </div>
       </div>
       <div className="flex flex-col gap-[1rem] items-center max-w-[80%]">
-        <p className="text-heading text-center text-[1.7rem] satoshi font-satoshi font-700 leading-[2.6rem] ">
+        <p className="text-heading one-line-ellipsis text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
           {data?.title}
         </p>
         <p className="text-[#6B7194] font-400 text-[1.4rem] text-center leading-[2.4rem] two-line-ellipsis">
@@ -49,10 +49,10 @@ const Card: React.FC<CardProps> = ({ onClick, data }) => {
         </p>
         <p className="text-[#B6B9CE] text-[1.2rem] font-[400] leading-[200%]">
           Added in{" "}
-          <span className="border-b-[1px] border-[#B6B9CE]">
+          {/* <span className="border-b-[1px] border-[#B6B9CE]"> */}
             {" "}
             {data?.category || data?.subCategory}
-          </span>
+          {/* </span> */}
         </p>
       </div>
     </div>

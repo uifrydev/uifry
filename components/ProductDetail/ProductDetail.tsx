@@ -123,7 +123,7 @@ const ProductDetail: FC<
               onClick={() => {
                 if (!user) {
                   dispatch(updateProModal(true));
-                  return
+                  return;
                 }
               }}
               classes={"bg-gradient rounded-[10rem] w-full"}
@@ -170,9 +170,15 @@ const ProductDetail: FC<
             <p className="text-[1.6rem] font-[500] leading-[2.4rem] text-primaryBlack">
               Issue with this templates?
             </p>
-            <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
-              Tell our team!
-            </p>
+            <Link
+              href={"https://uifry.outseta.com/support/kb/categories"}
+              target="_blank"
+              className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]"
+            >
+              <p className="text-[1.6rem] font-[700] leading-[2.4rem] text-[#1575F6]">
+                Tell our team!
+              </p>
+            </Link>{" "}
           </div>
         </div>
       </div>

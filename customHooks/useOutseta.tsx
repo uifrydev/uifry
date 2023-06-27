@@ -84,7 +84,7 @@ const useOutseta = () => {
       // Clean up user related event subscriptions
     };
   }, [router]);
-
+// 694144269127-0debpg71529duua0p22pbvmslifaq86o.apps.googleusercontent.com
   const openLogin = async (options: any = {}): Promise<AuthResult> => {
     dispatch(setLoading(true));
     return new Promise((resolve, reject) => {

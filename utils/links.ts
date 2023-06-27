@@ -7,7 +7,7 @@ import bullseye from "../public/assets/icons/bullseye.svg";
 export const breifList: BriefList[] = [
   {
     title: "Landing Page Briefs",
-    name:"landingPageBrief",
+    name: "landingPageBrief",
     img: {
       alt: "",
       src: product,
@@ -28,7 +28,7 @@ export const breifList: BriefList[] = [
         " Various types of landing pages cater to different objectives. Check out the video to learn more about the landing pages and its types.",
       ],
       video: {
-        src: "",
+        src: "https://www.youtube.com/embed/Cf1urwO8GXo",
       },
     },
     subCategories: [
@@ -43,27 +43,28 @@ export const breifList: BriefList[] = [
       "Coming Soon Page",
       "E-Book Page",
     ],
+  
   },
   {
     title: "Product UI Briefs",
-    name:"productUiBrief",
+    name: "productUiBrief",
     img: {
       alt: "",
       src: pyramid,
     },
     desc: "Craft striking websites, apps & softwares with diverse practice briefs for improved usability and compelling visuals.",
-    
+
     includes: ["Websites", "Apps", "Softwares", "Products", "Tools"],
 
     link: "product-ui",
     about: {
-      q: "What are landing pages? How many types are there?",
+      q: "What is product design UI and its few types?",
       a: [
         `Product design UI, or User Interface design, is a vital aspect of creating digital products such as websites, mobile apps, or software. It focuses on designing visually appealing and easy-to-use interfaces that provide a seamless, intuitive experience for users.`,
         "UI design considers elements like color schemes, typography, button placement, and navigation menus to craft engaging and functional interfaces.",
       ],
       video: {
-        src: "",
+        src: "https://www.youtube.com/embed/yS9VwBNoeTs",
       },
     },
     subCategories: [
@@ -78,7 +79,7 @@ export const breifList: BriefList[] = [
   },
   {
     title: "UX Briefs",
-    name:"UxBrief",
+    name: "UxBrief",
     img: {
       alt: "",
       src: bullseye,
@@ -93,13 +94,13 @@ export const breifList: BriefList[] = [
     ],
     link: "ux",
     about: {
-      q: "What are landing pages? How many types are there?",
+      q: "What is UX design and few UX deliverables?",
       a: [
         `UX design, or User Experience design, is the process of creating digital products with a focus on providing users with enjoyable, efficient, and meaningful experiences. It involves understanding user needs, preferences, and behavior, and then designing the product to address those requirements.`,
         "Learn more in quick video about UX design!",
       ],
       video: {
-        src: "",
+        src: "https://www.youtube.com/embed/buSFuePXI6g",
       },
     },
     subCategories: [

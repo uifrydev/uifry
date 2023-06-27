@@ -40,7 +40,7 @@ export interface CategoryCardProps extends Data {
   };
 }
 export interface CardProps {
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
   data: Data;
 }
 export interface FontCardProps extends CardProps {

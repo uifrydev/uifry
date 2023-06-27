@@ -211,12 +211,12 @@ const Details: NextPage<{ details: Data; others: Data[] }> = ({
             {others.map((item, index) => (
               <Link
                 href={{
-                  pathname: "fonts/details",
+                  pathname: "/fonts/details",
                   query: { font: item.slug.current },
                 }}
                 key={index}
               >
-                <FontCard data={item} />
+                <FontCard onClick={() => {}} data={item} />
               </Link>
             ))}
           </div>

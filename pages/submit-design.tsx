@@ -32,19 +32,16 @@ const SubmitDesign = () => {
     //   const temp = axios.post("/api/send-mail", {...details});
     //   console.log({ temp });
     // }
-    console.log({ errors, details });
     event.preventDefault();
     const newErrors = validateDetails({ ...details });
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       setErrors({});
-      console.log(details);
       try {
         setLoading(true);
         const temp = await axios.post("/api/send-mail", { ...details });
         setLoading(false);
-        console.log({ temp });
       } catch (err) {
         setLoading(false);
       }

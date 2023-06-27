@@ -132,6 +132,11 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                 classes={
                   "bg-gradient  rounded-[5rem]  mt-[3rem] w-full py-[1.7rem] flex justify-center"
                 }
+                onClick={() => {
+                  if (window) {
+                    window.location.href = "/signup";
+                  }
+                }}
               >
                 <span className="text-[#ffffff] font-[500] text-[1.6rem] flex  satoshi">
                   Join Pro at 50% Off

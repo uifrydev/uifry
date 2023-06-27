@@ -39,11 +39,15 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
         className={`w-[194px] flex flex-col scroll   transition-all ease-linear duration-500 lg:w-full ${
           height < 800 && "!overflow-y-scroll"
         } overflow-hidden fixed ${
-          !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[8.2rem] pb-[6.2rem]" : "top-0"
+          !user //xs1:top-[6.9rem] xs:top-[8.2rem] to xs1:top-[15rem] xs:top-[15rem]
+            ? "top-[6.3rem] xs1:top-[15rem] xs:top-[15rem] pb-[6.2rem]"
+            : "top-0"
         } z-[10] bg-primary pt-[9rem] ${
           isDetail ? "lg:pt-[17rem]" : "lg:pt-[8.4rem]"
         }  h-[100vh] ${
-          features.isMenu ? "lg:max-h-[100vh] !overflow-y-scroll lg:!pt-[17rem]" : "lg:max-h-0 lg:!pt-0"
+          features.isMenu
+            ? "lg:max-h-[100vh] !overflow-y-scroll lg:!pt-[17rem]"
+            : "lg:max-h-0 lg:!pt-0"
         }  `}
       >
         {list.map((item, index) => (
@@ -127,15 +131,27 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
                 License, Terms & Policy
               </Link>
             </div>
-            <Link href={'https://uifry.outseta.com/support/kb/categories'} target='_blank' className="text-secondaryGray text-[1.2rem] leading-[150%] font-400">
+            <Link
+              href={"https://uifry.outseta.com/support/kb/categories"}
+              target="_blank"
+              className="text-secondaryGray text-[1.2rem] leading-[150%] font-400"
+            >
               Support
             </Link>
           </div>
           <div className="flex gap-[1.732rem] items-center">
-            <Image src={linkedin} alt="" className="w-[1.6rem]" />
-            <Image src={instagram} alt="" className="w-[1.7rem]" />
-            <Image src={twitter} alt="" className="w-[1.9rem]" />
-            <Image src={facebook} alt="" className="w-[.9rem]" />
+            <Link href={"https://www.linkedin.com/company/ui-fry/"} target="_blank">
+              <Image src={linkedin} alt="" className="w-[1.6rem]" />
+            </Link>
+            <Link href={"https://www.instagram.com/uifryy/"} target="_blank">
+              <Image src={instagram} alt="" className="w-[1.7rem]" />
+            </Link>
+            <Link href={"https://twitter.com/uifryy"} target="_blank">
+              <Image src={twitter} alt="" className="w-[1.9rem]" />
+            </Link>
+            <Link href={"https://www.facebook.com/uifryy"} target="_blank">
+              <Image src={facebook} alt="" className="w-[.9rem]" />
+            </Link>
           </div>
           <span className="text-[1rem] font-400 text-[#160042]">
             UIFry LTD® 2023

@@ -16,7 +16,7 @@ import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import KitHeader from "../components/KitHeader/KitHeader";
 import { RootState } from "@/store/store";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { CategoryCardProps, Data, JobProps } from "@/Interface/interface";
 // import List from "@/components/List/List";
 // import UiKitCard from "@/components/UiKitCard/UiKitCard";
@@ -40,20 +40,29 @@ import jobsImg1 from "../public/assets/images/jobs1.png";
 import fontsImg1 from "../public/assets/images/fonts1.png";
 import Image, { StaticImageData } from "next/image";
 // import Sticker from "@/components/Sticker/Sticker";
-import dynamic from 'next/dynamic';
-const Card = dynamic(() => import('../components/Card/Card'));
-const DetailsModal = dynamic(() => import('../components/DetailsModal/DetailsModal'));
-const Header = dynamic(() => import('../components/Header/Header'));
-const Sidebar = dynamic(() => import('../components/Sidebar/Sidebar'));
-const List = dynamic(() => import('@/components/List/List'));
-const UiKitCard = dynamic(() => import('@/components/UiKitCard/UiKitCard'));
-const DetailsModal1 = dynamic(() => import('@/components/DetailSmodal1/DetailsModal1'));
-const FontCard = dynamic(() => import('@/components/FontCard/FontCard'));
-const JobCard = dynamic(() => import('@/components/JobCard/JobCard'));
-const MetaHead = dynamic(() => import('@/components/MetaHead/MeatHead'));
-const CategoryCard = dynamic(() => import('@/components/BriefComponents/CategoryCard'));
-const Sticker = dynamic(() => import('@/components/Sticker/Sticker'));
-const BriefModal = dynamic(() => import('../components/DetailsModal/BreifModal'));
+import dynamic from "next/dynamic";
+import { Props, ScriptProps } from "next/script";
+const Card = dynamic(() => import("../components/Card/Card"));
+const DetailsModal = dynamic(
+  () => import("../components/DetailsModal/DetailsModal")
+);
+const Header = dynamic(() => import("../components/Header/Header"));
+const Sidebar = dynamic(() => import("../components/Sidebar/Sidebar"));
+const List = dynamic(() => import("@/components/List/List"));
+const UiKitCard = dynamic(() => import("@/components/UiKitCard/UiKitCard"));
+const DetailsModal1 = dynamic(
+  () => import("@/components/DetailSmodal1/DetailsModal1")
+);
+const FontCard = dynamic(() => import("@/components/FontCard/FontCard"));
+const JobCard = dynamic(() => import("@/components/JobCard/JobCard"));
+const MetaHead = dynamic(() => import("@/components/MetaHead/MeatHead"));
+const CategoryCard = dynamic(
+  () => import("@/components/BriefComponents/CategoryCard")
+);
+const Sticker = dynamic(() => import("@/components/Sticker/Sticker"));
+const BriefModal = dynamic(
+  () => import("../components/DetailsModal/BreifModal")
+);
 
 const Home: NextPage<{
   uiTemplates: Data[];
@@ -230,25 +239,29 @@ const Home: NextPage<{
         ) : (
           <></>
         )}
-        {false ?<div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
-          <div className="flex flex-col gap-[.8rem] ">
-            <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
-              Latest this week
-            </p>
-            <p className="text-secondaryGray text-[1.8rem] leading-[150%]">
-              Browse through the latest resources, briefs and jobs added this
-              week
-            </p>
+        {false ? (
+          <div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
+            <div className="flex flex-col gap-[.8rem] ">
+              <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
+                Latest this week
+              </p>
+              <p className="text-secondaryGray text-[1.8rem] leading-[150%]">
+                Browse through the latest resources, briefs and jobs added this
+                week
+              </p>
+            </div>
+            <Sticker
+              text="We added 10 new resources this week!"
+              classes="sm:!mx-0 !mr-0"
+            />
           </div>
-          <Sticker
-            text="We added 10 new resources this week!"
-            classes="sm:!mx-0 !mr-0"
-          />
-        </div>:<></>}
+        ) : (
+          <></>
+        )}
         <Sticker
-            text="We added 10 new resources this week!"
-            classes="mb-[4rem]"
-          />
+          text="We added 10 new resources this week!"
+          classes="mb-[4rem]"
+        />
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
@@ -339,6 +352,7 @@ const Home: NextPage<{
                     document.body.classList.add("!overflow-y-hidden");
                     dispatch(updateBriefModal(true));
                   }}
+                  className="h-full"
                 >
                   <CategoryCard data={item} key={index} />
                 </div>
@@ -415,7 +429,7 @@ const Home: NextPage<{
   );
 };
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps<any> = async () => {
   const uiTemplateFields = `
   title,slug,description,sanityFilter,images[]{
     asset->{url}
@@ -478,7 +492,6 @@ export async function getServerSideProps() {
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       props: {
         uiTemplates: [],
@@ -490,7 +503,7 @@ export async function getServerSideProps() {
       },
     };
   }
-}
+};
 
 const Card1 = ({
   img,
