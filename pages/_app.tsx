@@ -17,7 +17,6 @@ import {
   GetServerSidePropsContext,
   GetStaticPropsContext,
 } from "next";
-import { Console } from "console";
 import { AnyAction } from "@reduxjs/toolkit";
 import ProModal from "@/components/ProModal/ProModal";
 import { loadOutseta } from "@/utils/outseta";

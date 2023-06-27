@@ -3,7 +3,6 @@ import Image from "next/image";
 import React from "react";
 
 const CategoryCard = ({ data }: { data: CategoryCardProps }) => {
-  console.log({ data });
   return (
     // <div className='bg-[#fff] rounded-[1.2rem] p-[3rem]'>
     <div className="flex cursor-pointer flex-col h-full gap-[1rem]  group p-[2rem] pb-[2.5em] rounded-[1.2rem] group bg-[#ffffff] ">

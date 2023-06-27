@@ -4,7 +4,6 @@ export const getUser=async()=>{
         const res=await axiosInstance.get('/profile')
         return res
     }catch(err){
-        console.log(err)
         
     }
 }

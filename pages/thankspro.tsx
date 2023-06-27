@@ -9,6 +9,9 @@ const Confirmation = () => {
   useEffect(() => {
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
+    return () => {
+      sticker?.classList.remove("!hidden");
+    };
   }, []);
   return (
     <div className="py-[6rem] px-[2rem] flex flex-col items-center gap-[2rem] bg-primary min-h-[100vh]">

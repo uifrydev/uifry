@@ -15,11 +15,12 @@ import dynamic from "next/dynamic";
 import FAQsModal from "@/components/FAQModal/FAQModal";
 import { RootState } from "@/store/store";
 import { isTokenPresent } from "@/utils/functions";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import withRedirectIfUserPresent from "@/components/UserRedirection/UserRedirection";
 import useOutseta from "@/customHooks/useOutseta";
 import MetaHead from "@/components/MetaHead/MeatHead";
 import { NextResponse } from "next/server";
+import withAuth from "@/customHooks/withAuth";
 const signup = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -28,11 +29,14 @@ const signup = () => {
   const router = useRouter();
   const { openLogin } = useOutseta();
   useEffect(() => {
+    console.log({ user: localStorage.getItem("token") });
+    // if (localStorage.getItem("token")) {
+    //   router.push("/");
+    // }
     const sticker = document.getElementById("sticker");
     sticker?.classList.add("!hidden");
     dispatch(updateProModal(false));
     document.body.classList.remove("!overflow-y-hidden");
-
     // const script = document.createElement("script");
     // script.src = "https://cdn.outseta.com/outseta.min.js";
     // script.setAttribute("data-options", JSON.stringify(o_signup_options));
@@ -41,9 +45,7 @@ const signup = () => {
       sticker?.classList.remove("!hidden");
     };
   }, [router.asPath]);
-  if (user) {
-    return NextResponse.redirect("/abc");
-  }
+
   return (
     <>
       <MetaHead

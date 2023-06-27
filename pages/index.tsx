@@ -492,7 +492,6 @@ export const getStaticProps: GetStaticProps<any> = async () => {
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       props: {
         uiTemplates: [],
