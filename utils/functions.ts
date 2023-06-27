@@ -245,3 +245,19 @@ export function timeAgo(date: Date): string {
 
   return timeAgoStr.trim();
 }
+export function calculateRemainingTime(futureTime: Date): { hours: number; minutes: number; seconds: number } {
+  const currentTime = new Date();
+  const timeDifference = futureTime.getTime() - currentTime.getTime();
+
+  if (timeDifference < 0) {
+    // Future time has already passed
+    return { hours: 0, minutes: 0, seconds: 0 };
+  }
+
+  const totalSeconds = Math.floor(timeDifference / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return { hours, minutes, seconds };
+}

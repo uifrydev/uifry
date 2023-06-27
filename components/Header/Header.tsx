@@ -31,6 +31,7 @@ import { asyncGetUser } from "@/store/thunk/userAsync";
 import userss from "../../public/assets/images/users.svg";
 import useOutseta from "@/customHooks/useOutseta";
 import { toLink } from "@/utils/functions";
+import { headerHeight, smallHeaderHeight } from "@/utils/consts";
 
 const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
   const features = useSelector((state: RootState) => state.features);
@@ -49,8 +50,8 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
 
       <header
         className={`flex flex-col z-[155] bg-primary 
-         sticky ${
-           !user ? "top-[6.3rem] xs1:top-[6.9rem] xs:top-[9.2rem]" : "top-0"
+         sticky ${//xs1:top-[6.9rem] to xs1:top-[15rem] and xs:top-[9.2rem]
+           !user ? `top-[${headerHeight}rem] xs1:top-[15rem] xs:top-[15rem]` : "top-0"
          } border-b-[1px] w-full border-border`}
       >
         <div className="flex w-full sm:flex-col">

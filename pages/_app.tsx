@@ -24,6 +24,7 @@ import FAQsModal from "@/components/FAQModal/FAQModal";
 import ComingSoon from "@/components/ComingSoon/ComingSoon";
 // Add this function before the `MyApp` component definition
 import localFont from "next/font/local";
+import Sticker2 from "@/components/Sticker/Sticker2";
 
 const myFont = localFont({
   src: [
@@ -112,7 +113,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Progress isAnimating={isAnimating} />
       <main className={`relative ${myFont.variable}`}>
-        {!user && <Sticker1 classes={"!rounded-none mx-auto"} />}
+        {!user && <Sticker2 classes={"!rounded-none mx-auto"} />}
         {proModal && <ProModal classes="" />}
         {faqModal && <FAQsModal />}
         <Component {...pageProps} />
