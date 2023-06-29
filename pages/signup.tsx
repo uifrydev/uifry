@@ -58,7 +58,7 @@ const signup = () => {
         <Sticker2 hideBtn={true} classes={"!rounded-none mx-auto"} />
         <div className="flex max-w-[144rem] w-full xl:items-center xl:flex-col">
           <div className="flex flex-col flex-1 xl:w-full pt-[3.5rem] px-[5rem] sm:px-[2rem]">
-            <div className="flex justify-between pb-[3.6rem] items-center border-b-[1px] border-border2">
+            <div className="flex justify-between pb-[4.2rem] items-center border-b-[1px] border-border2">
               <Link href={"/"}>
                 <Image src={logo} alt={""} />
               </Link>
@@ -109,7 +109,7 @@ const signup = () => {
               </ul>
             </div>
           </div>
-          <div className="flex max-w-[64rem] sm:max-w-[36rem] xs:max-w-[32rem] w-full rounded-b-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
+          <div className="flex max-w-[64rem] mt-[2rem] sm:max-w-[36rem] mr-[2rem] xs:max-w-[32rem] w-full rounded-[1rem] bg-white shadow-signup xl:mt-[3.2rem] xl:rounded-[2.4rem]">
             <div id="signup-embed"></div>
             {/* <OutsetaEmbed /> */}
           </div>

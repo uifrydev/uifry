@@ -179,9 +179,9 @@ const Home: NextPage<{
   return (
     <>
       <MetaHead
-        title="Home - UIFry"
+        title="UIFry: Unlimited UI UX Designs, UI Kits, Jobs, Templates, Briefs and More"
         link=""
-        description="UIFry is the ultimate hub for UI UX designers to grow, learn and smash client work daily with so much more."
+        description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
       />
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
@@ -193,9 +193,10 @@ const Home: NextPage<{
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
           {!user ? (
-            <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Discover templates, briefs, jobs, resources crafted for
-              <span className="gradient-text"> UI UX designers</span>
+            <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+              Unlimited Access to
+              <span className="gradient-text"> Premium UI/UX {" "}</span>
+              Designs, Jobs, Templates, and Briefs
             </h2>
           ) : (
             <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">

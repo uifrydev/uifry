@@ -18,6 +18,18 @@ const MetaHead = ({
     name: "UIfry",
     url: "https://uifry.com/",
     logo: "https://www.uifry.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-beta.f0b24af5.png&w=128&q=75",
+    tags: [
+      "UI/UX Design",
+      "Unlimited Access",
+      "Design Resources",
+      "Design Templates",
+      "Design Briefs",
+      "UI Jobs",
+      "UX Jobs",
+      "Design Tools",
+      "Design Education",
+      "Skill Enhancement"
+    ]
     // sameAs: [
     //   "https://www.facebook.com/uifry",
     //   "https://twitter.com/uifry",

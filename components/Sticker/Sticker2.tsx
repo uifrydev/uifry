@@ -23,7 +23,7 @@ const Sticker2 = ({
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex xs1:flex-col items-center gap-[1rem]  z-[12]">
-          <span className="text-[#fff] xs1:flex-col items-center gap-[1rem] 330:text-[1.4rem] flex pl-[5rem] pr-[2rem] xs1:p-0 font-[700] text-[1.6rem] satoshi">
+          <span className="text-[#fff] xs1:flex-col items-center gap-[1rem] 330:text-[1.4rem] flex pl-[5rem] xs1:p-0 font-[700] text-[1.6rem] satoshi">
             Get 50% Off | Launch Sale
             <CountdownTimer futureTime={new Date("2023-06-30T15:30:00")} />
             <span className="md:hidden">Today Only!</span>
