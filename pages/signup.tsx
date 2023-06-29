@@ -77,7 +77,7 @@ const signup = () => {
               Join Pro & Get <span className="gradient-text"> Unlimited </span> Access!
             </h2>
             <p className="text-secondaryGray xl:text-center text-[1.6rem] leading-[2.9rem] mb-[1.5rem]">
-              Download 100s of templates. UI UX kits, jobs ,briefs, style guides and more!
+              Download 100s of templates, UI UX kits, jobs ,briefs, style guides and more!
             </p>
             <TagList classes="xl:hidden" />
             <PaymentTag />
