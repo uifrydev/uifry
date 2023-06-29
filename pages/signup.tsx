@@ -74,10 +74,10 @@ const signup = () => {
               </p>
             </div>
             <h2 className="mt-[2.5rem] xl:text-center text-primaryBlack font-700 text-[3.4rem] leading-[5.4rem] satoshi">
-              Become a Pro
+              Join Pro & Get <span className="gradient-text"> Unlimited </span> Access!
             </h2>
             <p className="text-secondaryGray xl:text-center text-[1.6rem] leading-[2.9rem] mb-[1.5rem]">
-              Join 56,909 UI UX Designers today!
+              Download 100s of templates. UI UX kits, jobs ,briefs, style guides and more!
             </p>
             <TagList classes="xl:hidden" />
             <PaymentTag />
