@@ -1,5 +1,6 @@
 import React from "react";
-
+import greenCheck from "../../public/assets/images/green-check.png";
+import Image from "next/image";
 const TestimonialCard = ({
   name,
   date,
@@ -12,14 +13,19 @@ const TestimonialCard = ({
   date: string;
 }) => {
   return (
-    <div className="shadow-testimonial rounded-[1rem] bg-[#ffffff]/[.7] p-[2rem] flex flex-col gap-[1.8rem]">
-      <div className="flex flex-col ">
-        <p className="text-[1.7rem] font-600 leading-[2.34rem] text-secondaryBlack">
-          {name}
-        </p>
-        <span className="text-secondaryBlack/[.6] text-[1.3rem] leading-[1.82rem]">
-          {designation}
-        </span>
+    <div className="shadow-testimonial rounded-[1rem] bg-[#ffffff]/[.7] p-[2rem]">
+      <div className="flex flex-col gap-[1.8rem]">
+        <div className="">
+          <div className="flex w-full items-center justify-between gap-[1rem]">
+            <p className="text-[1.7rem] font-600 leading-[2.34rem] text-secondaryBlack">
+              {name}
+            </p>
+            <Image src={greenCheck} alt="" />
+          </div>
+          <span className="text-secondaryBlack/[.6] text-[1.3rem] leading-[1.82rem]">
+            {designation}
+          </span>
+        </div>
         <div className="flex flex-col gap-[3rem]">
           {review.map((review) => (
             <p
@@ -30,7 +36,9 @@ const TestimonialCard = ({
             </p>
           ))}
         </div>
-        <span className="text-[1.2rem] leading-[2.1rem] mt-[.8rem]">{date}</span>
+        <span className="text-[1.2rem] leading-[2.1rem] mt-[.8rem] text-secondaryBlack/[.6]">
+          {date}
+        </span>
       </div>
     </div>
   );

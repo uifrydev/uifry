@@ -8,6 +8,9 @@ import circle from "../../public/assets/images/circle.png";
 import line from "../../public/assets/images/line5.png";
 import ssHome from "../../public/assets/images/sshome.png";
 import Image from "next/image";
+import { testimonials } from "@/utils/data";
+import TestimonialCard from "../Card/TestimonialCard";
+// import uifry from '../../public/assets/videos/uifry.webm'
 const LandingPage = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   return (
@@ -77,9 +80,15 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="max-w-[84rem]">
+          {/* <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
             <Image src={ssHome} alt="home screenshot" className="w-full" />
+          </div> */}
+          <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
+            <video autoPlay loop muted >
+              <source type="video/webm" src="/assets/videos/uifry.webm" />
+            </video>
           </div>
+
           <div className="flex flex-col middle gap-[4.44rem]">
             <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
               “Everything for a UI/UX designer -
@@ -89,11 +98,16 @@ const LandingPage = () => {
                 <Image
                   src={line}
                   alt="circle"
-                  className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110%]"
+                  className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110 %]"
                 />
               </span>
               added each week!”
             </h3>
+            <div className="max-w-[130rem] grid grid-cols-3 gap-[3.2rem] items-start lg:grid-cols-2 sm:grid-cols-1">
+              {testimonials.map((item) => (
+                <TestimonialCard {...item} key={item.designation} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
