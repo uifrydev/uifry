@@ -22,8 +22,8 @@ const LandingPage = () => {
         isHome={true}
       />
 
-      <div className="flex middle w-full bg-[#F6F9FC] py-[4.91rem] px-[2rem]">
-        <div className="max-w- flex flex-col middle gap-[4rem]">
+      <div className="flex flex-col middle w-full bg-[#F6F9FC] py-[4.91rem] px-[2rem]">
+        <div className="max-w-[144rem] w-full flex flex-col middle gap-[4rem]">
           <div className="flex flex-col middle gap-[1.53rem]">
             {!user ? (
               <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[5.2rem] font-[700] leading-[120%]">
@@ -84,7 +84,7 @@ const LandingPage = () => {
             <Image src={ssHome} alt="home screenshot" className="w-full" />
           </div> */}
           <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
-            <video autoPlay loop muted >
+            <video autoPlay loop muted>
               <source type="video/webm" src="/assets/videos/uifry.webm" />
             </video>
           </div>
@@ -108,6 +108,9 @@ const LandingPage = () => {
                 <TestimonialCard {...item} key={item.designation} />
               ))}
             </div>
+          </div>
+          <div className="flex flex-col max-w-[144.2rem] w-full gap-[5.5rem] bg-[#fff] rounded-[6rem] p-[8rem]">
+            
           </div>
         </div>
       </div>

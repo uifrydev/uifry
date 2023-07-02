@@ -30,3 +30,30 @@ export const testimonials: {
     ],
   },
 ];
+
+export const Soon: { title: string; desc: string }[] = [
+  {
+    title: "Flows",
+    desc: "Save hours of UI & UX research with ultimate library of mobile & web screenshots.",
+  },
+  {
+    title: "Learning Hub",
+    desc: "Gain access to a comprehensive suite of educational resources & learning material.",
+  },
+  {
+    title: "Tools",
+    desc: "Tools like color scheme generator, inspiration galleries and more in the pipleline!",
+  },
+  {
+    title: "Library Expansion",
+    desc: "1000s of UI templates, UI UX kits, fonts, briefs and style guides to be added on weekly basis.",
+  },
+  {
+    title: "Community",
+    desc: "Connect with fellow designers, exchange ideas, and grow together.",
+  },
+  {
+    title: "AI Designer",
+    desc: "Create awesome designs for website, apps and products using our AI designer!",
+  },
+];

@@ -168,3 +168,15 @@ export interface BriefList extends MainCardProps {
   link: Url;
   subCategories: string[];
 }
+
+
+export interface CommingSoonCardProps {
+  bg: string;
+  title: string;
+  desc: string;
+  mainImg: { src: StaticImageData; alt: string };
+  replaces: { src: StaticImageData; alt: string }[];
+  link: string;
+  testimonial: { desc: string; name: string; designation: string };
+  categories: { desc: string; title: string };
+}
