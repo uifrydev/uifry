@@ -46,9 +46,7 @@ const Card = dynamic(() => import("../components/Card/Card"));
 const DetailsModal = dynamic(
   () => import("../components/DetailsModal/DetailsModal")
 );
-const LandingPage = dynamic(
-  () => import("../components/LandingPage")
-);
+const LandingPage = dynamic(() => import("../components/LandingPage"));
 const Header = dynamic(() => import("../components/Header/Header"));
 const Sidebar = dynamic(() => import("../components/Sidebar/Sidebar"));
 const List = dynamic(() => import("@/components/List/List"));
@@ -179,7 +177,7 @@ const Home: NextPage<{
       link: "/jobs",
     },
   ];
-return <LandingPage />
+  if (!user) return <LandingPage />;
   return (
     <>
       <MetaHead
@@ -187,7 +185,7 @@ return <LandingPage />
         link=""
         description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
       />
-      
+
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
       {briefModal && <BriefModal data={modalData} />}
@@ -200,7 +198,7 @@ return <LandingPage />
           {!user ? (
             <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
               Unlimited Access to
-              <span className="gradient-text"> Premium UI/UX {" "}</span>
+              <span className="gradient-text"> Premium UI/UX </span>
               Designs, Jobs, Templates, and Briefs
             </h2>
           ) : (
