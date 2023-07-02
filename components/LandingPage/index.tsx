@@ -12,6 +12,9 @@ import { Soon, landingCardData, testimonials } from "@/utils/data";
 import TestimonialCard from "../Card/TestimonialCard";
 import LandingCard from "../Card/LandingCard";
 import CommingSoonCard from "../Card/CommingSoonCard";
+import ProCard from "../Card/ProCard";
+import logo from "../../public/assets/images/logobeta.svg";
+import Link from "next/link";
 // import uifry from '../../public/assets/videos/uifry.webm'
 const LandingPage = () => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -29,7 +32,7 @@ const LandingPage = () => {
           <div className="flex flex-col middle gap-[1.53rem]">
             {!user ? (
               <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[5.2rem] font-[700] leading-[120%]">
-                Unlimited Access to
+                Unlimited access to
                 <span className="gradient-text"> Premium UI/UX </span>
                 designs, jobs, templates, and briefs
               </h2>
@@ -85,9 +88,9 @@ const LandingPage = () => {
           {/* <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
             <Image src={ssHome} alt="home screenshot" className="w-full" />
           </div> */}
-          <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
-            <video autoPlay loop muted>
-              <source type="video/webm" src="/assets/videos/uifry.webm" />
+          <div className="max-w-[99.5rem] overflow-hidden  border-[4px] border-[#fff] rounded-[1.6rem]">
+            <video autoPlay loop muted className="">
+              <source type="video/webm" src="/assets/videos/uifry1.webm" />
             </video>
           </div>
 
@@ -130,11 +133,23 @@ const LandingPage = () => {
                 />
               </span>
             </h3>
-            <div className="grid grid-cols-3 lg1:grid-cols-2 gap-[3.3rem] sm:grid-cols-1">
+            <div className="grid grid-cols-3 lg1:grid-cols-2 gap-[3.3rem] sm:grid-cols-1 max-w-[128rem] w-full">
               {Soon.map((item) => (
                 <CommingSoonCard {...item} />
               ))}
             </div>
+          </div>
+          <>
+            <ProCard />
+          </>
+        </div>
+        <div className="flex max-w-[128rem] items-center justify-between mt-[8.5rem]">
+          <div className="flex gap-[1rem] items-center">
+            <Image src={logo} alt="logo" />
+            <span className="text-primaryBlack text-[1.6rem] leading-[3.2rem]">Premium Resources For UI UX Designers</span>
+          </div>
+          <div className="flex gap-[4rem]">
+            <span className="text-secondaryGray text-[1.4rem] leading-[2.4rem]">Follow us on social media</span>
           </div>
         </div>
       </div>
