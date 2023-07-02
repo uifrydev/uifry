@@ -26,7 +26,7 @@ const LandingPage = () => {
         <div className="max-w-[144rem] w-full flex flex-col middle gap-[4rem]">
           <div className="flex flex-col middle gap-[1.53rem]">
             {!user ? (
-              <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[5.2rem] font-[700] leading-[120%]">
+              <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[5.2rem] font-[700] leading-[120%]">
                 Unlimited Access to
                 <span className="gradient-text"> Premium UI/UX </span>
                 designs, jobs, templates, and briefs
@@ -40,7 +40,7 @@ const LandingPage = () => {
                 </span>
               </h2>
             )}
-            <p className="text-[2rem] font-[400] max-w-[75.04rem] text-center text-secondaryGray leading-[150%]">
+            <p className="text-[2rem] font-[400] max-w-[74rem] text-center text-secondaryGray leading-[150%]">
               UI Templates, UI UX kits, briefs, style guides, jobs, fonts - it's
               all here. UIFry provides UI UX designers with
               <span className="satoshi text-primaryBlack font-700 relative">
@@ -110,7 +110,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="flex flex-col max-w-[144.2rem] w-full gap-[5.5rem] bg-[#fff] rounded-[6rem] p-[8rem]">
-            
+
           </div>
         </div>
       </div>

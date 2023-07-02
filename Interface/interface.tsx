@@ -178,5 +178,5 @@ export interface CommingSoonCardProps {
   replaces: { src: StaticImageData; alt: string }[];
   link: string;
   testimonial: { desc: string; name: string; designation: string };
-  categories: { desc: string; title: string };
+  categories: { desc: string; title: string }[];
 }

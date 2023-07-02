@@ -1,3 +1,5 @@
+import { CommingSoonCardProps } from "@/Interface/interface";
+
 export const testimonials: {
   name: string;
   designation: string;
@@ -55,5 +57,18 @@ export const Soon: { title: string; desc: string }[] = [
   {
     title: "AI Designer",
     desc: "Create awesome designs for website, apps and products using our AI designer!",
+  },
+];
+
+export const landingCardData: CommingSoonCardProps[] = [
+  {
+    bg: "",
+    categories: [{ desc: "", title: "" }],
+    desc: "",
+    title: "",
+    link: "",
+    mainImg: { src: "", alt: "" },
+    replaces: [{ src: "", alt: "" }],
+    testimonial: { desc: "string", name: "string", designation: "string" },
   },
 ];

@@ -2,6 +2,7 @@ import { CommingSoonCardProps } from "@/Interface/interface";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
+import TestimonialCard1 from "./TestimonialCard1";
 
 const LandingCard = ({
   bg,
@@ -14,7 +15,10 @@ const LandingCard = ({
   title,
 }: CommingSoonCardProps) => {
   return (
-    <div className="flex gap-[4.8rem] p-[4.8rem] rounded-[1.6rem]">
+    <div
+      style={{ backgroundColor: bg }}
+      className="flex gap-[4.8rem] p-[4.8rem] rounded-[1.6rem] lg:flex-col"
+    >
       <div className="flex flex-col gap-[2rem] justify-between max-w-[40rem] w-full">
         <div className="flex flex-col gap-[2.3rem]">
           <div className="flex flex-col gap-[1.327rem]">
@@ -66,8 +70,22 @@ const LandingCard = ({
             </svg>
           </Link>
         </div>
-
-        <div className="p-[2.4rem] rounded-[.8rem] bg-[#fff]"></div>
+        <TestimonialCard1 {...testimonial} />
+      </div>
+      <div className="flex flex-col flex-1 w-full gap-[3rem]">
+        <Image src={mainImg.src} alt={mainImg.alt} />
+        <div className="grid grid-cols-3 gap-[4.8rem] lg:grid-cols-1">
+          {categories.map((item) => (
+            <div key={item.title} className="flex flex-col gap-[1.1rem]">
+              <span className="text-secondaryBlack text-[1.3rem] leading-[2.1rem] font-600">
+                {title}
+              </span>
+              <span className="text-secondaryBlack text-[1.3rem] leading-[2.1rem]">
+                {desc}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
