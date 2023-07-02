@@ -119,7 +119,7 @@ const LandingPage = () => {
               <LandingCard key={key} {...item} />
             ))}
           </div>
-          <div className="flex flex-col middle gap-[6.4rem]">
+          <div className="flex flex-col middle gap-[6.4rem] max-w-[128rem] w-full">
             <h3 className="satoshi max-w-[86rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
               Join today and lock in your pro price to access these
               <span className="gradient-text"> upcoming</span>
