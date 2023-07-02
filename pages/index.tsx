@@ -46,6 +46,9 @@ const Card = dynamic(() => import("../components/Card/Card"));
 const DetailsModal = dynamic(
   () => import("../components/DetailsModal/DetailsModal")
 );
+const LandingPage = dynamic(
+  () => import("../components/LandingPage")
+);
 const Header = dynamic(() => import("../components/Header/Header"));
 const Sidebar = dynamic(() => import("../components/Sidebar/Sidebar"));
 const List = dynamic(() => import("@/components/List/List"));
@@ -176,6 +179,7 @@ const Home: NextPage<{
       link: "/jobs",
     },
   ];
+return <LandingPage />
   return (
     <>
       <MetaHead
@@ -183,6 +187,7 @@ const Home: NextPage<{
         link=""
         description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
       />
+      
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
       {briefModal && <BriefModal data={modalData} />}

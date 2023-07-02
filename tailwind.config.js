@@ -63,8 +63,8 @@ module.exports = {
         tertiaryGray: "#B6B9CE",
         heading: "#160042",
         // border:'#efe9ff'
-        border:'#e8eaf5',
-        border2:'#E5E9FF'
+        border: "#e8eaf5",
+        border2: "#E5E9FF",
       },
       boxShadow: {
         cardShadow: "51px 51px 132px -16px rgb(49 51 114 / 8%)",
@@ -73,6 +73,8 @@ module.exports = {
         stcker: "0px 15px 20px rgba(0, 0, 0, 0.05)",
         logo: "51px 51px 132px -16px rgba(49, 51, 114, 0.08);",
         signup: "0px 4px 50px rgba(0, 0, 0, 0.1);",
+        testimonial:
+          "1px 0px 2px 0px rgba(0, 0, 0, 0.02), 0px 2px 4px 0px rgba(0, 0, 0, 0.02), 0px 4px 8px 0px rgba(0, 0, 0, 0.02), 0px 8px 16px 0px rgba(0, 0, 0, 0.02), 0px 16px 32px 0px rgba(0, 0, 0, 0.02), 0px 32px 64px 0px rgba(0, 0, 0, 0.02)",
       },
       backgroundImage: {
         side: "linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))",

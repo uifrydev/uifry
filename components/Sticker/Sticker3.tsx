@@ -19,7 +19,7 @@ const Sticker3 = ({
   return (
     <div
       id="sticker"
-      className={`w-full flex z-[31] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-[15rem] h-[${headerHeight}rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
+      className={`w-full flex z-[31] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-[15rem] h-[9rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes}`}
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex xs1:flex-col items-center gap-[1rem]  z-[12]">
@@ -47,27 +47,27 @@ const Sticker3 = ({
         <div className="">
           <Image
             src={drop}
-            className="absolute top-0 flex lg:hidden right-[0%] h-full z-[1]"
+            className="absolute top-0 flex lg:hidden right-[0%] z-[1]"
             alt=""
           />
           <Image
             src={gradient}
-            className="absolute top-0 right-[5%] lg:hidden h-full object-cover"
+            className="absolute top-0 right-[5%] lg:hidden h-full"
             alt=""
           />
-          <Image
+          {/* <Image
             src={gradient2}
-            className="absolute top-0 lg:hidden left-[0%] h-full object-cover"
+            className="absolute top-0 lg:hidden left-[0%] h-full"
             alt=""
-          />
+          /> */}
           <Image
             src={drop1}
-            className="absolute -top-[1rem] left-[0%] lg:-left-[9rem] h-full xs1:hidden object-contain z-[1]"
+            className="absolute -top-[2rem] left-[0%] lg:-left-[9rem] h-full xs1:hidden object-contain z-[1]"
             alt=""
           />
           <Image
             src={gradient1}
-            className="absolute top-0  left-[0%] xs1:hidden h-full object-cover"
+            className="absolute top-0  left-[0%] xs1:hidden h-full"
             alt=""
           />
         </div>

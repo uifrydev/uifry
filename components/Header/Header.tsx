@@ -33,7 +33,12 @@ import useOutseta from "@/customHooks/useOutseta";
 import { toLink } from "@/utils/functions";
 import { headerHeight, smallHeaderHeight } from "@/utils/consts";
 
-const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
+const Header: FC<HeaderProps & { isHome?: boolean }> = ({
+  breadcrums = [],
+  title = [],
+  istitle,
+  isHome = false,
+}) => {
   const features = useSelector((state: RootState) => state.features);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -49,9 +54,12 @@ const Header: FC<HeaderProps> = ({ breadcrums = [], title = [], istitle }) => {
       {/* <div id="signup-embed"></div> */}
 
       <header
-        className={`flex flex-col z-[155] bg-primary 
-         sticky ${//xs1:top-[6.9rem] to xs1:top-[15rem] and xs:top-[9.2rem]
-           !user ? `top-[${headerHeight}rem] xs1:top-[15rem] xs:top-[15rem]` : "top-0"
+        className={`flex flex-col z-[155] ${isHome ? "bg-[#fff] xs1:!top-[15rem] !top-[9rem]" : "bg-primary"} 
+         sticky ${
+           //xs1:top-[6.9rem] to xs1:top-[15rem] and xs:top-[9.2rem]
+           !user
+             ? `top-[${headerHeight}rem] xs1:top-[15rem] xs:top-[15rem]`
+             : "top-0"
          } border-b-[1px] w-full border-border`}
       >
         <div className="flex w-full sm:flex-col">
