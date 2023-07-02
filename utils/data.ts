@@ -1,5 +1,6 @@
 import { CommingSoonCardProps } from "@/Interface/interface";
-
+import landing1 from "../public/assets/images/landing1.png";
+import uplab from "../public/assets/images/uplab.png";
 export const testimonials: {
   name: string;
   designation: string;
@@ -62,13 +63,54 @@ export const Soon: { title: string; desc: string }[] = [
 
 export const landingCardData: CommingSoonCardProps[] = [
   {
-    bg: "",
+    bg: "#E8F2FF",
+    categories: [
+      {
+        title: "Landing Pages Templates",
+        desc: "Explore captivating, modern landing page templates from UIFry, perfect for any business or campaign.",
+      },
+      {
+        title: "Dashboard Templates",
+        desc: "UIFry's clean, user-friendly dashboard templates streamline data visualization and engagement.",
+      },
+      {
+        title: "App Templates",
+        desc: "Enjoy visually stunning, intuitively structured app templates from UIFry for an exceptional user experience.",
+      },
+    ],
+    desc: "Unleash your creativity with a vast library of single assets,  compatible with Figma, Sketch, and XD, perfect for sparking inspiration and starting a design.",
+    title: "UI Templates",
+    link: "",
+    mainImg: { src: landing1, alt: "ui templates landing" },
+    replaces: [{ src: uplab, alt: "uplab" }],
+    testimonial: {
+      desc: "UIFry's UI templates are truly a game-changer. Their expansive library of assets compatible with Figma, Sketch, and XD has not only sparked my creativity but also streamlined my design process. ",
+      name: "Micheal J.",
+      designation: "Product Designer, Xeon Agency",
+    },
+  },
+  {
+    bg: "#E3F7FF",
+    categories: [{ desc: "", title: "" }],
+    desc: "Sign 'em up, sign 'em in. Easily sign up and log in website visitors, then control access to your content, features, or community spaces based on their membership level.",
+    title: "UI UX Kits",
+    link: "",
+    mainImg: { src: landing1, alt: "ui templates landing" },
+    replaces: [{ src: uplab, alt: "uplab" }],
+    testimonial: {
+      desc: "The UI/UX Kits from UIFry are truly top-tier. I've found their comprehensive design templates, covering everything from apps to websites and products, incredibly helpful with design systems and components.",
+      name: "Sanam L.",
+      designation: "UI UX Designer, Upwork",
+    },
+  },
+  {
+    bg: "#E8F2FF",
     categories: [{ desc: "", title: "" }],
     desc: "",
-    title: "",
+    title: "UI Templates",
     link: "",
-    mainImg: { src: "", alt: "" },
-    replaces: [{ src: "", alt: "" }],
+    mainImg: { src: landing1, alt: "ui templates landing" },
+    replaces: [{ src: uplab, alt: "uplab" }],
     testimonial: { desc: "string", name: "string", designation: "string" },
   },
 ];

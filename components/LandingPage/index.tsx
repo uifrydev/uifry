@@ -8,8 +8,9 @@ import circle from "../../public/assets/images/circle.png";
 import line from "../../public/assets/images/line5.png";
 import ssHome from "../../public/assets/images/sshome.png";
 import Image from "next/image";
-import { testimonials } from "@/utils/data";
+import { landingCardData, testimonials } from "@/utils/data";
 import TestimonialCard from "../Card/TestimonialCard";
+import LandingCard from "../Card/LandingCard";
 // import uifry from '../../public/assets/videos/uifry.webm'
 const LandingPage = () => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -109,8 +110,8 @@ const LandingPage = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col max-w-[144.2rem] w-full gap-[5.5rem] bg-[#fff] rounded-[6rem] p-[8rem]">
-
+          <div className="flex flex-col middle max-w-[144.2rem] w-full gap-[5.5rem] bg-[#fff] rounded-[6rem] py-[8rem] px-[2rem]">
+            <LandingCard {...landingCardData[0]} />
           </div>
         </div>
       </div>

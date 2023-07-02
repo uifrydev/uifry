@@ -17,9 +17,9 @@ const LandingCard = ({
   return (
     <div
       style={{ backgroundColor: bg }}
-      className="flex gap-[4.8rem] p-[4.8rem] rounded-[1.6rem] lg:flex-col"
+      className="flex gap-[4.8rem] p-[4.8rem] max-w-[128rem] rounded-[1.6rem] lg:flex-col"
     >
-      <div className="flex flex-col gap-[2rem] justify-between max-w-[40rem] w-full">
+      <div className="flex flex-col gap-[2rem] justify-between max-w-[40rem] lg:max-w-full w-full">
         <div className="flex flex-col gap-[2.3rem]">
           <div className="flex flex-col gap-[1.327rem]">
             <span className="text-[4.8rem] satoshi font-700 leading-[120%] text-primaryBlack">
@@ -33,13 +33,13 @@ const LandingCard = ({
             <span className="text-[1.3rem] font-500 leading-[2.1rem]">
               Replaces
             </span>
-            <div className="flex gap-[2rem] middle">
+            <div className="flex gap-[2rem]">
               {replaces.map((item, index) => (
                 <Image key={index} src={item.src} alt={item.alt} />
               ))}
             </div>
           </div>
-          <Link href={link} className="mt-[1rem] flex middle gap-[1rem]">
+          <Link href={link} className="mt-[1rem] flex items-center gap-[1rem]">
             <span className="text-secondaryBlack text-[1.9rem] leading-[3rem]">
               Learn More
             </span>
@@ -73,15 +73,15 @@ const LandingCard = ({
         <TestimonialCard1 {...testimonial} />
       </div>
       <div className="flex flex-col flex-1 w-full gap-[3rem]">
-        <Image src={mainImg.src} alt={mainImg.alt} />
+        <Image src={mainImg.src} alt={mainImg.alt} className="shadow-cardShadowHover" />
         <div className="grid grid-cols-3 gap-[4.8rem] lg:grid-cols-1">
           {categories.map((item) => (
             <div key={item.title} className="flex flex-col gap-[1.1rem]">
               <span className="text-secondaryBlack text-[1.3rem] leading-[2.1rem] font-600">
-                {title}
+                {item.title}
               </span>
               <span className="text-secondaryBlack text-[1.3rem] leading-[2.1rem]">
-                {desc}
+                {item.desc}
               </span>
             </div>
           ))}
