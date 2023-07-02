@@ -13,6 +13,7 @@ const LandingCard = ({
   replaces,
   testimonial,
   title,
+  extraReplace
 }: CommingSoonCardProps) => {
   return (
     <div
@@ -37,6 +38,10 @@ const LandingCard = ({
               {replaces.map((item, index) => (
                 <Image key={index} src={item.src} alt={item.alt} />
               ))}
+                {extraReplace ?<>
+                <span className="font-700 text-[3rem] satoshi text-primaryBlack">+</span>
+                <span className="font-600 text-[1.4em] leading-[2.4rem] text-primaryBlack py-[1rem] px-[2rem] rounded-full bg-[#ffffff]">{extraReplace}</span>
+                </>:<></>}
             </div>
           </div>
           <Link href={link} className="mt-[1rem] flex items-center gap-[1rem]">

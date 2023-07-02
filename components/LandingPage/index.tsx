@@ -115,6 +115,7 @@ const LandingPage = () => {
               <LandingCard key={key} {...item} />
             ))}
           </div>
+          <div className="flex flex-col gap-[6.4rem]"></div>
         </div>
       </div>
     </>

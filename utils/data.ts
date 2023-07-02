@@ -3,6 +3,8 @@ import landing1 from "../public/assets/images/landing1.png";
 import landing2 from "../public/assets/images/landing2.png";
 import landing3 from "../public/assets/images/landing3.png";
 import landing4 from "../public/assets/images/landing4.png";
+import landing5 from "../public/assets/images/landing5.png";
+import landing6 from "../public/assets/images/landing6.png";
 import uplab from "../public/assets/images/uplab.png";
 import hihut from "../public/assets/images/hihut.png";
 import ui8 from "../public/assets/images/ui8.png";
@@ -10,6 +12,8 @@ import box from "../public/assets/images/box.png";
 import uxcel from "../public/assets/images/uxcel.png";
 import creative from "../public/assets/images/creative.png";
 import myfont from "../public/assets/images/MyFonts.png";
+import dribble from "../public/assets/images/dribble.png";
+import indeed from "../public/assets/images/indeed.png";
 export const testimonials: {
   name: string;
   designation: string;
@@ -191,15 +195,61 @@ export const landingCardData: CommingSoonCardProps[] = [
       designation: "Senior UI UX Designer, PX",
     },
   },
+  {
+    bg: "#E3F7FF",
+    categories: [
+      {
+        desc: "Discover 100s of style guides catering different industries and best practices.",
+        title: "Categorised style guides",
+      },
+      {
+        desc: "Our style guides includes links to fonts and have a complete PDF guide of color code with example!",
+        title: "Fonts and type included",
+      },
+      {
+        desc: "We constantly upload new style guides weekly for you get inspired and make your process faster.",
+        title: "Weekly updates",
+      },
+    ],
+    desc: "Happy members, successful bussiness—it's really that simple. Provide help however your members want it.",
+    title: "Style Guides",
+    link: "/style-guides",
+    mainImg: { src: landing5, alt: "style guides landing" },
+    replaces: [{ src: dribble, alt: "dribble" }],
+    extraReplace:"Hours of Manual Work",
+    testimonial: {
+      desc: "The style guides provided by UIFry have been incredibly helpful. They offer curated resources on color and typography, making them a fantastic starting point for any design project.",
+      name: "Faizan P.",
+      designation: "App Designer, People Per Hour",
+    },
+  },
 
   {
-    bg: "#E8F2FF",
-    categories: [{ desc: "", title: "" }],
-    desc: "",
-    title: "UI Templates",
+    bg: "#F7F8FD",
+    categories: [
+      {
+        desc: "Receive, assign, and respond to requests for help from one place— your members will thank you.",
+        title: "Support tickets",
+      },
+      {
+        desc: "Publish searchable how-to content so your members can find answers to their own questions.",
+        title: "Knowledge Base",
+      },
+      {
+        desc: "Chat with members when they need help—or toggle chat off when you're busy with other work.",
+        title: "Live chat",
+      },
+    ],
+    desc: "Happy members, successful bussiness—it's really that simple. Provide help however your members want it.",
+    title: "Jobs",
     link: "",
     mainImg: { src: landing1, alt: "ui templates landing" },
-    replaces: [{ src: uplab, alt: "uplab" }],
-    testimonial: { desc: "string", name: "string", designation: "string" },
+    replaces: [{ src: indeed, alt: "indeed" }],
+    testimonial: {
+      desc: "Their vast collection of templates and UX kits are top-notch, the resources are invaluable, and the job listings have connected me to great opportunities.",
+      name: "Jacob M.",
+      designation: "Senior UX Designer, Anonymous ",
+    },
+    extraReplace:"Other Job Portals"
   },
 ];
