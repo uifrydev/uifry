@@ -8,9 +8,10 @@ import circle from "../../public/assets/images/circle.png";
 import line from "../../public/assets/images/line5.png";
 import ssHome from "../../public/assets/images/sshome.png";
 import Image from "next/image";
-import { landingCardData, testimonials } from "@/utils/data";
+import { Soon, landingCardData, testimonials } from "@/utils/data";
 import TestimonialCard from "../Card/TestimonialCard";
 import LandingCard from "../Card/LandingCard";
+import CommingSoonCard from "../Card/CommingSoonCard";
 // import uifry from '../../public/assets/videos/uifry.webm'
 const LandingPage = () => {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -115,7 +116,26 @@ const LandingPage = () => {
               <LandingCard key={key} {...item} />
             ))}
           </div>
-          <div className="flex flex-col gap-[6.4rem]"></div>
+          <div className="flex flex-col middle gap-[6.4rem]">
+            <h3 className="satoshi max-w-[86rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+              Join today and lock in your pro price to access these
+              <span className="gradient-text"> upcoming</span>
+              <span className="relative">
+                {" "}
+                features!{" "}
+                <Image
+                  src={line}
+                  alt="circle"
+                  className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110%]"
+                />
+              </span>
+            </h3>
+            <div className="grid grid-cols-3 lg1:grid-cols-2 gap-[3.3rem] sm:grid-cols-1">
+              {Soon.map((item) => (
+                <CommingSoonCard {...item} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>

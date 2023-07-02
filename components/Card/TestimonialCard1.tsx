@@ -13,7 +13,7 @@ const TestimonialCard1 = ({
   return (
     <div className="p-[2.4rem] w-full rounded-[.8rem] bg-[#fff] flex flex-col gap-[1.6rem]">
       <p className="max-w-[31.834rem] lg:max-w-full text-secondaryBlack text-[1.4rem] leading-[2.4rem]">{desc}</p>
-      <div className="flex gap-[1.6rem] middle mr-auto">
+      <div className="flex gap-[1.6rem] middle mr-auto xs1:flex-col xs1:items-start">
         <div className="p-[1.2rem] rounded-full aspect-[1/1] bg-[#E8F2FF] ">
           <Image src={verfied} alt="verified" />
         </div>

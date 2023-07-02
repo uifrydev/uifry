@@ -1,6 +1,6 @@
 import React from "react";
 
-const CommingSoonCard = ({ desc, title }: { title: string; desc: "" }) => {
+const CommingSoonCard = ({ desc, title }: { title: string; desc: string }) => {
   return (
     <div className="flex flex-col gap-[2rem] p-[3.2rem] rounded-[1.6rem] bg-[#fff]/[.6] shadow-testimonial">
       <div className="flex justify-between items-center">
