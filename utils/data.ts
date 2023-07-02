@@ -1,6 +1,15 @@
 import { CommingSoonCardProps } from "@/Interface/interface";
 import landing1 from "../public/assets/images/landing1.png";
+import landing2 from "../public/assets/images/landing2.png";
+import landing3 from "../public/assets/images/landing3.png";
+import landing4 from "../public/assets/images/landing4.png";
 import uplab from "../public/assets/images/uplab.png";
+import hihut from "../public/assets/images/hihut.png";
+import ui8 from "../public/assets/images/ui8.png";
+import box from "../public/assets/images/box.png";
+import uxcel from "../public/assets/images/uxcel.png";
+import creative from "../public/assets/images/creative.png";
+import myfont from "../public/assets/images/MyFonts.png";
 export const testimonials: {
   name: string;
   designation: string;
@@ -80,9 +89,12 @@ export const landingCardData: CommingSoonCardProps[] = [
     ],
     desc: "Unleash your creativity with a vast library of single assets,  compatible with Figma, Sketch, and XD, perfect for sparking inspiration and starting a design.",
     title: "UI Templates",
-    link: "",
+    link: "/ui-templates",
     mainImg: { src: landing1, alt: "ui templates landing" },
-    replaces: [{ src: uplab, alt: "uplab" }],
+    replaces: [
+      { src: uplab, alt: "uplab" },
+      { src: hihut, alt: "hihut" },
+    ],
     testimonial: {
       desc: "UIFry's UI templates are truly a game-changer. Their expansive library of assets compatible with Figma, Sketch, and XD has not only sparked my creativity but also streamlined my design process. ",
       name: "Micheal J.",
@@ -91,18 +103,95 @@ export const landingCardData: CommingSoonCardProps[] = [
   },
   {
     bg: "#E3F7FF",
-    categories: [{ desc: "", title: "" }],
+    categories: [
+      {
+        title: "Website Kits",
+        desc: "UIFry's comprehensive website design kits streamline the process of creating stunning, user-friendly sites.",
+      },
+      {
+        title: "UI Kits & Wireframe Kits",
+        desc: "Simplify your design journey from concept to final product with UIFry's comprehensive UI and wireframe kits.",
+      },
+      {
+        title: "App UI Kits",
+        desc: "Enhance your mobile application design with UIFry's intuitive and engaging app design kits with design systems and guides!",
+      },
+    ],
     desc: "Sign 'em up, sign 'em in. Easily sign up and log in website visitors, then control access to your content, features, or community spaces based on their membership level.",
     title: "UI UX Kits",
-    link: "",
-    mainImg: { src: landing1, alt: "ui templates landing" },
-    replaces: [{ src: uplab, alt: "uplab" }],
+    link: "/ui-ux-kits",
+    mainImg: { src: landing2, alt: "ui ux landing" },
+    replaces: [
+      { src: ui8, alt: "ui8" },
+      { src: hihut, alt: "uihut" },
+    ],
     testimonial: {
       desc: "The UI/UX Kits from UIFry are truly top-tier. I've found their comprehensive design templates, covering everything from apps to websites and products, incredibly helpful with design systems and components.",
       name: "Sanam L.",
       designation: "UI UX Designer, Upwork",
     },
   },
+  {
+    title: "Briefs",
+    desc: "Effortlessly manage all of your member data and customer communications in one place—from lead capture to lifetime value.",
+    bg: "#F7F8FD",
+    categories: [
+      {
+        desc: "Hone your skills with UIFry's landing page briefs, providing real-world challenges to perfect your designs.",
+        title: "Landing Pages Briefs",
+      },
+      {
+        desc: "UIFry's product UI briefs offer practical tasks to refine your skills in creating intuitive, attractive product interfaces.",
+        title: "Product UI Briefs",
+      },
+      {
+        desc: "Expand your UX design expertise through UIFry's UX briefs, providing real-world scenarios to enhance your problem-solving abilities.",
+        title: "UX Briefs",
+      },
+    ],
+    link: "/briefs",
+    mainImg: { src: landing3, alt: "breifs landing" },
+    replaces: [
+      { src: box, alt: "box" },
+      { src: uxcel, alt: "uxcel" },
+    ],
+    testimonial: {
+      desc: "The practice briefs from UIFry have been a game-changer for my design skills. Their real-world challenges paired with insightful resources provide the perfect practice ground to hone my UI/UX skills. Truly an invaluable tool for designers!",
+      name: "Arsalan A.",
+      designation: "Junior Web Designer, Fiverr",
+    },
+  },
+  {
+    bg: "#E8F2FF",
+    categories: [
+      {
+        desc: "Elevate your designs with UIFry's custom-made fonts, carefully crafted to boost aesthetics and usability in UI/UX design.",
+        title: "Custom-made fonts",
+      },
+      {
+        desc: "Explore an extensive variety of unique fonts at UIFry, tailored to fit any design style or project requirement.",
+        title: "Crafted for UI UX projects",
+      },
+      {
+        desc: "Enhance your design projects with exclusive fonts from UIFry, created by type experts specifically for UI/UX design.",
+        title: "Scalable Typefaces",
+      },
+    ],
+    desc: "From transactional emails to newsletters and automations, our email marketing tools deliver your messages with surgical precision.",
+    title: "Fonts",
+    link: "/fonts",
+    mainImg: { src: landing4, alt: "fonts landing" },
+    replaces: [
+      { src: creative, alt: "creative" },
+      { src: myfont, alt: "my fonts" },
+    ],
+    testimonial: {
+      desc: "UIFry's exclusive fonts have added an extraordinary touch to my projects. The uniqueness and adaptability of their typefaces, tailored for UI/UX design, have elevated my work to a new level. Simply unbeatable!",
+      name: "Alisha C.",
+      designation: "Senior UI UX Designer, PX",
+    },
+  },
+
   {
     bg: "#E8F2FF",
     categories: [{ desc: "", title: "" }],

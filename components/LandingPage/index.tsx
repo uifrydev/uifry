@@ -111,7 +111,9 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="flex flex-col middle max-w-[144.2rem] w-full gap-[5.5rem] bg-[#fff] rounded-[6rem] py-[8rem] px-[2rem]">
-            <LandingCard {...landingCardData[0]} />
+            {landingCardData.map((item, key) => (
+              <LandingCard key={key} {...item} />
+            ))}
           </div>
         </div>
       </div>

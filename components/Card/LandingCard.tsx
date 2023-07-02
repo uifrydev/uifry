@@ -17,7 +17,7 @@ const LandingCard = ({
   return (
     <div
       style={{ backgroundColor: bg }}
-      className="flex gap-[4.8rem] p-[4.8rem] max-w-[128rem] rounded-[1.6rem] lg:flex-col"
+      className="flex gap-[4.8rem] w-full p-[4.8rem] max-w-[128rem] rounded-[1.6rem] lg:flex-col"
     >
       <div className="flex flex-col gap-[2rem] justify-between max-w-[40rem] lg:max-w-full w-full">
         <div className="flex flex-col gap-[2.3rem]">
@@ -33,7 +33,7 @@ const LandingCard = ({
             <span className="text-[1.3rem] font-500 leading-[2.1rem]">
               Replaces
             </span>
-            <div className="flex gap-[2rem]">
+            <div className="flex gap-[2rem] items-center">
               {replaces.map((item, index) => (
                 <Image key={index} src={item.src} alt={item.alt} />
               ))}
