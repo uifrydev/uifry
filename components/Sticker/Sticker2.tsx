@@ -25,7 +25,7 @@ const Sticker2 = ({
         <div className="flex xs1:flex-col items-center gap-[1rem]  z-[12]">
           <span className="text-[#fff] xs1:flex-col items-center gap-[1rem] 330:text-[1.4rem] flex pl-[5rem] xs1:p-0 font-[700] text-[1.6rem] satoshi">
             Get 50% Off | Launch Sale
-            <CountdownTimer futureTime={new Date("2023-06-30T15:30:00")} />
+            <CountdownTimer futureTime={new Date("2024-06-30T00:00:00")} />
             <span className="md:hidden">Today Only!</span>
           </span>
           {/* <button className="py-[0.68rem] px-[1.54rem] rounded-full bg-[#09B673] satoshi text-[1.2rem] font-900 leading-[1.5rem] text-[#fff] ">

@@ -255,7 +255,7 @@ export function calculateRemainingTime(futureTime: Date): { hours: number; minut
   }
 
   const totalSeconds = Math.floor(timeDifference / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
+  const hours = Math.floor(totalSeconds / 3600) % 24;
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
