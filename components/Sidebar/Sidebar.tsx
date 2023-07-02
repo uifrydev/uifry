@@ -136,7 +136,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
               target="_blank"
               className="text-secondaryGray text-[1.2rem] leading-[150%] font-400"
             >
-              Support
+              Supports
             </Link>
           </div>
           <div className="flex gap-[1.732rem] items-center">
