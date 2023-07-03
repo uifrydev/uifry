@@ -31,7 +31,7 @@ const LandingPage = () => {
         <div className="max-w-[144rem] w-full flex flex-col middle gap-[4rem]">
           <div className="flex flex-col middle gap-[1.53rem]">
             {!user ? (
-              <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[5.2rem] font-[700] leading-[120%]">
+              <h2 className="satoshi max-w-[84rem] text-center text-primaryBlack text-[5.2rem] sm:text-[4rem] font-[700] leading-[120%]">
                 Unlimited access to
                 <span className="gradient-text"> Premium UI/UX </span>
                 designs, jobs, templates, and briefs
@@ -95,7 +95,7 @@ const LandingPage = () => {
           </div>
 
           <div className="flex flex-col middle gap-[4.44rem]">
-            <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+            <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
               “Everything for a UI/UX designer -
               <span className="gradient-text relative">
                 {" "}
@@ -120,7 +120,7 @@ const LandingPage = () => {
             ))}
           </div>
           <div className="flex flex-col middle gap-[6.4rem] max-w-[128rem] w-full">
-            <h3 className="satoshi max-w-[86rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+            <h3 className="satoshi max-w-[86rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem] sm:text-[4rem] font-[700] leading-[120%]">
               Join today and lock in your pro price to access these
               <span className="gradient-text"> upcoming</span>
               <span className="relative">
