@@ -8,7 +8,7 @@ const CommingSoonCard = ({ desc, title }: { title: string; desc: string }) => {
           {title}
         </span>
         <span className="text-primaryBlack text-[1.4rem] leading-[2.4rem] font-600 py-[1rem] px-[2rem] rounded-full bg-[#E3F6FF]">
-          Comming Soon
+          Coming Soon
         </span>
       </div>
       <p className="text-primaryBlack text-[1.4rem] leading-[2.4rem] max-w-[30.7rem]">
