@@ -21,10 +21,13 @@ import xd from "../../public/assets/icons/xd.svg";
 import Sketch from "../../public/assets/icons/adobe.svg";
 import Team from "@/components/Team/Team";
 import MetaHead from "@/components/MetaHead/MeatHead";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
   useEffect(() => {
     removeEmptyPTagsFromClass();
   }, []);
+  const { user } = useSelector((state: RootState) => state.auth);
   return (
     <>
       <MetaHead
@@ -36,7 +39,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
       <Sidebar isDetail={true} />
       <div className="min-lg:pl-[234px] flex-col bg-[white] xs1:px-0 relative xs1:flex-col flex lg:pl-[1rem] gap-[4rem] pr-[4rem]  w-full ">
         <div className="flex gap-[6rem] lg:flex-col">
-          <div className="xs1:px-[1rem] flex flex-col flex-1 pb-[15rem] rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
+          <div className="xs1:px-[1rem] max-w-[132rem] flex flex-col flex-1 pb-[15rem] rounded-[2.4rem] gap-[3rem] pt-[3rem] ">
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <div className="bg-[white] middle w-[9rem] h-[9rem] rounded-full relative top-[2.8rem] left-[4.4rem] shadow-cardShadow ">
                 <Image
@@ -119,7 +122,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
               </div>
             </div>
           </div>
-          <div className="flex sticky top-[18.4rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl:max-w-[34.3rem] xl:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem] right-0 p-[2rem] bg-primary border-[1px] border-border2">
+          {user?<></>:<div className="flex sticky top-[18.4rem] mt-[3rem] lg:min-w-full rounded-[2.4rem] mb-auto min-w-[48.8rem] xl:max-w-[34.3rem] xl:min-w-[34.3rem] xl1:max-w-[39.6rem] xl1:min-w-[39.6rem] max-w-[48.8rem] right-0 p-[2rem] bg-primary border-[1px] border-border2">
             <div className="flex flex-col gap-[1rem] items-start bg-[#fff] rounded-[2rem] p-[3rem] pr-[2rem]">
               <h3 className="satoshi text-[1.8rem] font-[700] leading-[3rem] text-primaryBlack">
                 {"Become a Pro with Special Access!"}
@@ -143,7 +146,7 @@ const Raodmap: NextPage<{ res: RoadmapProps }> = ({ res }) => {
                 </span>
               </Button>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </>

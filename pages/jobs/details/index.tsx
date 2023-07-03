@@ -50,7 +50,7 @@ const Details: FC<{ detail: JobDetailProps; others: JobDetailProps[] }> = ({
             <div className="flex h-[9rem] rounded-[2.4rem] bg-primary w-full">
               <Image
                 src={urlFor(detail.images[0]).url() || profile}
-                className="w-[8rem] h-[8rem] p-[1rem] bg-[#fff]  rounded-full relative top-[3.8rem] left-[4.4rem]"
+                className="w-[8rem] h-[8rem] p-[1rem] bg-[#fff]  rounded-full relative top-[3.8rem] left-[4.4rem]  border-[4px] border-[#fff] shadow-job"
                 width={80}
                 height={80}
                 alt=""
