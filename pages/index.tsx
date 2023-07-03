@@ -16,7 +16,7 @@ import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import KitHeader from "../components/KitHeader/KitHeader";
 import { RootState } from "@/store/store";
-import { GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import { CategoryCardProps, Data, JobProps } from "@/Interface/interface";
 // import List from "@/components/List/List";
 // import UiKitCard from "@/components/UiKitCard/UiKitCard";
@@ -433,7 +433,7 @@ const Home: NextPage<{
   );
 };
 
-export const getStaticProps: GetStaticProps<any> = async () => {
+export const getStaticProps: GetServerSideProps = async () => {
   const uiTemplateFields = `
   title,slug,description,sanityFilter,images[]{
     asset->{url}
