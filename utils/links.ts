@@ -4,7 +4,8 @@ import pyramid from "../public/assets/icons/pyramid.svg";
 import product from "../public/assets/icons/product.svg";
 import bullseye from "../public/assets/icons/bullseye.svg";
 
-export const breifList: BriefList[] = [
+export const breifList: BriefList[] = 
+[
   {
     title: "Landing Page Briefs",
     name: "landingPageBrief",

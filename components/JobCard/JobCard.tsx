@@ -29,7 +29,7 @@ const JobCard: FC<{
       <div className="flex justify-between items-center">
         <Image
           alt=""
-          className="w-[5.4rem] h-[5.4rem] rounded-full"
+          className="w-[5.4rem] h-[5.4rem] rounded-full border-[2px] border-[#fff] shadow-job"
           width={60}
           height={60}
           src={urlFor(data.images[0]).url() || profile}

@@ -30,13 +30,13 @@ export interface Data {
   features?: string[];
   total?: number;
   _type?: string;
-  _createdAt?:Date
+  _createdAt?: Date;
 }
 export interface CategoryCardProps extends Data {
   coverImage: {
-    asset:{
-      url:string;
-    }
+    asset: {
+      url: string;
+    };
   };
 }
 export interface CardProps {
@@ -137,7 +137,7 @@ export interface JobProps {
   };
   total?: number;
   subCategory: string;
-  _createdAt?:Date
+  _createdAt?: Date;
 }
 export interface JobDetailProps extends JobProps {
   body: any;
@@ -167,4 +167,16 @@ export interface BriefList extends MainCardProps {
   };
   link: Url;
   subCategories: string[];
+}
+
+export interface CommingSoonCardProps {
+  bg: string;
+  title: string;
+  desc: string;
+  mainImg: { src: StaticImageData; alt: string };
+  replaces: { src: StaticImageData; alt: string }[];
+  link: string;
+  testimonial: { desc: string; name: string; designation: string };
+  categories: { desc: string; title: string }[];
+  extraReplace?: string | null;
 }
