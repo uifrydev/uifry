@@ -185,7 +185,7 @@ const Home: NextPage<{
           link=""
           description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
         />
-        <LandingPage />;
+        <LandingPage />
       </>
     );
   return (
