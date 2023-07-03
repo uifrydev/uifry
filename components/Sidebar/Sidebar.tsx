@@ -44,7 +44,7 @@ const Sidebar = ({ isDetail }: { isDetail: boolean }) => {
             : "top-0"
         } z-[10] bg-primary pt-[9rem] ${
           isDetail ? "lg:pt-[17rem]" : "lg:pt-[8.4rem]"
-        } h-full ${
+        } h-[100svh] ${
           features.isMenu
             ? "lg:max-h-[100vh] !overflow-y-scroll lg:!pt-[17rem]"
             : "lg:max-h-0 lg:!pt-0"

@@ -25,6 +25,7 @@ import ComingSoon from "@/components/ComingSoon/ComingSoon";
 // Add this function before the `MyApp` component definition
 import localFont from "next/font/local";
 import Sticker2 from "@/components/Sticker/Sticker2";
+import Sticker3 from "@/components/Sticker/Sticker3";
 
 const myFont = localFont({
   src: [
@@ -49,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
   const [showComingSoon, setShowComingSoon] = useState(false);
-
+  const isHomePage = router.pathname === "/";
   useEffect(() => {
     const isProduction = process.env.NODE_ENV === "production";
     const specificDomain = "www.uifry.com";
@@ -112,8 +113,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Progress isAnimating={isAnimating} />
+      {!user && isHomePage ? (
+        <Sticker3 classes={"!rounded-none mx-auto"} />
+      ) : !user ? (
+        <Sticker2 classes={"!rounded-none mx-auto"} />
+      ) : (
+        <></>
+      )}
       <main className={`relative ${myFont.variable}`}>
-        {!user && <Sticker2 classes={"!rounded-none mx-auto"} />}
         {proModal && <ProModal classes="" />}
         {faqModal && <FAQsModal />}
         <Component {...pageProps} />
