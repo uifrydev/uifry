@@ -72,7 +72,8 @@ const Home: NextPage<{
   styleGuides: Data[];
   jobs: JobProps[];
   briefs: CategoryCardProps[];
-}> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs }) => {
+  thisWeek: any;
+}> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs, thisWeek }) => {
   const { openModal, openModal1, briefModal } = useSelector(
     (state: RootState) => state.features
   );
@@ -273,7 +274,7 @@ const Home: NextPage<{
           <></>
         )}
         <Sticker
-          text="We added 10 new resources this week!"
+          text={`We added ${thisWeek.total} new resources this week!`}
           classes="mb-[4rem]"
           veiw={true}
         />
@@ -481,7 +482,10 @@ export const getStaticProps: GetServerSideProps = async () => {
   const fontsQuery = generateQuery("font", fontFields, 4);
   const styleGuidesQuery = generateQuery("styleGuide", styleGuideFields, 5);
   const jobsQuery = generateQuery("job", jobFields, 5);
-
+  const thisWeekQuery = `*[_type!='font' && _type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7]{
+    _type,_updatedAt,
+    "total": count(*[(_type=='uitemplate' || _type=='uxKit' || _type=='styleGuide' || _type=='job' || _type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief') && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+  }`;
   try {
     const queries = [
       { query: uiTemplatesQuery, sanity },
@@ -493,9 +497,11 @@ export const getStaticProps: GetServerSideProps = async () => {
         sanity,
       },
       { query: breifFields, sanity },
+      { query: thisWeekQuery, sanity },
     ];
-    const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs] =
+    const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs, thisWeek] =
       await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
+    console.log({ thisWeek });
     return {
       props: {
         uiTemplates,
@@ -504,9 +510,11 @@ export const getStaticProps: GetServerSideProps = async () => {
         styleGuides,
         jobs,
         briefs,
+        thisWeek: thisWeek.length ? thisWeek[0] : null,
       },
     };
   } catch (e) {
+    console.log(e);
     return {
       props: {
         uiTemplates: [],

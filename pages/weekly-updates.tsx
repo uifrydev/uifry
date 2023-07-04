@@ -195,18 +195,16 @@ const Home: NextPage<{
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
           <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-            Weekly{" "}
-            <span className="gradient-text">Updates</span>
+            Weekly <span className="gradient-text">Updates</span>
           </h2>
 
           <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
             Here we post weekly updates and new resources added to UIFry!
           </p>
         </div>
-       
-        
+
         <Sticker
-          text="We added 10 new resources this week!"
+          text={`We added ${(Number(uiTemplates[0]?.total) || 0)+(Number(styleGuides[0]?.total) || 0)+(Number(briefs[0]?.total) || 0)+(Number(jobs[0]?.total) || 0)} new resources this week!`}
           classes="mb-[4rem] !max-w-[35rem]"
         />
         <div className="flex flex-col gap-[2rem]">
@@ -214,7 +212,7 @@ const Home: NextPage<{
             classes={`4xl:grid-cols-3 grid-cols-4 ${
               uiTemplates?.length == 4 && "uitemphome"
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
-            resources={`Browse ${Number(uiTemplates[0]?.total) || 0} resources`}
+            resources={`${Number(uiTemplates[0]?.total) || 0} New Added This Week`}
             title="UI Templates"
             link="/ui-templates"
           >
@@ -245,7 +243,7 @@ const Home: NextPage<{
             classes={`4xl:grid-cols-3 grid-cols-4  ${
               styleGuides.length == 4 && "uitemphome"
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
-            resources={`Browse ${Number(styleGuides[0]?.total) || 0} resources`}
+            resources={`${Number(styleGuides[0]?.total) || 0} New Added This Week`}
             title="Style Guides"
             link="/styles-guides"
           >
@@ -276,7 +274,7 @@ const Home: NextPage<{
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1 `}
             title="Briefs"
             link="/briefs"
-            resources={`Browse ${Number(briefs[0]?.total) || 0} resources`}
+            resources={`${Number(briefs[0]?.total) || 0} New Added This Week`}
           >
             {briefs.map((item, index) => (
               <Link
@@ -312,7 +310,7 @@ const Home: NextPage<{
             } xl:grid-cols-1 `}
             title="UI UX Kits"
             link="/ui-ux-kits"
-            resources={`Browse ${Number(uiKits[0]?.total) || 0} resources`}
+            resources={`${Number(uiKits[0]?.total) || 0} New Added This Week`}
           >
             {uiKits.map((item, index) => (
               <Link
@@ -333,7 +331,7 @@ const Home: NextPage<{
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
             title="Jobs"
             link="/jobs"
-            resources={`Browse ${Number(jobs[0]?.total) || 0} resources`}
+            resources={`${Number(jobs[0]?.total) || 0} New Added This Week`}
           >
             {jobs.map((item, index) => (
               <Link
@@ -354,33 +352,38 @@ const Home: NextPage<{
 };
 
 export const getStaticProps: GetServerSideProps = async () => {
-  const uiTemplateFields = `
+  const uiTemplateFields = `*[_type=='uitemplate' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0...4]{
   title,slug,description,sanityFilter,images[]{
     asset->{url}
-  },tags,image,category
-`;
+  },tags,image,category,"total": count(*[_type == "uitemplate" && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+}`;
 
-  const uiKitFields = `
+  const uiKitFields = `*[_type=='uxKit' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0...3]{
   title,slug,noOfScreens,subCategory,category,description,sanityFilter,images[]{
     asset->{url}
   },tags,features,"fileURL":zipFile.asset->url
+  ,"total": count(*[_type == "uxKit" && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+}
 `;
 
-  
-
-  const styleGuideFields = `
+  const styleGuideFields = `*[_type=='styleGuide' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0...4]{
   title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
     asset->{url}
   },"fileURL":zipFile.asset->url
+  ,"total": count(*[_type == "styleGuide" && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+}
 `;
-  const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'][0...4]{
+  const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0..3]{
     title,slug,subCategories,description,coverImage{asset->{url}},images[]{
       asset->{url}
-    },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,"total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief'])
+    },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,
+    "total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+
 }`;
-  const jobFields = `
+  const jobFields = `*[_type=='job' && applyBefore >= now() && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0...4]{
   body,companyName,salaryRange,title,slug,description,images,jobType,primaryIndustry,tags,foundedIn,companySize,subCategory,jobPosted,applyBefore,applyNow,_createdAt
-`;
+  ,"total": count(*[_type == "job" && applyBefore >= now() && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])  
+}`;
   const uiTemplatesQuery = generateQuery("uitemplate", uiTemplateFields, 5);
   const uiKitsQuery = generateQuery("uxKit", uiKitFields, 4);
   const styleGuidesQuery = generateQuery("styleGuide", styleGuideFields, 5);
@@ -388,22 +391,23 @@ export const getStaticProps: GetServerSideProps = async () => {
 
   try {
     const queries = [
-      { query: uiTemplatesQuery, sanity },
-      { query: uiKitsQuery, sanity },
-      { query: styleGuidesQuery, sanity },
+      { query: uiTemplateFields, sanity },
+      { query: uiKitFields, sanity },
+      { query: styleGuideFields, sanity },
       {
-        query: `*[_type=='job' && applyBefore >= now()]${jobsQuery.slice(15)}`,
+        query: jobFields,
         sanity,
       },
       { query: breifFields, sanity },
     ];
-    const [uiTemplates, uiKits,  styleGuides, jobs, briefs] =
-      await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
+    const [uiTemplates, uiKits, styleGuides, jobs, briefs] = await Promise.all(
+      queries.map((queryObj) => fetchDataServer(queryObj))
+    );
     return {
       props: {
         uiTemplates,
         uiKits,
-    
+
         styleGuides,
         jobs,
         briefs,
@@ -423,6 +427,4 @@ export const getStaticProps: GetServerSideProps = async () => {
   }
 };
 
-
- 
 export default Home;
