@@ -68,11 +68,10 @@ const BriefModal = dynamic(
 const Home: NextPage<{
   uiTemplates: Data[];
   uiKits: Data[];
-  fonts: Data[];
   styleGuides: Data[];
   jobs: JobProps[];
   briefs: CategoryCardProps[];
-}> = ({ uiTemplates, uiKits, fonts, styleGuides, jobs, briefs }) => {
+}> = ({ uiTemplates, uiKits, styleGuides, jobs, briefs }) => {
   const { openModal, openModal1, briefModal } = useSelector(
     (state: RootState) => state.features
   );
@@ -177,17 +176,7 @@ const Home: NextPage<{
       link: "/jobs",
     },
   ];
-  if (!user)
-    return (
-      <>
-        <MetaHead
-          title="UIFry: Unlimited UI UX Designs, UI Kits, Jobs, Templates, Briefs and More"
-          link=""
-          description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
-        />
-        <LandingPage />
-      </>
-    );
+
   return (
     <>
       <MetaHead
@@ -205,77 +194,20 @@ const Home: NextPage<{
       {/* <FilterBar /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
-          {!user ? (
-            <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Unlimited Access to
-              <span className="gradient-text"> Premium UI/UX </span>
-              Designs, Jobs, Templates, and Briefs
-            </h2>
-          ) : (
-            <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Welcome,
-              <span className="gradient-text">
-                {" "}
-                {user?.FullName.split(" ")[0]}
-              </span>
-            </h2>
-          )}
+          <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+            Weekly{" "}
+            <span className="gradient-text">Updates</span>
+          </h2>
+
           <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
-            UIFry is the ultimate hub for UI UX designers to grow, learn and
-            smash client work daily with so much more.
+            Here we post weekly updates and new resources added to UIFry!
           </p>
         </div>
-        {!user && false ? (
-          <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
-            <div className="flex gap-[3rem] sm:flex-col items-center">
-              <span className="text-primaryBlack font-700 text-[1.6rem] leading-[150%] py-[1.6rem] px-[2rem] bg-[#fff] rounded-[.6rem] ">
-                What does UIFry offers?
-              </span>
-              <span className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
-                Browse through the categories below!
-              </span>
-            </div>
-            {/* max-w-[116.6rem] */}
-            <div className="grid gap-x-[3rem] gap-y-[2rem] grid-cols-3 md:grid-cols-2  sm:grid-cols-1">
-              {pages.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  <Card2 desc={item.desc} img={item.img} title={item.title} />
-                  {/* <Card1 desc={item.desc} img={item.img} title={item.title} /> */}
-                </Link>
-              ))}
-              {/* {pages.map((item, index) => (
-              <Link href={item.link} key={index}>
-                <Card3 desc={item.desc} img={item.img1} title={item.title} />
-              </Link>
-            ))} */}
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
-        {false ? (
-          <div className="flex gap-[2rem] justify-center pl-[2rem] sm:flex-col sm:items-start mb-[4.3rem] mt-[4rem] ">
-            <div className="flex flex-col gap-[.8rem] ">
-              <p className="satoshi font-700 text-primaryBlack text-[2.8rem] leading-[120%] ">
-                Latest this week
-              </p>
-              <p className="text-secondaryGray text-[1.8rem] leading-[150%]">
-                Browse through the latest resources, briefs and jobs added this
-                week
-              </p>
-            </div>
-            <Sticker
-              text="We added 10 new resources this week!"
-              classes="sm:!mx-0 !mr-0"
-            />
-          </div>
-        ) : (
-          <></>
-        )}
+       
+        
         <Sticker
           text="We added 10 new resources this week!"
-          classes="mb-[4rem]"
-          veiw={true}
+          classes="mb-[4rem] !max-w-[35rem]"
         />
         <div className="flex flex-col gap-[2rem]">
           <List
@@ -395,29 +327,6 @@ const Home: NextPage<{
               </Link>
             ))}
           </List>
-
-          <List
-            classes={`4xl:grid-cols-2 grid-cols-3 ${
-              fonts.length == 3 && "uiuxhome"
-            } xl:grid-cols-1`}
-            resources={`Browse ${Number(fonts[0]?.total) || 0} resources`}
-            title="Fonts"
-            link="/fonts"
-          >
-            {fonts.map((item, index) => (
-              <Link
-                key={index}
-                href={{
-                  pathname: "/fonts/details",
-                  // href: "/ui-templates/details",
-                  query: { font: item?.slug?.current },
-                }}
-              >
-                <FontCard key={index} onClick={() => {}} data={item} />
-              </Link>
-            ))}
-          </List>
-
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
               jobs.length == 4 && "uitemphome"
@@ -457,11 +366,7 @@ export const getStaticProps: GetServerSideProps = async () => {
   },tags,features,"fileURL":zipFile.asset->url
 `;
 
-  const fontFields = `
-  title,slug,noOfScreens,subCategory,category,description,images[]{
-    asset->{url}
-  },tags,features,"fileURL":zipFile.asset->url
-`;
+  
 
   const styleGuideFields = `
   title,slug,subCategory,category,description,sanityFilter,tags,"images":image{
@@ -478,7 +383,6 @@ export const getStaticProps: GetServerSideProps = async () => {
 `;
   const uiTemplatesQuery = generateQuery("uitemplate", uiTemplateFields, 5);
   const uiKitsQuery = generateQuery("uxKit", uiKitFields, 4);
-  const fontsQuery = generateQuery("font", fontFields, 4);
   const styleGuidesQuery = generateQuery("styleGuide", styleGuideFields, 5);
   const jobsQuery = generateQuery("job", jobFields, 5);
 
@@ -486,7 +390,6 @@ export const getStaticProps: GetServerSideProps = async () => {
     const queries = [
       { query: uiTemplatesQuery, sanity },
       { query: uiKitsQuery, sanity },
-      { query: fontsQuery, sanity },
       { query: styleGuidesQuery, sanity },
       {
         query: `*[_type=='job' && applyBefore >= now()]${jobsQuery.slice(15)}`,
@@ -494,13 +397,13 @@ export const getStaticProps: GetServerSideProps = async () => {
       },
       { query: breifFields, sanity },
     ];
-    const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs] =
+    const [uiTemplates, uiKits,  styleGuides, jobs, briefs] =
       await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
     return {
       props: {
         uiTemplates,
         uiKits,
-        fonts,
+    
         styleGuides,
         jobs,
         briefs,
@@ -520,73 +423,6 @@ export const getStaticProps: GetServerSideProps = async () => {
   }
 };
 
-const Card1 = ({
-  img,
-  title,
-  desc,
-}: {
-  img: { src: StaticImageData; alt: string };
-  title: string;
-  desc: string;
-}) => (
-  <div className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]">
-    <div className="rounded-[.8rem] shadow-cardShadow w-full flex middle aspect-[2/1]">
-      <Image src={img.src} alt={img.alt} />
-    </div>
-    <p className="text-heading text-center text-[1.7rem] satoshi font-700 leading-[2.6rem] ">
-      {title}
-    </p>
-    <p className="text-[#6B7194] max-w-[28.2rem] font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
-      {desc}
-    </p>
-  </div>
-);
-const Card2 = ({
-  img,
-  title,
-  desc,
-}: {
-  img: { src: StaticImageData; alt: string };
-  title: string;
-  desc: string;
-}) => (
-  <>
-    <div className="flex gap-[2rem] p-[2rem] py-[2.5rem] pr-[2.7rem] rounded-[2rem] bg-[#fff] h-full items-center">
-      <div className="w-[19rem]">
-        <Image src={img.src} alt={img.alt} className="w-full" />
-      </div>
-      <div className="flex flex-col items-start gap-[.5rem]">
-        <p className="text-primaryBlack text-center text-[1.8rem] satoshi font-700 leading-[2.6rem] ">
-          {title}
-        </p>
-        <p className="text-[#6B7194]  font-400 text-[1.4rem] leading-[2.4rem] three-line-ellipsis">
-          {desc}
-        </p>
-      </div>
-    </div>
-  </>
-);
-const Card3 = ({
-  img,
-  title,
-  desc,
-}: {
-  img: { src: StaticImageData; alt: string };
-  title: string;
-  desc: string;
-}) => (
-  <>
-    <div className="flex flex-col gap-[2rem] bg-[#fff] items-center p-[2rem] rounded-[1rem]">
-      <div className="rounded-[1.05085rem]  w-full flex middle aspect-[2/1]">
-        <Image src={img.src} alt={img.alt} className="w-full h-full" />
-      </div>
-      <p className="text-heading text-center text-[2rem] satoshi font-700 leading-[2.6rem] ">
-        {title}
-      </p>
-      <p className="text-[#6B7194]  font-400 text-[1.4rem] text-center leading-[2.4rem] three-line-ellipsis">
-        {desc}
-      </p>
-    </div>
-  </>
-);
+
+ 
 export default Home;

@@ -13,7 +13,7 @@ const List = ({
   classes: string;
   children: ReactNode;
   title: string;
-  resources: number;
+  resources: string;
   link:string;
 }) => {
   return (
@@ -24,7 +24,7 @@ const List = ({
             {title}
           </div>
           <div className="text-secondaryGray text-[1.4rem] font-[500] leading-[2rem]">
-            Browse {resources} resources
+            {resources}
           </div>
         </div>
         <Link href={link}>
