@@ -14,8 +14,8 @@ const ProCard = () => {
     <Link href={"/signup"}  className="max-w-[128rem] relative py-[6.4rem] px-[2rem] overflow-hidden w-full rounded-[2rem] bg-[#0A3E8B] flex flex-col middle gap-[1.9rem]">
       <Image src={g1} alt="gradient1" className="absolute left-0 bottom-0" />
       <Image src={g2} alt="gradient2" className="absolute  right-0 top-0" />
-      <Image src={d1} alt="drop1" className="absolute top-[6rem] left-[6rem]" />
-      <Image src={d2} alt="drop2" className="absolute top-[6rem] right-[6rem]" />
+      <Image src={d1} alt="drop1" className="absolute top-[6rem] left-[6rem] sm:hidden" />
+      <Image src={d2} alt="drop2" className="absolute top-[6rem] right-[6rem] sm:hidden" />
       <span className="text-[#01B3FF] text-[1.4rem] satoshi tracking-[4.78px] font-700 leading-[2.4rem] text-center z-[10]">
         LET'S GET STARTED!
       </span>
