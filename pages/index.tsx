@@ -38,10 +38,16 @@ import briefsImg1 from "../public/assets/images/briefs1.png";
 import guides1 from "../public/assets/images/guides1.png";
 import jobsImg1 from "../public/assets/images/jobs1.png";
 import fontsImg1 from "../public/assets/images/fonts1.png";
+import line from "../public/assets/images/line5.png";
+import brands from "../public/assets/images/brands.png";
+
 import Image, { StaticImageData } from "next/image";
 // import Sticker from "@/components/Sticker/Sticker";
 import dynamic from "next/dynamic";
 import { Props, ScriptProps } from "next/script";
+import { testimonials } from "@/utils/data";
+import TestimonialCard from "@/components/Card/TestimonialCard";
+import ProCard from "@/components/Card/ProCard";
 const Card = dynamic(() => import("../components/Card/Card"));
 const DetailsModal = dynamic(
   () => import("../components/DetailsModal/DetailsModal")
@@ -207,24 +213,49 @@ const Home: NextPage<{
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
           {!user ? (
-            <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Unlimited access to
-              <span className="gradient-text"> Premium UI/UX </span>
-              designs, jobs, templates, and briefs
-            </h2>
+            <>
+              <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+                Unlimited access to
+                <span className="gradient-text"> Premium UI/UX </span>
+                designs, jobs, templates, and briefs
+              </h2>
+              <p className="text-[1.8rem] font-[400] max-w-[55rem] text-center text-secondaryGray leading-[150%]">
+                UIFry is the ultimate hub for UI UX designers to grow, learn and
+                smash client work daily with so much more.{" "}
+                <span className="satoshi text-primaryBlack font-700 relative">
+                  {" "}
+                  Proudly featured in:
+                  <Image
+                    src={line}
+                    alt="circle"
+                    className="absolute -bottom-[1rem] -left-[.1rem] w-[110%]"
+                  />
+                </span>
+              </p>
+              <div className="flex mx-auto mt-[2rem]">
+                <Image src={brands} alt="" />
+              </div>
+            </>
           ) : (
-            <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Welcome,
-              <span className="gradient-text">
-                {" "}
-                {user?.FullName.split(" ")[0]}
-              </span>
-            </h2>
+            <>
+              <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
+                Welcome,
+                <span className="gradient-text">
+                  {" "}
+                  {user?.FullName.split(" ")[0]}
+                </span>
+              </h2>
+              <p className="text-[1.8rem] font-[400] max-w-[55rem] text-center text-secondaryGray leading-[150%]">
+                UIFry is the ultimate hub for UI UX designers to grow, learn and
+                smash client work daily with so much more.
+              </p>
+            </>
           )}
-          <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
+
+          {/* <p className="text-[1.8rem] font-[400] text-center text-secondaryGray">
             UIFry is the ultimate hub for UI UX designers to grow, learn and
             smash client work daily with so much more.
-          </p>
+          </p> */}
         </div>
         {!user && false ? (
           <div className="flex flex-col px-[4rem] py-[5rem] bg-primary mb-[3.2rem] gap-[2rem] rounded-[2.4rem]">
@@ -276,7 +307,7 @@ const Home: NextPage<{
         <Sticker
           text={`We added ${thisWeek.total} new resources this week!`}
           classes="mb-[4rem]"
-          veiw={true}
+          veiw={user && true}
         />
         <div className="flex flex-col gap-[2rem]">
           <List
@@ -440,6 +471,31 @@ const Home: NextPage<{
             ))}
           </List>
         </div>
+        {!user && (
+          <div className="flex flex-col gap-[3rem] mt-[4rem] middle">
+            <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem]">
+              <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
+                “Everything for a UI/UX designer -
+                <span className="gradient-text relative">
+                  {" "}
+                  new resources{" "}
+                  <Image
+                    src={line}
+                    alt="circle"
+                    className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110 %]"
+                  />
+                </span>
+                added each week!”
+              </h3>
+              <div className="max-w-[130rem] grid grid-cols-3 gap-[3.2rem] items-start lg:grid-cols-2 sm:grid-cols-1">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+            <ProCard />
+          </div>
+        )}
       </div>
     </>
   );
