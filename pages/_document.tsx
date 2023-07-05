@@ -41,6 +41,11 @@ var o_options = {
   return (
     <Html lang="en">
       <Head>
+        <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MSK62VC');`}</script>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>
         <meta name="theme-color" content="#fff" />
@@ -67,7 +72,7 @@ var o_options = {
 
   gtag('config', 'G-H6YXLQ87T1');`}
         </Script>
-{/* 
+        {/* 
         <Script strategy="lazyOnload">
           {`!function(w, d, t, u) { if (w.__ls) return; var f = w.__ls = function() { f.push ? f.push.apply(f, arguments) : f.store.push(arguments)}; if (!w.__ls) w.__ls = f; f.store = []; f.v = "1.0"; var ls = d.createElement(t); ls.async = true; ls.src = u; var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(ls, s); }(window, document, 'script', ('https:' == window.location.protocol ? 'https://' : 'http://') + 'cdn.livesession.io/track.js'); __ls("init", "d58bb084.155e2e0b"); __ls("newPageView") `}
         </Script>
@@ -85,6 +90,14 @@ var o_options = {
         </Script>
       </Head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MSK62VC"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <Main />
         <NextScript />
       </body>
