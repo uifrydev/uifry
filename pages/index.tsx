@@ -482,7 +482,7 @@ export const getStaticProps: GetServerSideProps = async () => {
   const fontsQuery = generateQuery("font", fontFields, 4);
   const styleGuidesQuery = generateQuery("styleGuide", styleGuideFields, 5);
   const jobsQuery = generateQuery("job", jobFields, 5);
-  const thisWeekQuery = `*[_type!='font' && _type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7]{
+  const thisWeekQuery = `*[(_type=='uitemplate' || _type=='uxKit' || _type=='styleGuide' || _type=='job' || _type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief') && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7]{
     _type,_updatedAt,
     "total": count(*[(_type=='uitemplate' || _type=='uxKit' || _type=='styleGuide' || _type=='job' || _type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief') && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
   }`;

@@ -72,6 +72,12 @@ const Home: NextPage<{
   jobs: JobProps[];
   briefs: CategoryCardProps[];
 }> = ({ uiTemplates, uiKits, styleGuides, jobs, briefs }) => {
+  console.log({
+    uiTemplates: Number(uiTemplates[0]?.total) || 0,
+    style: Number(styleGuides[0]?.total) || 0,
+    breifs: Number(briefs[0]?.total) || 0,
+    job: Number(jobs[0]?.total) || 0,
+  });
   const { openModal, openModal1, briefModal } = useSelector(
     (state: RootState) => state.features
   );
@@ -204,7 +210,13 @@ const Home: NextPage<{
         </div>
 
         <Sticker
-          text={`We added ${(Number(uiTemplates[0]?.total) || 0)+(Number(styleGuides[0]?.total) || 0)+(Number(briefs[0]?.total) || 0)+(Number(jobs[0]?.total) || 0)} new resources this week!`}
+          text={`We added ${
+            (Number(uiTemplates[0]?.total) || 0) +
+            (Number(styleGuides[0]?.total) || 0) +
+            (Number(briefs[0]?.total) || 0) +
+            (Number(uiKits[0]?.total) || 0) +
+            (Number(jobs[0]?.total) || 0)
+          } new resources this week!`}
           classes="mb-[4rem] !max-w-[35rem]"
         />
         <div className="flex flex-col gap-[2rem]">
@@ -212,7 +224,9 @@ const Home: NextPage<{
             classes={`4xl:grid-cols-3 grid-cols-4 ${
               uiTemplates?.length == 4 && "uitemphome"
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
-            resources={`${Number(uiTemplates[0]?.total) || 0} New Added This Week`}
+            resources={`${
+              Number(uiTemplates[0]?.total) || 0
+            } New Added This Week`}
             title="UI Templates"
             link="/ui-templates"
           >
@@ -243,7 +257,9 @@ const Home: NextPage<{
             classes={`4xl:grid-cols-3 grid-cols-4  ${
               styleGuides.length == 4 && "uitemphome"
             } 2xl1:grid-cols-3 2xl2:grid-cols-2 md:grid-cols-1`}
-            resources={`${Number(styleGuides[0]?.total) || 0} New Added This Week`}
+            resources={`${
+              Number(styleGuides[0]?.total) || 0
+            } New Added This Week`}
             title="Style Guides"
             link="/styles-guides"
           >
@@ -373,11 +389,11 @@ export const getStaticProps: GetServerSideProps = async () => {
   ,"total": count(*[_type == "styleGuide" && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
 }
 `;
-  const breifFields = `*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0..3]{
+  const breifFields = `*[(_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief') && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0..3]{
     title,slug,subCategories,description,coverImage{asset->{url}},images[]{
       asset->{url}
     },_type,"tags":includes,includes,"fileURL":zipFile.asset->url,
-    "total":count(*[_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief' && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
+    "total":count(*[(_type=='landingPageBrief' || _type=='productUiBrief' || _type=='UxBrief') && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7])
 
 }`;
   const jobFields = `*[_type=='job' && applyBefore >= now() && dateTime(_updatedAt) > dateTime(now()) - 60*60*24*7] | order(featured desc, _updatedAt desc)[0...4]{
