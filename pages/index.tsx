@@ -472,8 +472,8 @@ const Home: NextPage<{
           </List>
         </div>
         {!user && (
-          <div className="flex flex-col gap-[3rem] mt-[4rem] middle">
-            <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem]">
+          <div className="flex flex-col gap-[8rem] mt-[4rem] middle">
+            <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem]">
               <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
                 “Everything for a UI/UX designer -
                 <span className="gradient-text relative">
