@@ -47,7 +47,8 @@ const MetaHead = ({
       <title>{title}</title>
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {image && <meta property="og:image" content={image} />}
+      {/* {image && <meta property="og:image" content={image} />} */}
+      <meta property="og:image"  content={`https://www.uifry.com/assets/images/opengraph.png`} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content={description} />
       <link rel="canonical" href={`https://uifry.com/${link || ""}`} />

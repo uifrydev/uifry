@@ -88,11 +88,11 @@ const LandingPage = () => {
           {/* <div className="max-w-[99.5rem] shadow-cardShadowHover border-[4px] border-[#fff] rounded-[1.6rem]">
             <Image src={ssHome} alt="home screenshot" className="w-full" />
           </div> */}
-          <div className="max-w-[99.5rem] overflow-hidden  border-[4px] border-[#fff] rounded-[1.6rem]">
+          {/* <div className="max-w-[99.5rem] overflow-hidden  border-[4px] border-[#fff] rounded-[1.6rem]">
             <video autoPlay loop muted className="">
               <source type="video/webm" src="/assets/videos/uifry1.webm" />
             </video>
-          </div>
+          </div> */}
 
           <div className="flex flex-col middle gap-[4.44rem]">
             <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">

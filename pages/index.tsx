@@ -178,17 +178,17 @@ const Home: NextPage<{
       link: "/jobs",
     },
   ];
-  if (!user)
-    return (
-      <>
-        <MetaHead
-          title="UIFry: Unlimited UI UX Designs, UI Kits, Jobs, Templates, Briefs and More"
-          link=""
-          description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
-        />
-        <LandingPage />
-      </>
-    );
+  // if (!user)
+  //   return (
+  //     <>
+  //       <MetaHead
+  //         title="UIFry: Unlimited UI UX Designs, UI Kits, Jobs, Templates, Briefs and More"
+  //         link=""
+  //         description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
+  //       />
+  //       <LandingPage />
+  //     </>
+  //   );
   return (
     <>
       <MetaHead

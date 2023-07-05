@@ -24,7 +24,7 @@ export const nodeMailer = ({
   return transporter.sendMail({
     from: "safiullah.xeon@gmail.com",
     // to: "kashaf.creaditech@gmail.com",
-    to: "safiullah.xeon@gmail.com",
+    to: "accounts@uifry.com",
     subject: "Brief Sent by User.",
     html: `<div style="">
       <div style="display:flex;gap:10px;">
