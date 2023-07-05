@@ -113,10 +113,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Progress isAnimating={isAnimating} />
-      {!user && isHomePage ? (
+      {!user && isHomePage && false ? (
         <Sticker3 classes={"!rounded-none mx-auto"} />
       ) : !user ? (
-        <Sticker2 classes={"!rounded-none mx-auto"} />
+        <Sticker1 classes={"!rounded-none mx-auto"} />
       ) : (
         <></>
       )}

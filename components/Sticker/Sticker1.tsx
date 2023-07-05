@@ -9,7 +9,7 @@ const Sticker1 = ({ classes = "" }: { classes: string }) => {
   return (
     <div
       id="sticker"
-      className={`w-full flex z-[11] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-auto h-[6.3rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes} `}
+      className={`w-full flex z-[11] bg-[#002D6A] xs1:p-[1rem] pr-[1rem] justify-center xs1:py-[1rem] gap-[2rem] xs1:h-[9.2rem] h-[6.3rem] sticky top-0 py-[0rem] overflow-hidden px-[0rem] items-center rounded-full bg-[#] ${classes} `}
     >
       <div className="relative flex h-full justify-center items-center w-full max-w-[170rem]">
         <div className="flex items-center  gap-[2rem]  z-[12]">

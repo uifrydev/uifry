@@ -208,9 +208,9 @@ const Home: NextPage<{
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
           {!user ? (
             <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
-              Unlimited Access to
+              Unlimited access to
               <span className="gradient-text"> Premium UI/UX </span>
-              Designs, Jobs, Templates, and Briefs
+              designs, jobs, templates, and briefs
             </h2>
           ) : (
             <h2 className="satoshi max-w-[83rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">
