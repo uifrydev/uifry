@@ -61,7 +61,10 @@ const FAQsModal = ({ classes }: { classes?: string }) => {
               <p className="text-secondaryGray text-[1.4rem] sm:text-center font-500 leading-[150%]">
                 Yes, you can cancel your subscription anytime but you will be
                 charged for the whole month period and there will no amount be
-                refunded! Please refer to our <span className="text-[#00B3FF]">policies here</span>
+                refunded! Please refer to our{" "}
+                <Link href={"/privacy-policy"} className="text-[#00B3FF]">
+                  policies here
+                </Link>
               </p>
             }
             title="Can I cancel my subscription anytime?"
@@ -71,8 +74,11 @@ const FAQsModal = ({ classes }: { classes?: string }) => {
               <p className="text-secondaryGray text-[1.4rem] sm:text-center font-500 leading-[150%]">
                 UIFry is a platform which allows unlimited downloads and access
                 to resources on a Pro Plan. Please visit{" "}
-                <span className="text-[#00B3FF]">Fair Use Policy</span> to understand more about
-                inappropriate download and access behaviour
+                <Link href={"/fair-policy"} className="text-[#00B3FF]">
+                  Fair Use Policy
+                </Link>{" "}
+                to understand more about inappropriate download and access
+                behaviour
               </p>
             }
             title="Do any limits apply to downloads, briefs & resources?"
@@ -90,19 +96,34 @@ const FAQsModal = ({ classes }: { classes?: string }) => {
           <FAQTag
             description={
               <p className="text-secondaryGray text-[1.4rem] sm:text-center font-500 leading-[150%]">
-                Yes, UIFry is available in all countries. If for some reason, you are not able to use UIFry in your country, please submit a <span className="text-[#00B3FF]">ticket here.</span>
+                Yes, UIFry is available in all countries. If for some reason,
+                you are not able to use UIFry in your country, please submit a{" "}
+                <Link
+                  href={"https://uifry.outseta.com/support/kb/categories"}
+                  target="_blank"
+                  className="text-[#00B3FF]"
+                >
+                  ticket here.
+                </Link>
               </p>
             }
             title="Is UIFry available in all countries?"
           />
-          <Button classes="bg-gradient p-[2rem] rounded-full ">
+          <Button
+            onClick={() => {
+              window.open("https://uifry.outseta.com/support/kb/categories");
+            }}
+            classes="bg-gradient p-[2rem] rounded-full "
+          >
             <span className="text-[#fff] satoshi text-[1.6rem] font-500 leading-[150%]">
               Contact Us For Any More Questions
             </span>
           </Button>
           <p className="text-center text-[1.4rem] leading-[2.9rem] text-secondaryGray">
             Please refer to our policies, terms & conditions{" "}
-            <span className="text-[#00B3FF]">here.</span>
+            <Link href={"/license-agreement"} className="text-[#00B3FF]">
+              here.
+            </Link>
           </p>
         </div>
       </div>

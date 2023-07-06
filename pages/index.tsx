@@ -472,7 +472,7 @@ const Home: NextPage<{
           </List>
         </div>
         {!user && (
-          <div className="flex flex-col gap-[8rem] mt-[4rem] middle">
+          <div className="flex flex-col gap-[3rem] mt-[4rem] middle">
             <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem]">
               <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
                 “Everything for a UI/UX designer -
@@ -496,6 +496,28 @@ const Home: NextPage<{
             <ProCard />
           </div>
         )}
+
+        <div className="flex gap-[1rem] middle flex-wrap mt-[6rem]">
+          <div className="flex gap-[1rem]">
+            <Link
+              href={"/license-agreement"}
+              className="text-secondaryGray text-[1.6rem] leading-[150%] font-400"
+            >
+              License, Terms & Policy
+            </Link>
+
+            <Link
+              href={"https://uifry.outseta.com/support/kb/categories"}
+              target="_blank"
+              className="text-secondaryGray text-[1.6rem] leading-[150%] font-400"
+            >
+              Support
+            </Link>
+          </div>
+          <span className="text-[1.4rem] font-400 text-[#160042]">
+            UIFry LTD® 2023
+          </span>
+        </div>
       </div>
     </>
   );
