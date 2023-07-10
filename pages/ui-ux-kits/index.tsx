@@ -106,8 +106,9 @@ const UxUiKits: NextPage<{ posts: Data[] }> = ({ posts }) => {
               }`,
               });
             }}
+            classes="bg-gradient rounded-[3.2rem]"
           >
-            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] px-[2.4rem] py-[1.2rem]">
               {isLoadmoreLoading
                 ? "Loading..."
                 : !isLoadMore

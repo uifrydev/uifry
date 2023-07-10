@@ -40,7 +40,10 @@ import jobsImg1 from "../public/assets/images/jobs1.png";
 import fontsImg1 from "../public/assets/images/fonts1.png";
 import line from "../public/assets/images/line5.png";
 import brands from "../public/assets/images/brands.png";
-
+import linkedin from "../public/assets/icons/linkedin.svg";
+import instagram from "../public/assets/icons/instagram.svg";
+import twitter from "../public/assets/icons/twitter.svg";
+import facebook from "../public/assets/icons/facebook.svg";
 import Image, { StaticImageData } from "next/image";
 // import Sticker from "@/components/Sticker/Sticker";
 import dynamic from "next/dynamic";
@@ -207,64 +210,7 @@ const Home: NextPage<{
       {briefModal && <BriefModal data={modalData} />}
       <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
       {/* <KitHeader /> */}
-      <div className="min-lg:pl-[214px] lg:px-[1rem] pr-[2rem] py-[3rem] my-[1rem] w-full overflow-hidden">
-        <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem] overflow-x-hidden">
-          <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
-            “Everything for a UI/UX designer -
-            <span className="gradient-text relative">
-              {" "}
-              new resources{" "}
-              <Image
-                src={line}
-                alt="circle"
-                className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110 %]"
-              />
-            </span>
-            added each week!”
-          </h3>
-          <article className="wrapper">
-            <div className="marquee overflow-x-hidden">
-              <div className="marquee__group ">
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-              </div>
-
-              <div aria-hidden="true" className="marquee__group">
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-              </div>
-            </div>
-
-            <div className="marquee marquee--reverse overflow-x-hidden">
-              <div className="marquee__group ">
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-              </div>
-
-              <div aria-hidden="true" className="marquee__group">
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+      
       <Sidebar isDetail={false} />
       {/* <FilterBar /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full pb-[10rem]">
@@ -373,11 +319,32 @@ const Home: NextPage<{
         ) : (
           <></>
         )}
-        <Sticker
+        {user && <Sticker
           text={`We added ${thisWeek.total} new resources this week!`}
           classes="mb-[4rem]"
           veiw={user && true}
-        />
+        />}
+        <article className="wrapper mb-[3rem]">
+            <div className="marquee overflow-x-hidden">
+              <div className="marquee__group ">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+
+              <div aria-hidden="true" className="marquee__group">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+          </article>
         <div className="flex flex-col gap-[2rem]">
           <List
             classes={`4xl:grid-cols-3 grid-cols-4 ${
@@ -540,9 +507,67 @@ const Home: NextPage<{
             ))}
           </List>
         </div>
+        {/* <div className="min-lg:pl-[214px] lg:px-[1rem] pr-[2rem] py-[3rem] my-[1rem] w-full overflow-hidden"> */}
+        <div className="flex flex-col w-full mt-[4rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem] overflow-x-hidden">
+          <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
+            “Everything for a UI/UX designer -
+            <span className="gradient-text relative">
+              {" "}
+              new resources{" "}
+              <Image
+                src={line}
+                alt="circle"
+                className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110 %]"
+              />
+            </span>
+            added each week!”
+          </h3>
+          <article className="wrapper">
+            <div className="marquee overflow-x-hidden">
+              <div className="marquee__group ">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+
+              <div aria-hidden="true" className="marquee__group">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+
+            <div className="marquee marquee--reverse overflow-x-hidden">
+              <div className="marquee__group ">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+
+              <div aria-hidden="true" className="marquee__group">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+          </article>
+        {/* </div> */}
+      </div>
         {!user && (
           <div className="flex flex-col gap-[3rem] mt-[4rem] middle">
-            <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem]">
+            {/* <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem]">
               <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
                 “Everything for a UI/UX designer -
                 <span className="gradient-text relative">
@@ -561,7 +586,7 @@ const Home: NextPage<{
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
               </div>
-            </div>
+            </div> */}
             <ProCard />
           </div>
         )}
@@ -583,9 +608,25 @@ const Home: NextPage<{
               Support
             </Link>
           </div>
+          <span>|</span>
           <span className="text-[1.4rem] font-400 text-[#160042]">
             UIFry LTD® 2023
           </span>
+          <span>|</span>
+          <div className="flex gap-[1.732rem] items-center">
+            <Link href={"https://www.linkedin.com/company/ui-fry/"} target="_blank">
+              <Image src={linkedin} alt="" className="w-[1.6rem]" />
+            </Link>
+            <Link href={"https://www.instagram.com/uifryy/"} target="_blank">
+              <Image src={instagram} alt="" className="w-[1.7rem]" />
+            </Link>
+            <Link href={"https://twitter.com/uifryy"} target="_blank">
+              <Image src={twitter} alt="" className="w-[1.9rem]" />
+            </Link>
+            <Link href={"https://www.facebook.com/uifryy"} target="_blank">
+              <Image src={facebook} alt="" className="w-[.9rem]" />
+            </Link>
+          </div>
         </div>
       </div>
     </>

@@ -100,7 +100,8 @@ const Jobs: NextPage<{
             }`,
               });
             }}
-            classes="mb-[2rem]"
+            classes="bg-gradient mb-[2rem] rounded-[3.2rem]"
+
             //   ${
             //     filter.subCategory !== "All Jobs"
             //     ? ` && subCategory=='${filter.subCategory}'`
@@ -109,7 +110,7 @@ const Jobs: NextPage<{
             //   filter.type !== "All" ? ` && jobType=='${filter.type}'` : ""
             // }
           >
-            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] rounded-[3.2rem] px-[2.4rem] py-[1.2rem] bg-gradient">
+            <span className="satoshi text-[1.6rem] font-500 text-[#F7F8FD] px-[2.4rem] py-[1.2rem]">
             {isLoadmoreLoading
                 ? "Loading..."
                 : !isLoadMore
