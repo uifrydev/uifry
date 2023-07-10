@@ -32,7 +32,7 @@ var o_signup_options = {
     "mode": "embed",
     "selector": "#signup-embed"
   }
-};
+}
 var o_options = {
   domain: 'uifry.outseta.com',
   load: 'chat'
@@ -41,11 +41,11 @@ var o_options = {
   return (
     <Html lang="en">
       <Head>
-        <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <Script strategy="lazyOnload">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MSK62VC');`}</script>
+})(window,document,'script','dataLayer','GTM-MSK62VC');`}</Script>
 {/* <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

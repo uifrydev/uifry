@@ -207,7 +207,7 @@ const Home: NextPage<{
       {briefModal && <BriefModal data={modalData} />}
       <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
       {/* <KitHeader /> */}
-      {/* <div className="min-lg:pl-[214px] lg:px-[1rem] pr-[2rem] py-[3rem] my-[1rem] w-full overflow-hidden">
+      <div className="min-lg:pl-[214px] lg:px-[1rem] pr-[2rem] py-[3rem] my-[1rem] w-full overflow-hidden">
         <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem] overflow-x-hidden">
           <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
             “Everything for a UI/UX designer -
@@ -264,7 +264,7 @@ const Home: NextPage<{
             </div>
           </article>
         </div>
-      </div> */}
+      </div>
       <Sidebar isDetail={false} />
       {/* <FilterBar /> */}
       <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full pb-[10rem]">
