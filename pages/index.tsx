@@ -330,15 +330,10 @@ const Home: NextPage<{
                 {testimonials.map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
+                
               </div>
 
               <div aria-hidden="true" className="marquee__group">
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
                 {testimonials.map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
@@ -525,41 +520,33 @@ const Home: NextPage<{
           <article className="wrapper">
             <div className="marquee overflow-x-hidden">
               <div className="marquee__group ">
-                {testimonials.map((item) => (
+                {testimonials.slice(0,4).map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
+                
               </div>
 
               <div aria-hidden="true" className="marquee__group">
-                {testimonials.map((item) => (
+                {testimonials.slice(0,4).map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
+                
               </div>
             </div>
 
             <div className="marquee marquee--reverse overflow-x-hidden">
               <div className="marquee__group ">
-                {testimonials.map((item) => (
+                {testimonials.slice(4,8).map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
+                
               </div>
 
               <div aria-hidden="true" className="marquee__group">
-                {testimonials.map((item) => (
+                {testimonials.slice(4,8).map((item) => (
                   <TestimonialCard {...item} key={item.designation} />
                 ))}
-                {testimonials.map((item) => (
-                  <TestimonialCard {...item} key={item.designation} />
-                ))}
+                
               </div>
             </div>
           </article>

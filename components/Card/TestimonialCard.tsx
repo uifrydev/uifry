@@ -18,8 +18,8 @@ const TestimonialCard = ({
       <div className="flex flex-col gap-[1.8rem]">
         <div className="">
           <div className="flex w-full items-center justify-between gap-[1rem]">
-            <p className="text-[1.7rem] font-600 leading-[2.34rem] text-secondaryBlack">
-              {name}
+            {/* <p className="text-[1.7rem] font-600 leading-[2.34rem] text-secondaryBlack"> */}
+              <p className="satoshi text-primaryBlack leading-[120%] text-[1.8rem] font-[700]">              {name}
             </p>
             <Image src={greenCheck} alt="" />
           </div>

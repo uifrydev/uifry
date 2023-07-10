@@ -27,7 +27,7 @@
   .marquee__group {
     flex-shrink: 0;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-around;
     gap: var(--gap);
     min-width: 100%;

@@ -45,6 +45,45 @@ export const testimonials: {
       "I can't recommend UIFry enough for any UI/UX designer looking to excel in their career. The sheer number of resources, the quality of templates and briefs, and the commitment to weekly updates are beyond impressive. Plus, their job listings helped me land my dream job! With UIFry, the possibilities are truly unlimited.",
     ],
   },
+  {
+    name: "Kamal A.",
+    designation: "Newbie UI Designer",
+    date: "June 24, 2023",
+    review: [
+      "UIFry's Practice Briefs have been a game-changer for me. They provided me with an invaluable opportunity to apply my skills to real-world challenges. Each brief comes with comprehensive guidelines and resources, making the learning process incredibly seamless and practical. UIFry’s briefs have helped me refine my skills and build a robust portfolio.",
+    ],
+  },
+  {
+    name: "Martha L.",
+    designation: "Visual Designer",
+    date: "June 29, 2023",
+    review: [
+      "The Style Guides at UIFry have truly been a treasure trove for me. The curated resources on colors, typography, and design examples have tremendously improved my understanding and application of design principles. UIFry's guides have become my go-to source for starting any project, and they've greatly expedited my workflow.",
+    ],
+  },
+  {
+    name: "Amber D.",
+    designation: "Product Designer",
+    date: "July 2, 2023",
+    review: [
+      "Discovering UIFry has been a turning point in my UI/UX design career. The platform is an all-encompassing resource hub with UI templates, UX kits, practice briefs, custom fonts, style guides, and even a dedicated job board. Every week, I find new resources added to their already extensive library.",
+    ],
+  },{
+    name: "Farsi K.",
+    designation: "Website Designer",
+    date: "July 4, 2023",
+    review: [
+      "The custom-made fonts at UIFry have added an entirely new dimension to my designs. Their unique typefaces, crafted specifically for UI/UX design, have given my projects a distinct aesthetic that's hard to find elsewhere. The exclusive fonts have not only enhanced my projects but also significantly broadened my creative horizons.",
+    ],
+  },{
+    name: "Salman M.",
+    designation: "Engineer Turned Designer",
+    date: "June 7, 2023",
+    review: [
+      "UIFry's Remote Job Board is a revelation for a UI/UX designer like me. It's not just a list of opportunities but a curated selection of 100% remote jobs that perfectly align with my skills and interests. This dedicated board has made my job search more focused, efficient, and successful.",
+    ],
+  },
+  
 ];
 
 export const Soon: { title: string; desc: string }[] = [
