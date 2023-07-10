@@ -11,7 +11,7 @@ const PaymentTag = () => {
         <Image src={payment3} className='absolute top-0 -right-[7rem] h-full xl:hidden' alt="" />
       <div className="z-[20]">
         <div className="flex items-center gap-[1rem] flex-wrap">
-          <span className=" satoshi text-white text-[3.2rem] leading-[3.4rem]">$4.99/m</span>
+          <span className=" satoshi text-white text-[3.2rem] leading-[3.4rem]">$14.99/m</span>
           <span className="text-[#4F8ADB] text-[1.6rem] font-700 line-through">$29.99/m</span>
         </div>
         <div className="flex justify-between xl:gap-[1rem] items-center xl:items-start xl:flex-col">

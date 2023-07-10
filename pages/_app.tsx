@@ -26,6 +26,7 @@ import ComingSoon from "@/components/ComingSoon/ComingSoon";
 import localFont from "next/font/local";
 import Sticker2 from "@/components/Sticker/Sticker2";
 import Sticker3 from "@/components/Sticker/Sticker3";
+import Search from "@/components/Searching/Search";
 
 const myFont = localFont({
   src: [
@@ -113,6 +114,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Progress isAnimating={isAnimating} />
+      {/* <Search /> */}
       {!user && isHomePage && false ? (
         <Sticker3 classes={"!rounded-none mx-auto"} />
       ) : !user ? (
