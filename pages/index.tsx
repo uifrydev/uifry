@@ -202,16 +202,85 @@ const Home: NextPage<{
         link=""
         description="Discover UI UX resources, remote jobs, high-quality templates, UI UX kits,  briefs, and more. Start your journey to becoming a master UI UX designer today! Unleash your creativity and boost your design skills with our platform's unlimited access."
       />
-
       {openModal && <DetailsModal setData={setModalData} data={modalData} />}
       {openModal1 && <DetailsModal1 setData={setModalData} data={modalData} />}
       {briefModal && <BriefModal data={modalData} />}
       <Header title={["Home"]} istitle={false} breadcrums={["Home"]} />
       {/* <KitHeader /> */}
+      {/* <div className="min-lg:pl-[214px] lg:px-[1rem] pr-[2rem] py-[3rem] my-[1rem] w-full overflow-hidden">
+        <div className="flex flex-col w-full px-[2rem] middle gap-[4.44rem] bg-primary rounded-[2.4rem] pb-[4rem] overflow-x-hidden">
+          <h3 className="satoshi max-w-[84rem] mt-[7rem] text-center text-primaryBlack text-[4.8rem]  sm:text-[4rem] font-[700] leading-[120%]">
+            “Everything for a UI/UX designer -
+            <span className="gradient-text relative">
+              {" "}
+              new resources{" "}
+              <Image
+                src={line}
+                alt="circle"
+                className="absolute -bottom-[1rem] z-[10] -left-[.1rem] w-[110 %]"
+              />
+            </span>
+            added each week!”
+          </h3>
+          <article className="wrapper">
+            <div className="marquee overflow-x-hidden">
+              <div className="marquee__group ">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+
+              <div aria-hidden="true" className="marquee__group">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+
+            <div className="marquee marquee--reverse overflow-x-hidden">
+              <div className="marquee__group ">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+
+              <div aria-hidden="true" className="marquee__group">
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+                {testimonials.map((item) => (
+                  <TestimonialCard {...item} key={item.designation} />
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+      </div> */}
       <Sidebar isDetail={false} />
       {/* <FilterBar /> */}
-      <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[2rem] w-full pb-[10rem]">
+      <div className="min-lg:pl-[234px] lg:px-[1rem]  pr-[4rem] pt-[0rem] w-full pb-[10rem]">
         <div className="flex flex-col gap-[2rem] py-[4rem] justify-center items-center">
+          <Link
+            href="https://www.producthunt.com/posts/uifry?utm_source=badge-top-post-topic-badge&utm_medium=badge&utm_souce=badge-uifry"
+            target="_blank"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/top-post-topic-badge.svg?post_id=396313&theme=neutral&period=weekly&topic_id=44"
+              alt="UIFry - 1000s&#0032;of&#0032;templates&#0044;&#0032;briefs&#0044;&#0032;jobs&#0032;&#0038;&#0032;more&#0032;for&#0032;UI&#0032;UX&#0032;designers | Product Hunt"
+              style={{ width: "250px", height: "54px" }}
+              width={250}
+              height={54}
+            />
+          </Link>
           {!user ? (
             <>
               <h2 className="satoshi max-w-[92rem] text-center text-primaryBlack text-[4.8rem] font-[700] leading-[120%]">

@@ -9,7 +9,7 @@ const withPWA = require("next-pwa")({
 const nextConfig = withPWA({
   // next
   images: {
-    domains: ["colorlib.com", "cdn.sanity.io"],
+    domains: ["colorlib.com", "cdn.sanity.io", "api.producthunt.com"],
     formats: ["image/webp"],
   },
 });

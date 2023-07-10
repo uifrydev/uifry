@@ -25,7 +25,7 @@ var o_signup_options = {
   "load": "auth",
   "auth": {
     "widgetMode": "register",
-    "planUid": "OW4Yy4mg",
+    "planUid": "y9qXOgQA",
     "planPaymentTerm": "month",
     "skipPlanOptions": true,
     "id": "signup_embed",
@@ -46,11 +46,11 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MSK62VC');`}</script>
-        <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+{/* <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MSK62VC');`}</script>
+})(window,document,'script','dataLayer','GTM-MSK62VC');`}</script> */}
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>
         <meta name="theme-color" content="#fff" />
@@ -82,6 +82,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {`!function(w, d, t, u) { if (w.__ls) return; var f = w.__ls = function() { f.push ? f.push.apply(f, arguments) : f.store.push(arguments)}; if (!w.__ls) w.__ls = f; f.store = []; f.v = "1.0"; var ls = d.createElement(t); ls.async = true; ls.src = u; var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(ls, s); }(window, document, 'script', ('https:' == window.location.protocol ? 'https://' : 'http://') + 'cdn.livesession.io/track.js'); __ls("init", "d58bb084.155e2e0b"); __ls("newPageView") `}
         </Script>
  */}
+
+
 
         <Script
           async

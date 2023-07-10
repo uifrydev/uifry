@@ -13,7 +13,7 @@ const TestimonialCard = ({
   date: string;
 }) => {
   return (
-    <div className="shadow-testimonial rounded-[1rem] bg-[#ffffff]/[.7] p-[2rem]">
+    <div className="shadow-testimonial rounded-[1rem] bg-[#ffffff]/[.7] p-[2rem] max-w-[50rem] w-full">
       <div className="flex flex-col gap-[1.8rem]">
         <div className="">
           <div className="flex w-full items-center justify-between gap-[1rem]">
