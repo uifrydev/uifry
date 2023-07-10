@@ -676,7 +676,6 @@ export const getStaticProps: GetServerSideProps = async () => {
     ];
     const [uiTemplates, uiKits, fonts, styleGuides, jobs, briefs, thisWeek] =
       await Promise.all(queries.map((queryObj) => fetchDataServer(queryObj)));
-    console.log({ thisWeek });
     return {
       props: {
         uiTemplates,
@@ -689,7 +688,6 @@ export const getStaticProps: GetServerSideProps = async () => {
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       props: {
         uiTemplates: [],

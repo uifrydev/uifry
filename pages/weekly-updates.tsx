@@ -72,12 +72,12 @@ const Home: NextPage<{
   jobs: JobProps[];
   briefs: CategoryCardProps[];
 }> = ({ uiTemplates, uiKits, styleGuides, jobs, briefs }) => {
-  console.log({
-    uiTemplates: Number(uiTemplates[0]?.total) || 0,
-    style: Number(styleGuides[0]?.total) || 0,
-    breifs: Number(briefs[0]?.total) || 0,
-    job: Number(jobs[0]?.total) || 0,
-  });
+  // console.log({
+  //   uiTemplates: Number(uiTemplates[0]?.total) || 0,
+  //   style: Number(styleGuides[0]?.total) || 0,
+  //   breifs: Number(briefs[0]?.total) || 0,
+  //   job: Number(jobs[0]?.total) || 0,
+  // });
   const { openModal, openModal1, briefModal } = useSelector(
     (state: RootState) => state.features
   );

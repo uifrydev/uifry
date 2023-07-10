@@ -30,7 +30,6 @@ const signup = () => {
   const router = useRouter();
   const { openLogin } = useOutseta();
   useEffect(() => {
-    console.log({ user: localStorage.getItem("token") });
     // if (localStorage.getItem("token")) {
     //   router.push("/");
     // }
