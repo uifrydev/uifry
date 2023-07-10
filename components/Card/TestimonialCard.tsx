@@ -15,7 +15,7 @@ const TestimonialCard = ({
   return (
     //shadow-testimonial
     <div className="rounded-[1rem] bg-[#ffffff]/[.7] p-[2rem] max-w-[50rem] w-full border-[1px]">
-      <div className="flex flex-col gap-[1.8rem]">
+      <div className="flex flex-col gap-[1.8rem] h-full">
         <div className="">
           <div className="flex w-full items-center justify-between gap-[1rem]">
             {/* <p className="text-[1.7rem] font-600 leading-[2.34rem] text-secondaryBlack"> */}
@@ -37,7 +37,7 @@ const TestimonialCard = ({
             </p>
           ))}
         </div>
-        <span className="text-[1.2rem] leading-[2.1rem] mt-[.8rem] text-secondaryBlack/[.6]">
+        <span className="text-[1.2rem] leading-[2.1rem] mt-auto text-secondaryBlack/[.6]">
           {date}
         </span>
       </div>
